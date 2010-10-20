@@ -1,6 +1,12 @@
 class ShowsController < ApplicationController
   def index
-    @series = []
+    if params[:letter] == '0'
+      @series = Series.where(:name => "%")
+    elsif ('A'..'Z').include?(params[:letter])
+      @series = Series.where("name LIKE ?", params[:letter] + '%')
+    else
+      @series = []
+    end
   end
   
   def search
