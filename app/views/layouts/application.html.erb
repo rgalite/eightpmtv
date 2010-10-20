@@ -8,7 +8,26 @@
 </head>
 <body>
 
-<%= yield %>
 
+<div id="global">
+  <div id="header">
+    <div id="header-container">
+      <h1 class="logo">A very sexy logo</h1>
+      <ul>
+        <li><%= link_to "Home", root_url %></li>
+      </ul>
+      <%= form_tag url_for(search_shows_path) do %>
+        <%= text_field_tag :q %>
+      <% end -%>
+      <div style="clear:both"></div>
+    </div>
+  </div>
+  <div id="global-container">
+    <%= yield %>
+  </div>
+  <div id="footer">
+    
+  </div>
+</div>
 </body>
 </html>

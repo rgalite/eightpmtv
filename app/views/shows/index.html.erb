@@ -1,0 +1,27 @@
+<style>
+  #series_results .series { float:left; }
+  #series_results .series .poster { float:left; margin-right:20px; }
+  #series_results .series div.content { float:left; width: 300px; }
+  #series_results .series .title { margin:0; }
+  #series_results .series div.content .content { margin:0; }
+  
+</style>
+<h1>Shows#index</h1>
+<p>Find me in app/views/shows/index.html.erb</p>
+<div id="series_results">
+  <% for serie in @series %>
+  <div class="series" id="series_<%= serie.id %>">
+    <div class="poster">
+      <p class="title"><%= serie.name %></p>
+      <% if serie.posters('en').size > 0 %>
+        <%= image_tag(serie.posters('en').first.url, :width => 185, :height => 275)%>
+      <% end %>
+    </div>
+    <div class="content">
+      <p class="content"><%= serie.overview %></p>
+    </div>
+    <div style="clear:left"></div>
+  </div>
+  <% end %>
+  <div style="clear:left"></div>
+</div>

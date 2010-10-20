@@ -38,5 +38,8 @@ module Tvshows
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+    
+    # Constants
+    config.the_tv_db_api_key = "D924D9C9745AE7D8"
   end
 end
