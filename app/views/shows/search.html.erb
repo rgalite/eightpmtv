@@ -1,27 +1,17 @@
-<style>
-  #series_results .series { border-bottom:1px solid black; margin-bottom:30px; padding-bottom:30px; }
-  #series_results .series .poster { float:left; margin-right:20px; }
-  #series_results .series div.content { float:left; width:750px; }
-  #series_results .series div.content h2.title { margin:0px; margin-bottom:15px; }
-  #series_results .series div.content .content { margin:0; }
-  #series_results .series .debug { color:red; }
-  
-</style>
 <h1>Here is what i found for "<%= params[:q] %>":</h1>
 <div id="series_results">
   <% for serie in @series %>
   <div class="series" id="series_<%= serie.id %>">
     <div class="poster">
-      <%# if serie.posters('en').size > 0 %>
-        <%= image_tag("http://thetvdb.com/banners/#{serie["banner"]}", :width => 185, :height => 275)%>
-      <%# end %>
+      <% unless serie["banner"].nil? %>
+        <%= image_tag(serie["banner"])%>
+      <% end %>
     </div>
     <div class="content">
-      <h2 class="title"><%= serie["SeriesName"] %></h2>
+      <h2 class="title"><%= link_to serie["SeriesName"], serie["Link"] %></h2>
       <p class="content"><%= serie["Overview"] %></p>
     </div>
     <div style="clear:left"></div>
-    <div class="debug"><%#= debug serie %></div>
   </div>
   <% end %>
 </div>
