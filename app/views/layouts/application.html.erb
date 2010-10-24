@@ -18,7 +18,7 @@
         <li><%= link_to "Series", shows_path %></li>
       </ul>
       <%= form_tag url_for(search_shows_path) do %>
-        <%= text_field_tag :q %>
+        <%= text_field_tag :q, params[:q] %>
       <% end -%>
       <div style="clear:both"></div>
     </div>

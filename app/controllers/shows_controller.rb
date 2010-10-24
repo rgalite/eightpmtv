@@ -14,13 +14,9 @@ class ShowsController < ApplicationController
     tvdb = TvdbParty::Search.new(Tvshows::Application.config.the_tv_db_api_key)
     results = tvdb.search(params[:q])
     @series = []
-    series_ids = []
     results.each do |s|
-      series_ids << s["seriesid"]
-      @series << tvdb.get_series_by_id(s["seriesid"])
+      @series << s unless s["Overview"].blank?
     end
-    call_rake "tvdb:add_series series_list=#{series_ids.join(',')}"
-    render :index
   end
   
   def show
