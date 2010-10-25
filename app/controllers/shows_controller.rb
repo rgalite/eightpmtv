@@ -4,19 +4,25 @@ class ShowsController < ApplicationController
   private
   def download_banner(series_banner)
     unless series_banner.nil?
-      file_path = File.join(RAILS_ROOT, "public", "assets", "search", "banners", File.basename(series_banner))
-      file_url = File.join("/", "assets", "search", "banners", File.basename(series_banner))
-      Net::HTTP.start("thetvdb.com") do |http|
-        resp = http.get("/banners/#{series_banner}")
-        open(file_path, "wb") do |file|
-          file.write(resp.body)
-        end
-      end
-
-      return file_url
+      s3_config = YAML.load_file(File.join(RAILS_ROOT, "config", "amazon_s3.yml"))
+      
+      AWS::S3::Base.establish_connection!(
+        :access_key_id     => s3_config[RAILS_ENV]["access_key_id"],
+        :secret_access_key => s3_config[RAILS_ENV]["secret_access_key"]
+      )
+      
+      begin
+        banner_url = "http://thetvdb.com/banners/#{series_banner}"
+        banner_s3_path = "assets/search/banners/#{series_banner}"
+        banner = AWS::S3::S3Object.find(banner_s3_path, "rmgalite-tvshows")
+      rescue
+        AWS::S3::S3Object.store(banner_s3_path, open(banner_url), 'rmgalite-tvshows',
+                                :access => :public_read)
+        banner = AWS::S3::S3Object.find(banner_s3_path, "rmgalite-tvshows")
+      ensure
+        return banner.url
+      end                              
     end
-    
-    return series_banner
   end
   
   public
