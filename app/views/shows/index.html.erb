@@ -1,16 +1,48 @@
-<h1>Search for a serie :</h1>
+<style>
+  #series_initials { border-bottom:1px solid black; padding-bottom: 10px;}
+  #series_initials ul { margin:0px; padding-left:0px; }
+  #series_initials ul li {
+    display:inline-block;
+    margin-left:28px;
+  }
+  #series_initials ul li.first {
+    display:inline-block;
+    margin-left:10px;
+  }
+  
+  #series_found { margin-top: 20px; }
+  #series_found h3 { text-align:right }
+  #series_found ul { padding-left:0px; }
+  #series_found ul li { display:inline-block; margin-left:30px; }
+  #series_found ul li div { width:200px; }
+  #series_found ul li div p { text-align:center; margin-top:2px; }
+  #series_found ul li div div.series_poster { text-align:center }
+</style>
+<h1><%= t '.title' %></h1>
 <div id="series_initials">
   <ul>
-    <li><%= link_to "#", shows_path(:letter => "0" ) %></li>
+    <li class="first"><%= link_to "#", shows_path(:letter => "0" ) %></li>
     <%= az_shows_initials %>
   </ul>
 </div>
 
 <% if @series.size > 0 %>
 <div id="series_found">
+  <h3><%= (t '.series_letter') %> <%= params[:letter] %> - <%= @series.size %> series <%= t '.found' %></h3>
   <ul>
+  <% 1.times do %>
   <% @series.each do |serie| %>
-    <%= serie.name %>
+    <li>
+      <div>
+        <div class="series_poster">
+          <%= link_to (image_tag (cycle '80348-1.jpg', '80349-1.jpg', '80350-1.jpg', '80351-1.jpg'),
+                               :width => 150, :height => 220),
+                      show_path(serie) %>
+        </div>
+        <p><%= link_to serie.name, show_path(serie) %></p>
+      </div>
+    </li>
+  <% end %>
   <% end %>
   </ul>
 </div>

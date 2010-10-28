@@ -2,4 +2,9 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  shows:
+    index:
+      title: "Search for a serie:"
+      series_letter: "Series in"
+      found: "Found"
   hello: "Hello world"
