@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101028103039) do
+ActiveRecord::Schema.define(:version => 20101028104105) do
 
   create_table "series", :force => true do |t|
     t.integer  "tvdb_id"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(:version => 20101028103039) do
     t.string   "imdb_id"
     t.string   "language"
     t.string   "network"
-    t.text     "description",    :limit => 255
+    t.string   "description",    :limit => 2048
     t.decimal  "rating"
     t.integer  "rating_count"
     t.integer  "runtime"
