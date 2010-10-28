@@ -102,6 +102,7 @@ DEPENDENCIES
   aws-s3
   devise
   httparty
+  mail
   mongrel
   rails (= 3.0.0)
   ruby-debug
