@@ -16,6 +16,13 @@
       <ul>
         <li><%= link_to "Home", root_url %></li>
         <li><%= link_to "Series", shows_path %></li>
+        <% if user_signed_in? %>
+        <li><%= link_to current_user.username, edit_user_registration_path %></li>
+        <li><%= link_to "Sign out", destroy_user_session_path %></li>
+        <% else %>
+        <li><%= link_to "Sign up", new_user_registration_path %>&nbsp;
+            <%= link_to "Sign in", new_user_session_path %></li>
+        <% end %>
       </ul>
       <%= form_tag url_for(search_shows_path) do %>
         <%= text_field_tag :q, params[:q] %>
@@ -24,6 +31,8 @@
     </div>
   </div>
   <div id="global-container">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
   </div>
   <div id="footer">

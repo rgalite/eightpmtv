@@ -2,3 +2,5 @@
 db/*.sqlite3
 log/*.log
 tmp/**/*
+public/assets/search/banners/*
+tmp/restart.txt

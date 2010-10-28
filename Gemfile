@@ -35,3 +35,4 @@ end
 
 gem "mongrel"
 gem "httparty"
+gem "devise"
