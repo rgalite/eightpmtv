@@ -10,7 +10,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101028104105) do
+ActiveRecord::Schema.define(:version => 20101028230806) do
+
+  create_table "actors", :force => true do |t|
+    t.integer  "tvdb_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.string   "image"
+    t.integer  "series_id"
+    t.integer  "actor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "series", :force => true do |t|
     t.integer  "tvdb_id"

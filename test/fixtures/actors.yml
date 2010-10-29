@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  tvdb_id: 1
+  name: MyString
+
+two:
+  tvdb_id: 1
+  name: MyString
