@@ -30,19 +30,15 @@
 <div id="series_found">
   <h3><%= (t '.series_letter') %> <%= params[:letter] %> - <%= @series.size %> series <%= t '.found' %></h3>
   <ul>
-  <% 1.times do %>
   <% @series.each do |serie| %>
     <li>
       <div>
         <div class="series_poster">
-          <%= link_to (image_tag (cycle '80348-1.jpg', '80349-1.jpg', '80350-1.jpg', '80351-1.jpg'),
-                               :width => 150, :height => 220),
-                      show_path(serie) %>
+          <%= link_to (image_tag serie.poster_url, :width => 150, :height => 220), show_path(serie) %>
         </div>
         <p><%= link_to serie.name, show_path(serie) %></p>
       </div>
     </li>
-  <% end %>
   <% end %>
   </ul>
 </div>

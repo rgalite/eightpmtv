@@ -67,6 +67,8 @@ class ShowsController < ApplicationController
                           :air_time => s.air_time, :air_day => s.air_day,
                           :banner => s.banner, :poster => s.poster, :fanart => s.fanart)
       
+      call_rake "tvdb:download_banners", { :banners => [series.banner, series.fanart].join('|') }
+      download_banner(series.poster)
       series.set_actors(s.actors)      
       series.save
     end

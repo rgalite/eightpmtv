@@ -1,7 +1,7 @@
 <h1>Here is what i found for "<%= params[:q] %>":</h1>
 <div id="series_results">
   <% for serie in @series %>
-  <div class="series" id="series_<%= serie.id %>">
+  <div class="series" id="series_<%= serie['id'] %>">
     <div class="poster">
       <% unless serie["banner"].nil? %>
         <%= image_tag(serie["banner"])%>
