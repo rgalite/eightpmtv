@@ -7,4 +7,6 @@ en:
       title: "Search for a serie:"
       series_letter: "Series in"
       found: "Found"
+    show:
+      actors: "Actors"
   hello: "Hello world"

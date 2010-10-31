@@ -1,3 +1,11 @@
+<style>
+#series_avatar { float:left; width:205px; }
+#series_avatar img { }
+#series_info { float:left; margin-left:10px; width:760px; }
+#series_overview { margin:0px; }
+#series_actors ul { float:left; list-style:none; margin:0px; padding:0; width: 100%; }
+#series_actors ul li { display:inline-block; float:left; width: 25%; margin-top: 10px; padding: 0; }
+</style>
 <h1><%= @series.name %></h1>
 
 <div id="series_avatar">
@@ -5,3 +13,21 @@
     <%= image_tag @series.poster.url(:medium) %>
   <% end %>
 </div>
+
+<div id="series_info">
+  <p id="series_overview"><%= @series.description %></p>
+  <% if !@series.actors.size.zero? %>
+  <div id="series_actors">
+    <h3><%= t '.actors' %></h3>
+    <ul>
+    <% @series.roles.each do |role| %>
+      <li>
+        <%= role.name %><br />(<%= role.actor.name %>)
+      </li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+</div>
+
+<div style="clear:left"></div>

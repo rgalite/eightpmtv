@@ -31,4 +31,43 @@ namespace :tvdb do
       end
     end
   end
+  
+  desc "Attach poster to series"
+  task :attach_poster_to_series => :environment do |t, args|
+    Series.all.each do |serie|
+      p "Attaching poster for serie #{serie.name} (ID = #{serie.id}, TVDB_ID = #{serie.tvdb_id})"
+      tvdb = TvdbParty::Search.new(Tvshows::Application.config.the_tv_db_api_key)
+      s = tvdb.get_series_by_id(serie.tvdb_id)
+
+      unless s.nil? or serie.nil?
+        serie.poster_url = s.poster
+
+        serie.save
+      end
+      p "Done"
+    end
+    puts "Done."
+  end
+  
+  desc "Attach avatar to role"
+  task :attach_avatar_to_role => :environment do |t, args|
+    File.open("toto.txt", "r") do |file|
+      file.each do |line|
+        info = line.split(/\t+/)
+        role = Role.find(info[0].to_i)
+        unless info[1].blank?
+          role.image_url = info[2]
+          if role.save
+            puts "Role #{role.name} in series #{role.series.name} has been updated (ID = #{role.id})" 
+          else
+            puts "Role #{role.name} in series #{role.series.name} has not been updated (ID = #{role.id})"
+            puts "=> Errors #{role.errors.full_messages}"
+            puts "Destroyed"
+            role.destroy
+          end
+        end
+      end
+    end
+    puts "Done."
+  end
 end

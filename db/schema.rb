@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101031002625) do
+ActiveRecord::Schema.define(:version => 20101031015522) do
 
   create_table "actors", :force => true do |t|
     t.integer   "tvdb_id"
@@ -20,12 +20,15 @@ ActiveRecord::Schema.define(:version => 20101031002625) do
   end
 
   create_table "roles", :force => true do |t|
-    t.string    "name"
-    t.string    "image"
-    t.integer   "series_id"
-    t.integer   "actor_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.string   "name"
+    t.integer  "series_id"
+    t.integer  "actor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "series", :force => true do |t|

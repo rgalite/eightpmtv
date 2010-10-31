@@ -21,8 +21,10 @@ class ShowsController < ApplicationController
   public
   
   def index
-    if params[:letter] == '0'
-      @series = Series.where(:name => "%")
+    if params[:letter] == "0"
+      @series = Series.where("name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ? \
+                              OR name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ?",
+                              "0%", "1%", "2%", "3%", "4%", "5%", "6%", "7%", "8%", "9%")
     elsif ('A'..'Z').include?(params[:letter])
       @series = Series.where("name LIKE ? OR name LIKE ?", params[:letter] + '%', "The #{params[:letter]}%").order("name asc")
     else
@@ -70,10 +72,10 @@ class ShowsController < ApplicationController
                           :rating_count => s.rating_count,
                           :air_time => s.air_time,
                           :air_day => s.air_day,
+                          :poster_url => s.poster,
                           :banner => s.banner,
                           :fanart => s.fanart)
-      series.poster = RemoteFile.new("http://thetvdb.com/banners/#{s.poster}")
-      call_rake "tvdb:download_banners", { :banners => [series.banner, series.fanart].join('|') }
+      # call_rake "tvdb:download_banners", { :banners => [series.banner, series.fanart].join('|') }
 
       series.set_actors(s.actors)      
       series.save
