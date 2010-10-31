@@ -10,22 +10,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101028230806) do
+ActiveRecord::Schema.define(:version => 20101031002625) do
 
   create_table "actors", :force => true do |t|
-    t.integer  "tvdb_id"
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "tvdb_id"
+    t.string    "name"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "roles", :force => true do |t|
-    t.string   "name"
-    t.string   "image"
-    t.integer  "series_id"
-    t.integer  "actor_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "name"
+    t.string    "image"
+    t.integer   "series_id"
+    t.integer   "actor_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "series", :force => true do |t|
@@ -35,9 +35,8 @@ ActiveRecord::Schema.define(:version => 20101028230806) do
     t.string   "content_rating"
     t.date     "first_aired"
     t.string   "imdb_id"
-    t.string   "language"
     t.string   "network"
-    t.string   "description",    :limit => 2048
+    t.string   "description",         :limit => 2048
     t.decimal  "rating"
     t.integer  "rating_count"
     t.integer  "runtime"
@@ -46,26 +45,30 @@ ActiveRecord::Schema.define(:version => 20101028230806) do
     t.string   "status"
     t.string   "banner"
     t.string   "fanart"
-    t.string   "poster"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "last_updated_at"
+    t.string   "poster_file_name"
+    t.string   "poster_content_type"
+    t.integer  "poster_file_size"
+    t.datetime "poster_updated_at"
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                               :default => "", :null => false
-    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
-    t.string   "reset_password_token"
-    t.string   "remember_token"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                       :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "username"
+    t.string    "email",                               :default => "", :null => false
+    t.string    "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string    "password_salt",                       :default => "", :null => false
+    t.string    "reset_password_token"
+    t.string    "remember_token"
+    t.timestamp "remember_created_at"
+    t.integer   "sign_in_count",                       :default => 0
+    t.timestamp "current_sign_in_at"
+    t.timestamp "last_sign_in_at"
+    t.string    "current_sign_in_ip"
+    t.string    "last_sign_in_ip"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "username"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

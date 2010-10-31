@@ -10,7 +10,7 @@ class ShowsController < ApplicationController
         banner = AWS::S3::S3Object.find(banner_s3_path, "rmgalite-tvshows")
       rescue
         AWS::S3::S3Object.store(banner_s3_path, open(banner_url), 'rmgalite-tvshows',
-                                :access => :public_read)
+                                :access => :private)
         banner = AWS::S3::S3Object.find(banner_s3_path, "rmgalite-tvshows")
       ensure
         return banner.url
@@ -24,7 +24,7 @@ class ShowsController < ApplicationController
     if params[:letter] == '0'
       @series = Series.where(:name => "%")
     elsif ('A'..'Z').include?(params[:letter])
-      @series = Series.where("name LIKE ?", params[:letter] + '%')
+      @series = Series.where("name LIKE ? OR name LIKE ?", params[:letter] + '%', "The #{params[:letter]}%").order("name asc")
     else
       @series = []
     end
@@ -34,7 +34,7 @@ class ShowsController < ApplicationController
     params[:q]
     tvdb = TvdbParty::Search.new(Tvshows::Application.config.the_tv_db_api_key)
     results = tvdb.search(params[:q])
-    db_series = Series.where("name LIKE :name", { :name => "%#{params[:q]}%" }).all
+    db_series = Series.where("lower(name) LIKE lower(:name)", { :name => "%#{params[:q]}%" }).all
     
     @series = []
     results.each do |s|
@@ -57,18 +57,24 @@ class ShowsController < ApplicationController
       tvdb = TvdbParty::Search.new(Tvshows::Application.config.the_tv_db_api_key)
       s = tvdb.get_series_by_id(params[:id])
 
-      series = Series.new(:name => s.name, :series_id => s.id,
+      series = Series.new(:name => s.name,
+                          :series_id => s.id,
                           :tvdb_id => s.tvdb_id,
-                          :description => s.overview, :first_aired => s.first_aired,
-                          :network => s.network, :rating => s.rating,
-                          :runtime => s.runtime, :status => s.status == "Continuing",
-                          :imdb_id => s.imdb_id, :language => s.language,
+                          :description => s.overview,
+                          :first_aired => s.first_aired,
+                          :network => s.network,
+                          :rating => s.rating,
+                          :runtime => s.runtime,
+                          :status => s.status == "Continuing",
+                          :imdb_id => s.imdb_id,
                           :rating_count => s.rating_count,
-                          :air_time => s.air_time, :air_day => s.air_day,
-                          :banner => s.banner, :poster => s.poster, :fanart => s.fanart)
-      
+                          :air_time => s.air_time,
+                          :air_day => s.air_day,
+                          :banner => s.banner,
+                          :fanart => s.fanart)
+      series.poster = RemoteFile.new("http://thetvdb.com/banners/#{s.poster}")
       call_rake "tvdb:download_banners", { :banners => [series.banner, series.fanart].join('|') }
-      download_banner(series.poster)
+
       series.set_actors(s.actors)      
       series.save
     end

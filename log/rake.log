@@ -943,3 +943,475 @@ Banner is saved in S3
 Banner is saved in S3
 Banner is saved in S3
 Banner is saved in S3
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 2 banners
+Loading banner n.1
+Banner PATH : graphical/80348-g21.jpg
+Banner URL : http://thetvdb.com/banners/graphical/80348-g21.jpg
+Banner S3 PATH : assets/graphical/80348-g21.jpg
+Banner already exists in S3
+Loading banner n.2
+Banner PATH : fanart/original/80348-41.jpg
+Banner URL : http://thetvdb.com/banners/fanart/original/80348-41.jpg
+Banner S3 PATH : assets/fanart/original/80348-41.jpg
+Banner does not exists in S3
+Banner is saved in S3
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 1 banners
+Loading banner n.1
+Banner PATH : actors/77809.jpg
+Banner URL : http://thetvdb.com/banners/actors/77809.jpg
+Banner S3 PATH : assets/actors/77809.jpg
+Banner does not exists in S3
+Banner is saved in S3
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 1 banners
+Loading banner n.1
+Banner PATH : actors/80673.jpg
+Banner URL : http://thetvdb.com/banners/actors/80673.jpg
+Banner S3 PATH : assets/actors/80673.jpg
+Banner does not exists in S3
+Banner is saved in S3
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 1 banners
+Loading banner n.1
+Banner PATH : actors/80674.jpg
+Banner URL : http://thetvdb.com/banners/actors/80674.jpg
+Banner S3 PATH : assets/actors/80674.jpg
+Banner does not exists in S3
+Banner is saved in S3
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 1 banners
+Loading banner n.1
+Banner PATH : actors/77810.jpg
+Banner URL : http://thetvdb.com/banners/actors/77810.jpg
+Banner S3 PATH : assets/actors/77810.jpg
+Banner does not exists in S3
+Banner is saved in S3
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 1 banners
+Loading banner n.1
+Banner PATH : actors/22018.jpg
+Banner URL : http://thetvdb.com/banners/actors/22018.jpg
+Banner S3 PATH : assets/actors/22018.jpg
+Banner does not exists in S3
+Banner is saved in S3
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 1 banners
+Loading banner n.1
+Banner PATH : actors/80672.jpg
+Banner URL : http://thetvdb.com/banners/actors/80672.jpg
+Banner S3 PATH : assets/actors/80672.jpg
+Banner does not exists in S3
+Banner is saved in S3
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 1 banners
+Loading banner n.1
+Banner PATH : actors/22017.jpg
+Banner URL : http://thetvdb.com/banners/actors/22017.jpg
+Banner S3 PATH : assets/actors/22017.jpg
+Banner does not exists in S3
+Banner is saved in S3
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 1 banners
+Loading banner n.1
+Banner PATH : actors/22019.jpg
+Banner URL : http://thetvdb.com/banners/actors/22019.jpg
+Banner S3 PATH : assets/actors/22019.jpg
+Banner does not exists in S3
+Banner is saved in S3
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 1 banners
+Loading banner n.1
+Banner PATH : actors/80671.jpg
+Banner URL : http://thetvdb.com/banners/actors/80671.jpg
+Banner S3 PATH : assets/actors/80671.jpg
+Banner does not exists in S3
+Banner is saved in S3
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 1 banners
+Loading banner n.1
+Banner PATH : actors/144291.jpg
+Banner URL : http://thetvdb.com/banners/actors/144291.jpg
+Banner S3 PATH : assets/actors/144291.jpg
+Banner does not exists in S3
+Banner is saved in S3
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 1 banners
+Loading banner n.1
+Banner PATH : actors/80670.jpg
+Banner URL : http://thetvdb.com/banners/actors/80670.jpg
+Banner S3 PATH : assets/actors/80670.jpg
+Banner does not exists in S3
+Banner is saved in S3
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 1 banners
+Loading banner n.1
+Banner PATH : actors/123921.jpg
+Banner URL : http://thetvdb.com/banners/actors/123921.jpg
+Banner S3 PATH : assets/actors/123921.jpg
+Banner does not exists in S3
+Banner is saved in S3
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 1 banners
+Loading banner n.1
+Banner PATH : actors/80686.jpg
+Banner URL : http://thetvdb.com/banners/actors/80686.jpg
+Banner S3 PATH : assets/actors/80686.jpg
+Banner does not exists in S3
+Banner is saved in S3
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 2 banners
+Loading banner n.1
+Banner PATH : graphical/82066-g20.jpg
+Banner URL : http://thetvdb.com/banners/graphical/82066-g20.jpg
+Banner S3 PATH : assets/graphical/82066-g20.jpg
+Banner already exists in S3
+Loading banner n.2
+Banner PATH : fanart/original/82066-52.jpg
+Banner URL : http://thetvdb.com/banners/fanart/original/82066-52.jpg
+Banner S3 PATH : assets/fanart/original/82066-52.jpg
+Banner does not exists in S3
+Banner is saved in S3
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 2 banners
+Loading banner n.1
+Banner PATH : graphical/82066-g20.jpg
+Banner URL : http://thetvdb.com/banners/graphical/82066-g20.jpg
+Banner S3 PATH : assets/graphical/82066-g20.jpg
+Banner already exists in S3
+Loading banner n.2
+Banner PATH : fanart/original/82066-52.jpg
+Banner URL : http://thetvdb.com/banners/fanart/original/82066-52.jpg
+Banner S3 PATH : assets/fanart/original/82066-52.jpg
+Banner already exists in S3
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 1 banners
+Loading banner n.1
+Banner PATH : actors/77049.jpg
+Banner URL : http://thetvdb.com/banners/actors/77049.jpg
+Banner S3 PATH : assets/actors/77049.jpg
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 1 banners
+Loading banner n.1
+Banner PATH : actors/77047.jpg
+Banner URL : http://thetvdb.com/banners/actors/77047.jpg
+Banner S3 PATH : assets/actors/77047.jpg
+Banner does not exists in S3
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 1 banners
+Loading banner n.1
+Banner PATH : actors/77045.jpg
+Banner URL : http://thetvdb.com/banners/actors/77045.jpg
+Banner S3 PATH : assets/actors/77045.jpg
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 1 banners
+Loading banner n.1
+Banner PATH : actors/77050.jpg
+Banner URL : http://thetvdb.com/banners/actors/77050.jpg
+Banner S3 PATH : assets/actors/77050.jpg
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 1 banners
+Loading banner n.1
+Banner PATH : actors/77048.jpg
+Banner URL : http://thetvdb.com/banners/actors/77048.jpg
+Banner S3 PATH : assets/actors/77048.jpg
+Banner does not exists in S3
+Banner does not exists in S3
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 1 banners
+Loading banner n.1
+Banner PATH : actors/77044.jpg
+Banner URL : http://thetvdb.com/banners/actors/77044.jpg
+Banner S3 PATH : assets/actors/77044.jpg
+Banner does not exists in S3
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 1 banners
+Loading banner n.1
+Banner PATH : actors/77042.jpg
+Banner URL : http://thetvdb.com/banners/actors/77042.jpg
+Banner S3 PATH : assets/actors/77042.jpg
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 1 banners
+Loading banner n.1
+Banner PATH : actors/77046.jpg
+Banner URL : http://thetvdb.com/banners/actors/77046.jpg
+Banner S3 PATH : assets/actors/77046.jpg
+Banner is saved in S3
+Banner does not exists in S3
+Banner does not exists in S3
+Banner does not exists in S3
+Banner does not exists in S3
+Banner is saved in S3
+Banner is saved in S3
+Banner is saved in S3
+Banner is saved in S3
+Banner is saved in S3
+Banner is saved in S3
+Banner is saved in S3
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+(in /Users/crystalgold/Development/projects/tvshows)
+** Invoke tvdb:download_banners (first_time)
+** Invoke environment (first_time)
+** Execute environment
+** Execute tvdb:download_banners
+** Execute tvdb:download_bannersLoading Amazon S3 configuration ...
+
+Loading Amazon S3 configuration ...
+Done.Done.
+
+Found 1 bannersFound 1 banners
+
+Loading banner n.1Loading banner n.1
+
+Banner PATH : actors/77045.jpgBanner PATH : actors/77047.jpg
+
+Banner URL : http://thetvdb.com/banners/actors/77045.jpgBanner URL : http://thetvdb.com/banners/actors/77047.jpg
+
+Banner S3 PATH : assets/actors/77045.jpgBanner S3 PATH : assets/actors/77047.jpg
+
+Banner already exists in S3
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 1 banners
+Loading banner n.1
+Banner PATH : actors/77049.jpg
+Banner URL : http://thetvdb.com/banners/actors/77049.jpg
+Banner S3 PATH : assets/actors/77049.jpg
+Banner already exists in S3
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 2 banners
+Loading banner n.1
+Banner PATH : graphical/82066-g20.jpg
+Banner URL : http://thetvdb.com/banners/graphical/82066-g20.jpg
+Banner S3 PATH : assets/graphical/82066-g20.jpg
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 1 banners
+Loading banner n.1
+Banner PATH : actors/77048.jpg
+Banner URL : http://thetvdb.com/banners/actors/77048.jpg
+Banner S3 PATH : assets/actors/77048.jpg
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 1 banners
+Loading banner n.1
+Banner PATH : actors/77044.jpg
+Banner URL : http://thetvdb.com/banners/actors/77044.jpg
+Banner S3 PATH : assets/actors/77044.jpg
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 1 banners
+Loading banner n.1
+Banner PATH : actors/77042.jpg
+Banner URL : http://thetvdb.com/banners/actors/77042.jpg
+Banner S3 PATH : assets/actors/77042.jpg
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 1 banners
+Loading banner n.1
+Banner PATH : actors/77046.jpg
+Banner URL : http://thetvdb.com/banners/actors/77046.jpg
+Banner S3 PATH : assets/actors/77046.jpg
+** Execute tvdb:download_banners
+Loading Amazon S3 configuration ...
+Done.
+Found 1 banners
+Loading banner n.1
+Banner PATH : actors/77050.jpg
+Banner URL : http://thetvdb.com/banners/actors/77050.jpg
+Banner S3 PATH : assets/actors/77050.jpg
+Banner already exists in S3
+Banner already exists in S3
+Loading banner n.2
+Banner PATH : fanart/original/82066-52.jpg
+Banner URL : http://thetvdb.com/banners/fanart/original/82066-52.jpg
+Banner S3 PATH : assets/fanart/original/82066-52.jpg
+Banner already exists in S3
+Banner already exists in S3
+Banner already exists in S3
+Banner already exists in S3
+Banner already exists in S3
+Banner already exists in S3

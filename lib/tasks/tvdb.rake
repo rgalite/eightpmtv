@@ -25,7 +25,7 @@ namespace :tvdb do
         rescue
           puts "Banner does not exists in S3"
           AWS::S3::S3Object.store(banner_s3_path, open(banner_url), 'rmgalite-tvshows',
-                                  :access => :public_read)
+                                  :access => :private)
           puts "Banner is saved in S3"
         end
       end

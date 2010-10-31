@@ -3,6 +3,12 @@ class Series < ActiveRecord::Base
   has_many :roles, :dependent => :destroy
   has_many :actors, :through => :roles
     
+  has_attached_file :poster,
+                    :styles => { :small => "150x220>", :medium => "204x300>" },
+                    :storage => :s3,
+                    :s3_credentials => "#{Rails.root}/config/amazon_s3.yml",
+                    :path => "assets/series/:attachment/:id/:style/:basename.:extension"
+  
   public
   def to_param
     return "#{self.id}-#{self.name.parameterize}"

@@ -34,7 +34,7 @@
     <li>
       <div>
         <div class="series_poster">
-          <%= link_to (image_tag serie.poster_url, :width => 150, :height => 220), show_path(serie) %>
+          <%= link_to (image_tag serie.poster.url(:small)), show_path(serie) %>
         </div>
         <p><%= link_to serie.name, show_path(serie) %></p>
       </div>
