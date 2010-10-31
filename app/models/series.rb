@@ -18,7 +18,7 @@ class Series < ActiveRecord::Base
     actors.each do |a|
       actor = Actor.find_or_initialize_by_name(:name => a.name, :tvdb_id => a.id)
       role = Role.new(:actor => actor, :name => a.role, :image_url => a.image)
-      self.roles << role
+      self.roles << role if role.valid?
     end
   end
   

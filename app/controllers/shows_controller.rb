@@ -75,10 +75,12 @@ class ShowsController < ApplicationController
                           :poster_url => s.poster,
                           :banner => s.banner,
                           :fanart => s.fanart)
-      # call_rake "tvdb:download_banners", { :banners => [series.banner, series.fanart].join('|') }
 
       series.set_actors(s.actors)      
-      series.save
+      unless series.save
+        redirect_to root_url, :notice => "Sorry, there was a problem saving the serie #{series.name}. Try again later."
+        return
+      end
     end
     
     redirect_to show_path(series)
