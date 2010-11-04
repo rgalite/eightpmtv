@@ -1,0 +1,24 @@
+<h1><%= t '.myauthentications' %></h1>
+
+<% if current_user.authentications.size > 0 %>
+<div id="my-authentications">
+  <% current_user.authentications.each do |auth| %>
+  <div class="auth-method">
+    <div class="auth-method-content">
+      <%= image_tag "icons/#{auth.provider}_32.png", :style => "float:left" %>
+      <p style="margin:0px; margin-top:6px;width:170px">
+        <%= auth.provider.capitalize %> (<%= auth.uid %>)
+      </p>
+      <div class="clear"></div>
+    </div>
+    <div class="destroy-handler">
+      <%= link_to 'X', auth,
+                  :confirm => 'Are you sure?', :method => :delete %>
+    </div>
+    <div style="clear:left"></div>
+  </div>
+  <% end %>
+  <div class="clear"></div>
+</div>
+<% end %>
+

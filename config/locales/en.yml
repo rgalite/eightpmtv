@@ -9,4 +9,7 @@ en:
       found: "Found"
     show:
       actors: "Actors"
+  authentications:
+    index:
+      myauthentications: "My authentications"
   hello: "Hello world"

@@ -1,5 +1,11 @@
 Tvshows::Application.routes.draw do
-  devise_for :users, :path_names => { :sign_up => "register" }
+  match '/auth/:provider/callback' => "authentications#create"
+  
+  resources :authentications, :only => [:index, :create, :destroy]
+
+  devise_for :users, :path_names => { :sign_up => "register", :sign_in => "login",
+                                      :sign_out => "logout" },
+                     :controllers => { :registrations => 'registrations' }
 
   get "shows/index"
 

@@ -47,3 +47,11 @@ body {
 #series_results .series div.content .content { margin:0; }
 #series_results .series .debug { color:red; }
 
+.clear { clear:both; }
+
+/* Authentications */
+.auth-method { border:1px solid black; width:200px; padding:5px; }
+.auth-method-content { float:left; }
+.destroy-handler { float:right; }
+.destroy-handler a { display:block; margin-top:6px; margin-right:2px;}
+
