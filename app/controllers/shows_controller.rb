@@ -1,6 +1,6 @@
 class ShowsController < ApplicationController
   require 'net/http'
-
+  
   private
   def download_banner(series_banner)
     unless series_banner.nil?    
@@ -34,17 +34,22 @@ class ShowsController < ApplicationController
   
   def search
     params[:q]
-    tvdb = TvdbParty::Search.new(Tvshows::Application.config.the_tv_db_api_key)
-    results = tvdb.search(params[:q])
-    db_series = Series.where("lower(name) LIKE lower(:name)", { :name => "%#{params[:q]}%" }).all
+    if request.xhr?
+      series = Series.where("lower(name) LIKE lower(:name)", { :name => "%#{params[:q]}%"} ).all
+      render :json => series.to_json
+    else
+      tvdb = TvdbParty::Search.new(Tvshows::Application.config.the_tv_db_api_key)
+      results = tvdb.search(params[:q])
+      db_series = Series.where("lower(name) LIKE lower(:name)", { :name => "%#{params[:q]}%" }).all
     
-    @series = []
-    results.each do |s|
-      unless s["Overview"].blank?
-        db_serie = db_series.detect { |ds| ds.series_id == s["seriesid"].to_i }
-        s["Link"] = db_serie.nil? ? add_show_path(s["seriesid"]) : show_path(db_serie)
-        s["banner"] = download_banner(s["banner"])
-        @series << s
+      @series = []
+      results.each do |s|
+        unless s["Overview"].blank?
+          db_serie = db_series.detect { |ds| ds.series_id == s["seriesid"].to_i }
+          s["Link"] = db_serie.nil? ? add_show_path(s["seriesid"]) : show_path(db_serie)
+          s["banner"] = download_banner(s["banner"])
+          @series << s
+        end
       end
     end
   end

@@ -14,6 +14,7 @@ Tvshows::Application.routes.draw do
   resources :shows, :only => [:index, :show] do
     collection do
       post 'search'
+      get 'search'
     end
     member do
       get 'add'  

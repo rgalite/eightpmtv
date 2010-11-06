@@ -1,4 +1,6 @@
 class SubscriptionsController < ApplicationController
+  before_filter :authenticate_user!
+  
   # GET /subscriptions
   # GET /subscriptions.xml
   def index
