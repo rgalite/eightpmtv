@@ -51,6 +51,10 @@ class ShowsController < ApplicationController
   
   def show
     @series = Series.find(params[:id])
+    @subscription = nil
+    if current_user
+      @subscription = Subscription.find_by_user_id_and_series_id(current_user.id, @series.id)
+    end
   end
   
   def add

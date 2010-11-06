@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Series:</b>
+  <%= @subscription.series_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @subscription.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_subscription_path(@subscription) %> |
+<%= link_to 'Back', subscriptions_path %>

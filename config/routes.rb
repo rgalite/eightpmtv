@@ -1,4 +1,6 @@
 Tvshows::Application.routes.draw do
+  resources :subscriptions
+
   match '/auth/:provider/callback' => "authentications#create"
   
   resources :authentications, :only => [:index, :create, :destroy]

@@ -9,6 +9,9 @@ en:
       found: "Found"
     show:
       actors: "Actors"
+      add_to_my_eight_pm_list: "Add to my 8pm-list"
+      remove_from_my_eight_pm_list: "Remove from my 8pm-list"
+      your-activity: "Your last activity"
   authentications:
     index:
       myauthentications: "My authentications"

@@ -40,7 +40,7 @@ body {
 }
 
 /* Search zone */
-#series_results .series { border-top:1px solid black; margin-bottom:30px; padding-top:30px; }
+#series_results .series { border-top:1px solid #263C6E; margin-bottom:30px; padding-top:30px; }
 #series_results .series .poster { float:left; margin-right:20px; }
 #series_results .series div.content { float:left; width:750px; }
 #series_results .series div.content h2.title { margin:0px; margin-bottom:15px; }
@@ -50,8 +50,44 @@ body {
 .clear { clear:both; }
 
 /* Authentications */
-.auth-method { border:1px solid black; width:200px; padding:5px; }
+.auth-method { border:1px solid #263C6E; width:200px; padding:5px; }
 .auth-method-content { float:left; }
 .destroy-handler { float:right; }
 .destroy-handler a { display:block; margin-top:6px; margin-right:2px;}
 
+/* Series search */
+#series_initials { border-bottom:1px solid #263C6E; padding-bottom: 10px;}
+#series_initials ul { margin:0px; padding-left:0px; }
+#series_initials ul li {
+  display:inline-block;
+  margin-left:28px;
+}
+#series_initials ul li.first {
+  display:inline-block;
+  margin-left:10px;
+}
+
+#series_found { margin-top: 20px; }
+#series_found h3 { text-align:right }
+#series_found ul { padding-left:0px; }
+#series_found ul li { display:inline-block; margin-left:30px; }
+#series_found ul li div { width:150px; }
+#series_found ul li div p { text-align:center; margin-top:2px; }
+#series_found ul li div div.series_poster { text-align:center; }
+#series_found ul li div div.series_poster img:hover { border:2px groove #263C6E; margin:-2px; }
+
+/* Series display */
+#series_avatar { float:left; width:204px; }
+#series_avatar div > img { border: 1px solid #263C6E }
+#series_info { float:left; margin-left:10px; width:760px; }
+#series_overview { margin:0px; }
+#series_actors ul { float:left; list-style:none; margin:0px; padding:0; width: 100%; }
+#series_actors ul li { display:inline-block; float:left; width: 25%; margin-top: 10px; padding: 0; }
+#series_bar ul { list-style:none; padding-left:0px; }
+#series_bar ul li { border-bottom:1px solid gray; padding-bottom:3px; }
+#series_bar ul li a.add { background-image:url(/images/icons/add_16.png); background-repeat:no-repeat; padding-left:20px; }
+#series_bar ul li a.remove { background-image:url(/images/icons/cancel_16.png); background-repeat:no-repeat; padding-left:20px; }
+
+/* Anything */
+a { text-decoration:none; color: #263C6E;}
+a:hover { text-decoration:underline; }

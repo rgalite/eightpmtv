@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101104003032) do
+ActiveRecord::Schema.define(:version => 20101106013235) do
 
   create_table "actors", :force => true do |t|
     t.integer   "tvdb_id"
@@ -63,6 +63,13 @@ ActiveRecord::Schema.define(:version => 20101104003032) do
     t.string   "poster_content_type"
     t.integer  "poster_file_size"
     t.datetime "poster_updated_at"
+  end
+
+  create_table "subscriptions", :force => true do |t|
+    t.integer  "series_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

@@ -1,17 +1,26 @@
-<style>
-#series_avatar { float:left; width:205px; }
-#series_avatar img { }
-#series_info { float:left; margin-left:10px; width:760px; }
-#series_overview { margin:0px; }
-#series_actors ul { float:left; list-style:none; margin:0px; padding:0; width: 100%; }
-#series_actors ul li { display:inline-block; float:left; width: 25%; margin-top: 10px; padding: 0; }
-</style>
 <h1><%= @series.name %></h1>
 
 <div id="series_avatar">
-  <% if @series.poster? %>
-    <%= image_tag @series.poster.url(:medium) %>
-  <% end %>
+  <div>
+    <% if @series.poster? %>
+      <%= image_tag @series.poster.url(:medium) %>
+    <% end %>
+  </div>
+  <div id="series_bar" style="">
+    <ul>
+      <% if !@subscription.nil? %>
+        <li>
+          <%= link_to (t '.remove_from_my_eight_pm_list'),
+                      subscription_path(@subscription), :method => :delete, :class => "remove" %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to (t '.add_to_my_eight_pm_list'),
+                      subscriptions_path(:series_id => @series.id),
+                      :method => :post, :class => "add" %>
+        </li>
+      <% end %>
+  </div>
 </div>
 
 <div id="series_info">
@@ -29,5 +38,8 @@
   </div>
   <% end %>
 </div>
-
 <div style="clear:left"></div>
+
+<% if current_user && @subscription %>
+<h2><%= t '.your-activity'%></h2>
+<% end %>

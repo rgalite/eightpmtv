@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_many :authentications
+  has_many :subscriptions
+  has_many :series, :through => :subscriptions
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
