@@ -3,11 +3,20 @@
 <head>
   <title>Tvshows</title>
   <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag 'jquery.js', 'rails.js', 'jquery.autocomplete', 'application.js' %>
   <script type="text/javascript">
     var showsPath = "<%= search_shows_path %>";
+    $(document).ready(function(){
+      $("#search_input").autocomplete({
+        serviceUrl:"/shows/search/",
+        minChars:1,
+        onSelect: function(value, data){
+          window.location = '/shows/' + data.param;          
+        }, 
+      });
+    });
+    
   </script>
-  
-  <%= javascript_include_tag 'jquery.js', 'rails.js', 'application.js' %>
   <%= csrf_meta_tag %>
 </head>
 <body>
@@ -16,7 +25,7 @@
 <div id="global">
   <div id="header">
     <div id="header-container">
-      <h1 class="logo"><%= link_to "8 PM.tv", root_url %></h1>
+      <h1 class="logo"><%= link_to "EIGHT PM.TV", root_url %></h1>
       <ul>
         <li><%= link_to "Home", root_url %></li>
         <li><%= link_to "Series", shows_path %></li>

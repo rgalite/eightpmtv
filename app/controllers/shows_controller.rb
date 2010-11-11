@@ -33,10 +33,14 @@ class ShowsController < ApplicationController
   end
   
   def search
-    params[:q]
     if request.xhr?
-      series = Series.where("lower(name) LIKE lower(:name)", { :name => "%#{params[:q]}%"} ).all
-      render :json => series.to_json
+      results = { :query => params[:query], :suggestions => [], :data => [] }
+      series = Series.where("lower(name) LIKE lower(:name)", { :name => "%#{params[:query]}%"} ).all
+      series.each do |serie|
+        results[:suggestions] << serie.name
+        results[:data] << { :id => serie.id, :param => serie.to_param } 
+      end
+      render :json => results.to_json
     else
       tvdb = TvdbParty::Search.new(Tvshows::Application.config.the_tv_db_api_key)
       results = tvdb.search(params[:q])

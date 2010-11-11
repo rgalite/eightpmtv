@@ -28,8 +28,15 @@ body {
 #header-container ul li a:hover { color:#45A4FF; }
 #header-container form { display:inline-block; float:right; }
 
-#header-container form input[type="text"]{ border:1px solid black; height:25px; padding:0px 5px; width:200px; }
+#header-container form input[type="text"]
+{ border:1px solid black;
+	height:25px;
+	outline: none;
+	padding:0px 5px;
+	width:270px;
+}
 
+#header-container ul.as-selections li { margin-left:0px; }
 
 #global-container {
 	border-bottom: 1px solid gray;
@@ -90,6 +97,14 @@ body {
 #series_bar ul li a.add { background-image:url(/images/icons/add_16.png); background-repeat:no-repeat; padding-left:20px; }
 #series_bar ul li a.remove { background-image:url(/images/icons/cancel_16.png); background-repeat:no-repeat; padding-left:20px; }
 #series_bar ul li a.comments { background-image:url(/images/icons/comments_16.png); background-repeat:no-repeat; padding-left:20px; }
+
+/* Suggestions */
+.autocomplete-w1 { background:url(img/shadow.png) no-repeat bottom right; position:absolute; top:0px; left:0px; margin:7px 0 0 6px; /* IE6 fix: */ _background:none; _margin:1px 0 0 0; }
+.autocomplete { border:1px solid black; background:#FFF; cursor:default; text-align:left; max-height:350px; overflow:auto; margin:-6px 6px 6px -6px; /* IE6 specific: */ _height:350px;  _margin:0; _overflow-x:hidden; }
+.autocomplete .selected { background:#F0F0F0; cursor:pointer; }
+.autocomplete div { padding:5px 5px; white-space:nowrap; overflow:hidden; }
+.autocomplete strong { font-weight:bold; }
+
 /* Anything */
 a { text-decoration:none; color: #263C6E;}
 a:hover { text-decoration:underline; }
