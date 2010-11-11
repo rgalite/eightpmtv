@@ -64,6 +64,12 @@ class ShowsController < ApplicationController
     if current_user
       @subscription = Subscription.find_by_user_id_and_series_id(current_user.id, @series.id)
     end
+    
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @subscription }
+      format.json { render :json => @series }
+    end
   end
   
   def add
