@@ -105,6 +105,56 @@ body {
 .autocomplete div { padding:5px 5px; white-space:nowrap; overflow:hidden; }
 .autocomplete strong { font-weight:bold; }
 
+/* Login */
+.login-frame {
+  border:1px solid gray;
+  padding:30px;
+  margin:auto;
+  margin-top:50px;
+  width:460px;
+}
+
+#standard-login {
+  float:left;
+  width:200px;
+}
+
+#services-login {
+  float:left;
+  margin-left:50px;
+  width:200px;
+}
+
+.register-frame {
+	width:490px;
+}
+
+/* Notices and errors */
+#error_explanation {
+	border:1px solid red;
+	background-color: #FFE8EB;
+	padding:10px;
+}
+
+#error_explanation h2 {
+	color:#D93D4F;
+}
+
+/* Buttons */
+.backg-twitter-32 { 
+	background: url(/images/icons/twitter_32.png) no-repeat 5px center;
+	padding-left:40px;
+}
+
+.social-button {
+	background-color: #EDEBEB;
+	border:1px solid gray;
+	padding-top:10px;
+	padding-bottom:10px;
+	padding-right:5px;
+	width:100px;
+}
+
 /* Anything */
 a { text-decoration:none; color: #263C6E;}
 a:hover { text-decoration:underline; }

@@ -1,49 +1,52 @@
-<div style="float:left">
-<h2>Standard sign in</h2>
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <p><%= f.label :username %><br />
-  <%= f.text_field :username %></p>
+<div id="login-frame" class="login-frame">
+  <div id="standard-login">
+    <h2>Standard sign in</h2>
+    <%= form_for(resource, :as => resource_name, 
+                 :url => session_path(resource_name)) do |f| %>
+      <p><%= f.label :username %><br />
+      <%= f.text_field :username %></p>
 
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password %></p>
+      <p><%= f.label :password %><br />
+      <%= f.password_field :password %></p>
 
-  <% if devise_mapping.rememberable? -%>
-    <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
-  <% end -%>
+      <% if devise_mapping.rememberable? -%>
+        <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+      <% end -%>
 
-  <p><%= f.submit "Sign in" %></p>
-<% end %>
+      <p><%= f.submit "Sign in" %></p>
+    <% end %>
 
-<%= render :partial => "devise/shared/links" %>
-</div>
-<div style="float:left;margin-left:50px">
-  <h2>Use services</h2>
-  <div id="my-authentications">
-    <div class="auth-method">
-      <div class="auth-method-content">
-        <div>
-          <%= image_tag "icons/twitter_32.png", :style => "float:left" %>
-        </div>
-        <p style="margin:0px; margin-top:6px; margin-left:5px; width:170px">
-          <%= link_to "Twitter", "/auth/twitter" %>
-        </p>
-        <div class="clear"></div>
-      </div>
-      <div class="clear"></div>
-    </div>
-    <div class="auth-method" style="margin-top:10px">
-      <div class="auth-method-content">
-        <div>
-          <%= image_tag "icons/facebook_32.png", :style => "float:left" %>
-        </div>
-        <p style="margin:0px; margin-top:6px; margin-left:5px; width:170px">
-          <%= link_to "Facebook", "/auth/facebook" %>
-        </p>
-        <div class="clear"></div>
-      </div>
-      <div class="clear"></div>
-    </div>
+    <%= render :partial => "devise/shared/links" %>
   </div>
-  <div class="clear"></div>
-</div>
+  <div id="services-login">
+    <h2>or use services</h2>
+    <div id="my-authentications">
+      <div class="auth-method">
+        <div class="auth-method-content">
+          <div>
+            <%= image_tag "icons/twitter_32.png", :style => "float:left" %>
+          </div>
+          <p style="margin:0px; margin-top:6px; margin-left:5px; width:170px">
+            <%= link_to "Twitter", "/auth/twitter" %>
+          </p>
+          <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="auth-method" style="margin-top:10px">
+        <div class="auth-method-content">
+          <div>
+            <%= image_tag "icons/facebook_32.png", :style => "float:left" %>
+          </div>
+          <p style="margin:0px; margin-top:6px; margin-left:5px; width:170px">
+            <%= link_to "Facebook", "/auth/facebook" %>
+          </p>
+          <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
 <div class="clear"></div>
+</div>

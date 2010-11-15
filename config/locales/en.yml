@@ -17,3 +17,6 @@ en:
     index:
       myauthentications: "My authentications"
   hello: "Hello world"
+  registrations:
+    new:
+      Registering with: "Registering with"

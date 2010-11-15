@@ -16,7 +16,11 @@ class User < ActiveRecord::Base
   validates_length_of :username, :in => 4..12
 
   def apply_omniauth(omniauth)
-    self.authentications.build(:provider => omniauth["provider"], :uid => omniauth["uid"])
+    self.authentications.build(:provider => omniauth["provider"],
+                               :uid => omniauth["uid"])
+    if (omniauth["provider"] == "twitter")
+      self.username = omniauth["user_info"]["nickname"]
+    end
   end
   
   def password_required?
