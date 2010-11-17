@@ -6,14 +6,18 @@ body {
 
 #header { background-color: #263C6E; }
 
-#header-container { margin:0px auto; width: 980px; padding:15px 0px; }
+#header-container { margin:0px auto; width: 980px; padding:0px; }
 
 #header-container h1.logo {
+	background:url(/images/logo.png) no-repeat left top;
 	color:white;
 	display:inline-block;
 	float:left;
 	font-size:20px;
+	height:40px;
 	margin:0px;
+	padding-top:12px;
+	padding-left:40px;
 	width: 200px;
 }
 
@@ -22,11 +26,22 @@ body {
 	text-decoration:none;
 }
 
-#header-container ul { display:inline-block; float:left; list-style:none; margin:5px 0px 0px 0px; }
+#header-container ul { 
+	display:inline-block;
+	float:left;
+	list-style:none;
+	margin:15px 0px 0px 0px;
+	padding-left: 10px;
+}
+
 #header-container ul li { display:inline-block; margin-left:50px; }
-#header-container ul li a { color:white; text-decoration:none; font-size: 15px;}
+#header-container ul li a {
+	color:white;
+	text-decoration:none;
+	font-size: 15px;
+}
 #header-container ul li a:hover { color:#45A4FF; }
-#header-container form { display:inline-block; float:right; }
+#header-container form { display:inline-block; float:right; margin-top:11px;}
 
 #header-container form input[type="text"]
 { border:1px solid black;
