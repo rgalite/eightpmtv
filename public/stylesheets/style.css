@@ -34,12 +34,13 @@ body {
 	padding-left: 10px;
 }
 
-#header-container ul li { display:inline-block; margin-left:50px; }
-#header-container ul li a {
+#header-container ul li, #header-container .signin-signup-frame { display:inline-block; margin-left:50px; }
+#header-container ul li a, #header-container .signin-signup-frame a {
 	color:white;
 	text-decoration:none;
 	font-size: 15px;
 }
+
 #header-container ul li a:hover { color:#45A4FF; }
 #header-container form { display:inline-block; float:right; margin-top:11px;}
 
