@@ -73,7 +73,31 @@ body {
 .clear { clear:both; }
 
 /* Authentications */
-.auth-method { border:1px solid #263C6E; width:200px; padding:5px; }
+.auth-method {
+	background-color:#F2F2F2;
+	border:1px solid #263C6E;
+	height:32px;
+	width:200px; 
+}
+.auth-method a {
+	display:block;
+	padding:8px 0px 8px 40px;
+	height:100%;
+	width:160px;
+}
+.auth-method:hover { background-color:#D9D9D9; cursor:pointer; }
+.auth-method:hover p { text-decoration: underline; margin-left:40px; }
+.auth-method-twitter {
+	background-image: url(/images/icons/twitter_32.png);
+	background-repeat : no-repeat;
+	background-position: 5px center;
+}
+.auth-method-facebook {
+	background-image: url(/images/icons/facebook_32.png);
+	background-repeat : no-repeat;
+	background-position: 5px center;
+}
+
 .auth-method-content { float:left; }
 .destroy-handler { float:right; }
 .destroy-handler a { display:block; margin-top:6px; margin-right:2px;}
@@ -174,3 +198,8 @@ body {
 /* Anything */
 a { text-decoration:none; color: #263C6E;}
 a:hover { text-decoration:underline; }
+input[type="text"], input[type="password"] {
+	border:1px solid gray;
+	height:20px;
+	padding:2px 5px;
+}
