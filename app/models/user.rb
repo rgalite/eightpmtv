@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   has_many :authentications
   has_many :subscriptions
   has_many :series, :through => :subscriptions
+  has_friendly_id :username, :use_slug => true, :approximate_ascii => true,
+                  :max_length => 50  
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
@@ -13,7 +15,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :username
   validates_uniqueness_of :username
-  validates_length_of :username, :in => 4..12
+  validates_length_of :username, :in => 2..24
 
   def apply_omniauth(omniauth)
     self.authentications.build(:provider => omniauth["provider"],
