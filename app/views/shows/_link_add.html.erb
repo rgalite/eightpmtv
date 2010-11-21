@@ -1,0 +1,6 @@
+<span id="wait_spinner" style="display:none">
+  <%= image_tag "ajax-loader.gif", :style => "display:inline" %>
+</span>
+<%= link_to (t '.add_to_my_eight_pm_list'),
+            subscribe_show_path(series),
+            :remote => "true", :id => "add_to_list_link" %>

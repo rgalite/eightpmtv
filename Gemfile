@@ -41,3 +41,4 @@ gem "mysql"
 gem "paperclip"
 gem "omniauth"
 gem "friendly_id", "~> 3.1"
+gem 'jquery-rails'

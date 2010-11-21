@@ -1,3 +1,12 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#add_to_list_link,#remove_from_list_link").bind('ajax:loading',
+      function(){
+        $('#wait_spinner').show();
+    });
+  });
+</script>
+
 <h1><%= @series.name %></h1>
 
 <div id="series_avatar">
@@ -8,19 +17,11 @@
   </div>
   <div id="series_bar" style="">
     <ul>
-      <% if !@subscription.nil? %>
-        <li>
-          <%= link_to (t '.remove_from_my_eight_pm_list'),
-                      subscription_path(@subscription),
-                      :method => :delete, :class => "remove" %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to (t '.add_to_my_eight_pm_list'),
-                      subscriptions_path(:series_id => @series.id),
-                      :method => :post, :class => "add" %>
-        </li>
-      <% end %>
+      <li>
+        <%= render :partial => (@subscription.nil? ? "link_add" : "link_rm"),
+                   :locals => { :series => @series }
+        %>
+      </li>
       <li><%= link_to (t '.comments'), '#', :class => :comments %></li>
     </ul>
   </div>

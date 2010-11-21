@@ -21,6 +21,8 @@ Tvshows::Application.routes.draw do
     end
     member do
       get 'add'  
+      get 'subscribe'
+      get 'unsubscribe'
     end
   end
   # The priority is based upon order of creation:

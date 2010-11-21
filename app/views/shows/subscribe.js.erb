@@ -1,0 +1,2 @@
+$("#wait_spinner").fadeOut();
+$("#add_to_list_link").parent('li').html('<%= escape_javascript(render :partial => "link_rm", :locals => { :series => @subscription.series }) %>');

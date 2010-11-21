@@ -7,10 +7,12 @@ en:
       title: "Search for a serie:"
       series_letter: "Series in"
       found: "Found"
+    link_add:
+      add_to_my_eight_pm_list: "Add to my 8pm-list"
+    link_rm:
+      remove_from_my_eight_pm_list: "Remove from my 8pm-list"
     show:
       actors: "Actors"
-      add_to_my_eight_pm_list: "Add to my 8pm-list"
-      remove_from_my_eight_pm_list: "Remove from my 8pm-list"
       your-activity: "Your last activity"
       comments: "Comments"
   authentications:

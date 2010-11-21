@@ -104,4 +104,28 @@ class ShowsController < ApplicationController
     
     redirect_to show_path(series)
   end
+  
+  def subscribe
+    series = Series.find(params[:id])
+    @subscription = Subscription.find_by_series_id_and_user_id(series.id, current_user.id)
+    @subscription ||= current_user.subscriptions.create(:series => series, :user => current_user)
+    
+    respond_to do |format|
+      format.js   # render subscribe.js.erb
+      format.html { redirect_to subscription_path(@subscription) }
+      format.xml  { render :xml => @subscription }
+    end
+  end
+  
+  def unsubscribe
+    @series = Series.find(params[:id])
+    @subscription = Subscription.find_by_series_id_and_user_id(@series.id, current_user.id)
+    @subscription.destroy unless @subscription.nil?
+    
+    respond_to do |format|
+      format.js   # render unsubscribe.js.erb
+      format.html { redirect_to subscriptions_path }
+      format.xml  { render :xml => @subscription }
+    end
+  end
 end
