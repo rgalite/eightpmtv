@@ -8,13 +8,16 @@ en:
       series_letter: "Series in"
       found: "Found"
     link_add:
-      add_to_my_eight_pm_list: "Add to my 8pm-list"
+      add_to_my_eight_pm_list: "Add to my 8PM-list"
     link_rm:
-      remove_from_my_eight_pm_list: "Remove from my 8pm-list"
+      remove_from_my_eight_pm_list: "Remove from my 8PM-list"
     show:
       actors: "Actors"
-      your-activity: "Your last activity"
       comments: "Comments"
+      air_time: "Air time"
+      at: "at"
+    activity:
+      your-activity: "Your last activity"
   authentications:
     index:
       myauthentications: "My authentications"

@@ -140,6 +140,8 @@ body {
 #series_avatar div > img { border: 1px solid #263C6E }
 #series_info { float:left; margin-left:10px; width:760px; }
 #series_overview { margin:0px; }
+
+#series_actors h3 { margin-bottom:0px;}
 #series_actors ul { 
 	float:left;
 	list-style:none;
@@ -162,12 +164,12 @@ body {
 }
 #series_bar ul li {
 	border-bottom:1px solid gray;
-	height:20px;
-	padding:3px 3px;
 }
+
 #series_bar ul li a {
-	display:block;
+	display:inline-block;
 	height:100%;
+	padding:5px 0px 5px 20px;
 	width:180px;
 }
 #series_bar ul li:hover { background-color: #263C6E;}
@@ -175,15 +177,34 @@ body {
 #series_bar ul li a#add_to_list_link {
 	background-image:url(/images/icons/add_16.png);
 	background-repeat:no-repeat;
+	background-position:left 5px;
 	padding-left:20px;
 }
 
-#series_bar a#wait_spinner { position:absolute; }
-#series_bar ul li a.remove { background-image:url(/images/icons/cancel_16.png); background-repeat:no-repeat; padding-left:20px; }
-#series_bar ul li a.comments { background-image:url(/images/icons/comments_16.png); background-repeat:no-repeat; padding-left:20px; }
+#series_bar ul li a#remove_from_list_link {
+	background-image:url(/images/icons/cancel_16.png);
+	background-repeat:no-repeat;
+	background-position:left 5px;
+	padding-left:20px;
+}
+
+#series_bar span#wait_spinner { left:330px; margin-top:5px; position:absolute; }
+
+#series_bar ul li a.comments {
+	background-image:url(/images/icons/comments_16.png);
+	background-repeat:no-repeat;
+	padding-left:20px;
+}
+
+#series_details p span.label {
+	font-weight:bold;
+}
 
 /* Suggestions */
-.autocomplete-w1 { background:url(/images/shadow.png) no-repeat bottom right; position:absolute; top:0px; left:0px; margin:7px 0 0 6px; /* IE6 fix: */ _background:none; _margin:1px 0 0 0; }
+.autocomplete-w1 {
+	background:url(/images/shadow.png) no-repeat bottom right;
+	position:absolute; top:0px; left:0px; margin:7px 0 0 6px;
+	/* IE6 fix: */ _background:none; _margin:1px 0 0 0; }
 .autocomplete { border:1px solid black; background:#FFF; cursor:default; text-align:left; max-height:350px; overflow:auto; margin:-6px 6px 6px -6px; /* IE6 specific: */ _height:350px;  _margin:0; _overflow-x:hidden; }
 .autocomplete .selected { background:#F0F0F0; cursor:pointer; }
 .autocomplete div { padding:5px 5px; white-space:nowrap; overflow:hidden; }

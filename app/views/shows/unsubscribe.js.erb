@@ -1,2 +1,3 @@
 $("#wait_spinner").fadeOut();
 $("#remove_from_list_link").parent('li').html('<%= escape_javascript(render :partial => "link_add", :locals => { :series => @subscription.series }) %>');
+$("#shows-activity").slideUp().remove();

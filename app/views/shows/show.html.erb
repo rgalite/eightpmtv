@@ -33,17 +33,31 @@
   <div id="series_actors">
     <h3><%= t '.actors' %></h3>
     <ul>
-    <% @series.roles.each do |role| %>
+    <% @series.roles.limit(12).each do |role| %>
       <li>
-        <%= role.name %><br />(<%= role.actor.name %>)
+        <%= link_to role.name, show_actor_path(@series, role) %><br />
+        (<%= link_to role.actor.name, actor_path(role.actor) %>)
       </li>
     <% end %>
     </ul>
+    <div>
+      <p style="margin-top:20px; text-align:right">
+        <% if @series.roles.size > 12 %>
+          <%= "and #{@series.roles.size - 12} more"  %>
+        <% end -%>
+        <%= link_to "See all actors", show_actors_path(@series) %>
+      </p>
+    </div>
   </div>
   <% end %>
+  <div id="series_details">
+    <p>
+      <span class="label"><%= t '.air_time'%>:</span>
+      <%= @series.air_day %> <%= t '.at' %>
+      <%= @series.air_time %> (<%= @series.runtime %> mn)
+    </p>
+  </div>
 </div>
 <div style="clear:left"></div>
 
-<% if current_user && @subscription %>
-<h2><%= t '.your-activity'%></h2>
-<% end %>
+<%= render :partial => "activity", :locals => { :series => @series } if current_user && @subscription %>

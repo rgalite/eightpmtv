@@ -128,4 +128,7 @@ class ShowsController < ApplicationController
       format.xml  { render :xml => @subscription }
     end
   end
+  
+  def actors
+  end
 end

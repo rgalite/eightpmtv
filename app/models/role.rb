@@ -2,6 +2,9 @@ class Role < ActiveRecord::Base
   belongs_to :series
   belongs_to :actor
   
+  has_friendly_id :name, :use_slug => true, :approximate_ascii => true,
+                  :max_length => 50, :scope => :series
+
   validates_presence_of :name
 
   has_attached_file :image,

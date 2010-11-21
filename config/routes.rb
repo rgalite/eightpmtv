@@ -1,4 +1,12 @@
 Tvshows::Application.routes.draw do
+  get "roles/index"
+
+  get "roles/show"
+
+  get "actors/index"
+
+  get "actors/show"
+
   resources :subscriptions
 
   match '/auth/:provider/callback' => "authentications#create"
@@ -14,7 +22,10 @@ Tvshows::Application.routes.draw do
 
   get "shows/index"
 
+  resources :actors, :only => [:show]
+  
   resources :shows, :only => [:index, :show] do
+    resources :actors, :only => [:show, :index], :controller => "roles"
     collection do
       post 'search'
       get 'search'
