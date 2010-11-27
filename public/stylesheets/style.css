@@ -136,6 +136,16 @@ padding: 4px 4px 4px 4px;
 color: #999999;
 }
 
+/* Suggestions */
+.autocomplete-w1 {
+	background:url(/images/shadow.png) no-repeat bottom right;
+	position:absolute; top:0px; left:0px; margin:7px 0 0 6px;
+	/* IE6 fix: */ _background:none; _margin:1px 0 0 0; }
+.autocomplete { border:1px solid black; background:#FFF; cursor:default; text-align:left; max-height:350px; overflow:auto; margin:-6px 6px 6px -6px; /* IE6 specific: */ _height:350px;  _margin:0; _overflow-x:hidden; }
+.autocomplete .selected { background:#F0F0F0; cursor:pointer; }
+.autocomplete div { padding:5px 5px; white-space:nowrap; overflow:hidden; }
+.autocomplete strong { color:#1E67A8; font-weight:bold; }
+
 /* html5 placeholder support */
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
 color:#999999;
