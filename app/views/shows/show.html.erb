@@ -11,12 +11,18 @@
           $(this).find('.ajax-loader').toggle();
           $(this).find(":input").attr('disabled', 'disabled');
         })
-        .bind("ajax:success", function(xhr, data, status) {
-          $(data).insertAfter($("#series_comments").children("div.new-bubble")).slideDown();
-          $(this).find(":input").removeAttr('disabled');
+        .bind("ajax:success", function(obj, data, xhr) {
+          $(this).find(".error_messages").hide();
+          $(data).insertAfter($("#series_comments").children("div.new-bubble"));
           $(this).find(":input").not(":submit").val('');
         })
+        .bind("ajax:failure", function(data, xhr, err) {
+          console.info(xhr.responseText);
+          if (xhr.status == 403)
+            $(this).find(".error_messages").html($(xhr.responseText)).show();
+        })
         .bind("ajax:complete", function(){          
+          $(this).find(":input").removeAttr('disabled');
           $(this).find('.ajax-loader').toggle();
         });
   });
@@ -62,6 +68,7 @@
   <div class="bubble new-bubble">
     <%= form_for(@comment, :url => comment_show_path(@series), :remote => true) do |f| %>
 		<blockquote>
+		  <div class="error_messages" style="display:none"></div>
 			<p class="comment-content">
 			  <%= f.text_area :content, {:class => "no-focus", :cols => 85,
 			                  :rows => 1, :placeholder => "Write your comment"} %>
