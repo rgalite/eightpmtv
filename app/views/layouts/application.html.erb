@@ -50,12 +50,14 @@
 					
 		<div id="tabs">
 			<ul>	
-				<li><a href="#" accesskey="m"><span class="key">M</span>usic</a></li>
-				<li><a class="current" href="#" accesskey="v"><span class="key">V</span>ideos</a></li>
-				<li><a href="#" accesskey="r">A<span class="key">r</span>chives</a></li>
-				<li><a href="#" accesskey="i"><span class="key">I</span>mages</a></li>
-				<li><a href="#" accesskey="d"><span class="key">D</span>ocs</a></li>
-				<li><a href="#" accesskey="a"><span class="key">A</span>ll</a></li>
+				<li><%= link_to "Home", root_url %></li>
+				<li><%= link_to "Series", shows_path %></li>
+				<% if user_signed_in? %>
+				<li><%= link_to current_user.username, edit_user_registration_path %></li>
+				<li><%= link_to "Logout", destroy_user_session_path %></li>
+				<% else %>
+				<li><%= link_to "Login", new_user_session_path %></li>
+				<% end %>
 			</ul>
 			<div id="search">
 			  <%= form_tag search_shows_path do -%>
@@ -71,19 +73,7 @@
       <%= yield %>
 		</div>	
 		
-		<div id="right">
-			<div class="boxtop"></div>
-			<div class="box">
-				<p><img src="/images/image.gif" alt="Image" title="Image" class="image" /><b>Lorem ipsum dolor sit amet</b><br />consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis.<br /></p>
-				<div class="buttons"><p><a href="#" class="bluebtn">Read</a> <a href="#" class="greenbtn">Mark</a></p></div>
-			</div>
-			
-			<div class="boxtop"></div>
-			<div class="box">
-				<p><img src="/images/image.gif" alt="Image" title="Image" class="image" /><b>Lorem ipsum dolor sit amet</b><br />consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis.<br /></p>
-				<div class="buttons"><p><a href="#" class="bluebtn">Read</a> <a href="#" class="greenbtn">Mark</a></p></div>
-			</div>
-		</div>	
+    <%= yield :right %>
 		<div class="footer">
 			<p><a href="#">RSS Feed</a> &middot; <a href="#">Most Popular</a> &middot; <a href="#">Today's Favorites</a> &middot; <a href="#">All Time Favorites</a> &middot; <a href="#">Sharing Policy</a> &middot; <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> and <a href="http://validator.w3.org/check?uri=referer">XHTML</a><br />
 			&copy; Copyright 2010 8PM.TV, Design: Luka Cvrk, <a title="Awsome Web Templates" href="http://www.solucija.com/">Solucija</a></p>

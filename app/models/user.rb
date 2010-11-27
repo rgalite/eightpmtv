@@ -31,4 +31,18 @@ class User < ActiveRecord::Base
   def password_required?
     (authentications.empty? || !password.blank?) && super
   end
+  
+  def watch?(series)
+    series.subscriptions.any?{ |s| s.user == current_user }
+  end
+  
+  def friends_watching(series)
+    fw = []
+    series.subscriptions.collect{ |s| fw << s.user if friends.include?(s.user) }
+    fw
+  end
+  
+  def is_a_friend_of?(user)
+    user.friends.include?(self)
+  end
 end

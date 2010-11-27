@@ -41,8 +41,7 @@
 	<div id="series_info">
 	  <h2><%= @series.name %></h2>
   	<p class="description">
-  	  <%= pluralize(@series.subscriptions.size, 'person is', 'people are') %>
-  	  watching this TV show
+  	  <%= people_watching(@series) %>
   	</p>
   	<p>
   	  <% if @series.poster? %>
