@@ -63,6 +63,7 @@ class ShowsController < ApplicationController
     @subscription = nil
     if current_user
       @subscription = Subscription.find_by_user_id_and_series_id(current_user.id, @series.id)
+      @comment = Comment.new
     end
     
     respond_to do |format|
@@ -130,5 +131,23 @@ class ShowsController < ApplicationController
   end
   
   def actors
+  end
+  
+  def comment
+    if user_signed_in?
+      @series = Series.find(params[:id])
+      c = @series.comments.build(:content => params[:comment][:content],
+                                 :user => current_user) 
+      if c.save
+        respond_to do |format|
+          format.js do
+            render :partial => "comment", :locals => { :comment => c }
+          end
+          format.html { redirect_to show_path(@series) }
+          format.xml  { render :xml => @subscription }
+        end
+      else
+      end
+    end
   end
 end

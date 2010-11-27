@@ -2,9 +2,10 @@ class Series < ActiveRecord::Base
   include CallRake
   has_many :roles, :dependent => :destroy
   has_many :actors, :through => :roles
+  has_many :comments, :as => :commentable
   has_friendly_id :name, :use_slug => true, :approximate_ascii => true,
                   :max_length => 50
-    
+      
   has_attached_file :poster,
                     :styles => { :small => "150x220>", :medium => "204x300>" },
                     :storage => :s3,

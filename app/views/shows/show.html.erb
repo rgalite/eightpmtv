@@ -1,19 +1,92 @@
 <script type="text/javascript">
+  function toggleLoading(from)
+  {
+    $("#ajax-loader").toggle();
+  }
+  
   $(document).ready(function(){
-    $("#add_to_list_link,#remove_from_list_link").bind('ajax:loading',
-      function(){
-        $('#wait_spinner').show();
-    });
+    $("#comment").autoGrow();
+    $("#new_comment")
+        .bind("ajax:loading",  function(){
+          $(this).find('.ajax-loader').toggle();
+          $(this).find(":input").attr('disabled', 'disabled');
+        })
+        .bind("ajax:success", function(xhr, data, status) {
+          $(data).insertAfter($("#series_comments").children("div.new-bubble")).slideDown();
+          $(this).find(":input").removeAttr('disabled');
+          $(this).find(":input").not(":submit").val('');
+        })
+        .bind("ajax:complete", function(){          
+          $(this).find('.ajax-loader').toggle();
+        });
   });
 </script>
 
-<h1><%= @series.name %></h1>
+<div class="left_articles">
+	<div class="buttons">
+	  <p>
+	    <a href="#" class="bluebtn">Watc</a>&nbsp;
+	    <a href="#" class="greenbtn">Mark</a>
+	  </p>
+	</div>
+	<div id="series_info">
+	  <h2><%= @series.name %></h2>
+  	<p class="description"><%= pluralize(10, 'person') %> are watching this show</p>
+  	<p>
+  	  <% if @series.poster? %>
+        <%= image_tag @series.poster.url(:small), :class => "thumbnail" %>
+      <% end %>
+      <div>
+        <% description = truncate(@series.description, 795, "") %>
+        <%= description %>
+        <% if @series.description.length > description.length %>
+          <%= link_to_function("...", "showMoreDescription(this);") %>
+          <span style="display:none">
+            <%= @series.description[(description.length)..-1] %>
+          </span>
+        <% end %>
+      </div>
+      <div>
+        <span class="label"><%= t '.air_time'%>:</span>
+        <%= @series.air_day %> <%= t '.at' %>
+        <%= @series.air_time %> (<%= @series.runtime %> mn)
+      </div>
+  	</p>
+  	<div style="clear:both"></div>
+  </div>
+</div>
+
+<!-- Comments -->
+<div id="series_comments">
+  <% if user_signed_in? %>
+  <div class="bubble new-bubble">
+    <%= form_for(@comment, :url => comment_show_path(@series), :remote => true) do |f| %>
+		<blockquote>
+			<p class="comment-content">
+			  <%= f.text_area :content, {:class => "no-focus", :cols => 85,
+			                  :rows => 1, :placeholder => "Write your comment"} %>
+			</p>
+			<div class="buttons">
+    	  <p style="margin-right">
+    			<span class="ajax-loader" style="display:none">
+    			  <%= image_tag "ajax-loader.gif" %>
+    			</span>
+    			&nbsp;<%= submit_tag "Comment", :class => "bluebtm" %>
+    	  </p>
+    	</div>
+		</blockquote>
+		<% end %>
+  </div>
+  <% end %>
+  <%= render :partial => "comment", :collection => @series.comments %>
+  <% for comment in @series.comments %>
+  <% end %>
+</div>
+
 
 <div id="series_avatar">
   <div>
-    <% if @series.poster? %>
-      <%= image_tag @series.poster.url(:medium) %>
-    <% end %>
+    
   </div>
   <div id="series_bar" style="">
     <ul>
@@ -28,7 +101,7 @@
 </div>
 
 <div id="series_info">
-  <p id="series_overview"><%= @series.description %></p>
+  <p id="series_overview"></p>
   <% if !@series.actors.size.zero? %>
   <div id="series_actors">
     <h3><%= t '.actors' %></h3>
@@ -52,9 +125,7 @@
   <% end %>
   <div id="series_details">
     <p>
-      <span class="label"><%= t '.air_time'%>:</span>
-      <%= @series.air_day %> <%= t '.at' %>
-      <%= @series.air_time %> (<%= @series.runtime %> mn)
+      
     </p>
   </div>
 </div>
