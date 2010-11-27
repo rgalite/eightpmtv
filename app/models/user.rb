@@ -4,7 +4,9 @@ class User < ActiveRecord::Base
   has_many :series, :through => :subscriptions
   has_friendly_id :username, :use_slug => true, :approximate_ascii => true,
                   :max_length => 50  
-  has_many :comments
+  has_many :comments, :dependent => :nullify
+  has_many :friendships
+  has_many :friends, :through => :friendships
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable

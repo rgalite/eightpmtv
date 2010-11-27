@@ -25,6 +25,9 @@
           $(this).find(":input").removeAttr('disabled');
           $(this).find('.ajax-loader').toggle();
         });
+    $("new_comment").find('blockquote').bind('click', function(){
+      alert('test');
+    });
   });
 </script>
 
@@ -39,7 +42,7 @@
 	  <h2><%= @series.name %></h2>
   	<p class="description">
   	  <%= pluralize(@series.subscriptions.size, 'person is', 'people are') %>
-  	  watching this show
+  	  watching this TV show
   	</p>
   	<p>
   	  <% if @series.poster? %>

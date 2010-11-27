@@ -41,5 +41,16 @@ module Tvshows
     
     # Constants
     config.the_tv_db_api_key = "D924D9C9745AE7D8"
+    
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      :address              => "smtp.gmail.com",
+      :port                 => 587,
+      :domain               => 'eightpm.tv',
+      :user_name            => 'no-reply@eightpm.tv',
+      :password             => 'bgtqmc5u',
+      :authentication       => 'plain',
+      :enable_starttls_auto => true
+    }
   end
 end
