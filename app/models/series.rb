@@ -3,6 +3,7 @@ class Series < ActiveRecord::Base
   has_many :roles, :dependent => :destroy
   has_many :actors, :through => :roles
   has_many :comments, :as => :commentable, :order => "created_at desc"
+  has_many :subscriptions
   has_friendly_id :name, :use_slug => true, :approximate_ascii => true,
                   :max_length => 50
       

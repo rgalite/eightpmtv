@@ -1,17 +1,23 @@
 <h1>Here is what I found for "<%= params[:q] %>":</h1>
-<div id="series_results">
-  <% for serie in @series %>
-  <div class="series" id="series_<%= serie['id'] %>">
-    <div class="poster">
-      <% unless serie["banner"].nil? %>
-        <%= image_tag(serie["banner"])%>
-      <% end %>
-    </div>
-    <div class="content">
-      <h2 class="title"><%= link_to serie["SeriesName"], serie["Link"] %></h2>
-      <p class="content"><%= serie["Overview"] %></p>
-    </div>
-    <div style="clear:left"></div>
+
+<div class="left_articles">
+	<% for serie in @series %>
+	<div id="series_info">
+	  <h2><%= link_to serie["SeriesName"], serie["Link"] %></h2>
+  	<p class="description"><%= pluralize(10, 'person') %> are watching this show</p>
+  	<p>
+      <div>
+        <% description = truncate(serie["Overview"], 795, "") %>
+        <%= description %>
+        <% if serie["Overview"].length > description.length %>
+          <%= link_to_function("...", "showMoreDescription(this);") %>
+          <span style="display:none">
+            <%= serie["Overview"][(description.length)..-1] %>
+          </span>
+        <% end %>
+      </div>
+  	</p>
+  	<div style="clear:both"></div>
   </div>
   <% end %>
 </div>

@@ -12,8 +12,8 @@
   <script type="text/javascript">
     var showsPath = "<%= search_shows_path %>";
     $(document).ready(function(){
-      $("#search_input").autocomplete({
-        serviceUrl:"/shows/search/",
+      $("#q_search").autocomplete({
+        serviceUrl:showsPath,
         minChars:1,
         onSelect: function(value, data){
           window.location = '/shows/' + data.param;          
@@ -58,9 +58,12 @@
 				<li><a href="#" accesskey="a"><span class="key">A</span>ll</a></li>
 			</ul>
 			<div id="search">
-				<form method="post" action="?">
-					<p><input type="text" name="search" class="search" /> <input type="submit" value="Search" class="button" /></p>
-				</form>
+			  <%= form_tag search_shows_path do -%>
+			    <p>
+			      <%= text_field_tag "q", "", :id => :q_search, :class => "search" %>
+			      <%= submit_tag "Search", :class => "button" %>
+			    </p>
+			  <% end -%>
 			</div>
 		</div>
 							

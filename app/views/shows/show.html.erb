@@ -5,7 +5,7 @@
   }
   
   $(document).ready(function(){
-    $("#comment").autoGrow();
+    $("#comment_content").autoGrow();
     $("#new_comment")
         .bind("ajax:loading",  function(){
           $(this).find('.ajax-loader').toggle();
@@ -37,7 +37,10 @@
 	</div>
 	<div id="series_info">
 	  <h2><%= @series.name %></h2>
-  	<p class="description"><%= pluralize(10, 'person') %> are watching this show</p>
+  	<p class="description">
+  	  <%= pluralize(@series.subscriptions.size, 'person is', 'people are') %>
+  	  watching this show
+  	</p>
   	<p>
   	  <% if @series.poster? %>
         <%= image_tag @series.poster.url(:small), :class => "thumbnail" %>

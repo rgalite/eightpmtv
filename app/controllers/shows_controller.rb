@@ -51,7 +51,7 @@ class ShowsController < ApplicationController
         unless s["Overview"].blank?
           db_serie = db_series.detect { |ds| ds.series_id == s["seriesid"].to_i }
           s["Link"] = db_serie.nil? ? add_show_path(s["seriesid"]) : show_path(db_serie)
-          s["banner"] = download_banner(s["banner"])
+          # s["banner"] = download_banner(s["banner"])
           @series << s
         end
       end
