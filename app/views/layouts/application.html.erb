@@ -17,7 +17,7 @@
         minChars:1,
         onSelect: function(value, data){
           window.location = '/shows/' + data.param;          
-        }, 
+        } 
       });
     });
   </script>
@@ -43,7 +43,7 @@
 			<p id="top_info">Browse <a href="#">Today's favorites</a> or <a href="#">All time favorites</a>.<br />Please <a href="#">Log in</a> to share and download files.</p>
 			
 			<div id="logo">
-				<h1><a href="#" title="Centralized Internet Content">8PM.TV</a></h1>
+				<h1><%= link_to "8PM.TV", root_url, :title => "8PM.TV" %></h1>
 				<p>It's all about your TV shows</p>
 			</div>
 		</div>
@@ -68,9 +68,11 @@
 			  <% end -%>
 			</div>
 		</div>
-							
+
+        <%= yield :gbox %>
+
 		<div class="left">
-      <%= yield %>
+            <%= yield %>
 		</div>	
 		
     <%= yield :right %>

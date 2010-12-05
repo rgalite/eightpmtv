@@ -4,15 +4,22 @@
   #user_settings ul li { padding:10px 0px; border-bottom:1px solid gray; width:160px; }
   #user_settings { margin-right: 125px; }
 </style>
+
+<div class="thirds">
+	<div class="smallboxtop"></div>
+	<div class="smallbox">
+      <ul id="settings_tabs">
+        <li>
+          Account
+        </li>
+        <li>
+          8PM-list
+        </li>
+      </ul>      
+	</div>
+</div>
+
 <div id="user_settings">
-  <ul id="settings_tabs">
-    <li>
-      Account
-    </li>
-    <li>
-      8PM-list
-    </li>
-  </ul>
 </div>
 
 <div id="account_settings">
@@ -29,13 +36,13 @@
     <%= f.text_field :email %></p>
 
     <p><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password %></p>
+    <%= f.password_field :password, :autocomplete => "off" %></p>
 
     <p><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %></p>
+    <%= f.password_field :password_confirmation, :autocomplete => "off" %></p>
 
     <p><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password %></p>
+    <%= f.password_field :current_password, :autocomplete => "off" %></p>
 
     <p><%= f.submit "Update" %></p>
   <% end %>

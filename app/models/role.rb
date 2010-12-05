@@ -13,6 +13,10 @@ class Role < ActiveRecord::Base
                     :s3_credentials => "#{Rails.root}/config/amazon_s3.yml",
                     :path => "assets/series/:attachment/:id/:style/:basename.:extension"
   
+  process_in_background :image
+
+  has_many :likes, :as => :likeable
+  
   def image_url=(image_url)
     self.image = RemoteFile.new("http://thetvdb.com/banners/#{image_url}")
   end

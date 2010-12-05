@@ -96,7 +96,7 @@ class ShowsController < ApplicationController
                           :banner => s.banner,
                           :fanart => s.fanart)
 
-      series.set_actors(s.actors)      
+      series.set_actors(s.actors)
       unless series.save
         redirect_to root_url, :notice => "Sorry, there was a problem saving the serie #{series.name}. Try again later."
         return

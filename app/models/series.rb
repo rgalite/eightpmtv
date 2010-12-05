@@ -5,6 +5,7 @@ class Series < ActiveRecord::Base
   has_many :comments, :as => :commentable, :order => "created_at desc"
   has_many :subscriptions
   has_many :watchers, :through => :subscriptions, :source => :user
+  has_many :episodes
   has_friendly_id :name, :use_slug => true, :approximate_ascii => true,
                   :max_length => 50
       
@@ -13,6 +14,9 @@ class Series < ActiveRecord::Base
                     :storage => :s3,
                     :s3_credentials => "#{Rails.root}/config/amazon_s3.yml",
                     :path => "assets/series/:attachment/:id/:style/:basename.:extension"
+
+  process_in_background :poster
+  has_many :likes, :as => :likeable
   
   public  
   def set_actors(actors)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101127191229) do
+ActiveRecord::Schema.define(:version => 20101205172306) do
 
   create_table "actors", :force => true do |t|
     t.integer   "tvdb_id"
@@ -39,6 +39,15 @@ ActiveRecord::Schema.define(:version => 20101127191229) do
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "likes", :force => true do |t|
+    t.integer  "value",         :default => 0
+    t.integer  "user_id"
+    t.integer  "likeable_id"
+    t.string   "likeable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
