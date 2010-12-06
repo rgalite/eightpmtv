@@ -157,4 +157,8 @@ class ShowsController < ApplicationController
       end
     end
   end
+
+  def my
+    @shows = current_user.series
+  end
 end

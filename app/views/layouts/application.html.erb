@@ -71,11 +71,12 @@
 
         <%= yield :gbox %>
 
-		<div class="left">
+        <% right_content = (yield :right) %>
+        <div class="left<%= right_content.blank? ? " width-full" : "" %>">
             <%= yield %>
-		</div>	
-		
-    <%= yield :right %>
+        </div>
+
+        <%= yield :right %>
 		<div class="footer">
 			<p><a href="#">RSS Feed</a> &middot; <a href="#">Most Popular</a> &middot; <a href="#">Today's Favorites</a> &middot; <a href="#">All Time Favorites</a> &middot; <a href="#">Sharing Policy</a> &middot; <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> and <a href="http://validator.w3.org/check?uri=referer">XHTML</a><br />
 			&copy; Copyright 2010 8PM.TV, Design: Luka Cvrk, <a title="Awsome Web Templates" href="http://www.solucija.com/">Solucija</a></p>

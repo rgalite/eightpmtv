@@ -27,8 +27,9 @@ Tvshows::Application.routes.draw do
   resources :shows, :only => [:index, :show] do
     resources :actors, :only => [:show, :index], :controller => "roles"
     collection do
-      post 'search'
-      get 'search'
+      post :search
+      get :search
+      get :my
     end
     member do
       get 'add'  

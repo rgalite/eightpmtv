@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :authentications
   has_many :subscriptions
-  has_many :series, :through => :subscriptions
+  has_many :series, :through => :subscriptions, :order => "name"
   has_friendly_id :username, :use_slug => true, :approximate_ascii => true,
                   :max_length => 50  
   has_many :comments, :dependent => :nullify
