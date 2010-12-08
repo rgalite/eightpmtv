@@ -62,7 +62,7 @@ input.button { padding: 3px; }
 .left { float: left; width: 650px; margin: 0 0 10px 0; }
 	.left_articles {
 		margin: 0 20px 15px 10px;
-		padding: 10px 0 0 0;
+		padding: 10px 0 10px 0;
 		text-align: justify;
 		border-bottom: 1px dotted #ccc;
 		color: #000;
@@ -175,3 +175,9 @@ color:#999999;
 
 /* footer  */
 .footer { clear: both; text-align: center; line-height: 1.8em; padding: 10px 0 10px 0; border-top: 1px solid #ccc; }
+
+/* series info */
+.series_info div.poster { border:1px solid #DEDEDE; float:left; margin-right:10px; width:150px; height:220px;}
+.series_info div.poster-processing { background: url(/images/light_movie.png) no-repeat; }
+.series_info div.poster-processing img { margin:auto; margin-top:85px;display:block; }
+.series_info span.label { font-weight: bold; }

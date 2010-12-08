@@ -1,10 +1,9 @@
 development:
-  bucket: 'rmgalite-tvshows'
+  bucket: 'static.eightpm.tv'
   access_key_id: AKIAJXZ66TNJSUDJPNHQ
   secret_access_key: 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
 
 production:
-  bucket: 'rmgalite-tvshows'
+  bucket: 'static.eightpm.tv'
   access_key_id: AKIAJXZ66TNJSUDJPNHQ
   secret_access_key: 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
-

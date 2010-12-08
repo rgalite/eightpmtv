@@ -1,0 +1,9 @@
+<div id="series_categories">
+  <p style="text-align:center">
+    <% if user_signed_in? %>
+    <%= link_to("My series", my_shows_path)  %> · 
+    <% end %>
+    <a href="#">Last updated</a> · <a href="#">Most Popular</a> · 
+    <%= link_to "Alphabetical", alphabetical_shows_path %>
+  </p>
+</div>

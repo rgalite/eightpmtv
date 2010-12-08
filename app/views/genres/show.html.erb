@@ -1,0 +1,32 @@
+<h1>TV Shows in the category <%= @genre.name %></h1>
+<% for show in @genre.series %>
+<div class="left_articles">
+	<div id="series_info">
+	  <h2><%= link_to show.name, show_path(show) %></h2>
+  	<p class="description">
+  	  <%= people_watching(show) %>
+  	</p>
+  	<p>
+  	  <% if show.poster? %>
+        <%= image_tag show.poster.url(:small), :class => "thumbnail" %>
+      <% end %>
+      <div>
+        <% description = truncate(show.description, 795, "") %>
+        <%= description %>
+        <% if show.description.length > description.length %>
+          <%= link_to_function("...", "showMoreDescription(this);") %>
+          <span style="display:none">
+            <%= show.description[(description.length)..-1] %>
+          </span>
+        <% end %>
+      </div>
+      <div>
+        <span class="label"><%= t '.air_time'%>:</span>
+        <%= show.air_day %> <%= t '.at' %>
+        <%= show.air_time %> (<%= show.runtime %> mn)
+      </div>
+  	</p>
+  	<div style="clear:both"></div>
+  </div>
+</div>
+<% end %>

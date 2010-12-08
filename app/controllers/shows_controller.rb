@@ -1,6 +1,7 @@
 class ShowsController < ApplicationController
   require 'net/http'
   
+  before_filter :authenticate_user!, :only => [ :my ]
   private
   def download_banner(series_banner)
     unless series_banner.nil?    
@@ -51,7 +52,7 @@ class ShowsController < ApplicationController
         unless s["Overview"].blank?
           db_serie = db_series.detect { |ds| ds.series_id == s["seriesid"].to_i }
           s["Link"] = db_serie.nil? ? add_show_path(s["seriesid"]) : show_path(db_serie)
-          # s["banner"] = download_banner(s["banner"])
+          # s["banner"] = download_banner(s["poster"])
           @series << s
         end
       end
@@ -76,9 +77,10 @@ class ShowsController < ApplicationController
   def add
     series = Series.where(:series_id => params[:id]).first
     if series.nil?
+      p "\n\nINITIALIZED TVDB PARTY\n\n"
       tvdb = TvdbParty::Search.new(Tvshows::Application.config.the_tv_db_api_key)
       s = tvdb.get_series_by_id(params[:id])
-
+      p "\n\nGOT THE SERIE\n\n"
       series = Series.new(:name => s.name,
                           :series_id => s.id,
                           :tvdb_id => s.tvdb_id,
@@ -95,8 +97,8 @@ class ShowsController < ApplicationController
                           :poster_url => s.poster,
                           :banner => s.banner,
                           :fanart => s.fanart)
-
-      series.set_actors(s.actors)
+      p "\n\nINITIALIZED THE SERIE\n\n"
+      series.set_actors(s.actors) unless s.actors.nil?
       unless series.save
         redirect_to root_url, :notice => "Sorry, there was a problem saving the serie #{series.name}. Try again later."
         return
@@ -159,6 +161,31 @@ class ShowsController < ApplicationController
   end
 
   def my
-    @shows = current_user.series
+    @shows = current_user.series if current_user
+  end
+  
+  def alphabetical
+    if params[:letter] == "0" || params[:letter].nil?
+      @series = Series.where("name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ? \
+                              OR name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ?",
+                              "0%", "1%", "2%", "3%", "4%", "5%", "6%", "7%", "8%", "9%")
+    elsif ('A'..'Z').include?(params[:letter])
+      @series = Series.where("name LIKE ? OR name LIKE ?", params[:letter] + '%', "The #{params[:letter]}%").order("name asc")
+    else
+      @series = []
+    end
+  end
+  
+  def get_poster
+    series = Series.find(params[:id])
+    respond_to do |format|
+      format.js do
+        if series.poster_processing?
+          render :nothing => true, :status => 403
+        else
+          render :partial => "poster", :locals => { :series => series }
+        end
+      end
+    end
   end
 end

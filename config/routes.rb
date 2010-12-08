@@ -1,4 +1,6 @@
 Tvshows::Application.routes.draw do
+  get "genres/show"
+
   get "roles/index"
 
   get "roles/show"
@@ -30,13 +32,19 @@ Tvshows::Application.routes.draw do
       post :search
       get :search
       get :my
+      get :alphabetical
     end
     member do
       get 'add'  
       get 'subscribe'
       get 'unsubscribe'
       post 'comment'
+      get 'get_poster'
     end
+  end
+  
+  scope "shows", :as => "shows" do
+    resources :genres, :only => [:show]
   end
   # The priority is based upon order of creation:
   # first created -> highest priority.

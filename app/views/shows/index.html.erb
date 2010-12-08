@@ -1,14 +1,5 @@
-<h1><%= t '.title' %></h1>
-<div id="series_categories">
-<p style="text-align:center">
-  <%= link_to "My series", my_shows_path %> · <a href="#">Last updated</a> · <a href="#">Most Popular</a> · <a href="#">Alphabetical</a></p>
-</div>
-<div id="series_initials">
-  <ul>
-    <li class="first"><%= link_to "#", shows_path(:letter => "0" ) %></li>
-    <%= az_shows_initials %>
-  </ul>
-</div>
+<%= render "series_categories" %>
+
 
 <% if @series.size > 0 %>
 <div id="series_found">

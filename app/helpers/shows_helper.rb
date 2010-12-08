@@ -3,7 +3,7 @@ module ShowsHelper
   def az_shows_initials
     content = ""
     ('A'..'Z').each do |l|
-      content << "<li>" + (link_to l, shows_path(:letter => l)) + '</li>'
+      content << "<li>" + (link_to l, alphabetical_shows_path(:letter => l)) + '</li>'
     end
     
     content.html_safe
@@ -48,5 +48,14 @@ module ShowsHelper
       desc = "#{pluralize(people_watching.size, 'person is', 'people are')} watching this TV show"
     end
     desc
+  end
+  
+  def poster_processing(series)
+    if series.poster_processing?
+      content = content_tag(:div, (image_tag "ajax-loader-2.gif"), :class=> "poster poster-processing")
+    else
+      content = content_tag(:div, (render :partial => "poster", :locals => { :series => series }), :class => "poster") 
+    end
+    content
   end
 end

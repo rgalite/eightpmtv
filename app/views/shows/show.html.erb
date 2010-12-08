@@ -25,9 +25,20 @@
           $(this).find(":input").removeAttr('disabled');
           $(this).find('.ajax-loader').toggle();
         });
-    $("new_comment").find('blockquote').bind('click', function(){
-      alert('test');
-    });
+    
+    window.setInterval(function(){
+      $(".poster-processing").each(function(){
+        var poster = $(this);
+        var parentDiv = $(this).parents("div.series_info");
+        $.ajax({
+          url: "/shows/" + parentDiv.attr("id").split('-')[1] + "/get_poster",
+          success: function(data){
+            poster.html(data);
+            poster.removeClass("poster-processing");
+          }
+        });
+      });
+    }, 2000);
   });
 </script>
 
@@ -38,15 +49,13 @@
 	    <a href="#" class="greenbtn">Mark</a>
 	  </p>
 	</div>
-	<div id="series_info">
+	<div id="series-<%= @series.id %>" class="series_info">
 	  <h2><%= @series.name %></h2>
   	<p class="description">
   	  <%= people_watching(@series) %>
   	</p>
   	<p>
-  	  <% if @series.poster? %>
-        <%= image_tag @series.poster.url(:small), :class => "thumbnail" %>
-      <% end %>
+      <%= poster_processing(@series) %>
       <div>
         <% description = truncate(@series.description, 795, "") %>
         <%= description %>
@@ -61,6 +70,12 @@
         <span class="label"><%= t '.air_time'%>:</span>
         <%= @series.air_day %> <%= t '.at' %>
         <%= @series.air_time %> (<%= @series.runtime %> mn)
+      </div>
+      <div>
+        <span class="label">Genres:</span>
+        <% for genre in @series.genres %>
+          <%= link_to genre.name, shows_genre_path(genre) %>&nbsp;
+        <% end %>
       </div>
   	</p>
   	<div style="clear:both"></div>

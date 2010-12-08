@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101205172306) do
+ActiveRecord::Schema.define(:version => 20101208230051) do
 
   create_table "actors", :force => true do |t|
     t.integer   "tvdb_id"
@@ -20,25 +20,54 @@ ActiveRecord::Schema.define(:version => 20101205172306) do
   end
 
   create_table "authentications", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "provider"
-    t.string   "uid"
+    t.integer   "user_id"
+    t.string    "provider"
+    t.string    "uid"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer   "user_id"
+    t.text      "content"
+    t.integer   "commentable_id"
+    t.string    "commentable_type"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+  end
+
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "comments", :force => true do |t|
-    t.integer  "user_id"
-    t.text     "content"
-    t.integer  "commentable_id"
-    t.string   "commentable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "delayed_jobs", ["locked_by"], :name => "delayed_jobs_locked_by"
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "genres", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "genres_series", :id => false, :force => true do |t|
+    t.integer  "genre_id"
+    t.integer  "series_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -53,60 +82,61 @@ ActiveRecord::Schema.define(:version => 20101205172306) do
   end
 
   create_table "roles", :force => true do |t|
-    t.string   "name"
-    t.integer  "series_id"
-    t.integer  "actor_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
+    t.string    "name"
+    t.integer   "series_id"
+    t.integer   "actor_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "image_file_name"
+    t.string    "image_content_type"
+    t.integer   "image_file_size"
+    t.timestamp "image_updated_at"
   end
 
   create_table "series", :force => true do |t|
-    t.integer  "tvdb_id"
-    t.string   "air_day"
-    t.string   "air_time"
-    t.string   "content_rating"
-    t.date     "first_aired"
-    t.string   "imdb_id"
-    t.string   "network"
-    t.string   "description",         :limit => 2048
-    t.decimal  "rating"
-    t.integer  "rating_count"
-    t.integer  "runtime"
-    t.integer  "series_id"
-    t.string   "name"
-    t.string   "status"
-    t.string   "banner"
-    t.string   "fanart"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.datetime "last_updated_at"
-    t.string   "poster_file_name"
-    t.string   "poster_content_type"
-    t.integer  "poster_file_size"
-    t.datetime "poster_updated_at"
+    t.integer   "tvdb_id"
+    t.string    "air_day"
+    t.string    "air_time"
+    t.string    "content_rating"
+    t.date      "first_aired"
+    t.string    "imdb_id"
+    t.string    "network"
+    t.string    "description",         :limit => 2048
+    t.decimal   "rating"
+    t.integer   "rating_count"
+    t.integer   "runtime"
+    t.integer   "series_id"
+    t.string    "name"
+    t.string    "status"
+    t.string    "banner"
+    t.string    "fanart"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.timestamp "last_updated_at"
+    t.string    "poster_file_name"
+    t.string    "poster_content_type"
+    t.integer   "poster_file_size"
+    t.timestamp "poster_updated_at"
+    t.boolean   "poster_processing"
   end
 
   create_table "slugs", :force => true do |t|
-    t.string   "name"
-    t.integer  "sluggable_id"
-    t.integer  "sequence",                     :default => 1, :null => false
-    t.string   "sluggable_type", :limit => 40
-    t.string   "scope"
-    t.datetime "created_at"
+    t.string    "name"
+    t.integer   "sluggable_id"
+    t.integer   "sequence",                     :default => 1, :null => false
+    t.string    "sluggable_type", :limit => 40
+    t.string    "scope"
+    t.timestamp "created_at"
   end
 
   add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "subscriptions", :force => true do |t|
-    t.integer  "series_id"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "series_id"
+    t.integer   "user_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   create_table "users", :force => true do |t|
