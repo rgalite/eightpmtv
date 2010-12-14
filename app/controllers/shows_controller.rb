@@ -97,6 +97,8 @@ class ShowsController < ApplicationController
                           :poster_url => s.poster,
                           :banner => s.banner,
                           :fanart => s.fanart)
+      s.genres.each { |genre| series.genres << Genre.find_or_initialize_by_name(genre) }
+      
       p "\n\nINITIALIZED THE SERIE\n\n"
       series.set_actors(s.actors) unless s.actors.nil?
       unless series.save

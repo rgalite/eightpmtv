@@ -8,9 +8,7 @@ class CreateGenreSeries < ActiveRecord::Migration
     
     begin
       Series.all.each do |serie|
-        p "Test #1"
         tvdb = TvdbParty::Search.new(Tvshows::Application.config.the_tv_db_api_key)
-        p "Test #2"
         s = tvdb.get_series_by_id(serie.tvdb_id)
         s.genres.each do |genre|
           serie.genres << Genre.find_or_initialize_by_name(genre)
