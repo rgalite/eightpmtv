@@ -33,6 +33,7 @@ Tvshows::Application.routes.draw do
       get :search
       get :my
       get :alphabetical
+      get :popular
     end
     member do
       get 'add'  

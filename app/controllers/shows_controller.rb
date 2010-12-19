@@ -77,32 +77,22 @@ class ShowsController < ApplicationController
   def add
     series = Series.where(:series_id => params[:id]).first
     if series.nil?
-      p "\n\nINITIALIZED TVDB PARTY\n\n"
       tvdb = TvdbParty::Search.new(Tvshows::Application.config.the_tv_db_api_key)
       s = tvdb.get_series_by_id(params[:id])
-      p "\n\nGOT THE SERIE\n\n"
-      series = Series.new(:name => s.name,
-                          :series_id => s.id,
-                          :tvdb_id => s.tvdb_id,
-                          :description => s.overview,
-                          :first_aired => s.first_aired,
-                          :network => s.network,
-                          :rating => s.rating,
-                          :runtime => s.runtime,
+      series = Series.new(:name => s.name, :series_id => s.id,
+                          :tvdb_id => s.tvdb_id, :description => s.overview,
+                          :first_aired => s.first_aired, :network => s.network,
+                          :rating => s.rating, :runtime => s.runtime,
                           :status => s.status == "Continuing",
                           :imdb_id => s.imdb_id,
                           :rating_count => s.rating_count,
-                          :air_time => s.air_time,
-                          :air_day => s.air_day,
-                          :poster_url => s.poster,
-                          :banner => s.banner,
-                          :fanart => s.fanart)
+                          :air_time => s.air_time, :air_day => s.air_day,
+                          :poster_url => s.poster)
       s.genres.each { |genre| series.genres << Genre.find_or_initialize_by_name(genre) }
-      
-      p "\n\nINITIALIZED THE SERIE\n\n"
-      series.set_actors(s.actors) unless s.actors.nil?
-      unless series.save
-        redirect_to root_url, :notice => "Sorry, there was a problem saving the serie #{series.name}. Try again later."
+      if series.save
+        Delayed::Job.enqueue(SeriesActorsJob.new(series.id))
+      else
+        redirect_to root_url, :notice => "Sorry, there was a problem saving the TV show #{series.name}. Try again later."
         return
       end
     end
@@ -189,5 +179,8 @@ class ShowsController < ApplicationController
         end
       end
     end
+  end
+  
+  def popular
   end
 end

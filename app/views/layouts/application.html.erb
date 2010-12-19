@@ -47,8 +47,16 @@
 				<p>It's all about your TV shows</p>
 			</div>
 		</div>
-					
-		<div id="tabs">
+				
+		<!--		
+    <div style="text-align:center;border:1px solid blue; background-color:#00FFFF; height: 50px">
+      <% form_tag search_shows_path do %>
+      <%= text_field_tag "q", "", :id => :q_search, :class => "search", :placeholer => "Search a tv show, actor, genre, ...", :style => "" %>
+      <% end %>
+    </div>
+    -->
+    
+    <div id="tabs">
 			<ul>	
 				<li><%= link_to "Home", root_url %></li>
 				<li><%= link_to "Series", shows_path %></li>
@@ -68,15 +76,15 @@
 			  <% end -%>
 			</div>
 		</div>
+    
+    <%= yield :gbox %>
 
-        <%= yield :gbox %>
+    <% right_content = (yield :right) %>
+    <div class="left<%= right_content.blank? ? " width-full" : "" %>">
+        <%= yield %>
+    </div>
 
-        <% right_content = (yield :right) %>
-        <div class="left<%= right_content.blank? ? " width-full" : "" %>">
-            <%= yield %>
-        </div>
-
-        <%= yield :right %>
+    <%= yield :right %>
 		<div class="footer">
 			<p><a href="#">RSS Feed</a> &middot; <a href="#">Most Popular</a> &middot; <a href="#">Today's Favorites</a> &middot; <a href="#">All Time Favorites</a> &middot; <a href="#">Sharing Policy</a> &middot; <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> and <a href="http://validator.w3.org/check?uri=referer">XHTML</a><br />
 			&copy; Copyright 2010 8PM.TV, Design: Luka Cvrk, <a title="Awsome Web Templates" href="http://www.solucija.com/">Solucija</a></p>

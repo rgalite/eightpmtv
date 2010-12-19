@@ -47,5 +47,15 @@ Tvshows::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
   
-  config.action_mailer.default_url_options = { :host => 'rudth-mael-tvshows.heroku.com' }
+  config.action_mailer.default_url_options = { :host => 'eightpm.tv' }
+  
+  
+  config.paperclip_options = {
+    :storage => :s3,
+    :s3_credentials => "#{Rails.root}/config/amazon_s3.yml",
+    :bucket => "static.eightpm.tv",
+    :s3_permissions => :public_read,
+    :s3_host_alias => "static.eightpm.tv",
+    :url => ":s3_alias_url",
+  }
 end

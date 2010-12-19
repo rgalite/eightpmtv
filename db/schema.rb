@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101208230051) do
+ActiveRecord::Schema.define(:version => 20101219185142) do
 
   create_table "actors", :force => true do |t|
     t.integer   "tvdb_id"
@@ -25,6 +25,20 @@ ActiveRecord::Schema.define(:version => 20101208230051) do
     t.string    "uid"
     t.timestamp "created_at"
     t.timestamp "updated_at"
+  end
+
+  create_table "banners", :force => true do |t|
+    t.integer  "bannerable_id"
+    t.string   "bannerable_type"
+    t.string   "banner_type"
+    t.string   "banner_type2"
+    t.string   "language"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "data_file_name"
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.datetime "data_updated_at"
   end
 
   create_table "comments", :force => true do |t|

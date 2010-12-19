@@ -7,15 +7,10 @@ class Role < ActiveRecord::Base
 
   validates_presence_of :name
 
-  has_attached_file :image,
-                    :storage => :s3,
+  has_attached_file :image, {
                     :styles => { :small => "100x150>" },
-                    :s3_credentials => "#{Rails.root}/config/amazon_s3.yml",
-                    :bucket => "static.eightpm.tv",
-                    :path => "assets/series/:attachment/:id/:style/:basename.:extension",
-                    :s3_permissions => :public_read,
-                    :s3_host_alias => "static.eightpm.tv",
-                    :url => ":s3_alias_url"
+                    :path => "assets/roles/:attachment/:id/:style/:basename.:extension",
+                  }.merge(Tvshows::Application.config.paperclip_options)
   
   has_many :likes, :as => :likeable
   process_in_background :image

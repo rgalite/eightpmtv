@@ -26,21 +26,12 @@ module TvdbParty
       end
     end
 
-    def get_series_by_id(series_id, full = false, language = self.language)
-      if full
-        response = self.class.get("/#{@api_key}/series/#{series_id}/#{language}.xml").parsed_response
-        if response["Data"] && response["Data"]["Series"]
-          Series.new(self, response["Data"]["Series"])
-        else
-          nil
-        end
+    def get_series_by_id(series_id, language = self.language)
+      response = self.class.get("/#{@api_key}/series/#{series_id}/#{language}.xml").parsed_response
+      if response["Data"] && response["Data"]["Series"]
+        Series.new(self, response["Data"])
       else
-        response = self.class.get("/#{@api_key}/series/#{series_id}/#{language}.xml").parsed_response
-        if response["Data"] && response["Data"]["Series"]
-          Series.new(self, response["Data"]["Series"])
-        else
-          nil
-        end
+        nil
       end
     end
     
@@ -75,5 +66,12 @@ module TvdbParty
       end
     end
 
+    def get_episodes(series)
+      # Get the episodes
+      episodes = []
+      response = self.class.get("/#{@api_key}/series/#{series.id}/all/#{language}.xml").parsed_response
+      response["Data"]["Episode"].each { |episode_xml| episodes << Episode.new(episode_xml) }
+      return episodes
+    end
   end
 end

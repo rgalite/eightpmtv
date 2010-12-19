@@ -1,45 +1,47 @@
 module TvdbParty
   class Series
     attr_reader :client
-    attr_accessor :id, :name, :overview, :seasons, :first_aired, :genres, :network, :rating, :runtime,
+    attr_accessor :id, :name, :overview, :first_aired, :genres, :network, :rating, :runtime,
                   :actors, :banners, :status, :tvdb_id, :imdb_id, :language, :rating_count, :air_time,
                   :air_day, :banner, :poster, :fanart
     
     def initialize(client, options={})
       @client = client
 
-      @id = options["id"]
-      @name = options["SeriesName"]
-      @overview = options["Overview"]
-      @network = options["Network"]
-      @runtime = options["Runtime"]
-      @status = options["Status"]
-      @imdb_id = options["IMDB_ID"]     
-      @language = options["Language"]
-      @rating_count = options["RatingCount"]
-      @tvdb_id = options["id"]
-      @air_day = options["Airs_DayOfWeek"]
-      @air_time = options["Airs_Time"]
-      @banner = options["banner"]
-      @poster = options["poster"]
-      @fanart = options["fanart"]
+      series_options = options["Series"]
       
-      if options["Genre"]
-        @genres = options["Genre"][1..-1].split("|")
+      @id = series_options["id"]
+      @name = series_options["SeriesName"]
+      @overview = series_options["Overview"]
+      @network = series_options["Network"]
+      @runtime = series_options["Runtime"]
+      @status = series_options["Status"]
+      @imdb_id = series_options["IMDB_ID"]     
+      @language = series_options["Language"]
+      @rating_count = series_options["RatingCount"]
+      @tvdb_id = series_options["id"]
+      @air_day = series_options["Airs_DayOfWeek"]
+      @air_time = series_options["Airs_Time"]
+      @banner = series_options["banner"]
+      @poster = series_options["poster"]
+      @fanart = series_options["fanart"]
+      
+      if series_options["Genre"]
+        @genres = series_options["Genre"][1..-1].split("|")
       else
         @genres = []
       end
       
-      if options["Rating"] && options["Rating"].size > 0
-        @rating = options["Rating"].to_f
+      if series_options["Rating"] && series_options["Rating"].size > 0
+        @rating = series_options["Rating"].to_f
       else
         @rating = 0
       end
-      
+            
       begin 
-        @first_aired = Date.parse(options["FirstAired"])
+        @first_aired = Date.parse(series_options["FirstAired"])
       rescue
-        puts 'invalid date'
+        puts "invalid date: #{series_options["FirstAired"]}"
       end
     end
     
@@ -79,10 +81,6 @@ module TvdbParty
       @banners ||= client.get_banners(self) 
     end
 
-    def seasons
-      @seasons ||= client.get_seasons(self) 
-    end
-
     def actors
       @actors ||= client.get_actors(self) 
     end
@@ -91,5 +89,8 @@ module TvdbParty
       seasons.detect{|s| s.number == season_number}
     end
     
+    def episodes
+      @episodes ||= client.get_episodes(self)
+    end
   end
 end
