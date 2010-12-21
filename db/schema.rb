@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101219185142) do
+ActiveRecord::Schema.define(:version => 20101219202722) do
 
   create_table "actors", :force => true do |t|
     t.integer   "tvdb_id"
@@ -25,20 +25,6 @@ ActiveRecord::Schema.define(:version => 20101219185142) do
     t.string    "uid"
     t.timestamp "created_at"
     t.timestamp "updated_at"
-  end
-
-  create_table "banners", :force => true do |t|
-    t.integer  "bannerable_id"
-    t.string   "bannerable_type"
-    t.string   "banner_type"
-    t.string   "banner_type2"
-    t.string   "language"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "data_file_name"
-    t.string   "data_content_type"
-    t.integer  "data_file_size"
-    t.datetime "data_updated_at"
   end
 
   create_table "comments", :force => true do |t|
@@ -65,6 +51,24 @@ ActiveRecord::Schema.define(:version => 20101219185142) do
 
   add_index "delayed_jobs", ["locked_by"], :name => "delayed_jobs_locked_by"
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "episodes", :force => true do |t|
+    t.integer  "tvdb_id"
+    t.integer  "season_id"
+    t.integer  "number"
+    t.date     "first_aired"
+    t.text     "description"
+    t.string   "name"
+    t.string   "director"
+    t.string   "writer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "poster_file_name"
+    t.string   "poster_content_type"
+    t.integer  "poster_file_size"
+    t.datetime "poster_updated_at"
+    t.boolean  "poster_processing"
+  end
 
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"
@@ -105,6 +109,19 @@ ActiveRecord::Schema.define(:version => 20101219185142) do
     t.string    "image_content_type"
     t.integer   "image_file_size"
     t.timestamp "image_updated_at"
+  end
+
+  create_table "seasons", :force => true do |t|
+    t.integer  "number"
+    t.integer  "tvdb_id"
+    t.integer  "series_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "poster_file_name"
+    t.string   "poster_content_type"
+    t.integer  "poster_file_size"
+    t.datetime "poster_updated_at"
+    t.boolean  "poster_processing"
   end
 
   create_table "series", :force => true do |t|

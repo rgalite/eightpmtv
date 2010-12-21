@@ -9,7 +9,7 @@ module TvdbParty
       @number = options["EpisodeNumber"]
       @name = options["EpisodeName"]
       @overview = options["Overview"]
-      @thumb = "http://thetvdb.com/banners/" + options["filename"] if options["filename"].to_s != ""
+      @thumb = options["filename"] if options["filename"].to_s != ""
       @director = options["Director"]
       @writer = options["Writer"]
       @season_id = options["seasonid"]

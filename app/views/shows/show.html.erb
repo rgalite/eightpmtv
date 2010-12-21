@@ -82,6 +82,37 @@
   </div>
 </div>
 
+<!-- Seasons -->
+<div id="series_seasons" class="left_articles">
+  <% for season in @series.seasons[1..-1] %>
+    <div class="thirds">
+    	<div class="smallboxtop"></div>
+    	<div class="smallbox">
+    	  <p style="text-align:center">
+    	    <%= link_to "Season #{season.number}",
+    	                :controller => :seasons,
+    	                :action => :show,
+    	                :show_id => @series,
+    	                :season_number => season.number
+    	    %><br />
+          <%= image_tag(season.poster.url(:small))%>
+    	  </p>
+    		<p>
+    		  <% season.episodes[0..3].each do |episode| %>
+            <%= link_to "#{episode.number} - #{episode.name}",
+                        :controller => :episodes,
+                        :action => :show,
+                        :season_number => season.number,
+                        :episode_number => episode.number,
+                        :show_id => @series %><br />
+    		  <% end %>
+    		</p>
+    	</div>
+    </div>
+  <% end %>
+  <div style="clear:both"></div>
+</div>
+
 <!-- Comments -->
 <div id="series_comments">
   <% if user_signed_in? %>
@@ -109,53 +140,5 @@
   <% for comment in @series.comments %>
   <% end %>
 </div>
-
-
-<div id="series_avatar">
-  <div>
-    
-  </div>
-  <div id="series_bar" style="">
-    <ul>
-      <li>
-        <%= render :partial => (@subscription.nil? ? "link_add" : "link_rm"),
-                   :locals => { :series => @series }
-        %>
-      </li>
-      <li><%= link_to (t '.comments'), '#', :class => :comments %></li>
-    </ul>
-  </div>
-</div>
-
-<div id="series_info">
-  <p id="series_overview"></p>
-  <% if !@series.actors.size.zero? %>
-  <div id="series_actors">
-    <h3><%= t '.actors' %></h3>
-    <ul>
-    <% @series.roles.limit(12).each do |role| %>
-      <li>
-        <%= link_to role.name, show_actor_path(@series, role) %><br />
-        (<%= link_to role.actor.name, actor_path(role.actor) %>)
-      </li>
-    <% end %>
-    </ul>
-    <div>
-      <p style="margin-top:20px; text-align:right">
-        <% if @series.roles.size > 12 %>
-          <%= "and #{@series.roles.size - 12} more"  %>
-        <% end -%>
-        <%= link_to "See all actors", show_actors_path(@series) %>
-      </p>
-    </div>
-  </div>
-  <% end %>
-  <div id="series_details">
-    <p>
-      
-    </p>
-  </div>
-</div>
-<div style="clear:left"></div>
 
 <%= render :partial => "activity", :locals => { :series => @series } if current_user && @subscription %>

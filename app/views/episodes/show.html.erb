@@ -1,0 +1,29 @@
+<div class="left_articles">
+	<div class="buttons">
+	  <p>
+	    <a href="#" class="bluebtn">Watc</a>&nbsp;
+	    <a href="#" class="greenbtn">Mark</a>
+	  </p>
+	</div>
+	<div id="episode-<%= @episode.id %>" class="episode_info">
+	  <h2><%= "#{@episode.series.name} S#{@episode.season.number.to_s.rjust(2, "0")}E#{@episode.number.to_s.rjust(2, "0")}" %> - <%= @episode.name %></h2>
+  	<p class="description">
+  	  &nbsp;
+  	  <%#= people_watching(@series) %>
+  	</p>
+  	<p>
+      <%= render "poster" %>
+      <div>
+        <% description = truncate(@episode.description, 795, "") %>
+        <%= description %>
+        <% if @episode.description.length > description.length %>
+          <%= link_to_function("...", "showMoreDescription(this);") %>
+          <span style="display:none">
+            <%= @episode.description[(description.length)..-1] %>
+          </span>
+        <% end %>
+      </div>
+  	</p>
+  	<div style="clear:both"></div>
+  </div>
+</div>

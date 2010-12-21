@@ -11,10 +11,10 @@ class Series < ActiveRecord::Base
   has_and_belongs_to_many :genres, :order => "name ASC"
   has_attached_file :poster, {
                       :styles => { :small => "150x220>", :medium => "204x300>" },
-                      :path => "series/:attachment/:id/:style/:basename.:extension",
                     }.merge(Tvshows::Application.config.paperclip_options)
   has_many :likes, :as => :likeable, :dependent => :destroy
   has_many :seasons, :dependent => :destroy, :order => "number ASC"
+  has_many :episodes, :through => :seasons
   process_in_background :poster
   
   public  

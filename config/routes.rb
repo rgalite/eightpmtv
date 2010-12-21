@@ -1,18 +1,13 @@
 Tvshows::Application.routes.draw do
-  get "genres/show"
-
-  get "roles/index"
-
-  get "roles/show"
-
-  get "actors/index"
-
-  get "actors/show"
-
+  #get "episodes/show"
+  #get "seasons/show"
+  #get "genres/show"
+  #get "roles/index"
+  #get "roles/show"
+  #get "actors/index"
+  #get "actors/show"
   resources :subscriptions
-
   match '/auth/:provider/callback' => "authentications#create"
-  
   resources :authentications
 
   devise_for :users, :path_names => { :sign_up => "register",
@@ -42,6 +37,8 @@ Tvshows::Application.routes.draw do
       post 'comment'
       get 'get_poster'
     end
+    match "/season/:season_number" => "seasons#show"
+    match "/:season_number/:episode_number" => "episodes#show"
   end
   
   scope "shows", :as => "shows" do

@@ -26,7 +26,8 @@ Tvshows::Application.configure do
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   
   config.paperclip_options = {
-    :path => "series/:attachment/:id/:style/:basename.:extension",
+    :path => ":rails_root/public/:class/:attachment/:id/:style/:basename.:extension",
+    :url => "/:class/:attachment/:id/:style/:basename.:extension",
   }
 end
 
