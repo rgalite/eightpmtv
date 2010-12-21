@@ -88,25 +88,20 @@
     <div class="thirds">
     	<div class="smallboxtop"></div>
     	<div class="smallbox">
+        <p style="text-align:center"><%= link_to image_tag(season.poster.url(:small)), 
+                      :controller => :seasons,
+    	                :action => :show,
+    	                :show_id => @series,
+    	                :season_number => season.number %>
+    	  </p>
     	  <p style="text-align:center">
     	    <%= link_to "Season #{season.number}",
     	                :controller => :seasons,
     	                :action => :show,
     	                :show_id => @series,
     	                :season_number => season.number
-    	    %><br />
-          <%= image_tag(season.poster.url(:small))%>
+    	    %>
     	  </p>
-    		<p>
-    		  <% season.episodes[0..3].each do |episode| %>
-            <%= link_to "#{episode.number} - #{episode.name}",
-                        :controller => :episodes,
-                        :action => :show,
-                        :season_number => season.number,
-                        :episode_number => episode.number,
-                        :show_id => @series %><br />
-    		  <% end %>
-    		</p>
     	</div>
     </div>
   <% end %>

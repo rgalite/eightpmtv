@@ -26,7 +26,8 @@ class CreateEpisodes < ActiveRecord::Migration
         season = Season.find_by_number_and_tvdb_id(ep.season_number.to_i, ep.season_id.to_i)        
         season.episodes << Episode.new(:tvdb_id => ep.id, :number => ep.number,
                               :name => ep.name, :description => ep.overview,
-                              :director => ep.director, :writer => ep.writer)
+                              :director => ep.director, :writer => ep.writer,
+                              :first_aired => ep.air_date)
         season.save
       end
     end

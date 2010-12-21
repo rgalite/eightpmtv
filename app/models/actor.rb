@@ -5,4 +5,5 @@ class Actor < ActiveRecord::Base
   has_friendly_id :name, :use_slug => true, :approximate_ascii => true,
                   :max_length => 50
   has_many :likes, :as => :likeable
+  has_many :comments, :as => :commentable, :order => "created_at desc"
 end

@@ -37,10 +37,9 @@ Tvshows::Application.routes.draw do
       post 'comment'
       get 'get_poster'
     end
-    match "/season/:season_number" => "seasons#show"
-    match "/:season_number/:episode_number" => "episodes#show"
+    match "/season/:season_number" => "seasons#show", :constraints => { :season_number => /\d+/ }
+    match "/:season_number/:episode_number" => "episodes#show", :constraints => { :season_number => /\d+/, :episode_number => /\d+/ }
   end
-  
   scope "shows", :as => "shows" do
     resources :genres, :only => [:show]
   end

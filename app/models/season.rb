@@ -5,6 +5,7 @@ class Season < ActiveRecord::Base
   process_in_background :poster
   has_many :episodes, :dependent => :destroy, :order => "number ASC"
   belongs_to :series
+  has_many :comments, :as => :commentable, :order => "created_at desc"
   
   def poster_url=(poster_url)
     self.poster = RemoteFile.new("http://thetvdb.com/banners/#{poster_url}")

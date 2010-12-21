@@ -13,6 +13,8 @@ class Role < ActiveRecord::Base
                   }.merge(Tvshows::Application.config.paperclip_options)
   
   has_many :likes, :as => :likeable
+  has_many :comments, :as => :commentable, :order => "created_at desc"
+
   process_in_background :image
   
   def image_url=(image_url)

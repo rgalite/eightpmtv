@@ -1,2 +1,27 @@
-<h1>Seasons#show</h1>
-<p>Find me in app/views/seasons/show.html.erb</p>
+<div class="left_articles">
+	<div class="buttons">
+	  <p>
+	    <a href="#" class="bluebtn">Watc</a>&nbsp;
+	    <a href="#" class="greenbtn">Mark</a>
+	  </p>
+	</div>
+	<div id="seasons-<%= @season.id %>" class="season_info">
+	  <h2>
+	    <%= link_to "#{@season.series.name}", show_path(@season.series) %> <%= "S#{@season.number.to_s.rjust(2, "0")}" %>
+	  </h2>
+	  <p class="description">
+  	  <%= pluralize(@season.episodes.size, "episode") %>
+  	</p>
+  	<p>
+  	  <%= render "poster" %>
+      <% for episode in @season.episodes %>
+      	<div id="episode-<%= episode.id %>" class="episode_info">
+      	  <%= link_to "S#{@season.number.to_s.rjust(2, "0")}E#{episode.number.to_s.rjust(2, "0")} #{episode.name}",
+      	              :controller => "episodes", :show_id => @season.series, :episode_number => episode.number,
+      	              :season_number => @season.number, :action => :show %>
+      	</div>
+      <% end %>
+  	</p>
+	</div>
+</div>
+

@@ -6,10 +6,12 @@
 	  </p>
 	</div>
 	<div id="episode-<%= @episode.id %>" class="episode_info">
-	  <h2><%= "#{@episode.series.name} S#{@episode.season.number.to_s.rjust(2, "0")}E#{@episode.number.to_s.rjust(2, "0")}" %> - <%= @episode.name %></h2>
+	  <h2>
+	    <%= link_to "#{@episode.series.name}", show_path(@episode.series) %>
+	    <%= link_to "S#{@episode.season.number.to_s.rjust(2, "0")}", :controller => :seasons, :action => :show, :season_number => @episode.season.number %><%= "E#{@episode.number.to_s.rjust(2, "0")}" %> - <%= @episode.name %>
+	  </h2>
   	<p class="description">
-  	  &nbsp;
-  	  <%#= people_watching(@series) %>
+  	  Aired on <%= @episode.first_aired %>
   	</p>
   	<p>
       <%= render "poster" %>
