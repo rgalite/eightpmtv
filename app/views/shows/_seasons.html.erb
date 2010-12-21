@@ -1,0 +1,24 @@
+<div id="series_seasons" class="left_articles">
+  <% for season in @series.seasons[1..-1] %>
+    <div class="thirds">
+    	<div class="smallboxtop"></div>
+    	<div class="smallbox">
+        <p style="text-align:center"><%= link_to image_tag(season.poster.url(:small)), 
+                      :controller => :seasons,
+    	                :action => :show,
+    	                :show_id => @series,
+    	                :season_number => season.number %>
+    	  </p>
+    	  <p style="text-align:center">
+    	    <%= link_to "Season #{season.number}",
+    	                :controller => :seasons,
+    	                :action => :show,
+    	                :show_id => @series,
+    	                :season_number => season.number
+    	    %>
+    	  </p>
+    	</div>
+    </div>
+  <% end %>
+  <div style="clear:both"></div>
+</div>
