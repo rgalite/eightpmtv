@@ -15,13 +15,15 @@
   	<p>
   	  <%= render "poster" %>
       <% for episode in @season.episodes %>
-      	<div id="episode-<%= episode.id %>" class="episode_info">
+      	<span style="display:inline-block;width:250px" id="episode-<%= episode.id %>" class="episode_info">
+      	  <%= check_box_tag "check_box_episode_#{episode.id}" %>
       	  <%= link_to "S#{@season.number.to_s.rjust(2, "0")}E#{episode.number.to_s.rjust(2, "0")} #{episode.name}",
       	              :controller => "episodes", :show_id => @season.series, :episode_number => episode.number,
       	              :season_number => @season.number, :action => :show %>
-      	</div>
+      	</span>
       <% end %>
   	</p>
+  	<div style="clear:both"></div>
 	</div>
 </div>
 

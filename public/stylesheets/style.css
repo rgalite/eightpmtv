@@ -181,3 +181,9 @@ color:#999999;
 .series_info div.poster-processing { background: url(/images/light_movie.png) no-repeat; }
 .series_info div.poster-processing img { margin:auto; margin-top:85px;display:block; }
 .series_info span.label { font-weight: bold; }
+
+#navlist { text-align:center; }
+#navlist li { display: inline; list-style-type: none; width:12px; }
+#navlist li.selected, #navlist li:hover { background-color: #003B6E;}
+#navlist li.selected a, #navlist li:hover a { color: white; }
+#navlist li a { padding: 1px 14px; text-decoration:none; }

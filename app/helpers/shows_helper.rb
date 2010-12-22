@@ -1,9 +1,11 @@
 module ShowsHelper
 
-  def az_shows_initials
+  def az_shows_initials(current_letter)
     content = ""
     ('A'..'Z').each do |l|
-      content << "<li>" + (link_to l, alphabetical_shows_path(:letter => l)) + '</li>'
+      content << "<li"
+      content << " class=\"selected\"" if current_letter == l
+      content << ">" + (link_to l, name_shows_path(:letter => l)) + '</li>'
     end
     
     content.html_safe

@@ -27,7 +27,7 @@ Tvshows::Application.routes.draw do
       post :search
       get :search
       get :my
-      get :alphabetical
+      get :name
       get :popular
     end
     member do

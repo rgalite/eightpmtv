@@ -22,15 +22,7 @@ class ShowsController < ApplicationController
   public
   
   def index
-    if params[:letter] == "0"
-      @series = Series.where("name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ? \
-                              OR name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ?",
-                              "0%", "1%", "2%", "3%", "4%", "5%", "6%", "7%", "8%", "9%")
-    elsif ('A'..'Z').include?(params[:letter])
-      @series = Series.where("name LIKE ? OR name LIKE ?", params[:letter] + '%', "The #{params[:letter]}%").order("name asc")
-    else
-      @series = []
-    end
+    name_alpha
   end
   
   def search
@@ -132,23 +124,7 @@ class ShowsController < ApplicationController
       @series = Series.find(params[:id])
       c = @series.comments.build(:content => params[:comment][:content],
                                  :user => current_user) 
-      if c.save
-        respond_to do |format|
-          format.js do
-            render :partial => "comment", :locals => { :comment => c }
-          end
-        end
-      else
-        respond_to do |format|
-          format.js do
-            render_text = "<p>"
-            c.errors.full_messages.each { |m| render_text << m + "<br />" }
-            render_text << "</p>"
-            
-            render :text => render_text, :status => 403
-          end
-        end
-      end
+      save_comment(c)
     end
   end
 
@@ -156,16 +132,8 @@ class ShowsController < ApplicationController
     @shows = current_user.series if current_user
   end
   
-  def alphabetical
-    if params[:letter] == "0" || params[:letter].nil?
-      @series = Series.where("name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ? \
-                              OR name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ?",
-                              "0%", "1%", "2%", "3%", "4%", "5%", "6%", "7%", "8%", "9%")
-    elsif ('A'..'Z').include?(params[:letter])
-      @series = Series.where("name LIKE ? OR name LIKE ?", params[:letter] + '%', "The #{params[:letter]}%").order("name asc")
-    else
-      @series = []
-    end
+  def name
+    name_alpha
   end
   
   def get_poster
@@ -182,5 +150,18 @@ class ShowsController < ApplicationController
   end
   
   def popular
+  end
+  
+  private
+  def name_alpha
+    if params[:letter] == "0" || params[:letter].nil?
+      @series = Series.where("name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ? \
+                              OR name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ?",
+                              "0%", "1%", "2%", "3%", "4%", "5%", "6%", "7%", "8%", "9%")
+    elsif ('A'..'Z').include?(params[:letter])
+      @series = Series.where("name LIKE ? OR name LIKE ?", params[:letter] + '%', "The #{params[:letter]}%").order("name asc")
+    else
+      @series = []
+    end
   end
 end
