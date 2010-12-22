@@ -187,3 +187,10 @@ color:#999999;
 #navlist li.selected, #navlist li:hover { background-color: #003B6E;}
 #navlist li.selected a, #navlist li:hover a { color: white; }
 #navlist li a { padding: 1px 14px; text-decoration:none; }
+
+#series-list-name .serie { float:left }
+#series-list-name .serie span.title { display:block }
+#series-list-name .serie span.title a { display:block; text-decoration:none; }
+#series-list-name .serie-hovered img { border:1px solid #003B6E !important; }
+#series-list-name .serie-hovered span.title { background-color: #003B6E !important; }
+#series-list-name .serie-hovered span.title a { color:white; }
