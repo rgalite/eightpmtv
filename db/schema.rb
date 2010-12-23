@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101219202722) do
+ActiveRecord::Schema.define(:version => 20101223084000) do
 
   create_table "actors", :force => true do |t|
     t.integer   "tvdb_id"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(:version => 20101219202722) do
     t.timestamp "updated_at"
   end
 
+  add_index "authentications", ["user_id"], :name => "authentications_user_id_ix"
+
   create_table "comments", :force => true do |t|
     t.integer   "user_id"
     t.text      "content"
@@ -35,6 +37,11 @@ ActiveRecord::Schema.define(:version => 20101219202722) do
     t.timestamp "created_at"
     t.timestamp "updated_at"
   end
+
+  add_index "comments", ["commentable_id", "commentable_type"], :name => "comments_commentable_id_commentable_type_ix"
+  add_index "comments", ["commentable_id"], :name => "comments_commentable_id_ix"
+  add_index "comments", ["commentable_type"], :name => "comments_commentable_type_ix"
+  add_index "comments", ["user_id"], :name => "comments_user_id_ix"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -70,12 +77,17 @@ ActiveRecord::Schema.define(:version => 20101219202722) do
     t.boolean  "poster_processing"
   end
 
+  add_index "episodes", ["season_id"], :name => "episodes_season_id_ix"
+
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "friendships", ["friend_id"], :name => "friendships_friend_id_ix"
+  add_index "friendships", ["user_id"], :name => "friendships_user_id_ix"
 
   create_table "genres", :force => true do |t|
     t.string   "name"
@@ -90,6 +102,9 @@ ActiveRecord::Schema.define(:version => 20101219202722) do
     t.datetime "updated_at"
   end
 
+  add_index "genres_series", ["genre_id"], :name => "genres_series_genre_id_ix"
+  add_index "genres_series", ["series_id"], :name => "genres_series_series_id_ix"
+
   create_table "likes", :force => true do |t|
     t.integer  "value",         :default => 0
     t.integer  "user_id"
@@ -98,6 +113,11 @@ ActiveRecord::Schema.define(:version => 20101219202722) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "likes", ["likeable_id", "likeable_type"], :name => "likes_likeable_id_likeable_type_ix"
+  add_index "likes", ["likeable_id"], :name => "likes_likeable_id_ix"
+  add_index "likes", ["likeable_type"], :name => "likes_likeable_type_ix"
+  add_index "likes", ["user_id"], :name => "likes_user_id_ix"
 
   create_table "roles", :force => true do |t|
     t.string    "name"
@@ -111,6 +131,9 @@ ActiveRecord::Schema.define(:version => 20101219202722) do
     t.timestamp "image_updated_at"
   end
 
+  add_index "roles", ["actor_id"], :name => "roles_actor_id_ix"
+  add_index "roles", ["series_id"], :name => "roles_series_id_ix"
+
   create_table "seasons", :force => true do |t|
     t.integer  "number"
     t.integer  "tvdb_id"
@@ -123,6 +146,8 @@ ActiveRecord::Schema.define(:version => 20101219202722) do
     t.datetime "poster_updated_at"
     t.boolean  "poster_processing"
   end
+
+  add_index "seasons", ["series_id"], :name => "seasons_series_id_ix"
 
   create_table "series", :force => true do |t|
     t.integer   "tvdb_id"
@@ -169,6 +194,9 @@ ActiveRecord::Schema.define(:version => 20101219202722) do
     t.timestamp "created_at"
     t.timestamp "updated_at"
   end
+
+  add_index "subscriptions", ["series_id"], :name => "subscriptions_series_id_ix"
+  add_index "subscriptions", ["user_id"], :name => "subscriptions_user_id_ix"
 
   create_table "users", :force => true do |t|
     t.string    "email",                               :default => "", :null => false
