@@ -1,6 +1,14 @@
 <div class="bubble">
 	<blockquote>
-		<p><%= comment.content %></p>
+		<p style="width:90%;float:left;"><%= comment.content %></p>
+		<p style="display:inline-block;float:right;display:none" class="comments_options">
+		  <%= link_to(image_tag("thumbs_up.png", :width => "13px", :height => "13px"), {}, :remote => true) %>
+		  <%= link_to(image_tag("thumbs_down.png", :width => "13px", :height => "13px")) %>
+		</p>
+		<div style="clear:both"></div>
 	</blockquote>
-	<cite><strong><%= comment.user.username %></strong> <%= comment.created_at.to_pretty %></cite>
+	<cite>
+	  <strong><%= comment.user.username %></strong>
+	  <%= comment.created_at.to_pretty %>
+	</cite>
 </div>

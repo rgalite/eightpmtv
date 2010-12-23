@@ -22,6 +22,12 @@ $(document).ready(function(){
         $(this).find(":input").removeAttr('disabled');
         $(this).find('.ajax-loader').toggle();
       });
+	$(".bubble blockquote").hover(function(){
+		$(this).find('.comments_options').show();
+	},
+	function(){
+		$(this).find('.comments_options').hide();
+	});
 });
 
 function showMoreDescription(linkMore)

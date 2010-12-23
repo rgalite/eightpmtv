@@ -172,6 +172,9 @@ color:#999999;
 .bluebtn { background: #488EB2 url(/images/bluebtn.gif) no-repeat; width: 100px; padding: 1px 16px 5px 16px; color: #fff; text-decoration: none; }
 .greenbtn { background: #488EB2 url(/images/greenbtn.gif) no-repeat; padding: 1px 17px 5px 16px; color: #fff; text-decoration: none; }
 .bluebtn:hover, .greenbtn:hover { background: #488EB2 url(/images/hoverbtn.gif) no-repeat; color: #fff; }
+.clear-left { clear:left; }
+.clear-right { clear:right; }
+.clear { clear:both; }
 
 /* footer  */
 .footer { clear: both; text-align: center; line-height: 1.8em; padding: 10px 0 10px 0; border-top: 1px solid #ccc; }
@@ -194,3 +197,10 @@ color:#999999;
 #series-list-name .serie-hovered img { border:1px solid #003B6E !important; }
 #series-list-name .serie-hovered span.title { background-color: #003B6E !important; }
 #series-list-name .serie-hovered span.title a { color:white; }
+
+/* Login */
+#login-frame { margin:20px auto 0px; width:620px; }
+#login-frame #standard-login, #login-frame #services-login { float:left; width:295px; }
+#login-frame #standard-login { margin:0px 10px 0px auto; }
+#login-frame #services-login { margin:0px auto 0px 10px; }
+#login-frame #services-login #my-authentications { text-align:center; }

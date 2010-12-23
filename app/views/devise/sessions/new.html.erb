@@ -1,40 +1,35 @@
-<div id="login-frame" class="login-frame">
+<div id="login-frame">
   <div id="standard-login">
-    <h2>Standard sign in</h2>
-    <%= form_for(resource, :as => resource_name, 
-                 :url => session_path(resource_name)) do |f| %>
-      <p><%= f.label :username %><br />
-      <%= f.text_field :username %></p>
+    <div class="boxtop"></div>
+    <div class="box">
+      <h2>Standard sign in</h2>
+      <%= form_for(resource, :as => resource_name, 
+                   :url => session_path(resource_name)) do |f| %>
+        <p><%= f.label :username %><br /> <%= f.text_field :username %></p>
+        <p><%= f.label :password %><br /> <%= f.password_field :password %></p>
 
-      <p><%= f.label :password %><br />
-      <%= f.password_field :password %></p>
+        <% if devise_mapping.rememberable? -%>
+          <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+        <% end -%>
+        <p><%= f.submit "Sign in" %></p>
+      <% end %>
 
-      <% if devise_mapping.rememberable? -%>
-        <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
-      <% end -%>
-
-      <p><%= f.submit "Sign in" %></p>
-    <% end %>
-
-    <%= render :partial => "devise/shared/links" %>
+      <p><%= render :partial => "devise/shared/links" %></p>
+    </div>
   </div>
   <div id="services-login">
-    <h2>or use services</h2>
-    <div id="my-authentications">
-      <div class="auth-method auth-method-twitter">
-        <div class="auth-method-content" style="float:none">
-          <%= link_to "Twitter", "/auth/twitter" %>
-          <div style="clear:both"></div>
+    <div class="boxtop"></div>
+    <div class="box">
+      <h2>or use services</h2>
+      <div id="my-authentications">
+        <div class="auth-method">
+          <%= link_to (image_tag "twitter_connect.gif"), "/auth/twitter" %>
+        </div>
+        <div class="auth-method" style="margin-top:10px">
+          <%= link_to (image_tag "facebook_connect.gif"), "/auth/facebook" %>
         </div>
       </div>
-      <div class="auth-method auth-method-facebook" style="margin-top:10px">
-        <div class="auth-method-content" style="float:none">
-          <%= link_to "Facebook", "/auth/facebook" %>
-          <div style="clear:both"></div>
-        </div>
-      </div>
-    </div>
-    <div class="clear"></div>
+    </div>      
   </div>
-<div class="clear"></div>
+  <div class="clear"></div>
 </div>
