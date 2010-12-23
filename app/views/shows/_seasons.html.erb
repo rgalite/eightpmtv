@@ -3,7 +3,7 @@
     <div class="thirds" style="margin:0px 13px">
     	<div class="smallboxtop"></div>
     	<div class="smallbox">
-        <p style="text-align:center"><%= link_to image_tag(season.poster.url(:small)), 
+        <p style="text-align:center"><%= link_to image_tag(season.poster.url(:small), :style => "border: 1px solid #DEDEDE;"), 
                       show_season_path(:show_id => @series, :season_number => season.number) %>
     	  </p>
     	  <p style="text-align:center">

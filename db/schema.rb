@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20101223084000) do
 
   add_index "comments", ["commentable_id", "commentable_type"], :name => "comments_commentable_id_commentable_type_ix"
   add_index "comments", ["commentable_id"], :name => "comments_commentable_id_ix"
+  add_index "comments", ["commentable_type", "commentable_id"], :name => "comments_commentable_type_commentable_id_ix"
   add_index "comments", ["commentable_type"], :name => "comments_commentable_type_ix"
   add_index "comments", ["user_id"], :name => "comments_user_id_ix"
 
@@ -116,6 +117,7 @@ ActiveRecord::Schema.define(:version => 20101223084000) do
 
   add_index "likes", ["likeable_id", "likeable_type"], :name => "likes_likeable_id_likeable_type_ix"
   add_index "likes", ["likeable_id"], :name => "likes_likeable_id_ix"
+  add_index "likes", ["likeable_type", "likeable_id"], :name => "likes_likeable_type_likeable_id_ix"
   add_index "likes", ["likeable_type"], :name => "likes_likeable_type_ix"
   add_index "likes", ["user_id"], :name => "likes_user_id_ix"
 
