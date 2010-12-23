@@ -27,3 +27,4 @@
 	</div>
 </div>
 
+<%= render :partial => "shared/comments", :locals => { :comment_path => comment_season_path(@season), :comments => @season.comments } %>

@@ -20,7 +20,11 @@ Tvshows::Application.routes.draw do
   get "shows/index"
 
   resources :actors, :only => [:show]
-  
+  resources :seasons, :only => [] do
+    member do
+      post :comment
+    end
+  end
   resources :shows, :only => [:index, :show] do
     resources :actors, :only => [:show, :index], :controller => "roles"
     collection do
@@ -37,7 +41,7 @@ Tvshows::Application.routes.draw do
       post 'comment'
       get 'get_poster'
     end
-    match "/season/:season_number" => "seasons#show", :constraints => { :season_number => /\d+/ }, :as => "seasons"
+    match "/season/:season_number" => "seasons#show", :constraints => { :season_number => /\d+/ }, :as => "season"
     match "/:season_number/:episode_number" => "episodes#show", :constraints => { :season_number => /\d+/, :episode_number => /\d+/ }, :as => "season_episode"
   end
   scope "shows", :as => "shows" do

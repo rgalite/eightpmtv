@@ -1,0 +1,10 @@
+<div id="comments">
+  <% if user_signed_in? %>
+    <div class="bubble new-bubble">
+      <%= form_for(Comment.new, :url => comment_path, :remote => true) do |f| %>
+        <%= render :partial => "shared/comment_form", :locals => { :f => f } %>
+    	<% end %>
+    </div>
+  <% end %>
+  <%= render :partial => "shared/comment", :collection => comments %>
+</div>

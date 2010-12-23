@@ -5,27 +5,6 @@
   }
   
   $(document).ready(function(){
-    $("#comment_content").autoGrow();
-    $("#new_comment")
-        .bind("ajax:loading",  function(){
-          $(this).find('.ajax-loader').toggle();
-          $(this).find(":input").attr('disabled', 'disabled');
-        })
-        .bind("ajax:success", function(obj, data, xhr) {
-          $(this).find(".error_messages").hide();
-          $(data).insertAfter($("#series_comments").children("div.new-bubble"));
-          $(this).find(":input").not(":submit").val('');
-        })
-        .bind("ajax:failure", function(data, xhr, err) {
-          console.info(xhr.responseText);
-          if (xhr.status == 403)
-            $(this).find(".error_messages").html($(xhr.responseText)).show();
-        })
-        .bind("ajax:complete", function(){          
-          $(this).find(":input").removeAttr('disabled');
-          $(this).find('.ajax-loader').toggle();
-        });
-    
     window.setInterval(function(){
       $(".poster-processing").each(function(){
         var poster = $(this);
@@ -86,6 +65,6 @@
 <%= render "seasons" %>
 
 <!-- Comments -->
-<%= render "comments" %>
+<%= render :partial => "shared/comments", :locals => { :comment_path => comment_show_path(@series), :comments => @series.comments } %>
 
 <%= render :partial => "activity", :locals => { :series => @series } if current_user && @subscription %>

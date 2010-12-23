@@ -4,11 +4,11 @@
     	<div class="smallboxtop"></div>
     	<div class="smallbox">
         <p style="text-align:center"><%= link_to image_tag(season.poster.url(:small)), 
-                      show_seasons_path(:show_id => @series, :season_number => season.number) %>
+                      show_season_path(:show_id => @series, :season_number => season.number) %>
     	  </p>
     	  <p style="text-align:center">
     	    <%= link_to "Season #{season.number}",
-    	                show_seasons_path(:show_id => @series, :season_number => season.number)
+    	                show_season_path(:show_id => @series, :season_number => season.number)
     	    %>
     	  </p>
     	</div>
