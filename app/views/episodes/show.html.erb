@@ -29,3 +29,5 @@
   	<div style="clear:both"></div>
   </div>
 </div>
+
+<%= render :partial => "shared/comments", :locals => { :comment_path => comment_episode_path(@episode), :comments => @episode.comments }%>

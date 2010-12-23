@@ -25,6 +25,11 @@ Tvshows::Application.routes.draw do
       post :comment
     end
   end
+  resources :episodes, :only => [] do
+    member do
+      post :comment
+    end
+  end
   resources :shows, :only => [:index, :show] do
     resources :actors, :only => [:show, :index], :controller => "roles"
     collection do

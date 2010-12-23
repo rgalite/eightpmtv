@@ -7,4 +7,13 @@ class EpisodesController < ApplicationController
   def mark
   
   end
+  
+  def comment
+    if user_signed_in?
+      @episode = Episode.find(params[:id])
+      c = @episode.comments.build(:content => params[:comment][:content],
+                                 :user => current_user) 
+      save_comment(c)
+    end
+  end
 end
