@@ -1,0 +1,17 @@
+<% if season.poster_processing? %>
+
+<% else %>
+  <div class="thirds">
+  	<div class="smallboxtop"></div>
+  	<div class="smallbox">
+      <p style="text-align:center">
+        <%= link_to image_tag(season.poster.url(:small), :style => "border: 1px solid #DEDEDE;"), 
+                    show_season_path(:show_id => season.series.id, :season_number => season.number) %>
+  	  </p>
+  	  <p style="text-align:center">
+  	    <%= link_to "Season #{season.number}",
+  	                show_season_path(:show_id => season.series.id, :season_number => season.number) %>
+  	  </p>
+  	</div>
+  </div>
+<% end %>

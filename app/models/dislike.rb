@@ -1,3 +1,3 @@
 class Dislike < Like
-  default_scope :value => -1
+  default_scope :value => "-1"
 end

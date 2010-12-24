@@ -79,11 +79,10 @@ class ShowsController < ApplicationController
                           :imdb_id => s.imdb_id,
                           :rating_count => s.rating_count,
                           :air_time => s.air_time, :air_day => s.air_day,
-                          :poster_url => s.poster)
+                          :seasons_processing => true,
+                          :poster_processing => true, :poster_url => s.poster)
       s.genres.each { |genre| series.genres << Genre.find_or_initialize_by_name(genre) }
-      if series.save
-        Delayed::Job.enqueue(SeriesActorsJob.new(series.id))
-      else
+      if !series.save
         redirect_to root_url, :notice => "Sorry, there was a problem saving the TV show #{series.name}. Try again later."
         return
       end
@@ -137,19 +136,34 @@ class ShowsController < ApplicationController
   end
   
   def get_poster
-    series = Series.find(params[:id])
+    @series = Series.find(params[:id])
     respond_to do |format|
       format.js do
-        if series.poster_processing?
+        if @series.poster_processing?
           render :nothing => true, :status => 403
         else
-          render :partial => "poster", :locals => { :series => series }
+          render :partial => "poster", :locals => { :series => @series }
         end
       end
+      format.html { redirect_to show_path(@series) } # redirect to show
     end
   end
   
   def popular
+  end
+  
+  def get_seasons
+    @series = Series.find(params[:id])
+    respond_to do |format|
+      format.js do
+        if @series.seasons_processing?
+          render :nothing => true, :status => 403
+        else
+          render :partial => "seasons", :locals => { :series => @series.seasons }
+        end
+      end
+      format.html { redirect_to show_path(@series) } # redirect to show
+    end
   end
   
   private

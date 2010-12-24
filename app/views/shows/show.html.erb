@@ -3,21 +3,30 @@
   {
     $("#ajax-loader").toggle();
   }
+  var getSeasonsPath = "<%= get_seasons_show_path(@series) %>";
+  var getPosterPath = "<%= get_poster_show_path(@series) %>";
+  var posterIntervalID = null;
+  var seasonsIntervalID = null;
   
-  $(document).ready(function(){
-    window.setInterval(function(){
-      $(".poster-processing").each(function(){
-        var poster = $(this);
-        var parentDiv = $(this).parents("div.series_info");
+  function updateProcessingElements(intervalId, eltPath, updateLink){
+    intervalId = window.setInterval(function(){
+      $(eltPath).each(function(){
+        var elt = $(this);
         $.ajax({
-          url: "/shows/" + parentDiv.attr("id").split('-')[1] + "/get_poster",
+          url: updateLink,
           success: function(data){
-            poster.html(data);
-            poster.removeClass("poster-processing");
+            elt.replaceWith(data);
+            elt.removeClass("processing");
+            window.clearInterval(intervalId);
           }
         });
-      });
+      })
     }, 2000);
+  }
+  
+  $(document).ready(function(){
+    updateProcessingElements(posterIntervalID, "#poster.processing", getPosterPath);
+    updateProcessingElements(seasonsIntervalID, "#series_seasons.processing", getSeasonsPath);   
   });
 </script>
 
@@ -34,7 +43,7 @@
   	  <%= people_watching(@series) %>
   	</p>
   	<p>
-      <%= poster_processing(@series) %>
+      <%= render "poster" %>
       <div>
         <% description = truncate(@series.description, 795, "") %>
         <%= description %>

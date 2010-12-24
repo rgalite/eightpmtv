@@ -1,18 +1,15 @@
-<div id="series_seasons" style="margin-bottom:20px">
-  <% for season in @series.seasons[1..-1] %>
-    <div class="thirds" style="margin:0px 13px">
-    	<div class="smallboxtop"></div>
-    	<div class="smallbox">
-        <p style="text-align:center"><%= link_to image_tag(season.poster.url(:small), :style => "border: 1px solid #DEDEDE;"), 
-                      show_season_path(:show_id => @series, :season_number => season.number) %>
-    	  </p>
-    	  <p style="text-align:center">
-    	    <%= link_to "Season #{season.number}",
-    	                show_season_path(:show_id => @series, :season_number => season.number)
-    	    %>
-    	  </p>
-    	</div>
-    </div>
-  <% end %>
-  <div style="clear:both"></div>
-</div>
+<% if @series.seasons_processing? %>
+  <div id="series_seasons" class="processing">
+    <p id="seasons_loading" class="seasons-loading" style="text-align:center">
+      <span>Loading seasons ...</span><br />
+      <%= image_tag("ajax-loader-bar.gif") %>
+    </p>
+  </div>
+<% else %>
+  <div id="series_seasons">
+    <% unless @series.seasons.size.zero? %>
+      <%= render :partial => "season", :collection => @series.seasons %>
+      <div class="clear"></div>
+    <% end %>
+  </div>
+<% end %>

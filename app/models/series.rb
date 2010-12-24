@@ -13,9 +13,14 @@ class Series < ActiveRecord::Base
                       :styles => { :small => "150x220>", :medium => "204x300>" },
                     }.merge(Tvshows::Application.config.paperclip_options)
   has_many :likes, :as => :likeable, :dependent => :destroy
-  has_many :seasons, :dependent => :destroy, :order => "number ASC"
+  has_many :seasons, :dependent => :destroy, :order => "seasons.number ASC"
   has_many :episodes, :through => :seasons
   process_in_background :poster
+  
+  after_save :attach_poster
+  after_create :attach_episodes
+  
+  attr_accessor :poster_url
   
   public  
   def set_actors(actors)
@@ -25,8 +30,13 @@ class Series < ActiveRecord::Base
       self.roles << role if role.valid?
     end
   end
+      
+  def attach_poster
+    Delayed::Job.enqueue(AttachPosterToSeriesJob.new(id, @poster_url), :priority => 5) unless @poster_url.nil?
+  end
   
-  def poster_url=(poster_url)
-    self.poster = RemoteFile.new("http://thetvdb.com/banners/#{poster_url}")
+  def attach_episodes
+    Delayed::Job.enqueue(SeriesEpisodesJob.new(id), :priority => 4)
+    # Delayed::Job.enqueue(SeriesActorsJob.new(id))
   end
 end

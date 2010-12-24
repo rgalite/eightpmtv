@@ -118,7 +118,7 @@ div.new-bubble textarea {
 	height:auto;
 	overflow:hidden;
 	resize: none;
-	width: 601px;
+	width: 100%;
 }
 
 div.new-bubble textarea:focus {
@@ -180,9 +180,9 @@ color:#999999;
 .footer { clear: both; text-align: center; line-height: 1.8em; padding: 10px 0 10px 0; border-top: 1px solid #ccc; }
 
 /* series info */
-.series_info div.poster { border:1px solid #DEDEDE; float:left; margin-right:10px; width:150px; height:220px;}
-.series_info div.poster-processing { background: url(/images/light_movie.png) no-repeat; }
-.series_info div.poster-processing img { margin:auto; margin-top:85px;display:block; }
+.series_info #poster { border:1px solid #DEDEDE; float:left; margin-right:10px; width:150px; height:220px;}
+.series_info #poster.processing { background: url(/images/light_movie.png) no-repeat; }
+.series_info #poster.processing img { margin:auto; margin-top:85px;display:block; }
 .series_info span.label { font-weight: bold; }
 
 #navlist { text-align:center; }
@@ -197,6 +197,9 @@ color:#999999;
 #series-list-name .serie-hovered img { border:1px solid #003B6E !important; }
 #series-list-name .serie-hovered span.title { background-color: #003B6E !important; }
 #series-list-name .serie-hovered span.title a { color:white; }
+
+#series_seasons { border-bottom: 1px dotted #CCC; margin-bottom:20px; }
+#series_seasons .thirds { margin:0px 17px 15px }
 
 /* Login */
 #login-frame { margin:20px auto 0px; width:620px; }

@@ -19,6 +19,7 @@ class CreateSeasons < ActiveRecord::Migration
       season_number = -1
       episodes.each do |ep|
         if season_number != ep.season_number
+          next if ep.season_number.zero?
           season_number = ep.season_number
           p "Processing season #{season_number} ..."
         end

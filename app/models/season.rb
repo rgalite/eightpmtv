@@ -7,7 +7,9 @@ class Season < ActiveRecord::Base
   belongs_to :series
   has_many :comments, :as => :commentable, :order => "created_at desc"
   
-  def poster_url=(poster_url)
-    self.poster = RemoteFile.new("http://thetvdb.com/banners/#{poster_url}")
+  attr_accessor :poster_url
+  
+  def after_save
+    Delayed::Job.enqueue(AttachPosterToSeasonJob.new(id, @poster_url), 3) unless @poster_url.nil?
   end
 end

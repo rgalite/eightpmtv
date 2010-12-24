@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101223084000) do
+ActiveRecord::Schema.define(:version => 20101223201001) do
 
   create_table "actors", :force => true do |t|
     t.integer   "tvdb_id"
@@ -176,6 +176,7 @@ ActiveRecord::Schema.define(:version => 20101223084000) do
     t.integer   "poster_file_size"
     t.timestamp "poster_updated_at"
     t.boolean   "poster_processing"
+    t.boolean   "seasons_processing"
   end
 
   create_table "slugs", :force => true do |t|

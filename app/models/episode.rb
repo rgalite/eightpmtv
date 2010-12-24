@@ -7,12 +7,14 @@ class Episode < ActiveRecord::Base
   process_in_background :poster
   has_many :comments, :as => :commentable, :order => "created_at desc"
   
-  def poster_url=(poster_url)
-    self.poster = RemoteFile.new("http://thetvdb.com/banners/#{poster_url}")
-  end
+  attr_accessor :poster_url
   
   def self.find_by_show_id_and_season_number_and_episode_number(show_id, season_number, episode_number)
     Series.find(show_id).episodes.includes(:season).where("seasons.number" => season_number,
                                                        :number => episode_number).first
+  end
+  
+  def before_save
+    self.poster = RemoteFile.new("http://thetvdb.com/banners/#{@poster_url}") if @poster_url
   end
 end

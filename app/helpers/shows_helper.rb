@@ -51,13 +51,4 @@ module ShowsHelper
     end
     desc
   end
-  
-  def poster_processing(series)
-    if series.poster_processing?
-      content = content_tag(:div, (image_tag "ajax-loader-2.gif"), :class=> "poster poster-processing")
-    else
-      content = content_tag(:div, (render :partial => "poster", :locals => { :series => series }), :class => "poster") 
-    end
-    content
-  end
 end

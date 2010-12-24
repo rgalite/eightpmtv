@@ -16,8 +16,9 @@ class Role < ActiveRecord::Base
   has_many :comments, :as => :commentable, :order => "created_at desc"
 
   process_in_background :image
+  attr_accessor :image_url
   
-  def image_url=(image_url)
-    self.image = RemoteFile.new("http://thetvdb.com/banners/#{image_url}")
+  def after_save
+    Delayed::Job.enqueue(AttachImageToRoleJob.new(id, @image_url)) unless @image_url.nil?
   end
 end
