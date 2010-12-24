@@ -1,1 +1,9 @@
-<%= image_tag(@season.poster.url(:small), :class => "thumbnail") %>
+<% if season.poster_processing? %>
+  <div class="processing" id="poster">
+    <%= image_tag "ajax-loader-2.gif" %>
+  </div>
+<% else %>
+  <div id="poster">
+    <%= image_tag(season.poster.url(:small), :class => "thumbnail", :style => "border: 1px solid #DEDEDE;") %>
+  </div>
+<% end %>

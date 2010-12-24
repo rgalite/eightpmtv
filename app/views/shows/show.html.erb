@@ -8,22 +8,6 @@
   var posterIntervalID = null;
   var seasonsIntervalID = null;
   
-  function updateProcessingElements(intervalId, eltPath, updateLink){
-    intervalId = window.setInterval(function(){
-      $(eltPath).each(function(){
-        var elt = $(this);
-        $.ajax({
-          url: updateLink,
-          success: function(data){
-            elt.replaceWith(data);
-            elt.removeClass("processing");
-            window.clearInterval(intervalId);
-          }
-        });
-      })
-    }, 2000);
-  }
-  
   $(document).ready(function(){
     updateProcessingElements(posterIntervalID, "#poster.processing", getPosterPath);
     updateProcessingElements(seasonsIntervalID, "#series_seasons.processing", getSeasonsPath);   

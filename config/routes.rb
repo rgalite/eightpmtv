@@ -23,6 +23,7 @@ Tvshows::Application.routes.draw do
   resources :seasons, :only => [:comment] do
     member do
       post :comment
+      get  :get_poster
     end
   end
   resources :episodes, :only => [] do

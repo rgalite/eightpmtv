@@ -200,7 +200,11 @@ color:#999999;
 
 #series_seasons { border-bottom: 1px dotted #CCC; margin-bottom:20px; }
 #series_seasons .thirds { margin:0px 17px 15px }
+#series_seasons .thirds p { text-align:center; }
+#series_seasons .thirds p.processing { background: url(/images/light_movie.png) no-repeat; }
 
+/* season info */
+.season_info #poster { }
 /* Login */
 #login-frame { margin:20px auto 0px; width:620px; }
 #login-frame #standard-login, #login-frame #services-login { float:left; width:295px; }

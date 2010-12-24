@@ -10,7 +10,7 @@ $(document).ready(function(){
       })
       .bind("ajax:success", function(obj, data, xhr) {
         $(this).find(".error_messages").hide();
-        $(data).insertAfter($("#comments").children("div.new-bubble"));
+				$(data).insertAfter($("#comments").children("#new_bubble"));
         $(this).find(":input").not(":submit").val('');
       })
       .bind("ajax:failure", function(data, xhr, err) {
@@ -23,11 +23,12 @@ $(document).ready(function(){
         $(this).find('.ajax-loader').toggle();
       });
 	$(".bubble blockquote").hover(function(){
-		$(this).find('.comments_options').show();
-	},
-	function(){
-		$(this).find('.comments_options').hide();
-	});
+			$(this).find('.comments_options').show();
+		},
+		function(){
+			$(this).find('.comments_options').hide();
+		}
+	);
 });
 
 function showMoreDescription(linkMore)
@@ -36,4 +37,20 @@ function showMoreDescription(linkMore)
 	linkMore.next().toggle();
 	linkMore.hide();
 	console.info(linkMore.next());
+}
+
+function updateProcessingElements(intervalId, eltPath, updateLink){
+  intervalId = window.setInterval(function(){
+    $(eltPath).each(function(){
+      var elt = $(this);
+      $.ajax({
+        url: updateLink,
+        success: function(data){
+          elt.replaceWith(data);
+          elt.removeClass("processing");
+          window.clearInterval(intervalId);
+        }
+      });
+    })
+  }, 2000);
 }

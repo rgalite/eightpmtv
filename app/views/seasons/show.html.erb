@@ -1,3 +1,9 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+    var getPosterSeasonPath = "<%= get_poster_season_path(@season) %>";
+    updateProcessingElements(null, "#poster.processing", getPosterSeasonPath);
+  });
+</script>
 <div class="left_articles">
 	<div class="buttons">
 	  <p>
@@ -13,7 +19,7 @@
   	  <%= pluralize(@season.episodes.size, "episode") %>
   	</p>
   	<p>
-  	  <%= render "poster" %>
+  	  <%= render :partial => "poster", :locals => { :season => @season } %>
       <% for episode in @season.episodes %>
       	<span style="display:inline-block;width:380px;float:left" id="episode-<%= episode.id %>" class="episode_info">
       	  <%= check_box_tag "check_box_episode_#{episode.id}" %>
@@ -23,7 +29,7 @@
       	</span>
       <% end %>
   	</p>
-  	<div style="clear:both"></div>
+  	<div class="clear"></div>
 	</div>
 </div>
 
