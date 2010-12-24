@@ -8,7 +8,8 @@
   </title>
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag :defaults, 'jquery.autocomplete',
-                             'jquery.placeholder', 'jquery.autogrowtextarea' %>
+                             'jquery.placeholder', 'jquery.autogrowtextarea',
+                             "jquery.nivo.slider.pack" %>
   <script type="text/javascript">
     var showsPath = "<%= search_shows_path %>";
     $(document).ready(function(){
@@ -19,7 +20,39 @@
           window.location = '/shows/' + data.param;          
         } 
       });
+      $("ul.submenu").hide();
+      $("ul.menu-login").hover(function(){
+        $("ul.submenu").show();
+      },
+      function(){
+        $("ul.submenu").hide();
+      })
     });
+    $(window).load(function() {
+      $('#slider').nivoSlider({
+              effect:'random', //Specify sets like: 'fold,fade,sliceDown'
+              slices:15,
+              animSpeed:500, //Slide transition speed
+              pauseTime:3000,
+              startSlide:0, //Set starting Slide (0 index)
+              directionNav:true, //Next & Prev
+              directionNavHide:true, //Only show on hover
+              controlNav:false, //1,2,3...
+              controlNavThumbs:false, //Use thumbnails for Control Nav
+              controlNavThumbsFromRel:false, //Use image rel for thumbs
+              controlNavThumbsSearch: '.jpg', //Replace this with...
+              controlNavThumbsReplace: '_thumb.jpg', //...this in thumb Image src
+              keyboardNav:false, //Use left & right arrows
+              pauseOnHover:true, //Stop animation while hovering
+              manualAdvance:false, //Force manual transitions
+              captionOpacity:0.75, //Universal caption opacity
+              beforeChange: function(){},
+              afterChange: function(){},
+              slideshowEnd: function(){}, //Triggers after all slides have been shown
+              lastSlide: function(){}, //Triggers when last slide is shown
+              afterLoad: function(){} //Triggers when slider has loaded
+          });
+      });
   </script>
   <link rel="shortcut icon" href="/images/favicon.ico">
   <%= csrf_meta_tag %>
@@ -36,18 +69,111 @@
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
   </script>
+  <style>
+    #header-bar {
+      background-color:#1D66A8;
+      border-radius:5px;
+      margin:5px 0px;
+      height:40px;
+      width:100%;
+    }
+    #header-bar-content {
+      color:white;
+      margin: 0 auto;;
+      padding: 2px 10px;
+      width:940px;
+    }
+    #header-bar-content h1 {
+      display:inline-block;
+      float:left;
+      margin-top:2px;
+      width:100px;
+    }
+    #header-bar-content h1 a { background:none; color:white; }
+    
+    #header-bar-content div#search {
+      background:none;
+      display:inline-block !important;
+      float:none !important;
+      margin:0px !important;
+      padding:0px;
+    }
+    
+    #header-bar-content ul.menu {
+    	float: left;
+    	list-style: none;
+    	margin: 0px 0px 0px 20px;
+    	padding: 0;
+    }
+    
+    #header-bar-content ul.menu li {
+    	border:1px solid #1D66A8;
+    	float: left;
+      font-weight:bolder;
+    	margin: 0 3px;
+    	padding: 0;
+    	cursor:pointer;
+    	width:100px;
+    }
+    
+    #header-bar-content ul.menu a {
+    	color: white;
+    	display: block;
+    	float: left;
+    	font-size:12px;
+    	margin: 0;
+    	padding: 8px 0px;
+    	text-decoration: none;
+    	text-align:center;
+    	width:100%;
+    }
+    
+    #header-bar-content ul.menu li:hover {
+    	background: #4582BA;
+    	border:1px solid #003B6E;
+    	color: #fff;
+    }    
+  </style>
 </head>
 <body>
 	<div id="content">
-		<div id="header">
-			<p id="top_info">Browse <a href="#">Today's favorites</a> or <a href="#">All time favorites</a>.<br />Please <a href="#">Log in</a> to share and download files.</p>
-			
-			<div id="logo">
+	  <div id="header">
+			<div id="logo" style="float:left">
+				<%= image_tag '8pm_logo_White2_fav.png', :height => 80, :width => 80 %>
 				<h1><%= link_to "8PM.TV", root_url, :title => "8PM.TV" %></h1>
-				<p>It's all about your TV shows</p>
+				<p>Track your favorite TV shows and<br /> share them with your friends!</p>
 			</div>
+			<div id="slider" style="float:right;margin-top:25px">
+			  <%= image_tag "banner_1.jpg", :title => "Chuck banner 1" %>
+			  <%= image_tag "banner_2.jpg", :title => "Chuck banner 2" %>
+			  <%= image_tag "banner_3.jpg", :title => "Chuck banner 3" %>
+			</div>
+			<div class="clear"></div>
 		</div>
-				    
+	  <div id="header-bar">
+      <div id="header-bar-content">
+        <ul class="menu">
+          <li><%= link_to "TV Shows", shows_path %></li>
+          <li><%= link_to "People", shows_path %></li>
+        </ul>
+        <ul class="menu menu-login" style="float:right">
+          <% if user_signed_in? %>
+  				<li>
+  				  <%= link_to current_user.username, edit_user_registration_path %>
+  				  <ul class="submenu">
+  				    <li><%= link_to "Settings", edit_user_registration_path %>
+  				    <li><%= link_to "Logout", destroy_user_session_path %></li>
+  				  </ul>
+  				</li>
+  				<% else %>
+  				<li><%= link_to "Login", new_user_session_path %></li>
+  				<% end %>
+        </ul>
+        <div class="clear"></div>
+      </div>
+    </div>		
+    		    
+		<!--
     <div id="tabs">
 			<ul>	
 				<li><%= link_to "Home", root_url %></li>
@@ -67,6 +193,7 @@
 			  <% end -%>
 			</div>
 		</div>
+		-->
     
     <%= yield :gbox %>
 

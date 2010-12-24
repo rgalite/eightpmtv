@@ -1,7 +1,7 @@
 /* 
 	project: internet sharing template
    	author: luka cvrk (www.solucija.com) 
-								*/
+*/
    
 body { padding: 0; margin: 0; font: 0.7em Tahoma, Arial, sans-serif; line-height: 1.6em; background: #fff; color: #454545; }
 
@@ -23,10 +23,10 @@ input.search { width: 279px; border: none; background: #fff url(/images/input.gi
 input.button { padding: 3px; }
 
 /* content holder */
-#content { margin: 10px auto; width: 960px; }
+#content { margin: 0px auto 10px; width: 960px; }
 
 /* header */
-#header { height: 75px; }
+#header { }
 #logo { padding: 15px 0 0 8px; }
 #logo p { margin: 0; padding: 0 0 0 10px; color: #808080; background: #fff; }
 #top_info { float: right; width: 570px; margin: 20px 5px 0 0; text-align: right; }
@@ -160,11 +160,11 @@ color:#999999;
 	width: 295px;
 	margin: 0 0 10px 0;
 }
-	.boxtop { height: 19px; background: #fff url(/images/boxtop.gif) no-repeat; color: #000; }
-	.box { background: #fff url(/images/box.gif) no-repeat bottom left; color: #5b5b5b; padding: 0 10px 15px 10px; margin: 0 0 10px 0; }
-	.box p { padding: 0; margin: 0;}
-	.image { float: left; margin: 0 9px 3px 0; }
 
+.boxtop { height: 19px; background: #fff url(/images/boxtop.gif) no-repeat; color: #000; }
+.box { background: #fff url(/images/box.gif) no-repeat bottom left; color: #5b5b5b; padding: 0 10px 15px 10px; margin: 0 0 10px 0; }
+.box p { padding: 0; margin: 0;}
+.image { float: left; margin: 0 9px 3px 0; }
 
 /* misc */
 .buttons { text-align: right; padding: 4px 3px 0 0;}
@@ -205,6 +205,7 @@ color:#999999;
 
 /* season info */
 .season_info #poster { }
+
 /* Login */
 #login-frame { margin:20px auto 0px; width:620px; }
 #login-frame #standard-login, #login-frame #services-login { float:left; width:295px; }
