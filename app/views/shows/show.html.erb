@@ -15,18 +15,12 @@
 </script>
 
 <div class="left_articles">
-	<div class="buttons">
-	  <p>
-	    <a href="#" class="bluebtn">Watc</a>&nbsp;
-	    <a href="#" class="greenbtn">Mark</a>
-	  </p>
-	</div>
 	<div id="series-<%= @series.id %>" class="series_info">
 	  <h2><%= @series.name %></h2>
   	<p class="description">
   	  <%= people_watching(@series) %>
   	</p>
-  	<p>
+  	<div>
       <%= render "poster" %>
       <div>
         <% description = truncate(@series.description, 795, "") %>
@@ -49,8 +43,8 @@
           <%= link_to genre.name, shows_genre_path(genre) %>&nbsp;
         <% end %>
       </div>
-  	</p>
-  	<div style="clear:both"></div>
+  	</div>
+  	<div class="clear"></div>
   </div>
 </div>
 

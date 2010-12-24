@@ -1,10 +1,4 @@
 <div class="left_articles">
-	<div class="buttons">
-	  <p>
-	    <a href="#" class="bluebtn">Watc</a>&nbsp;
-	    <a href="#" class="greenbtn">Mark</a>
-	  </p>
-	</div>
 	<div id="episode-<%= @episode.id %>" class="episode_info">
 	  <h2>
 	    <%= link_to "#{@episode.series.name}", show_path(@episode.series) %>
@@ -13,7 +7,7 @@
   	<p class="description">
   	  Aired on <%= @episode.first_aired %>
   	</p>
-  	<p>
+  	<div>
       <%= render "poster" %>
       <div>
         <% description = truncate(@episode.description, 795, "") %>
@@ -25,7 +19,7 @@
           </span>
         <% end %>
       </div>
-  	</p>
+  	</div>
   	<div style="clear:both"></div>
   </div>
 </div>

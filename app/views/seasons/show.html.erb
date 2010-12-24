@@ -5,12 +5,6 @@
   });
 </script>
 <div class="left_articles">
-	<div class="buttons">
-	  <p>
-	    <a href="#" class="bluebtn">Watc</a>&nbsp;
-	    <a href="#" class="greenbtn">Mark</a>
-	  </p>
-	</div>
 	<div id="seasons-<%= @season.id %>" class="season_info">
 	  <h2>
 	    <%= link_to "#{@season.series.name}", show_path(@season.series) %> <%= "S#{@season.number.to_s.rjust(2, "0")}" %>
@@ -18,17 +12,19 @@
 	  <p class="description">
   	  <%= pluralize(@season.episodes.size, "episode") %>
   	</p>
-  	<p>
+  	<div>
   	  <%= render :partial => "poster", :locals => { :season => @season } %>
-      <% for episode in @season.episodes %>
-      	<span style="display:inline-block;width:380px;float:left" id="episode-<%= episode.id %>" class="episode_info">
-      	  <%= check_box_tag "check_box_episode_#{episode.id}" %>
-      	  <%= link_to "S#{@season.number.to_s.rjust(2, "0")}E#{episode.number.to_s.rjust(2, "0")} #{episode.name}",
-      	              show_season_episode_path(:show_id => @season.series, :episode_number => episode.number,
-      	              :season_number => @season.number) %>
-      	</span>
-      <% end %>
-  	</p>
+  	  <div>
+        <% for episode in @season.episodes %>
+        	<span style="display:inline-block;width:380px;float:left" id="episode-<%= episode.id %>" class="episode_info">
+        	  <%= check_box_tag "check_box_episode_#{episode.id}" %>
+        	  <%= link_to "S#{@season.number.to_s.rjust(2, "0")}E#{episode.number.to_s.rjust(2, "0")} #{episode.name}",
+        	              show_season_episode_path(:show_id => @season.series, :episode_number => episode.number,
+        	              :season_number => @season.number) %>
+        	</span>
+        <% end %>
+      </div>
+  	</div>
   	<div class="clear"></div>
 	</div>
 </div>

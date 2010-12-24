@@ -9,6 +9,13 @@
     </div>
 <% end %>
 
+<% content_for :slider do %>
+  <div id="slider" style="margin:0 auto">
+	  <%= image_tag "banner_1.jpg", :title => "Chuck banner 1" %>
+	  <%= image_tag "banner_2.jpg", :title => "Chuck banner 2" %>
+	  <%= image_tag "banner_3.jpg", :title => "Chuck banner 3" %>
+	</div>
+<% end %>
 <div class="left_articles">
 	<div class="buttons"><p><a href="#" class="bluebtn">Read</a> <a href="#" class="greenbtn">Mark</a></p></div>
 	<div class="calendar"><p>NOV<br />13th</p></div>

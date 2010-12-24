@@ -21,12 +21,6 @@
         } 
       });
       $("ul.submenu").hide();
-      $("ul.menu-login").hover(function(){
-        $("ul.submenu").show();
-      },
-      function(){
-        $("ul.submenu").hide();
-      })
     });
     $(window).load(function() {
       $('#slider').nivoSlider({
@@ -69,110 +63,42 @@
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
   </script>
-  <style>
-    #header-bar {
-      background-color:#1D66A8;
-      border-radius:5px;
-      margin:5px 0px;
-      height:40px;
-      width:100%;
-    }
-    #header-bar-content {
-      color:white;
-      margin: 0 auto;;
-      padding: 2px 10px;
-      width:940px;
-    }
-    #header-bar-content h1 {
-      display:inline-block;
-      float:left;
-      margin-top:2px;
-      width:100px;
-    }
-    #header-bar-content h1 a { background:none; color:white; }
-    
-    #header-bar-content div#search {
-      background:none;
-      display:inline-block !important;
-      float:none !important;
-      margin:0px !important;
-      padding:0px;
-    }
-    
-    #header-bar-content ul.menu {
-    	float: left;
-    	list-style: none;
-    	margin: 0px 0px 0px 20px;
-    	padding: 0;
-    }
-    
-    #header-bar-content ul.menu li {
-    	border:1px solid #1D66A8;
-    	float: left;
-      font-weight:bolder;
-    	margin: 0 3px;
-    	padding: 0;
-    	cursor:pointer;
-    	width:100px;
-    }
-    
-    #header-bar-content ul.menu a {
-    	color: white;
-    	display: block;
-    	float: left;
-    	font-size:12px;
-    	margin: 0;
-    	padding: 8px 0px;
-    	text-decoration: none;
-    	text-align:center;
-    	width:100%;
-    }
-    
-    #header-bar-content ul.menu li:hover {
-    	background: #4582BA;
-    	border:1px solid #003B6E;
-    	color: #fff;
-    }    
-  </style>
 </head>
 <body>
+  <div id="header-bar">
+    <div id="header-bar-content">
+      <h1><%= link_to "8PM.TV", root_url, :title => "8PM.TV" %></h1>
+      <ul class="menu">
+        <li><%= link_to "TV Shows", shows_path %></li>
+        <li><%= link_to "People", shows_path %></li>
+        <li>
+          <div id="search">
+    			  <%= form_tag search_shows_path do -%>
+    			    <p>
+    			      <%= text_field_tag "q", "", :id => :q_search, :class => "search" %>
+    			    </p>
+    			  <% end -%>
+    			</div>
+        </li>
+      </ul>
+      <ul class="menu menu-login" style="float:right">
+        <% if user_signed_in? %>
+				<li>
+				  <%= link_to current_user.username, edit_user_registration_path %>
+				  <ul class="submenu">
+				    <li><%= link_to "Settings", edit_user_registration_path %>
+				    <li><%= link_to "Logout", destroy_user_session_path %></li>
+				  </ul>
+				</li>
+				<% else %>
+				<li><%= link_to "Login", new_user_session_path %></li>
+				<% end %>
+      </ul>
+      <div class="clear"></div>
+    </div>
+  </div>
 	<div id="content">
-	  <div id="header">
-			<div id="logo" style="float:left">
-				<%= image_tag '8pm_logo_White2_fav.png', :height => 80, :width => 80 %>
-				<h1><%= link_to "8PM.TV", root_url, :title => "8PM.TV" %></h1>
-				<p>Track your favorite TV shows and<br /> share them with your friends!</p>
-			</div>
-			<div id="slider" style="float:right;margin-top:25px">
-			  <%= image_tag "banner_1.jpg", :title => "Chuck banner 1" %>
-			  <%= image_tag "banner_2.jpg", :title => "Chuck banner 2" %>
-			  <%= image_tag "banner_3.jpg", :title => "Chuck banner 3" %>
-			</div>
-			<div class="clear"></div>
-		</div>
-	  <div id="header-bar">
-      <div id="header-bar-content">
-        <ul class="menu">
-          <li><%= link_to "TV Shows", shows_path %></li>
-          <li><%= link_to "People", shows_path %></li>
-        </ul>
-        <ul class="menu menu-login" style="float:right">
-          <% if user_signed_in? %>
-  				<li>
-  				  <%= link_to current_user.username, edit_user_registration_path %>
-  				  <ul class="submenu">
-  				    <li><%= link_to "Settings", edit_user_registration_path %>
-  				    <li><%= link_to "Logout", destroy_user_session_path %></li>
-  				  </ul>
-  				</li>
-  				<% else %>
-  				<li><%= link_to "Login", new_user_session_path %></li>
-  				<% end %>
-        </ul>
-        <div class="clear"></div>
-      </div>
-    </div>		
-    		    
+	  <%= yield :slider %>    		    
 		<!--
     <div id="tabs">
 			<ul>	

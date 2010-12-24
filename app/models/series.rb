@@ -32,11 +32,11 @@ class Series < ActiveRecord::Base
   end
       
   def attach_poster
-    Delayed::Job.enqueue(AttachPosterToSeriesJob.new(id, @poster_url), :priority => 5) unless @poster_url.nil?
+    Delayed::Job.enqueue(AttachPosterToSeriesJob.new(id, @poster_url), :priority => 2) unless @poster_url.nil?
   end
   
   def attach_episodes
-    Delayed::Job.enqueue(SeriesEpisodesJob.new(id), :priority => 4)
+    Delayed::Job.enqueue(SeriesEpisodesJob.new(id), :priority => 3)
     # Delayed::Job.enqueue(SeriesActorsJob.new(id))
   end
 end

@@ -1,6 +1,6 @@
 <% if season.poster_processing? %>
   <p id="season_poster_<%= season.id %>" class="processing">
-    <%= link_to image_tag("ajax-loader-2.gif", :style => "border: 1px solid #DEDEDE;"), 
+    <%= link_to image_tag("ajax-loader-2.gif"), 
                 show_season_path(:show_id => season.series.id, :season_number => season.number) %>
     <script type="text/javascript">
 

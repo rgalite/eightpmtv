@@ -19,7 +19,8 @@ class SeriesEpisodesJob < Struct.new(:series_id)
         season.episodes << Episode.new(:tvdb_id => ep.id, :number => ep.number,
                               :name => ep.name, :description => ep.overview,
                               :director => ep.director, :writer => ep.writer,
-                              :first_aired => ep.air_date)
+                              :first_aired => ep.air_date, :poster_url => ep.thumb,
+                              :poster_processing => true)
       end
     end
 

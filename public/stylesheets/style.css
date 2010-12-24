@@ -27,7 +27,7 @@ input.button { padding: 3px; }
 
 /* header */
 #header { }
-#logo { padding: 15px 0 0 8px; }
+#logo { float:left; padding: 5px 0 0 8px; }
 #logo p { margin: 0; padding: 0 0 0 10px; color: #808080; background: #fff; }
 #top_info { float: right; width: 570px; margin: 20px 5px 0 0; text-align: right; }
 
@@ -180,8 +180,8 @@ color:#999999;
 .footer { clear: both; text-align: center; line-height: 1.8em; padding: 10px 0 10px 0; border-top: 1px solid #ccc; }
 
 /* series info */
-.series_info #poster { border:1px solid #DEDEDE; float:left; margin-right:10px; width:150px; height:220px;}
-.series_info #poster.processing { background: url(/images/light_movie.png) no-repeat; }
+.series_info #poster { border:1px solid #DEDEDE; float:left; margin-right:10px; }
+.series_info #poster.processing { background: url(/images/light_movie.png) no-repeat; height:220px; width:150px; }
 .series_info #poster.processing img { margin:auto; margin-top:85px;display:block; }
 .series_info span.label { font-weight: bold; }
 
@@ -201,10 +201,13 @@ color:#999999;
 #series_seasons { border-bottom: 1px dotted #CCC; margin-bottom:20px; }
 #series_seasons .thirds { margin:0px 17px 15px }
 #series_seasons .thirds p { text-align:center; }
-#series_seasons .thirds p.processing { background: url(/images/light_movie.png) no-repeat; }
+#series_seasons .thirds p.processing { background: url(/images/light_movie.png) no-repeat; height: 217px; margin:0 auto; width:150px; }
+#series_seasons .thirds p.processing img { margin-top:85px; }
 
 /* season info */
-.season_info #poster { }
+.season_info #poster { border:1px solid #DEDEDE; float:left; margin-right:10px; }
+.season_info #poster.processing { background: url(/images/light_movie.png) no-repeat; width:150px; height:217px; }
+.season_info #poster.processing img { display:block; margin:auto; margin-top:85px; }
 
 /* Login */
 #login-frame { margin:20px auto 0px; width:620px; }
@@ -212,3 +215,69 @@ color:#999999;
 #login-frame #standard-login { margin:0px 10px 0px auto; }
 #login-frame #services-login { margin:0px auto 0px 10px; }
 #login-frame #services-login #my-authentications { text-align:center; }
+
+/* Menu */
+#header-bar {
+  background-color:#1D66A8;
+	margin-bottom:50px;
+  height:40px;
+  width:100%;
+}
+#header-bar-content {
+  color:white;
+  margin: 0 auto;;
+  padding: 2px 10px;
+  width:940px;
+}
+#header-bar-content h1 {
+  display:inline-block;
+  float:left;
+  margin-top:2px;
+  width:100px;
+}
+#header-bar-content h1 a { background:none; color:white; }
+
+#header-bar-content div#search {
+  background:none;
+  display:inline-block !important;
+  float:none !important;
+  margin:0px !important;
+  padding:0px;
+}
+
+#header-bar-content ul.menu {
+	float: left;
+	list-style: none;
+	margin: 0px 0px 0px 20px;
+	padding: 0;
+}
+
+#header-bar-content ul.menu li {
+	border:1px solid #1D66A8;
+	float: left;
+  font-weight:bolder;
+	margin: 0 3px;
+	padding: 0;
+	cursor:pointer;
+	width:100px;
+}
+
+#header-bar-content ul.menu a {
+	color: white;
+	display: block;
+	float: left;
+	font-size:12px;
+	margin: 0;
+	padding: 8px 0px;
+	text-decoration: none;
+	text-align:center;
+	width:100%;
+}
+
+#header-bar-content ul.menu li:hover {
+	background: #4582BA;
+	border:1px solid #003B6E;
+	color: #fff;
+}
+
+#slider { float:right;margin-top:10px }
