@@ -103,10 +103,14 @@ div.bubble blockquote p {
 div.bubble cite {
 	position: relative;
 	margin: 0px;
-	padding: 9px 0px 0px 15px;
+	padding: 31px 0px 0px 15px;
 	top: 6px;
 	background: transparent url(/images/tip.gif) no-repeat 20px 0;
 	font-style: normal;
+}
+
+div.bubble cite img {
+	margin-top: 3px;
 }
 
 div.new-bubble blockquote p.comment-content {

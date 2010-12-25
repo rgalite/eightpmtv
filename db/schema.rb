@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101223201001) do
+ActiveRecord::Schema.define(:version => 20101224233606) do
 
   create_table "actors", :force => true do |t|
     t.integer   "tvdb_id"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20101223201001) do
     t.string    "uid"
     t.timestamp "created_at"
     t.timestamp "updated_at"
+    t.string    "avatar"
   end
 
   add_index "authentications", ["user_id"], :name => "authentications_user_id_ix"

@@ -1,11 +1,11 @@
 class User < ActiveRecord::Base
-  has_many :authentications
-  has_many :subscriptions
+  has_many :authentications, :dependent => :destroy
+  has_many :subscriptions, :dependent => :destroy
   has_many :series, :through => :subscriptions, :order => "name"
   has_friendly_id :username, :use_slug => true, :approximate_ascii => true,
                   :max_length => 50  
   has_many :comments, :dependent => :nullify
-  has_many :friendships
+  has_many :friendships, :dependent => :destroy
   has_many :friends, :through => :friendships
   
   # Include default devise modules. Others available are:
@@ -22,7 +22,8 @@ class User < ActiveRecord::Base
 
   def apply_omniauth(omniauth)
     self.authentications.build(:provider => omniauth["provider"],
-                               :uid => omniauth["uid"])
+                               :uid => omniauth["uid"],
+                               :avatar => omniauth["user_info"]["image"])
     if (omniauth["provider"] == "twitter")
       self.username = omniauth["user_info"]["nickname"]
     end
@@ -44,5 +45,13 @@ class User < ActiveRecord::Base
   
   def is_a_friend_of?(user)
     user.friends.include?(self)
+  end
+  
+  def avatar_url
+    if !authentications.first.nil?
+      return authentications.first.avatar
+    else
+      "/images/user-default-icon.png"
+    end
   end
 end

@@ -8,6 +8,7 @@
 		<div style="clear:both"></div>
 	</blockquote>
 	<cite>
+    <%= image_tag comment.user.avatar_url, :width => "32px" %>
 	  <strong><%= comment.user.username %></strong>
 	  <%= comment.created_at.to_pretty %>
 	</cite>
