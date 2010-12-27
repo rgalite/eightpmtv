@@ -1,1 +1,10 @@
-<%= image_tag @episode.poster.url(:medium), :class => "thumbnail" %>
+<% if @episode.poster_processing? %>
+  <div class="processing" id="poster">
+    <%= image_tag "ajax-loader-2.gif" %>
+  </div>
+<% else %>
+  <div id="poster">
+    <%= image_tag @episode.poster.url(:medium), :class => "thumbnail",
+                  :class => "poster" %>
+  </div>
+<% end %>

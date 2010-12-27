@@ -1,0 +1,5 @@
+apps:
+  # shorthand: heroku app
+  production: eightpmtv
+  staging: eightpmtv-staging
+  demo: eightpmtv-demo

@@ -40,6 +40,7 @@ GEM
     builder (2.1.2)
     cgi_multipart_eof_fix (2.5.0)
     columnize (0.3.1)
+    configuration (1.2.0)
     crack (0.1.8)
     daemons (1.1.0)
     delayed_job (2.1.2)
@@ -60,11 +61,21 @@ GEM
     friendly_id (3.1.7)
       babosa (~> 0.2.0)
     gem_plugin (0.2.3)
+    heroku (1.15.1)
+      json_pure (>= 1.2.0, < 1.5.0)
+      launchy (~> 0.3.2)
+      rest-client (>= 1.4.0, < 1.7.0)
+    heroku_san (1.0.6)
+      heroku
     httparty (0.6.1)
       crack (= 0.1.8)
     i18n (0.4.1)
     jquery-rails (0.2.4)
       rails (~> 3.0)
+    json_pure (1.4.6)
+    launchy (0.3.7)
+      configuration (>= 0.0.5)
+      rake (>= 0.8.1)
     linecache (0.43)
     mail (2.2.6.1)
       activesupport (>= 2.3.6)
@@ -170,6 +181,7 @@ DEPENDENCIES
   delayed_paperclip
   devise
   friendly_id (~> 3.1)
+  heroku_san
   httparty
   jquery-rails
   mail

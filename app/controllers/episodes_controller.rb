@@ -16,4 +16,18 @@ class EpisodesController < ApplicationController
       save_comment(c)
     end
   end
+  
+  def get_poster
+    @episode = Episode.find(params[:id])
+    respond_to do |format|
+      format.js do
+        if @episode.poster_processing?
+          render :nothing => true, :status => 403
+        else
+          render :partial => "poster", :locals => { :episode => @episode }
+        end
+      end
+      format.html { redirect_to episode_path(@episode) } # redirect to show
+    end
+  end
 end

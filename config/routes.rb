@@ -29,6 +29,7 @@ Tvshows::Application.routes.draw do
   resources :episodes, :only => [] do
     member do
       post :comment
+      get  :get_poster
     end
   end
   resources :shows, :only => [:index, :show] do
@@ -54,6 +55,7 @@ Tvshows::Application.routes.draw do
   scope "shows", :as => "shows" do
     resources :genres, :only => [:show]
   end
+  resources :users, :only => [:show, :index]
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

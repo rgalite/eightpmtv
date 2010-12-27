@@ -1,3 +1,10 @@
+<script>
+  var posterIntervalID = null;
+  var getPosterPath = "<%= get_poster_episode_path(@episode)%>";
+  $(document).ready(function(){
+    updateProcessingElements(posterIntervalID, "#poster.processing", getPosterPath);
+  });
+</script>
 <div class="left_articles">
 	<div id="episode-<%= @episode.id %>" class="episode_info">
 	  <h2>

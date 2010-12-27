@@ -114,7 +114,7 @@ div.bubble cite img {
 }
 
 div.new-bubble blockquote p.comment-content {
-	margin-bottom: 0px;
+	margin-bottom: 10px;
 }
 
 div.new-bubble textarea {
@@ -212,6 +212,9 @@ color:#999999;
 .season_info #poster { border:1px solid #DEDEDE; float:left; margin-right:10px; }
 .season_info #poster.processing { background: url(/images/light_movie.png) no-repeat; width:150px; height:217px; }
 .season_info #poster.processing img { display:block; margin:auto; margin-top:85px; }
+
+/* episode info */
+.episode_info #poster { border:1px solid #DEDEDE; float:left; margin-right:10px; }
 
 /* Login */
 #login-frame { margin:20px auto 0px; width:620px; }

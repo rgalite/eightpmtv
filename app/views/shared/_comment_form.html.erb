@@ -1,10 +1,21 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#new_bubble #comment_content").focus(function(){
+      $("#new_bubble #comment-buttons").show();
+    });
+    $("#new_bubble #comment_content").blur(function(){
+      if ($(this).val() == "")
+        $("#new_bubble #comment-buttons").hide();
+    });
+  });
+</script>
 <blockquote>
   <div class="error_messages" style="display:none"></div>
 	<p class="comment-content">
 	  <%= f.text_area :content, {:class => "no-focus", :cols => 85,
 	                  :rows => 1, :placeholder => "Write your comment"} %>
 	</p>
-	<div class="buttons">
+	<div class="buttons" id="comment-buttons" style="display:none">
 	  <p style="margin-right">
 			<span class="ajax-loader" style="display:none">
 			  <%= image_tag "ajax-loader.gif" %>
