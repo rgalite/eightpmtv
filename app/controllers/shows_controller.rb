@@ -38,14 +38,28 @@ class ShowsController < ApplicationController
       tvdb = TvdbParty::Search.new(Tvshows::Application.config.the_tv_db_api_key)
       results = tvdb.search(params[:q])
       db_series = Series.where("lower(name) LIKE lower(:name)", { :name => "%#{params[:q]}%" }).all
-    
       @series = []
-      results.each do |s|
-        unless s["Overview"].blank?
-          db_serie = db_series.detect { |ds| ds.series_id == s["seriesid"].to_i }
-          s["Link"] = db_serie.nil? ? add_show_path(s["seriesid"]) : show_path(db_serie)
-          # s["banner"] = download_banner(s["poster"])
-          @series << s
+      
+      
+      respond_to do |format|
+        format.html do
+          results.each do |s|
+            unless s["Overview"].blank?
+              db_serie = db_series.detect { |ds| ds.series_id == s["seriesid"].to_i }
+              s["Link"] = db_serie.nil? ? add_show_path(s["seriesid"]) : show_path(db_serie)
+              @series << s
+            end
+          end
+        end #search.html.erb
+        format.json do
+          results.each do |s|
+            unless s["Overview"].blank?
+              db_serie = db_series.detect { |ds| ds.series_id == s["seriesid"].to_i }
+              s["Link"] = db_serie.nil? ? add_show_path(s["seriesid"], :format => :json) : show_path(db_serie, :format => :json)
+              @series << s
+            end
+          end 
+          render :json => @series
         end
       end
     end
@@ -60,8 +74,7 @@ class ShowsController < ApplicationController
     end
     
     respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @subscription }
+      format.html # show.html.erb
       format.json { render :json => @series }
     end
   end
