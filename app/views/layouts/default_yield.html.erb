@@ -1,3 +1,8 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.slider-banners').show();
+  });
+</script>
 <% content_for :right do %>
   <%= render :file => "layouts/right_block" %>
 <% end %>
@@ -11,9 +16,9 @@
 
 <% content_for :slider do %>
   <div id="slider" style="margin:0 auto">
-	  <%= image_tag "banner_1.jpg", :title => "Chuck banner 1" %>
-	  <%= image_tag "banner_2.jpg", :title => "Chuck banner 2" %>
-	  <%= image_tag "banner_3.jpg", :title => "Chuck banner 3" %>
+	  <%= image_tag "banner_1.jpg", :title => "Chuck banner 1", :class => "slider-banners" %>
+	  <%= image_tag "banner_2.jpg", :title => "Chuck banner 2", :class => "slider-banners", :style => "display:none" %>
+	  <%= image_tag "banner_3.jpg", :title => "Chuck banner 3", :class => "slider-banners", :style => "display:none" %>
 	</div>
 <% end %>
 <div class="left_articles">

@@ -9,6 +9,7 @@ class CreateEpisodes < ActiveRecord::Migration
       t.string :name
       t.string :director
       t.string :writer
+      t.boolean :poster_processing
       t.timestamps
     end
     
@@ -24,11 +25,13 @@ class CreateEpisodes < ActiveRecord::Migration
       episodes.each_with_index do |ep, j|
         p "Processing episode #{j+1}/#{episodes.size} ..."
         season = Season.find_by_number_and_tvdb_id(ep.season_number.to_i, ep.season_id.to_i)        
-        season.episodes << Episode.new(:tvdb_id => ep.id, :number => ep.number,
-                              :name => ep.name, :description => ep.overview,
-                              :director => ep.director, :writer => ep.writer,
-                              :first_aired => ep.air_date)
-        season.save
+        unless season.nil?
+          season.episodes << Episode.new(:tvdb_id => ep.id, :number => ep.number,
+                                :name => ep.name, :description => ep.overview,
+                                :director => ep.director, :writer => ep.writer,
+                                :first_aired => ep.air_date)
+          season.save
+        end
       end
     end
   end

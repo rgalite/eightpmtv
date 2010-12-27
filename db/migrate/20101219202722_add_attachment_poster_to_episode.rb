@@ -4,7 +4,6 @@ class AddAttachmentPosterToEpisode < ActiveRecord::Migration
     add_column :episodes, :poster_content_type, :string
     add_column :episodes, :poster_file_size, :integer
     add_column :episodes, :poster_updated_at, :datetime
-    add_column :episodes, :poster_processing, :boolean
     
     
     p "Processing series"

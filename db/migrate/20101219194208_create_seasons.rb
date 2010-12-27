@@ -4,6 +4,7 @@ class CreateSeasons < ActiveRecord::Migration
       t.integer :number
       t.integer :tvdb_id
       t.references :series
+      t.boolean :poster_processing
       t.timestamps
     end
     
@@ -18,12 +19,15 @@ class CreateSeasons < ActiveRecord::Migration
       episodes = s.episodes
       season_number = -1
       episodes.each do |ep|
-        if season_number != ep.season_number
-          next if ep.season_number.zero?
-          season_number = ep.season_number
-          p "Processing season #{season_number} ..."
+        if !ep.season_number.to_i.zero?
+          if season_number != ep.season_number
+            season_number = ep.season_number
+            p "Processing season #{season_number} ..."
+          end
+
+          serie.seasons << Season.new(:number => season_number.to_i,
+            :tvdb_id => ep.season_id.to_i, :poster_processing => true)
         end
-        serie.seasons << Season.find_or_initialize_by_tvdb_id(ep.season_id.to_i, :number => season_number.to_i)
       end
       
       serie.save

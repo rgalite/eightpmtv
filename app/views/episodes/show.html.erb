@@ -12,7 +12,7 @@
 	    <%= link_to "S#{@episode.season.number.to_s.rjust(2, "0")}", show_season_path(:season_number => @episode.season.number, :show_id => @episode.series.id) %><%= "E#{@episode.number.to_s.rjust(2, "0")}" %> - <%= @episode.name %>
 	  </h2>
   	<p class="description">
-  	  Aired on <%= @episode.first_aired %>
+  	  Aired on <%= l @episode.first_aired.to_date, :format => :dmy_with_long_month %>
   	</p>
   	<div>
       <%= render "poster" %>

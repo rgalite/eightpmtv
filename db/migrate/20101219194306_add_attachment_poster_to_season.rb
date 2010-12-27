@@ -4,7 +4,6 @@ class AddAttachmentPosterToSeason < ActiveRecord::Migration
     add_column :seasons, :poster_content_type, :string
     add_column :seasons, :poster_file_size, :integer
     add_column :seasons, :poster_updated_at, :datetime
-    add_column :seasons, :poster_processing, :boolean
     
     series = Series.all
     p "Processing series ..."

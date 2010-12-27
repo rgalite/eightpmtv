@@ -185,8 +185,8 @@ color:#999999;
 
 /* series info */
 .series_info #poster { border:1px solid #DEDEDE; float:left; margin-right:10px; }
-.series_info #poster.processing { background: url(/images/light_movie.png) no-repeat; height:220px; width:150px; }
-.series_info #poster.processing img { margin:auto; margin-top:85px;display:block; }
+.series_info #poster.processing { background: url(/images/shows_light_image.png) no-repeat; height:300px; width:204px; }
+.series_info #poster.processing img { margin:auto; margin-top:215px;display:block; }
 .series_info span.label { font-weight: bold; }
 
 #navlist { text-align:center; }
@@ -206,7 +206,7 @@ color:#999999;
 #series_seasons .thirds { margin:0px 17px 15px }
 #series_seasons .thirds p { text-align:center; }
 #series_seasons .thirds p.processing { background: url(/images/light_movie.png) no-repeat; height: 217px; margin:0 auto; width:150px; }
-#series_seasons .thirds p.processing img { margin-top:85px; }
+#series_seasons .thirds p.processing img { margin-top:180px; }
 
 /* season info */
 .season_info #poster { border:1px solid #DEDEDE; float:left; margin-right:10px; }
@@ -215,6 +215,8 @@ color:#999999;
 
 /* episode info */
 .episode_info #poster { border:1px solid #DEDEDE; float:left; margin-right:10px; }
+.episode_info #poster.processing { background: url(/images/episode_light_image.png) no-repeat; width:299px; height:168px; }
+.episode_info #poster.processing img { display:block; margin:auto; margin-top:85px; }
 
 /* Login */
 #login-frame { margin:20px auto 0px; width:620px; }
