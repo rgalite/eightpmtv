@@ -17,7 +17,7 @@ class AddAttachmentPosterToEpisode < ActiveRecord::Migration
         p "Processing season (#{season.number}/#{serie.seasons.size})"
         p "Processing episodes"
         season.episodes.each do |episode, i|
-          p "Processing episode #{episode.name} (#{episode.number}/#{season.episodes.size})"
+          p "Processing episode #{serie.name} S#{season.number.to_s.rjust(2, '0')}E#{episode.number.to_s.rjust(2, '0')} (#{episode.number}/#{season.episodes.size})"
           e = s.get_episode(season.number, episode.number)
           
           unless e.nil? || e.nil?

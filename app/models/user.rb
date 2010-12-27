@@ -48,8 +48,7 @@ class User < ActiveRecord::Base
   end
   
   def avatar_url
-    if !authentications.first.nil?
-      return authentications.first.avatar
+    if !authentications.first.nil? && !authentications.first.avatar.nil?
     else
       "/images/user-default-icon.png"
     end

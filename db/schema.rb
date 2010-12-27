@@ -20,23 +20,24 @@ ActiveRecord::Schema.define(:version => 20101224233606) do
   end
 
   create_table "authentications", :force => true do |t|
-    t.integer   "user_id"
-    t.string    "provider"
-    t.string    "uid"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "avatar"
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "avatar"
   end
 
+  add_index "authentications", ["user_id"], :name => "altered_authentications_user_id_ix"
   add_index "authentications", ["user_id"], :name => "authentications_user_id_ix"
 
   create_table "comments", :force => true do |t|
-    t.integer  "user_id"
-    t.text     "content"
-    t.integer  "commentable_id"
-    t.string   "commentable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "user_id"
+    t.text      "content"
+    t.integer   "commentable_id"
+    t.string    "commentable_type"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "comments", ["commentable_id"], :name => "comments_commentable_id_ix"
@@ -151,50 +152,50 @@ ActiveRecord::Schema.define(:version => 20101224233606) do
   add_index "seasons", ["series_id"], :name => "seasons_series_id_ix"
 
   create_table "series", :force => true do |t|
-    t.integer   "tvdb_id"
-    t.string    "air_day"
-    t.string    "air_time"
-    t.string    "content_rating"
-    t.date      "first_aired"
-    t.string    "imdb_id"
-    t.string    "network"
-    t.string    "description",         :limit => 2048
-    t.decimal   "rating"
-    t.integer   "rating_count"
-    t.integer   "runtime"
-    t.integer   "series_id"
-    t.string    "name"
-    t.string    "status"
-    t.string    "banner"
-    t.string    "fanart"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.timestamp "last_updated_at"
-    t.string    "poster_file_name"
-    t.string    "poster_content_type"
-    t.integer   "poster_file_size"
-    t.timestamp "poster_updated_at"
-    t.boolean   "poster_processing"
-    t.boolean   "seasons_processing"
+    t.integer  "tvdb_id"
+    t.string   "air_day"
+    t.string   "air_time"
+    t.string   "content_rating"
+    t.date     "first_aired"
+    t.string   "imdb_id"
+    t.string   "network"
+    t.string   "description",         :limit => 2048
+    t.decimal  "rating"
+    t.integer  "rating_count"
+    t.integer  "runtime"
+    t.integer  "series_id"
+    t.string   "name"
+    t.string   "status"
+    t.string   "banner"
+    t.string   "fanart"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "last_updated_at"
+    t.string   "poster_file_name"
+    t.string   "poster_content_type"
+    t.integer  "poster_file_size"
+    t.datetime "poster_updated_at"
+    t.boolean  "poster_processing"
+    t.boolean  "seasons_processing"
   end
 
   create_table "slugs", :force => true do |t|
-    t.string   "name"
-    t.integer  "sluggable_id"
-    t.integer  "sequence",                     :default => 1, :null => false
-    t.string   "sluggable_type", :limit => 40
-    t.string   "scope"
-    t.datetime "created_at"
+    t.string    "name"
+    t.integer   "sluggable_id"
+    t.integer   "sequence",                     :default => 1, :null => false
+    t.string    "sluggable_type", :limit => 40
+    t.string    "scope"
+    t.timestamp "created_at"
   end
 
   add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "subscriptions", :force => true do |t|
-    t.integer  "series_id"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "series_id"
+    t.integer   "user_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "subscriptions", ["series_id"], :name => "subscriptions_series_id_ix"

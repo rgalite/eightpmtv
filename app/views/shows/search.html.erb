@@ -4,7 +4,7 @@
 	<% for serie in @series %>
 	<div id="series_info">
 	  <h2><%= link_to serie["SeriesName"], serie["Link"] %></h2>
-  	<p class="description"><%= pluralize(10, 'person') %> are watching this show</p>
+  	<p class="description">&nbsp;</p>
   	<p>
       <div>
         <% description = truncate(serie["Overview"], 795, "") %>

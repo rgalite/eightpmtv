@@ -5,7 +5,6 @@ class Series < ActiveRecord::Base
   has_many :comments, :as => :commentable, :order => "created_at desc"
   has_many :subscriptions, :dependent => :destroy
   has_many :watchers, :through => :subscriptions, :source => :user
-  has_many :episodes, :dependent => :destroy
   has_friendly_id :name, :use_slug => true, :approximate_ascii => true,
                   :max_length => 50
   has_and_belongs_to_many :genres, :order => "name ASC"
@@ -14,7 +13,7 @@ class Series < ActiveRecord::Base
                     }.merge(Tvshows::Application.config.paperclip_options)
   has_many :likes, :as => :likeable, :dependent => :destroy
   has_many :seasons, :dependent => :destroy, :order => "seasons.number ASC"
-  has_many :episodes, :through => :seasons
+  has_many :episodes, :through => :seasons, :dependent => :destroy
   process_in_background :poster
   
   after_save :attach_poster

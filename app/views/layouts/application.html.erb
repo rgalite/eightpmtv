@@ -71,11 +71,11 @@
       <ul class="menu">
         <li><%= link_to "TV Shows", shows_path %></li>
         <li><%= link_to "Members", users_path %></li>
-        <li>
+        <li class="search">
           <div id="search">
-    			  <%= form_tag search_shows_path do -%>
+    			  <%= form_tag search_shows_path, :method => :get do -%>
     			    <p>
-    			      <%= text_field_tag "q", "", :id => :q_search, :class => "search" %>
+    			      <%= text_field_tag "q", params[:q], :id => :q_search, :class => "search", :placeholder => "Type the name of a TV show" %>
     			    </p>
     			  <% end -%>
     			</div>
