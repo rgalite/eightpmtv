@@ -4,6 +4,6 @@ class AddPosterProcessingToSeries < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column :series, :poster_processing, :boolean
+    remove_column :series, :poster_processing
   end
 end
