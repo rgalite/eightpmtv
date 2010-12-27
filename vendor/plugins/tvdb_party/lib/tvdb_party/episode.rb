@@ -1,7 +1,7 @@
 module TvdbParty
   class Episode
     attr_accessor :id, :season_number, :number, :name, :overview, :air_date,
-                  :thumb, :guest_stars, :director, :writer, :season_id
+                  :thumb, :guest_stars, :director, :writer, :season_id, :series_id
 
     def initialize(options={})
       @id = options["id"]
@@ -13,6 +13,7 @@ module TvdbParty
       @director = options["Director"]
       @writer = options["Writer"]
       @season_id = options["seasonid"]
+      @series_id = options["seriesid"]
 
       if options["GuestStars"]
         @guest_stars = options["GuestStars"][1..-1].split("|")
