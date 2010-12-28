@@ -56,6 +56,14 @@ Tvshows::Application.routes.draw do
     resources :genres, :only => [:show]
   end
   resources :users, :only => [:show, :index]
+  resources :comments, :only => [] do
+    member do
+      get :like
+      get :unlike
+      get :dislike
+      get :undislike
+    end
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

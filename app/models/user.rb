@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :comments, :dependent => :nullify
   has_many :friendships, :dependent => :destroy
   has_many :friends, :through => :friendships
+  has_many :likes
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
@@ -52,5 +53,13 @@ class User < ActiveRecord::Base
     else
       "/images/user-default-icon.png"
     end
+  end
+  
+  def likes?(item)
+    !likes.detect{ |l| l.likeable == item && l.value > 0 }.nil?
+  end
+  
+  def dislikes?(item)
+    !likes.detect{ |l| l.likeable == item && l.value < 0 }.nil?
   end
 end

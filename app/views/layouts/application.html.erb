@@ -71,9 +71,15 @@
 	      <h1>
 	        <%= link_to "8PM.#{content_tag :span, 'TV', :class => 'title'}".html_safe, root_url, :title => "8PM.TV" %>
 	      </h1>
-        <p>TV Shows go social</p>
+        <p>TV Shows go social! Share your favorites TV shows with your friends</p>
 	    </div>
-	    <%= yield :slider %>
+      <!--
+      <div id="slider" style="height:140px;margin:0 auto">
+    	  <%= image_tag "banner_1.jpg", :title => "Chuck banner 1", :class => "slider-banners" %>
+    	  <%= image_tag "banner_2.jpg", :title => "Chuck banner 2", :class => "slider-banners", :style => "display:none" %>
+    	  <%= image_tag "banner_3.jpg", :title => "Chuck banner 3", :class => "slider-banners", :style => "display:none" %>
+    	</div>
+    	-->
 	    <div class="clear"></div>
 	  </div>
 	  <div id="header-bar">
@@ -106,7 +112,6 @@
         </ul>
         <div class="clear"></div>
       </div>
-
     </div>
     
     <%= yield :gbox %>

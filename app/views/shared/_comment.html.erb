@@ -1,15 +1,16 @@
 <div class="bubble">
 	<blockquote>
-		<p style="width:90%;float:left;"><%= comment.content %></p>
-		<p style="display:inline-block;float:right;display:none" class="comments_options">
-		  <%= link_to(image_tag("thumbs_up.png", :width => "13px", :height => "13px"), {}, :remote => true) %>
-		  <%= link_to(image_tag("thumbs_down.png", :width => "13px", :height => "13px")) %>
+		<p class="comment-content"><%= comment.content %></p>
+		<p class="comment-options" id="comment_options_<%= comment.id %>" style="display:none">
+		  <%= render :partial => "shared/comment_votes", :locals => { :comment => comment } %>
 		</p>
 		<div style="clear:both"></div>
 	</blockquote>
 	<cite>
     <%= image_tag comment.user.avatar_url, :width => "32px" %>
-	  <strong><%= comment.user.username %></strong>
-	  <%= comment.created_at.to_pretty %>
+	  <p style="display:inline-block;margin:0px">
+  	  <strong><%= comment.user.username %></strong>&nbsp;&middot;&nbsp;<%= comment.created_at.to_pretty %><br />
+  	  <%= link_to "Reply" %>
+  	</p>
 	</cite>
 </div>

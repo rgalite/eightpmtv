@@ -89,11 +89,12 @@ div.bubble {
 }
 
 div.bubble blockquote {
-	margin: 0px;
-	padding: 0px;
 	border: 1px solid #DEDEDE;
 	border-radius:8px;
 	background-color: #fff;
+	margin: 0px;
+	min-height:40px;
+	padding: 0px;
 }
 
 div.bubble blockquote p {
@@ -116,6 +117,50 @@ div.bubble cite img {
 
 div.new-bubble blockquote p.comment-content {
 	margin-bottom: 10px;
+}
+
+div.bubble blockquote p.comment-options {
+	display:inline-block;
+	float:right;
+}
+
+div.bubble blockquote p.comment-options a.thumbs-up,
+div.bubble blockquote p.comment-options a.thumbs-down,
+div.bubble blockquote p.comment-options a.thumbs-up-hov,
+div.bubble blockquote p.comment-options a.thumbs-down-hov {
+	display:inline-block;
+	height:16px;
+	width:16px;	
+}
+
+div.bubble blockquote p.comment-options a.thumbs-up {
+	background:url(/images/thumbs_up.png);
+}
+
+
+div.bubble blockquote p.comment-options a.thumbs-down {
+	background:url(/images/thumbs_down.png);
+}
+
+div.bubble blockquote p.comment-options a.thumbs-up-hov {
+	background:url(/images/thumbs_up_black.png) no-repeat;
+}
+
+div.bubble blockquote p.comment-options a.thumbs-down-hov {
+	background:url(/images/thumbs_down_black.png) no-repeat;
+}
+
+div.bubble blockquote p.comment-options a.thumbs-up-hov:hover {
+	background:url(/images/thumbs_up.png) no-repeat;
+}
+
+div.bubble blockquote p.comment-options a.thumbs-down-hov:hover {
+	background:url(/images/thumbs_down.png) no-repeat;
+}
+
+div.bubble p.comment-content {
+	float:left;
+	width:90%;
 }
 
 div.new-bubble textarea {
@@ -229,9 +274,9 @@ color:#999999;
 /* Menu */
 #header-bar {
   background-color:#1D66A8;
-	margin-bottom:50px;
+	border:1px solid #003B6E;
+	margin-bottom:10px;
   height:40px;
-  width:100%;
 }
 #header-bar-content {
   color:white;

@@ -51,4 +51,16 @@ module ShowsHelper
     end
     desc
   end
+  
+  def likes_buttons(comment, user)
+    if user.nil?
+      ""
+    elsif user.likes?(comment)
+      link_to("".html_safe, unlike_comment_path(comment), :remote => true, :class => "thumbs-up") + "&nbsp;&nbsp;".html_safe + link_to("".html_safe, dislike_comment_path(comment), :remote => true, :class => "thumbs-down-hov")
+    elsif user.dislikes?(comment)
+      link_to("".html_safe, like_comment_path(comment), :remote => true, :class => "thumbs-up-hov") + "&nbsp;&nbsp;".html_safe + link_to("".html_safe, undislike_comment_path(comment), :remote => true, :class => "thumbs-down")
+    else
+      link_to("".html_safe, like_comment_path(comment), :remote => true, :class => "thumbs-up-hov") + "&nbsp;&nbsp;".html_safe + link_to("".html_safe, dislike_comment_path(comment), :remote => true, :class => "thumbs-down-hov")
+    end
+  end
 end
