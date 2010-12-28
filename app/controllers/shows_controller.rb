@@ -23,6 +23,7 @@ class ShowsController < ApplicationController
   
   def index
     name_alpha
+    render :action => :name
   end
   
   def search

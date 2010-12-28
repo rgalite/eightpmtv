@@ -27,7 +27,7 @@
               effect:'random', //Specify sets like: 'fold,fade,sliceDown'
               slices:15,
               animSpeed:500, //Slide transition speed
-              pauseTime:3000,
+              pauseTime:7000,
               startSlide:0, //Set starting Slide (0 index)
               directionNav:true, //Next & Prev
               directionNavHide:true, //Only show on hover
@@ -65,61 +65,49 @@
   </script>
 </head>
 <body>
-  <div id="header-bar">
-    <div id="header-bar-content">
-      <h1><%= link_to "8PM.TV", root_url, :title => "8PM.TV" %></h1>
-      <ul class="menu">
-        <li><%= link_to "TV Shows", shows_path %></li>
-        <li><%= link_to "Members", users_path %></li>
-        <li class="search">
-          <div id="search">
-    			  <%= form_tag search_shows_path, :method => :get do -%>
-    			    <p>
-    			      <%= text_field_tag "q", params[:q], :id => :q_search, :class => "search", :placeholder => "Type the name of a TV show" %>
-    			    </p>
-    			  <% end -%>
-    			</div>
-        </li>
-      </ul>
-      <ul class="menu menu-login" style="float:right">
-        <% if user_signed_in? %>
-				<li>
-				  <%= link_to current_user.username, edit_user_registration_path %>
-				  <ul class="submenu">
-				    <li><%= link_to "Settings", edit_user_registration_path %>
-				    <li><%= link_to "Logout", destroy_user_session_path %></li>
-				  </ul>
-				</li>
-				<% else %>
-				<li><%= link_to "Login", new_user_session_path %></li>
-				<% end %>
-      </ul>
-      <div class="clear"></div>
-    </div>
-  </div>
 	<div id="content">
-	  <%= yield :slider %>    		    
-		<!--
-    <div id="tabs">
-			<ul>	
-				<li><%= link_to "Home", root_url %></li>
-				<li><%= link_to "Series", shows_path %></li>
-				<% if user_signed_in? %>
-				<li><%= link_to current_user.username, edit_user_registration_path %></li>
-				<li><%= link_to "Logout", destroy_user_session_path %></li>
-				<% else %>
-				<li><%= link_to "Login", new_user_session_path %></li>
-				<% end %>
-			</ul>
-			<div id="search">
-			  <%= form_tag search_shows_path do -%>
-			    <p>
-			      <%= text_field_tag "q", "", :id => :q_search, :class => "search" %>
-			    </p>
-			  <% end -%>
-			</div>
-		</div>
-		-->
+	  <div id="header">
+	    <div id="logo">
+	      <h1>
+	        <%= link_to "8PM.#{content_tag :span, 'TV', :class => 'title'}".html_safe, root_url, :title => "8PM.TV" %>
+	      </h1>
+        <p>TV Shows go social</p>
+	    </div>
+	    <%= yield :slider %>
+	    <div class="clear"></div>
+	  </div>
+	  <div id="header-bar">
+      <div id="header-bar-content">
+        <ul class="menu">
+          <li><%= link_to "TV Shows", shows_path %></li>
+          <li><%= link_to "Members", users_path %></li>
+          <li class="search">
+            <div id="search">
+      			  <%= form_tag search_shows_path, :method => :get do -%>
+      			    <p>
+      			      <%= text_field_tag "q", params[:q], :id => :q_search, :class => "search", :placeholder => "Type the name of a TV show" %>
+      			    </p>
+      			  <% end -%>
+      			</div>
+          </li>
+        </ul>
+        <ul class="menu menu-login" style="float:right">
+          <% if user_signed_in? %>
+  				<li>
+  				  <%= link_to current_user.username, edit_user_registration_path %>
+  				  <ul class="submenu">
+  				    <li><%= link_to "Settings", edit_user_registration_path %>
+  				    <li><%= link_to "Logout", destroy_user_session_path %></li>
+  				  </ul>
+  				</li>
+  				<% else %>
+  				<li><%= link_to "Login", new_user_session_path %></li>
+  				<% end %>
+        </ul>
+        <div class="clear"></div>
+      </div>
+
+    </div>
     
     <%= yield :gbox %>
 
@@ -130,7 +118,9 @@
 
     <%= yield :right %>
 		<div class="footer">
-			<p><a href="#">RSS Feed</a> &middot; <a href="#">Most Popular</a> &middot; <a href="#">Today's Favorites</a> &middot; <a href="#">All Time Favorites</a> &middot; <a href="#">Sharing Policy</a> &middot; <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> and <a href="http://validator.w3.org/check?uri=referer">XHTML</a><br />
+			<p>
+			  <a href="http://twitter.com/8PMTV" target="_blank">@8PMTV</a> &middot;
+			  <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> and <a href="http://validator.w3.org/check?uri=referer">XHTML</a><br />
 			&copy; Copyright 2010 8PM.TV, Design: Luka Cvrk, <a title="Awsome Web Templates" href="http://www.solucija.com/">Solucija</a></p>
 		</div>
 	</div>

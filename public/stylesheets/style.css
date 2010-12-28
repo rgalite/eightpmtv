@@ -27,7 +27,8 @@ input.button { padding: 3px; }
 
 /* header */
 #header { }
-#logo { float:left; padding: 5px 0 0 8px; }
+#logo { float:left; padding: 30px 0 0 25px; }
+#logo a { background: url(/images/tv-logo.png) no-repeat; display:block; padding: 15px 0px 0px 55px; }
 #logo p { margin: 0; padding: 0 0 0 10px; color: #808080; background: #fff; }
 #top_info { float: right; width: 570px; margin: 20px 5px 0 0; text-align: right; }
 
@@ -289,10 +290,13 @@ color:#999999;
 	color: #fff;
 }
 
+#header-bar-content ul.menu li.search {
+	border:none;
+}
+
 #header-bar-content ul.menu li.search:hover {
 	background-color:transparent;
-	border:1px solid #1D66A8;
 	color:auto;
 }
 
-#slider { float:right;margin-top:10px }
+#slider { float:right; margin-top:10px; width:758px; }
