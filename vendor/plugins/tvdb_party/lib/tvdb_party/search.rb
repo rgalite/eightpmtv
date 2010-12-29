@@ -51,8 +51,8 @@ module TvdbParty
     
     def get_episode_by_id(episode_id, language = self.language)
       response = self.class.get("/#{@api_key}/episodes/#{episode_id}/#{language}.xml").parsed_response
-      if response["Data"] && response["Data"]["Series"]
-        Series.new(self, response["Data"])
+      if response["Data"] && response["Data"]["Episode"]
+        Episode.new(response["Data"]["Episode"])
       else
         nil
       end

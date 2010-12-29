@@ -14,7 +14,7 @@ h1 { font: bold 2.5em "Arial", Sans-Serif; margin: 0; letter-spacing: -1px; }
 h2 { font: bold 2em Arial, Sans-Serif; margin: 0; padding: 0; }
 h1 a, h2 a { color: #2b2b2b; background: #fff; text-decoration: none; }
 h1 a:hover, h2 a:hover { color: #2b2b2b; background: #FFF; }
-.title { color: #808080; background: #fff; }
+#logo .title { color: #003B6E; background: #fff; }
 
 /* lists and form elements */
 ul { margin: 0; padding : 0; list-style : none; }
@@ -29,7 +29,7 @@ input.button { padding: 3px; }
 #header { }
 #logo { float:left; padding: 30px 0 0 25px; }
 #logo a { background: url(/images/tv-logo.png) no-repeat; display:block; padding: 15px 0px 0px 55px; }
-#logo p { margin: 0; padding: 0 0 0 10px; color: #808080; background: #fff; }
+#logo p { margin: 0; padding: 0 0 0 10px; color: #003B6E; background: #fff; }
 #top_info { float: right; width: 570px; margin: 20px 5px 0 0; text-align: right; }
 
 /* horizontal tabbed menu */	
@@ -241,7 +241,8 @@ color:#999999;
 #navlist li.selected a, #navlist li:hover a { color: white; }
 #navlist li a { padding: 1px 14px; text-decoration:none; }
 
-#series-list-name .serie { float:left }
+#series-list-name .serie { float:left; margin-right:20px; }
+#series-list-name .serie p { text-align:center; }
 #series-list-name .serie span.title { display:block }
 #series-list-name .serie span.title a { display:block; text-decoration:none; }
 #series-list-name .serie-hovered img { border:1px solid #003B6E !important; }
