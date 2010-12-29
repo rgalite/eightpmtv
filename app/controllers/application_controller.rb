@@ -6,9 +6,8 @@ class ApplicationController < ActionController::Base
   def save_comment(c)
     if c.save
       respond_to do |format|
-        format.js do
-          render :partial => "shared/comment", :locals => { :comment => c }
-        end
+        format.js { render "shared/comment" }
+        format.html { redirect_to shows_path(@series, :anchor => "comment-#{@comment.id}") }
       end
     else
       respond_to do |format|

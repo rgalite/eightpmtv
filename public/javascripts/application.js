@@ -4,17 +4,15 @@ $(document).ready(function(){
 	$('input[placeholder],textarea[placeholder]').placeholder();
 	$("#comment_content").autoGrow();
   $("#new_comment")
-      .bind("ajax:loading",  function(){
+      .bind("ajax:loading", function(){
         $(this).find('.ajax-loader').toggle();
         $(this).find(":input").attr('disabled', 'disabled');
       })
-      .bind("ajax:success", function(obj, data, xhr) {
+			.bind("ajax:success", function(obj, data, xhr) {
         $(this).find(".error_messages").hide();
-				$(data).insertAfter($("#comments").children("#new_bubble"));
         $(this).find(":input").not(":submit").val('');
       })
       .bind("ajax:failure", function(data, xhr, err) {
-        console.info(xhr.responseText);
         if (xhr.status == 403)
           $(this).find(".error_messages").html($(xhr.responseText)).show();
       })
@@ -36,7 +34,6 @@ function showMoreDescription(linkMore)
 	linkMore = $(linkMore);
 	linkMore.next().toggle();
 	linkMore.hide();
-	console.info(linkMore.next());
 }
 
 function updateProcessingElements(intervalId, eltPath, updateLink){

@@ -111,7 +111,7 @@ class ShowsController < ApplicationController
     @subscription ||= current_user.subscriptions.create(:series => series, :user => current_user)
     
     respond_to do |format|
-      format.js   # render subscribe.js.erb
+      format.js   { } # render subscribe.js.erb
       format.html { redirect_to subscription_path(@subscription) }
       format.xml  { render :xml => @subscription }
     end
@@ -135,9 +135,9 @@ class ShowsController < ApplicationController
   def comment
     if user_signed_in?
       @series = Series.find(params[:id])
-      c = @series.comments.build(:content => params[:comment][:content],
+      @comment = @series.comments.build(:content => params[:comment][:content],
                                  :user => current_user) 
-      save_comment(c)
+      save_comment(@comment)
     end
   end
 
