@@ -1,0 +1,1 @@
+$("#comment_options_<%= @comment.id %>").replaceWith("<%= escape_javascript(render :partial => 'shared/comment_votes', :locals => { :comment => @comment }) %>");

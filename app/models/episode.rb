@@ -26,7 +26,7 @@ class Episode < ActiveRecord::Base
   end
   
   def available?
-    aired? && updated_at.to_date >= ApplicationSetting.last_update.to_date
+    aired? && updated_at.to_date >= Time.at(ApplicationSetting.last_update.to_i).to_date
   end
   
   def aired?

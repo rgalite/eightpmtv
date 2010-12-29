@@ -4,29 +4,28 @@ $(document).ready(function(){
 	$('input[placeholder],textarea[placeholder]').placeholder();
 	$("#comment_content").autoGrow();
   $("#new_comment")
-      .bind("ajax:loading", function(){
-        $(this).find('.ajax-loader').toggle();
-        $(this).find(":input").attr('disabled', 'disabled');
-      })
-			.bind("ajax:success", function(obj, data, xhr) {
-        $(this).find(".error_messages").hide();
-        $(this).find(":input").not(":submit").val('');
-      })
-      .bind("ajax:failure", function(data, xhr, err) {
-        if (xhr.status == 403)
-          $(this).find(".error_messages").html($(xhr.responseText)).show();
-      })
-      .bind("ajax:complete", function(){          
-        $(this).find(":input").removeAttr('disabled');
-        $(this).find('.ajax-loader').toggle();
-      });
-	$(".bubble blockquote").hover(function(){
-			$(this).find('.comments_options').show();
-		},
-		function(){
-			$(this).find('.comments_options').hide();
-		}
-	);
+		.bind("ajax:loading", function(){
+		  $(this).find('.ajax-loader').toggle();
+		  $(this).find(":input").attr('disabled', 'disabled');
+		})
+		.bind("ajax:success", function(obj, data, xhr) {
+		  $(this).find(".error_messages").hide();
+		  $(this).find(":input").not(":submit").val('');
+		})
+		.bind("ajax:failure", function(data, xhr, err) {
+		  if (xhr.status == 403)
+		    $(this).find(".error_messages").html($(xhr.responseText)).show();
+		})
+		.bind("ajax:complete", function(){          
+		  $(this).find(":input").removeAttr('disabled');
+		  $(this).find('.ajax-loader').toggle();
+		});
+  $(".bubble blockquote").live('mouseover mouseout', function(event){
+		if (event.type == "mouseover")
+			$(this).find('p.comment-no-vote').show();
+		else if (event.type == "mouseout")
+			$(this).find('p.comment-no-vote').hide();
+	});
 });
 
 function showMoreDescription(linkMore)

@@ -1,1 +1,4 @@
-<%= likes_buttons(comment, current_user) %>
+<p id="comment_options_<%= comment.id %>" <%= vote_options_attributes(comment) %>>
+  <%= likes_buttons(comment, current_user) %>
+</p>
+
