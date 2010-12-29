@@ -47,10 +47,17 @@ class ShowsController < ApplicationController
           results.each do |s|
             unless s["Overview"].blank?
               db_serie = db_series.detect { |ds| ds.series_id == s["seriesid"].to_i }
-              s["Link"] = db_serie.nil? ? add_show_path(s["seriesid"]) : show_path(db_serie)
+              if db_serie.nil?
+                s["Link"] = add_show_path(s["seriesid"])
+                s["Saved"] = false
+              else
+                s["Link"] = show_path(db_serie)
+                s["Saved"] = true
+              end
               @series << s
             end
           end
+          redirect_to @series.first["Link"] if @series.size == 1 && @series.first["Saved"]
         end #search.html.erb
         format.json do
           results.each do |s|
@@ -93,8 +100,7 @@ class ShowsController < ApplicationController
                           :imdb_id => s.imdb_id,
                           :rating_count => s.rating_count,
                           :air_time => s.air_time, :air_day => s.air_day,
-                          :seasons_processing => true,
-                          :poster_processing => true, :poster_url => s.poster)
+                          :seasons_processing => true, :poster_url => s.poster)
       s.genres.each { |genre| series.genres << Genre.find_or_initialize_by_name(genre) }
       if !series.save
         redirect_to root_url, :notice => "Sorry, there was a problem saving the TV show #{series.name}. Try again later."

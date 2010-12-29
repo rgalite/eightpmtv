@@ -1,4 +1,4 @@
-<% if @episode.poster_processing? %>
+<% if @episode.available? && @episode.poster_processing? %>
   <div class="processing" id="poster">
     <%= image_tag "ajax-loader-2-transparent.gif" %>
   </div>

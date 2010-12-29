@@ -12,20 +12,24 @@
 	    <%= link_to "S#{@episode.season.number.to_s.rjust(2, "0")}", show_season_path(:season_number => @episode.season.number, :show_id => @episode.series.id) %><%= "E#{@episode.number.to_s.rjust(2, "0")}" %> - <%= @episode.name %>
 	  </h2>
   	<p class="description">
-  	  Aired on <%= l @episode.first_aired.to_date, :format => :dmy_with_long_month %>
+  	  <%= aired_on(@episode.first_aired) %>
   	</p>
   	<div>
       <%= render "poster" %>
-      <div>
-        <% description = truncate(@episode.description, 795, "") %>
-        <%= description %>
-        <% if @episode.description.length > description.length %>
-          <%= link_to_function("...", "showMoreDescription(this);") %>
-          <span style="display:none">
-            <%= @episode.description[(description.length)..-1] %>
-          </span>
-        <% end %>
-      </div>
+      <% if @episode.available? %>
+        <div>
+          <% description = truncate(@episode.description, 795, "") %>
+          <%= description %>
+          <% if @episode.description.length > description.length %>
+            <%= link_to_function("...", "showMoreDescription(this);") %>
+            <span style="display:none">
+              <%= @episode.description[(description.length)..-1] %>
+            </span>
+          <% end %>
+        </div>
+      <% else %>
+        
+      <% end %>
   	</div>
   	<div style="clear:both"></div>
   </div>

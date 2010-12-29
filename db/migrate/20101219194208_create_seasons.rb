@@ -24,7 +24,7 @@ class CreateSeasons < ActiveRecord::Migration
             season_number = ep.season_number
             p "Processing season #{season_number} ..."
             serie.seasons << Season.new(:number => season_number.to_i,
-              :tvdb_id => ep.season_id.to_i, :poster_processing => true)
+              :tvdb_id => ep.season_id.to_i)
           end
         end
       end

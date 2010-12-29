@@ -7,10 +7,15 @@ class Season < ActiveRecord::Base
   belongs_to :series
   has_many :comments, :as => :commentable, :order => "created_at desc"
   
-  attr_accessor :poster_url
+  attr_reader :poster_url
   after_save :attach_poster
   
   def attach_poster
     Delayed::Job.enqueue(AttachPosterToSeasonJob.new(id, @poster_url), 2) unless @poster_url.nil?
+  end
+  
+  def poster_url=(value)
+    @poster_url = value
+    self.poster_processing = !value.blank?
   end
 end

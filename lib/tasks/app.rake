@@ -44,8 +44,7 @@ namespace :app do
           if season.nil?
             p "This episode is new. From a new season. Adding the season and the episode"
             season = serie.seasons.build(:tvdb_id => ep.season_id.to_i,
-                                         :number => e.season_number,
-                                         :poster_processing => true)
+                                         :number => e.season_number)
             season.poster_url = s.season_posters(season.number).first.path unless s.season_posters(season.number).first.nil?
           else
             p "This episode is new. From an existing season. Adding the episode to the season"
@@ -53,8 +52,7 @@ namespace :app do
           season.episodes << Episode.new(:tvdb_id => ep.id, :number => ep.number,
                                 :name => ep.name, :description => ep.overview,
                                 :director => ep.director, :writer => ep.writer,
-                                :first_aired => ep.air_date, :poster_url => ep.thumb,
-                                :poster_processing => true)
+                                :first_aired => ep.air_date, :poster_url => ep.thumb)
           season.save
         end
       else

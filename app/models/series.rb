@@ -19,7 +19,7 @@ class Series < ActiveRecord::Base
   after_save :attach_poster
   after_create :attach_episodes
   
-  attr_accessor :poster_url
+  attr_reader :poster_url
   
   public  
   def set_actors(actors)
@@ -31,11 +31,16 @@ class Series < ActiveRecord::Base
   end
       
   def attach_poster
-    Delayed::Job.enqueue(AttachPosterToSeriesJob.new(id, @poster_url), :priority => 2) unless @poster_url.nil?
+    Delayed::Job.enqueue(AttachPosterToSeriesJob.new(id, @poster_url), :priority => 2) unless @poster_url.blank?
   end
   
   def attach_episodes
     Delayed::Job.enqueue(SeriesEpisodesJob.new(id), :priority => 3)
     # Delayed::Job.enqueue(SeriesActorsJob.new(id))
+  end
+  
+  def poster_url=(value)
+    @poster_url = value
+    self.poster_processing = !value.blank?
   end
 end
