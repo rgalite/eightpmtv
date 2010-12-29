@@ -1,4 +1,5 @@
 class Episode < ActiveRecord::Base
+  include ActiveModel::Serializers::JSON
   belongs_to :season
   has_one :series, :through => :season
   has_attached_file :poster, {

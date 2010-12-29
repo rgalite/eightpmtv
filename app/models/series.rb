@@ -1,5 +1,6 @@
 class Series < ActiveRecord::Base
   include CallRake
+  include ActiveModel::Serializers::JSON
   has_many :roles, :dependent => :destroy
   has_many :actors, :through => :roles, :order => "name ASC"
   has_many :comments, :as => :commentable, :order => "created_at desc"
