@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_filter :authenticate_user!
   private
   def respond_to_like
     respond_to do |format|

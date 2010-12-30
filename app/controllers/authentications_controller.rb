@@ -18,15 +18,8 @@ class AuthenticationsController < ApplicationController
       flash[:notice] = "Authentication successful"
       redirect_to authentications_url
     else
-      user = User.new
-      user.apply_omniauth(omniauth)
-      if user.valid?
-        flash[:notice] = "Signed in successfully."
-        sign_in_and_redirect(:user, user)
-      else
-        session[:omniauth] = omniauth.except('extra')
-        redirect_to new_user_registration_url
-      end
+      session[:omniauth] = clean_omniauth(omniauth)
+      redirect_to new_user_registration_url, :notice => "Please, confirm this information."
     end
   end
 
@@ -37,5 +30,15 @@ class AuthenticationsController < ApplicationController
     @authentication.destroy
       
     redirect_to(authentications_url)
+  end
+  
+  private
+  def clean_omniauth(omniauth)
+    case omniauth["provider"]
+    when "facebook"
+      omniauth["user_info"]["email"] = omniauth["extra"]["user_hash"]["email"]
+    end
+    
+    omniauth.except('extra')
   end
 end

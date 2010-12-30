@@ -12,7 +12,8 @@ Tvshows::Application.routes.draw do
 
   devise_for :users, :path_names => { :sign_up => "register",
                                       :sign_in => "login",
-                                      :sign_out => "logout" },
+                                      :sign_out => "logout",
+                                      :edit => "profile" },
              :controllers => { :registrations => 'registrations' } do
     get "users/cancel_omniauth", :to => "registrations#cancel_omniauth"
   end      

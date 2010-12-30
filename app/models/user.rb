@@ -22,11 +22,14 @@ class User < ActiveRecord::Base
   validates_length_of :username, :in => 2..24
 
   def apply_omniauth(omniauth)
-    self.authentications.build(:provider => omniauth["provider"],
-                               :uid => omniauth["uid"],
-                               :avatar => omniauth["user_info"]["image"])
-    if (omniauth["provider"] == "twitter")
+    authentication = self.authentications.build(:provider => omniauth["provider"],
+                                                :uid => omniauth["uid"])
+    self.email = omniauth["user_info"]["email"] if self.email.blank?
+    case omniauth["provider"]
+    when "twitter"
       self.username = omniauth["user_info"]["nickname"]
+      self.avatar = omniauth["user_info"]["image"]
+    when "facebook"
     end
   end
   

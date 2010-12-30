@@ -1,7 +1,7 @@
 class ShowsController < ApplicationController
   require 'net/http'
   
-  before_filter :authenticate_user!, :only => [ :my ]
+  before_filter :authenticate_user!, :only => [ :my, :subscribe, :unsubscribe ]
   private
   def download_banner(series_banner)
     unless series_banner.nil?    
