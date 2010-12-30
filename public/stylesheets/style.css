@@ -19,7 +19,7 @@ h1 a:hover, h2 a:hover { color: #2b2b2b; background: #FFF; }
 /* lists and form elements */
 ul { margin: 0; padding : 0; list-style : none; }
 form { margin: 0; }
-input.search { width: 279px; border: 1px solid #1D66A8; padding: 6px 10px; color: #1E67A8; font-weight: bold; }
+input.search { width: 279px; border: 1px solid #003B6E; padding: 8px 10px; color: #1E67A8; font-weight: bold; }
 input.button { padding: 3px; }
 
 /* content holder */
@@ -50,7 +50,7 @@ input.button { padding: 3px; }
 	width: 500px;
 	margin: 6px 0 0 0;
 }
-	#search p { padding: 0; margin: 0; }
+#search p { padding: 0; margin: 0; }
 
 
 /* grey subheader */
@@ -245,7 +245,7 @@ color:#999999;
 }
 #navlist li.selected, #navlist li:hover { background-color: #1D66A8; border: 1px solid #003B6E; }
 #navlist li.selected a, #navlist li:hover a { color: white; }
-#navlist li a { padding: 1px 12px; text-decoration:none; }
+#navlist li a { padding: 0px 12px; text-decoration:none; }
 
 #series-list-name .serie { float:left; margin-right:20px; }
 #series-list-name .serie p { text-align:center; }
@@ -398,3 +398,12 @@ color:#999999;
 	cursor:pointer;
 }
 #settings div.settings_block { float:left; }
+
+/* notices */
+div.flash { margin-bottom:10px; }
+div.flash .flash-content { margin:0px; padding:5px 5px 5px 20px;}
+div.flash .flash-content .flash-handler { float:right; }
+div.flash p { clear:right;color:black;margin:0px;text-align:center; }
+#flash_notice {	background-color:#B8FFB9;border:1px solid #009100 }
+#flash_error { background-color:#FFE3EA;border:1px solid #E01B4C;}
+#flash_warn { background-color:#FFFEDE;border:1px solid #E8CD00;}

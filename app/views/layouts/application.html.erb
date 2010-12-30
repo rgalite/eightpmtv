@@ -68,6 +68,32 @@
         <div class="clear"></div>
       </div>
     </div>
+    <% if flash[:notice] %>
+      <div id="flash_notice" class="flash">
+        <div class="flash-content">
+          <a href="#" class="flash-handler">Hide</a>
+          <p><%= flash[:notice] %></p>
+        </div>
+      </div>
+    <% end %>
+
+    <% if flash[:error] %>
+      <div id="flash_error" class="flash">
+        <div class="flash-content">
+          <a href="#" class="flash-handler">Hide</a>
+          <p><%= flash[:error] %></p>
+        </div>
+      </div>
+    <% end %>
+    
+    <% if flash[:warn] %>
+      <div id="flash_warn" class="flash">
+        <div class="flash-content">
+          <a href="#" class="flash-handler">Hide</a>
+          <p><%= flash[:warn] %></p>
+        </div>
+      </div>
+    <% end %>
     
     <%= yield :gbox %>
 

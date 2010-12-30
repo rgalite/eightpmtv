@@ -50,6 +50,12 @@ $(document).ready(function(){
 	function(){
 		$(this).children("ul.submenu").hide()
 	});
+	
+	// NOTICES Stuff
+	$(".flash-handler").click(function(){
+		$(this).parent().parent().slideUp();
+		return false;
+	});
 });
 
 function showMoreDescription(linkMore)
