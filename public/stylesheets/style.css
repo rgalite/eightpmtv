@@ -236,17 +236,33 @@ color:#999999;
 .series_info span.label { font-weight: bold; }
 
 #navlist { text-align:center; }
-#navlist li { display: inline; list-style-type: none; width:12px; }
-#navlist li.selected, #navlist li:hover { background-color: #003B6E;}
+#navlist li {
+	border:1px solid white;
+	display: inline;
+	list-style-type: none;
+	margin-right:1px;
+	width:12px;
+}
+#navlist li.selected, #navlist li:hover { background-color: #1D66A8; border: 1px solid #003B6E; }
 #navlist li.selected a, #navlist li:hover a { color: white; }
-#navlist li a { padding: 1px 14px; text-decoration:none; }
+#navlist li a { padding: 1px 12px; text-decoration:none; }
 
 #series-list-name .serie { float:left; margin-right:20px; }
 #series-list-name .serie p { text-align:center; }
-#series-list-name .serie span.title { display:block }
+#series-list-name .serie span.title {
+	display:block;
+	border-left:1px solid white;
+	border-right:1px solid white;
+	border-top:1px solid white;
+}
 #series-list-name .serie span.title a { display:block; text-decoration:none; }
 #series-list-name .serie-hovered img { border:1px solid #003B6E !important; }
-#series-list-name .serie-hovered span.title { background-color: #003B6E !important; }
+#series-list-name .serie-hovered span.title {
+	background-color: #1D66A8 !important;
+	border-left:1px solid #003B6E;
+	border-right:1px solid #003B6E;
+	border-top:1px solid #003B6E;
+}
 #series-list-name .serie-hovered span.title a { color:white; }
 
 #series_seasons { border-bottom: 1px dotted #CCC; margin-bottom:20px; }
@@ -293,7 +309,6 @@ color:#999999;
   width:100px;
 }
 #header-bar-content h1 a { background:none; color:white; }
-
 #header-bar-content div#search {
   background:none;
   display:inline-block !important;
@@ -301,14 +316,12 @@ color:#999999;
   margin:0px !important;
   padding:0px;
 }
-
 #header-bar-content ul.menu {
 	float: left;
 	list-style: none;
 	margin: 0px 0px 0px 20px;
 	padding: 0;
 }
-
 #header-bar-content ul.menu li {
 	background-color:#1D66A8;
 	border:1px solid #1D66A8;
@@ -319,7 +332,6 @@ color:#999999;
 	padding: 0;
 	width:100px;
 }
-
 #header-bar-content ul.menu a {
 	color: white;
 	display: block;
@@ -331,31 +343,25 @@ color:#999999;
 	text-align:center;
 	width:100%;
 }
-
 #header-bar-content ul.menu li:hover {
 	background: #4582BA;
 	border:1px solid #003B6E;
 	color: #fff;
 }
-
 #header-bar-content ul.menu li.search {
 	border:none;
 }
-
 #header-bar-content ul.menu li.search:hover {
 	background-color:transparent;
 	color:auto;
 }
-
 #header-bar-content ul.menu li ul.submenu {
 	background-color:#4582BA;
 	border-bottom:1px solid #003B6E;
 	border-left:1px solid #003B6E;
 	border-right:1px solid #003B6E;
-	
 	position:absolute;
 }
-
 #header-bar-content ul.menu li ul.submenu li {
 	background-color:transparent;
 	border:none !important;
@@ -363,11 +369,32 @@ color:#999999;
 	float:none;
 	margin:0px;
 }
-
 #header-bar-content ul.menu li ul.submenu li:hover {
 	border-top:none !important;
 }
-
-#header-bar-content ul.menu li ul.submenu li.last:hover { border-bottom-color:#4582BA; }
-
+#header-bar-content ul.menu li ul.submenu li.last:hover {
+	border-bottom-color:#4582BA;
+}
 #menu-login { float:right !important; }
+
+/* settings */
+#settings_options { margin-right:25px; }
+#settings_options ul { padding-left:0px; list-style:none; }
+#settings_options ul li { 
+	border:1px solid white;
+	border-radius: 5px;
+	margin:2px 0px;
+	padding:5px 0px 5px 5px;
+}
+#settings_options ul li.selected {
+	background-color: #1D66A8;
+	border: 1px solid #003B6E;
+	color:white;
+}
+#settings_options ul li:hover {
+	background-color: #1D66A8;
+	border: 1px solid #003B6E;
+	color:white;
+	cursor:pointer;
+}
+#settings div.settings_block { float:left; }
