@@ -1,0 +1,9 @@
+<div id="email_settings" style="display:none" class="settings_block">
+  <h3>Change your e-mail preferences</h3>
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+    <p><%= f.label :email %><br />
+    <%= f.text_field :email %></p>
+    
+    <p><%= f.submit "Update" %></p>
+  <% end %>
+</div>

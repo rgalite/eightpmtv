@@ -15,7 +15,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
          
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :login
+  attr_accessor :login
 
   validates_presence_of :username
   validates_uniqueness_of :username
@@ -64,5 +65,18 @@ class User < ActiveRecord::Base
   
   def dislikes?(item)
     !likes.detect{ |l| l.likeable == item && l.value < 0 }.nil?
+  end
+  def update_with_password(params={}) 
+    if params[:password].blank? 
+      params.delete(:password) 
+      params.delete(:password_confirmation) if params[:password_confirmation].blank? 
+    end 
+    update_attributes(params) 
+  end
+    
+  protected
+  def self.find_for_database_authentication(conditions)
+   login = conditions.delete(:login)
+   where(conditions).where(["username = :value OR email = :value", { :value => login }]).first
   end
 end

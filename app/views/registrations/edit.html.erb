@@ -1,29 +1,37 @@
 <style>
-  #user_settings, #account_settings { float:left; }
-  #user_settings ul { padding-left:0px; list-style:none; }
-  #user_settings ul li { padding:10px 0px; border-bottom:1px solid gray; width:160px; }
-  #user_settings { margin-right: 125px; }
+  #settings_options { margin-right:25px; }
+  #settings_options ul { padding-left:0px; list-style:none; }
+  #settings_options ul li { border:1px solid white; border-radius: 5px; margin:2px 0px; padding:5px 0px 5px 5px; }
+  #settings_options ul li.selected { background-color: #1D66A8; border: 1px solid #003B6E; color:white; }
+  #settings_options ul li:hover { background-color: #1D66A8; border: 1px solid #003B6E; color:white; cursor:pointer; }
+  .settings_block { float:left; }
 </style>
 
-<div class="thirds">
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#settings_tabs li").click(function(){
+      $(this).parent().find('li').removeClass('selected');
+      $('.settings_block').hide();
+      $(this).addClass('selected');
+      $($(this).attr('ref')).show();
+      return false;
+    });
+  });
+</script>
+
+<div class="thirds" id="settings_options">
 	<div class="smallboxtop"></div>
 	<div class="smallbox">
       <ul id="settings_tabs">
-        <li>
-          Account
-        </li>
-        <li>
-          8PM-list
-        </li>
+        <li ref="#account_settings" class="selected">Account</li>
+        <li ref="#email_settings">E-mail</li>
+        <li ref="#social_settings">Connections</li>
       </ul>      
 	</div>
 </div>
 
-<div id="user_settings">
-</div>
-
-<div id="account_settings">
-  <h2>Edit account</h2>
+<div id="account_settings" class="settings_block">
+  <h3>Edit your account information</h3>
 
   <div style="border-bottom:1px solid gray">
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
@@ -31,9 +39,6 @@
 
     <p><%= f.label :username %><br />
     <%= f.text_field :username %></p>
-
-    <p><%= f.label :email %><br />
-    <%= f.text_field :email %></p>
 
     <p><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, :autocomplete => "off" %></p>
@@ -47,39 +52,17 @@
     <p><%= f.submit "Update" %></p>
   <% end %>
   </div>
-  
-  <h3>My social networks</h3>
-  <div style="border-bottom:1px solid gray">
-    <% if current_user.authentications.size > 0 %>
-    <div>
-      <% current_user.authentications.each do |auth| %>
-      <div>
-        <div>
-          <%= image_tag "icons/#{auth.provider}_32.png", :style => "float:left" %>
-          <p style="margin:0px; margin-top:6px;width:180px">
-            <%= auth.provider.capitalize %> (<%= auth.uid %>)
-          </p>
-          <div></div>
-        </div>
-        <div>
-          <%= link_to 'X', auth, :confirm => 'Are you sure?',
-              :method => :delete %>
-        </div>
-        <div style="clear:both"></div>
-      </div>
-      <% end %>
-    </div>
-    <% end %>
-  </div>
 
   <h3>Cancel my account</h3>
 
   <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
-
-  <%= link_to "Back", :back %>
 </div>
 
-<div id="subscription_settings" style="display:none">
+<%= render "email" %>
+
+<%= render "social" %>
+
+<div id="subscription_settings" style="display:none" class="settings_block">
   <h2>Edit <%= resource_name.to_s.humanize %></h2>
 </div>
 

@@ -267,6 +267,7 @@ color:#999999;
 
 /* Login */
 #login-frame { margin:20px auto 0px; width:620px; }
+#login-frame .box { height:250px; }
 #login-frame #standard-login, #login-frame #services-login { float:left; width:295px; }
 #login-frame #standard-login { margin:0px 10px 0px auto; }
 #login-frame #services-login { margin:0px auto 0px 10px; }

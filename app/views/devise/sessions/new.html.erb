@@ -2,16 +2,22 @@
   <div id="standard-login">
     <div class="boxtop"></div>
     <div class="box">
-      <h2>Standard sign in</h2>
+      <p style="margin-bottom:20px;text-align:center"><b>Standard sign in</b></p>
       <%= form_for(resource, :as => resource_name, 
                    :url => session_path(resource_name)) do |f| %>
-        <p><%= f.label :username %><br /> <%= f.text_field :username %></p>
-        <p><%= f.label :password %><br /> <%= f.password_field :password %></p>
+        <p style="margin-bottom:10px"><%= f.label :login, "Username or e-mail address" %><br /> <%= f.text_field :login %></p>
+        <p style="margin-bottom:10px">
+          <%= f.label :password %><br />
+          <%= f.password_field :password %><br />
+          <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+        </p>
 
         <% if devise_mapping.rememberable? -%>
-          <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+          <p style="margin-bottom:10px">
+            <%= f.check_box :remember_me %> <%= f.label :remember_me %><br />
+          </p>
         <% end -%>
-        <p><%= f.submit "Sign in" %></p>
+        <p style="margin-bottom:10px"><%= f.submit "Sign in" %></p>
       <% end %>
 
       <p><%= render :partial => "devise/shared/links" %></p>
@@ -20,7 +26,7 @@
   <div id="services-login">
     <div class="boxtop"></div>
     <div class="box">
-      <h2>or use services</h2>
+      <p style="margin-bottom:20px;text-align:center"><b>Connect with your social account</b></h2>
       <div id="my-authentications">
         <div class="auth-method">
           <%= link_to (image_tag "twitter_connect.gif"), "/auth/twitter" %>

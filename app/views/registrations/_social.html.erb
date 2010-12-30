@@ -1,0 +1,25 @@
+<div id="social_settings" style="display:none" class="settings_block">
+  <h3>My social networks</h3>
+  <div style="border-bottom:1px solid gray">
+    <% if current_user.authentications.size > 0 %>
+    <div>
+      <% current_user.authentications.each do |auth| %>
+      <div>
+        <div>
+          <%= image_tag "icons/#{auth.provider}_32.png", :style => "float:left" %>
+          <p style="margin:0px; margin-top:6px;width:180px">
+            <%= auth.provider.capitalize %> (<%= auth.uid %>)
+          </p>
+          <div></div>
+        </div>
+        <div>
+          <%= link_to 'X', auth, :confirm => 'Are you sure?',
+              :method => :delete %>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+</div>
