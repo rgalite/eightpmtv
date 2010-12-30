@@ -33,7 +33,6 @@ $(document).ready(function(){
 	});
 	
 	// AUTOCOMPLETE
-	var showsPath = "<%= search_shows_path %>";
 	$("#q_search").autocomplete({
 	  serviceUrl:showsPath,
 	  minChars:1,

@@ -6,9 +6,9 @@
 		<div style="clear:both"></div>
 	</blockquote>
 	<cite>
-    <%= image_tag comment.user.avatar_url, :width => "32px" %>
+    <% image_tag(user.nil? ? "default-user.png"  : comment.user.avatar_url, :width => "32px" %>
 	  <p style="display:inline-block;margin:0px">
-  	  <strong><%= comment.user.username %></strong>&nbsp;&middot;&nbsp;<%= comment.created_at.to_pretty %><br />
+  	  <strong><%= comment.user.nil? ? "Deleted user" : comment.user.username %></strong>&nbsp;&middot;&nbsp;<%= comment.created_at.to_pretty %><br />
   	  <%= link_to "Reply" %>
   	</p>
 	</cite>
