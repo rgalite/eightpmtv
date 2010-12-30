@@ -83,7 +83,7 @@ class ShowsController < ApplicationController
     
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render :json => @series }
+      format.json { render :json => @series.attributes }
     end
   end
   

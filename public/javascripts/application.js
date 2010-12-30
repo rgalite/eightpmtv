@@ -1,8 +1,13 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 $(document).ready(function(){
+	// PLACEHOLDER
 	$('input[placeholder],textarea[placeholder]').placeholder();
+
+	// AUTOGROW FOR COMMENT
 	$("#comment_content").autoGrow();
+
+	// AJAXY STUFF FOR COMMENT SUBMITTING
   $("#new_comment")
 		.bind("ajax:loading", function(){
 		  $(this).find('.ajax-loader').toggle();
@@ -25,6 +30,26 @@ $(document).ready(function(){
 			$(this).find('p.comment-no-vote').show();
 		else if (event.type == "mouseout")
 			$(this).find('p.comment-no-vote').hide();
+	});
+	
+	// AUTOCOMPLETE
+	var showsPath = "<%= search_shows_path %>";
+	$("#q_search").autocomplete({
+	  serviceUrl:showsPath,
+	  minChars:1,
+	  onSelect: function(value, data){
+	    window.location = '/shows/' + data.param;          
+	  } 
+	});
+	
+	// MENU STUFF
+	var menuLoginPosition = $("#menu-login").offset();
+	$("#menu-login").find("ul.submenu").css({left: menuLoginPosition.left+3+"px", top: menuLoginPosition.top+35+"px"});
+	$("#menu-login .folded").hover(function(){
+		$(this).children("ul.submenu").show();
+	},
+	function(){
+		$(this).children("ul.submenu").hide()
 	});
 });
 
