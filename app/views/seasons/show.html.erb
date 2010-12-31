@@ -5,13 +5,13 @@
   });
 </script>
 <div class="left_articles">
+  <h2>
+    <%= link_to "#{@season.series.name}", show_path(@season.series) %> <%= "S#{@season.number.to_s.rjust(2, "0")}" %>
+  </h2>
+  <p class="description">
+	  <%= pluralize(@season.episodes.size, "episode") %>
+	</p>
 	<div id="seasons-<%= @season.id %>" class="season_info">
-	  <h2>
-	    <%= link_to "#{@season.series.name}", show_path(@season.series) %> <%= "S#{@season.number.to_s.rjust(2, "0")}" %>
-	  </h2>
-	  <p class="description">
-  	  <%= pluralize(@season.episodes.size, "episode") %>
-  	</p>
   	<div>
   	  <%= render :partial => "poster", :locals => { :season => @season } %>
   	  <div class="episodes-list">

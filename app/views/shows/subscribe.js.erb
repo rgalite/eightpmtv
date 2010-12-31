@@ -1,3 +1,3 @@
-$("#wait_spinner").fadeOut();
-$("#add_to_list_link").parent('li').html('<%= escape_javascript(render :partial => "link_rm", :locals => { :series => @subscription.series }) %>');
+$("p.description").html('<%= escape_javascript(people_watching(@series)) %>');
+$("#watch_button").html('<%= escape_javascript(watch_button(@series)) %>');
 $("#global-container").append('<%= escape_javascript(render :partial => "activity", :locals => { :series => @subscription.series }) %>').slideDown();

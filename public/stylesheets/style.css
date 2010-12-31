@@ -235,6 +235,11 @@ color:#999999;
 .series_info #poster.processing img { margin:auto; margin-top:215px;display:block; }
 .series_info span.label { font-weight: bold; }
 
+a.add-icon, a.rm-icon { display:inline-block ; padding-left:16px; }
+a.add-icon { background: url(/images/add_green_plus_icon.png) no-repeat left center; }
+a.rm-icon { background: url(/images/minus_remove_sign_small_icon.png) no-repeat left center; }
+
+/* Navigation list == series */
 #navlist { text-align:center; }
 #navlist li {
 	border:1px solid white;

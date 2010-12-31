@@ -51,4 +51,16 @@ module ShowsHelper
     end
     desc
   end
+  
+  def watch_button(series)
+    if user_signed_in?
+      if current_user.watch?(series)
+        link_to "Remove", unsubscribe_show_path(series), :remote => true, :class => "rm-icon"
+      else
+        link_to "Add", subscribe_show_path(series), :remote => true, :class => "add-icon"
+      end
+    else
+      "&nbsp;".html_safe
+    end
+  end
 end

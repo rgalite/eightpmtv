@@ -112,9 +112,9 @@ class ShowsController < ApplicationController
   end
   
   def subscribe
-    series = Series.find(params[:id])
-    @subscription = Subscription.find_by_series_id_and_user_id(series.id, current_user.id)
-    @subscription ||= current_user.subscriptions.create(:series => series, :user => current_user)
+    @series = Series.find(params[:id])
+    @subscription = Subscription.find_by_series_id_and_user_id(@series.id, current_user.id)
+    @subscription ||= current_user.subscriptions.create(:series => @series, :user => current_user)
     
     respond_to do |format|
       format.js   { } # render subscribe.js.erb
@@ -148,7 +148,12 @@ class ShowsController < ApplicationController
   end
 
   def my
-    @shows = current_user.series if current_user
+    if params[:id].blank?
+      @shows = current_user.series if current_user
+      render "my_list"
+    else
+      @show = Series.find()
+    end
   end
   
   def name

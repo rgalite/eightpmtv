@@ -15,11 +15,12 @@
 </script>
 
 <div class="left_articles">
+  <div class="buttons">
+	  <p><span id="watch_button"><%= watch_button(@series) %></span></p>
+	</div>
+  <h2><%= @series.name %></h2>
+	<p class="description"><%= people_watching(@series) %></p>
 	<div id="series-<%= @series.id %>" class="series_info">
-	  <h2><%= @series.name %></h2>
-  	<p class="description">
-  	  <%= people_watching(@series) %>
-  	</p>
   	<div>
       <%= render "poster" %>
       <div>

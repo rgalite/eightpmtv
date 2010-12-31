@@ -6,14 +6,12 @@
   });
 </script>
 <div class="left_articles">
+  <h2>
+    <%= link_to "#{@episode.series.name}", show_path(@episode.series) %>
+    <%= link_to "S#{@episode.season.number.to_s.rjust(2, "0")}", show_season_path(:season_number => @episode.season.number, :show_id => @episode.series.id) %><%= "E#{@episode.number.to_s.rjust(2, "0")}" %> - <%= @episode.name %>
+  </h2>
+	<p class="description"><%= aired_on(@episode.first_aired) %></p>
 	<div id="episode-<%= @episode.id %>" class="episode_info">
-	  <h2>
-	    <%= link_to "#{@episode.series.name}", show_path(@episode.series) %>
-	    <%= link_to "S#{@episode.season.number.to_s.rjust(2, "0")}", show_season_path(:season_number => @episode.season.number, :show_id => @episode.series.id) %><%= "E#{@episode.number.to_s.rjust(2, "0")}" %> - <%= @episode.name %>
-	  </h2>
-  	<p class="description">
-  	  <%= aired_on(@episode.first_aired) %>
-  	</p>
   	<div>
       <%= render "poster" %>
       <% if @episode.available? %>

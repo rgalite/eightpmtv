@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
   end
   
   def watch?(series)
-    series.subscriptions.any?{ |s| s.user == current_user }
+    series.subscriptions.any?{ |s| s.user == self }
   end
   
   def friends_watching(series)
