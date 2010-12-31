@@ -70,4 +70,15 @@ namespace :tvdb do
     end
     puts "Done."
   end
+  
+  desc "Attach missing poster to season (when deleted from Amazon S3)"
+  task :redownload_missing_season_poster => :environment do |t, args|
+    seasons = Season.all.find_all { |s| !s.poster.url.nil? && !s.poster.exists? }
+    seasons.each do |season|
+      tvdb = TvdbParty::Search.new(Tvshows::Application.config.the_tv_db_api_key)
+      serie = tvdb.get_series_by_id(season.series.tvdb_id)
+      
+      p "Found #{season.series.name} S#{season.number.to_s.rjust(2, '0')}"
+    end
+  end
 end
