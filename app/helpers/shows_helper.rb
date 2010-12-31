@@ -41,11 +41,12 @@ module ShowsHelper
       
       # Finally, put the rest of the watchers (anonymous)
       if watchers.size.zero?
-        watchers << "#{pluralize(people_watching.size, 'person', 'people')}"
+        watchers << "#{pluralize(people_watching.size, 'person is', 'people are')}"
+        desc = "#{watchers.to_sentence} watching this show"
       else
         watchers << "#{pluralize(people_watching.size, 'other person', 'other people')}" unless people_watching.size.zero?
+        desc = "#{watchers.to_sentence} are watching this show"
       end
-      desc = "#{watchers.to_sentence} are watching this show"
     else
       desc = "#{pluralize(people_watching.size, 'person is', 'people are')} watching this TV show"
     end
