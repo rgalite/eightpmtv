@@ -26,6 +26,9 @@ class User < ActiveRecord::Base
                       :styles => { :medium => "128x128#", :thumb => "48x48#" },
                       :default_url => "/images/user_default_icon_:style.png"
                     }.merge(Tvshows::Application.config.paperclip_options)
+  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/jpg', 'image/png']
+  validates_attachment_size :photo, :less_than => 2.megabytes
+  
   def apply_omniauth(omniauth)
     authentication = self.authentications.build(:provider => omniauth["provider"],
                                                 :uid => omniauth["uid"])

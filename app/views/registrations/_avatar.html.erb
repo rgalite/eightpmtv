@@ -7,13 +7,17 @@
     <p class="title">Use my own image</p>
     <div class="avatar_photo" style="margin-right:30px">
       <div class="img"><%= image_tag(resource.photo.url(:medium))%></div>
-      <p>Original</p>
+      <p>Medium size</p>
     </div>
     <div class="avatar_photo">
       <div class="img"><%= image_tag(resource.photo.url(:thumb))%></div>
       <p>Thumb</p>
     </div>
     <div class="clear"></div>
+    <p>
+      Your profile picture must be <b>JPG</b>, <b>JPEG</b> or <b>PNG</b> and not larger than <b>2MB</b>.
+      It will be cropped to a size of <b>128x128px</b> and <b>48x48px</b>.
+    </p>
     <p><%= f.file_field :photo %></p>
   </div>
   <p><%= f.submit "Update" %></p>
