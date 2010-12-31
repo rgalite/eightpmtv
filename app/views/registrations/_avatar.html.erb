@@ -1,0 +1,21 @@
+<div id="avatar_settings"  class="settings_block" style="display:none">
+  <h3>Your profile picture</h3>
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :multipart => true }) do |f| %>
+    <%= devise_error_messages! %>
+  
+  <div id="my_avatar">
+    <p class="title">Use my own image</p>
+    <div class="avatar_photo" style="margin-right:30px">
+      <div class="img"><%= image_tag(resource.photo.url(:medium))%></div>
+      <p>Original</p>
+    </div>
+    <div class="avatar_photo">
+      <div class="img"><%= image_tag(resource.photo.url(:thumb))%></div>
+      <p>Thumb</p>
+    </div>
+    <div class="clear"></div>
+    <p><%= f.file_field :photo %></p>
+  </div>
+  <p><%= f.submit "Update" %></p>
+  <% end %>
+</div>

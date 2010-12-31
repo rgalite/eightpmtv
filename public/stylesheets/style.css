@@ -397,11 +397,16 @@ color:#999999;
 	color:white;
 	cursor:pointer;
 }
-#settings div.settings_block { float:left; }
+#settings div.settings_block { float:left; width:700px; }
+
+#avatar_settings #my_avatar p.title { border-bottom:1px solid #CCC; font-weight:bold; }
+#avatar_settings #my_avatar div.avatar_photo { float:left;}
+#avatar_settings #my_avatar div.avatar_photo div.img { border:1px solid #CCC; padding:3px; }
+#avatar_settings #my_avatar div.avatar_photo p { margin:0px;text-align:center }
 
 /* notices */
 div.flash { margin-bottom:10px; }
-div.flash .flash-content { margin:0px; padding:5px 5px 5px 20px;}
+div.flash .flash-content { margin:0px; padding:5px 5px 20px 20px;}
 div.flash .flash-content .flash-handler { float:right; }
 div.flash p { clear:right;color:black;margin:0px;text-align:center; }
 #flash_notice {	background-color:#B8FFB9;border:1px solid #009100 }

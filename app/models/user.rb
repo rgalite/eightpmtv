@@ -15,13 +15,17 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
          
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, :email, :password, :password_confirmation, :remember_me, :login
+  attr_accessible :username, :email, :password, :password_confirmation,
+                  :remember_me, :login, :photo
   attr_accessor :login
 
   validates_presence_of :username
   validates_uniqueness_of :username
   validates_length_of :username, :in => 2..24
-
+  has_attached_file :photo, {
+                      :styles => { :medium => "128x128#", :thumb => "48x48#" },
+                      :default_url => "/images/user_default_icon_:style.png"
+                    }.merge(Tvshows::Application.config.paperclip_options)
   def apply_omniauth(omniauth)
     authentication = self.authentications.build(:provider => omniauth["provider"],
                                                 :uid => omniauth["uid"])
@@ -52,11 +56,8 @@ class User < ActiveRecord::Base
     user.friends.include?(self)
   end
   
-  def avatar_url
-    if !authentications.first.nil? && !authentications.first.avatar.nil?
-    else
-      "/images/user-default-icon.png"
-    end
+  def avatar_url(style = nil)
+    photo.url(style ||= :medium)
   end
   
   def likes?(item)

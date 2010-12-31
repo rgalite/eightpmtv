@@ -24,4 +24,8 @@ module ApplicationHelper
       link_to("".html_safe, like_comment_path(comment), :remote => true, :class => "thumbs-up-hov") + ((comment.likes.size.zero? ? "&nbsp;&nbsp;&nbsp;" : "&nbsp;#{comment.likes.size}&nbsp;").html_safe) + link_to("".html_safe, dislike_comment_path(comment), :remote => true, :class => "thumbs-down-hov") + ((comment.dislikes.size.zero? ? "&nbsp;&nbsp;&nbsp;" : "&nbsp;#{comment.dislikes.size}&nbsp;").html_safe)
     end
   end
+  
+  def comment_avatar_url(comment)
+    comment.user.nil? ? "/images/user_default_icon_thumb.png" : comment.user.avatar_url(:thumb)
+  end    
 end

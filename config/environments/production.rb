@@ -57,6 +57,6 @@ Tvshows::Application.configure do
     :s3_permissions => :public_read,
     :s3_host_alias => "static.eightpm.tv",
     :url => ":s3_alias_url",
-    :path => ":classs/:attachment/:id/:style/:basename.:extension",
+    :path => ":class/:attachment/:id/:style/:basename.:extension",
   }
 end
