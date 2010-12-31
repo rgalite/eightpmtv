@@ -275,6 +275,8 @@ color:#999999;
 .season_info #poster { border:1px solid #DEDEDE; float:left; margin-right:10px; }
 .season_info #poster.processing { background: url(/images/light_movie.png) no-repeat; width:150px; height:217px; }
 .season_info #poster.processing img { display:block; margin:auto; margin-top:85px; }
+.season_info .episodes-list { float:left; width:700px; }
+.season_info .episode_info { display:inline-block; float:left; width:350px; }
 
 /* episode info */
 .episode_info #poster { border:1px solid #DEDEDE; float:left; margin-right:10px; }

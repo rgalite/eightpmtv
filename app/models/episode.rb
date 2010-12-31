@@ -31,6 +31,6 @@ class Episode < ActiveRecord::Base
   end
   
   def aired?
-    first_aired <= Date.today
+    !first_aired.nil? && first_aired <= Date.today
   end
 end
