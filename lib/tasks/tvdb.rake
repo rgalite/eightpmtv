@@ -77,7 +77,7 @@ namespace :tvdb do
     seasons.each do |season|
       tvdb = TvdbParty::Search.new(Tvshows::Application.config.the_tv_db_api_key)
       serie = tvdb.get_series_by_id(season.series.tvdb_id)
-      poster_url = serie.season_posters(season.number).first unless serie.season_posters(season.number).first.nil?
+      poster_url = serie.season_posters(season.number).first.path unless serie.season_posters(season.number).first.nil?
       
       p "Found #{season.series.name} S#{season.number.to_s.rjust(2, '0')} -- poster: #{poster_url}"
       season.update_attributes(:poster_url => poster_url)
