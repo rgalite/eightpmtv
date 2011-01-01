@@ -63,6 +63,12 @@ class User < ActiveRecord::Base
     photo.url(style ||= :medium)
   end
   
+  def gravatar_url(style = nil)
+    styles = { :medium => 128, :thumb => 48 }
+    gravatar_id = Digest::MD5.hexdigest(email.downcase)
+    "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{styles[style]}&r=g"
+  end
+  
   def likes?(item)
     !likes.detect{ |l| l.likeable == item && l.value > 0 }.nil?
   end

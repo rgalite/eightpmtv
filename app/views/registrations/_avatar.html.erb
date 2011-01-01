@@ -20,6 +20,19 @@
     </p>
     <p><%= f.file_field :photo %></p>
   </div>
+  
+  <div id="my_avatar">
+    <p class="title">Gravatar</p>
+    <div class="avatar_photo" style="margin-right:30px">
+      <div class="img"><%= image_tag(resource.gravatar_url(:medium))%></div>
+      <p>Medium size</p>
+    </div>
+    <div class="avatar_photo">
+      <div class="img"><%= image_tag(resource.gravatar_url(:thumb))%></div>
+      <p>Thumb</p>
+    </div>
+    <div class="clear"></div>
+  </div>
   <p><%= f.submit "Update" %></p>
   <% end %>
 </div>
