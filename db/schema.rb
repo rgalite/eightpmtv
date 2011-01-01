@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101230232320) do
+ActiveRecord::Schema.define(:version => 20110101201506) do
 
   create_table "actors", :force => true do |t|
     t.integer   "tvdb_id"
@@ -184,6 +184,17 @@ ActiveRecord::Schema.define(:version => 20101230232320) do
     t.boolean  "poster_processing"
     t.boolean  "seasons_processing"
   end
+
+  create_table "settings", :force => true do |t|
+    t.string   "var",                       :null => false
+    t.text     "value"
+    t.integer  "target_id"
+    t.string   "target_type", :limit => 30
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "settings", ["target_type", "target_id", "var"], :name => "index_settings_on_target_type_and_target_id_and_var", :unique => true
 
   create_table "slugs", :force => true do |t|
     t.string    "name"

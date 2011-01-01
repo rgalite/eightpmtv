@@ -4,7 +4,10 @@
     <%= devise_error_messages! %>
   
   <div id="my_avatar">
-    <p class="title">Use my own image</p>
+    <p class="title">
+      <%= f.radio_button :settings_use_avatar, "own", { :checked => current_user.settings.use_avatar == "own" } %>
+      <%= f.label :settings_use_avatar, "Use my own image", :value => "own" %>
+    </p>
     <div class="avatar_photo" style="margin-right:30px">
       <div class="img"><%= image_tag(resource.photo.url(:medium))%></div>
       <p>Medium size</p>
@@ -22,7 +25,10 @@
   </div>
   
   <div id="my_avatar">
-    <p class="title">Gravatar</p>
+    <p class="title">
+      <%= f.radio_button :settings_use_avatar, "gravatar", { :checked => current_user.settings.use_avatar == "gravatar" } %>
+      <%= f.label :settings_use_avatar, "Gravatar", :value => "gravatar" %>
+    </p>
     <div class="avatar_photo" style="margin-right:30px">
       <div class="img"><%= image_tag(resource.gravatar_url(:medium))%></div>
       <p>Medium size</p>

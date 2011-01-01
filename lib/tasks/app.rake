@@ -66,7 +66,6 @@ namespace :app do
     end
     
     p "The series have been updated at #{Time.at(b_time.to_i)}"
-    ApplicationSetting.last_update = b_time
-    ApplicationSetting.save
+    Settings.last_update = b_time
   end
 end

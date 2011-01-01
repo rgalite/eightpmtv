@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :friendships, :dependent => :destroy
   has_many :friends, :through => :friendships
   has_many :likes
+  has_settings
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
@@ -16,9 +17,11 @@ class User < ActiveRecord::Base
          
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation,
-                  :remember_me, :login, :photo
-  attr_accessor :login
-
+                  :remember_me, :login, :photo,
+                  :settings_use_avatar
+  attr_accessor :login,
+                :settings_use_avatar
+  
   validates_presence_of :username
   validates_uniqueness_of :username
   validates_length_of :username, :in => 2..24
@@ -28,6 +31,8 @@ class User < ActiveRecord::Base
                     }.merge(Tvshows::Application.config.paperclip_options)
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/jpg', 'image/png']
   validates_attachment_size :photo, :less_than => 2.megabytes
+  after_save :update_settings
+  before_create :create_settings
   
   def apply_omniauth(omniauth)
     authentication = self.authentications.build(:provider => omniauth["provider"],
@@ -60,10 +65,15 @@ class User < ActiveRecord::Base
   end
   
   def avatar_url(style = nil)
-    photo.url(style ||= :medium)
+    if settings.use_avatar == "gravatar"
+      gravatar_url(style)
+    else
+      photo.url(style ||= :medium)
+    end
   end
   
   def gravatar_url(style = nil)
+    style ||= :medium
     styles = { :medium => 128, :thumb => 48 }
     gravatar_id = Digest::MD5.hexdigest(email.downcase)
     "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{styles[style]}&r=g"
@@ -88,5 +98,17 @@ class User < ActiveRecord::Base
   def self.find_for_database_authentication(conditions)
    login = conditions.delete(:login)
    where(conditions).where(["username = :value OR email = :value", { :value => login }]).first
+  end
+  
+  def update_settings
+    if ["own", "gravatar"].include?(@settings_use_avatar)
+      settings.use_avatar = @settings_use_avatar
+    else
+      settings.use_avatar = "own"
+    end
+  end
+  
+  def create_settings
+    settings.use_avatar = "own"
   end
 end
