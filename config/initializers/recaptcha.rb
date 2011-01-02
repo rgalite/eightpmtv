@@ -1,5 +1,5 @@
 Recaptcha.configure do |config|
-  case ENV['RAILS_ENV']
+  case Rails.env
   when "development"
     config.public_key  = '6LdZB8ASAAAAAGNfoOuDWBnKdl7F58cBsVHMMkCk'
     config.private_key = '6LdZB8ASAAAAACYJ9CBecSPs58cMBK7H6yBGWi4_'

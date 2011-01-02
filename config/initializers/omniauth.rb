@@ -1,5 +1,5 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-  case ENV['RAILS_ENV']
+  case Rails.env
   when "production"
     provider :facebook, '162684943766137', '7479b090124cd92fd9a2e0e3a6164705'
   when "development"

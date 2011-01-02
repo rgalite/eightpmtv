@@ -57,7 +57,11 @@ Tvshows::Application.routes.draw do
   scope "shows", :as => "shows" do
     resources :genres, :only => [:show]
   end
-  resources :users, :only => [:show, :index]
+  resources :users, :only => [:show, :index] do
+    collection do
+      get :name
+    end
+  end
   resources :comments, :only => [] do
     member do
       get :like

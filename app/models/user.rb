@@ -93,6 +93,10 @@ class User < ActiveRecord::Base
     end 
     update_attributes(params) 
   end
+  
+  def name
+    username
+  end
     
   protected
   def self.find_for_database_authentication(conditions)
