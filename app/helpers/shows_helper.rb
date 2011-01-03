@@ -12,7 +12,7 @@ module ShowsHelper
   end
   
   def people_watching(serie)
-    people_watching = serie.watchers
+    people_watching = serie.watchers.all
     
     if people_watching.size.zero?
       desc = "Nobody is watching this TV show"
@@ -25,19 +25,19 @@ module ShowsHelper
         people_watching = people_watching - [current_user]
       end
       
-      friends_watching = current_user.friends_watching(serie)
+      followings_watching = current_user.followings_watching(serie)
       
       # Do not display more than 3 friends in the description
-      if friends_watching.size > 3
+      if followings_watching.size > 3
         # If there are more than 3 friends put a number of friends !
-        watchers << "#{friends_watching} of your friends"
+        watchers << "#{followings_watching} of your friends"
       else
         # Otherwise, lists the friends
-        friends_watching.each { |f| watchers << link_to(f.username, user_path(f)) ; people_watching.delete(f) } unless friends_watching.size.zero?
+        followings_watching.each { |f| watchers << link_to(f.username, user_path(f)) ; people_watching.delete(f) } unless followings_watching.size.zero?
       end
 
       # Remove friends from anonymous people
-      people_watching = people_watching - friends_watching
+      people_watching = people_watching - followings_watching
       
       # Finally, put the rest of the watchers (anonymous)
       if watchers.size.zero?
@@ -56,9 +56,9 @@ module ShowsHelper
   def watch_button(series)
     if user_signed_in?
       if current_user.watch?(series)
-        link_to "Remove", unsubscribe_show_path(series), :remote => true, :class => "rm-movie-icon"
+        link_to "Unfollow", unfollow_show_path(series), :remote => true, :class => "rm-movie-icon"
       else
-        link_to "Add", subscribe_show_path(series), :remote => true, :class => "add-movie-icon"
+        link_to "Follow", follow_show_path(series), :remote => true, :class => "add-movie-icon"
       end
     else
       "&nbsp;".html_safe

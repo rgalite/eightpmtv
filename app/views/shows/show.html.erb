@@ -54,5 +54,3 @@
 
 <!-- Comments -->
 <%= render :partial => "shared/comments", :locals => { :comment_path => comment_show_path(@series), :comments => @series.comments } %>
-
-<%= render :partial => "activity", :locals => { :series => @series } if current_user && @subscription %>

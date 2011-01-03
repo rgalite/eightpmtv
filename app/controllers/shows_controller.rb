@@ -75,9 +75,7 @@ class ShowsController < ApplicationController
   
   def show
     @series = Series.find(params[:id])
-    @subscription = nil
     if current_user
-      @subscription = Subscription.find_by_user_id_and_series_id(current_user.id, @series.id)
       @comment = Comment.new
     end
     
@@ -111,27 +109,35 @@ class ShowsController < ApplicationController
     redirect_to show_path(series)
   end
   
-  def subscribe
+  def follow
     @series = Series.find(params[:id])
-    @subscription = Subscription.find_by_series_id_and_user_id(@series.id, current_user.id)
-    @subscription ||= current_user.subscriptions.create(:series => @series, :user => current_user)
-    
-    respond_to do |format|
-      format.js   { } # render subscribe.js.erb
-      format.html { redirect_to subscription_path(@subscription) }
-      format.xml  { render :xml => @subscription }
+    if current_user.following?(@series)
+      respond_to do |format|
+        format.js   # render follow.js.erb
+        format.html { redirect_to shows_path(@series), :notice => "You are not following #{@series.name}." }
+      end
+    else
+      current_user.follow(@series)
+      respond_to do |format|
+        format.js   # render follow.js.erb
+        format.html { redirect_to shows_path(@series), :notice => "You are not following #{@series.name} anymore." }
+      end
     end
   end
   
-  def unsubscribe
+  def unfollow
     @series = Series.find(params[:id])
-    @subscription = Subscription.find_by_series_id_and_user_id(@series.id, current_user.id)
-    @subscription.destroy unless @subscription.nil?
-    
-    respond_to do |format|
-      format.js   # render unsubscribe.js.erb
-      format.html { redirect_to subscriptions_path }
-      format.xml  { render :xml => @subscription }
+    if current_user.following?(@series)
+      current_user.stop_following(@series)
+      respond_to do |format|
+        format.js   # render unsubscribe.js.erb
+        format.html { redirect_to shows_path(@series), :notice => "You are not following #{@series.name} anymore." }
+      end
+    else
+      respond_to do |format|
+        format.js   # render unsubscribe.js.erb
+        format.html { redirect_to shows_path(@series), :warn => "You are not following #{@series.name}." }
+      end
     end
   end
   

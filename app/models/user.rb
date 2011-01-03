@@ -5,13 +5,14 @@ class User < ActiveRecord::Base
   has_friendly_id :username, :use_slug => true, :approximate_ascii => true,
                   :max_length => 50  
   has_many :comments, :dependent => :nullify
-  has_many :friendships, :dependent => :destroy
-  has_many :friends, :through => :friendships
+  # has_many :friendships, :dependent => :destroy
+  # has_many :friends, :through => :friendships
   has_many :likes
-  has_many :followerships, :dependent => :destroy
-  has_many :followers, :through => :followerships, :source => :follower
-  has_many :followings, :through => :followerships, :source => :user
+  # has_many :followerships, :dependent => :destroy
+  # has_many :followers, :through => :followerships, :source => :follower
   has_settings
+  acts_as_follower
+  acts_as_followable
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
@@ -48,29 +49,19 @@ class User < ActiveRecord::Base
       self.email = omniauth["user_info"]["email"] if self.email.blank?
     end
   end
-  
+    
   def password_required?
     (authentications.empty? || !password.blank?) && super
   end
   
   def watch?(series)
-    series.subscriptions.any?{ |s| s.user == self }
+    self.following?(series)
   end
-  
-  def friends_watching(series)
-    fw = []
-    series.subscriptions.collect{ |s| fw << s.user if friends.include?(s.user) }
-    fw
+
+  def followings_watching(series)
+    series.watchers.find_all{ |w| following?(w) }
   end
-  
-  def is_a_friend_of?(user)
-    user.friends.include?(self)
-  end
-  
-  def follows?(user)
-    followings.include?(user)
-  end
-  
+      
   def avatar_url(style = nil)
     if settings.use_avatar == "gravatar"
       gravatar_url(style)

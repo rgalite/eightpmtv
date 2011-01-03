@@ -4,8 +4,8 @@ class Series < ActiveRecord::Base
   has_many :roles, :dependent => :destroy
   has_many :actors, :through => :roles, :order => "name ASC"
   has_many :comments, :as => :commentable, :order => "created_at desc"
-  has_many :subscriptions, :dependent => :destroy
-  has_many :watchers, :through => :subscriptions, :source => :user
+#  has_many :subscriptions, :dependent => :destroy
+#  has_many :watchers, :through => :subscriptions, :source => :user
   has_friendly_id :name, :use_slug => true, :approximate_ascii => true,
                   :max_length => 50
   has_and_belongs_to_many :genres, :order => "name ASC"
@@ -16,11 +16,10 @@ class Series < ActiveRecord::Base
   has_many :seasons, :dependent => :destroy, :order => "seasons.number ASC"
   has_many :episodes, :through => :seasons, :dependent => :destroy
   process_in_background :poster
-  
   after_save :attach_poster
   after_create :attach_episodes
-  
   attr_reader :poster_url
+  acts_as_followable  
   
   public  
   def set_actors(actors)
@@ -43,5 +42,9 @@ class Series < ActiveRecord::Base
   def poster_url=(value)
     @poster_url = value
     self.poster_processing = !value.blank?
+  end
+  
+  def watchers
+    self.user_followers
   end
 end

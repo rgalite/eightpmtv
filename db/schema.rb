@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110103002227) do
+ActiveRecord::Schema.define(:version => 20110103092639) do
 
   create_table "actors", :force => true do |t|
     t.integer   "tvdb_id"
@@ -87,25 +87,18 @@ ActiveRecord::Schema.define(:version => 20110103002227) do
 
   add_index "episodes", ["season_id"], :name => "episodes_season_id_ix"
 
-  create_table "followerships", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "follower_id"
+  create_table "follows", :force => true do |t|
+    t.integer  "followable_id",                      :null => false
+    t.string   "followable_type",                    :null => false
+    t.integer  "follower_id",                        :null => false
+    t.string   "follower_type",                      :null => false
+    t.boolean  "blocked",         :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "followerships", ["follower_id"], :name => "followerships_follower_id_ix"
-  add_index "followerships", ["user_id"], :name => "followerships_user_id_ix"
-
-  create_table "friendships", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "friend_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "friendships", ["friend_id"], :name => "friendships_friend_id_ix"
-  add_index "friendships", ["user_id"], :name => "friendships_user_id_ix"
+  add_index "follows", ["followable_id", "followable_type"], :name => "fk_followables"
+  add_index "follows", ["follower_id", "follower_type"], :name => "fk_follows"
 
   create_table "genres", :force => true do |t|
     t.string   "name"
@@ -217,16 +210,6 @@ ActiveRecord::Schema.define(:version => 20110103002227) do
 
   add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
-
-  create_table "subscriptions", :force => true do |t|
-    t.integer   "series_id"
-    t.integer   "user_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-  end
-
-  add_index "subscriptions", ["series_id"], :name => "subscriptions_series_id_ix"
-  add_index "subscriptions", ["user_id"], :name => "subscriptions_user_id_ix"
 
   create_table "users", :force => true do |t|
     t.string    "email",                               :default => "", :null => false

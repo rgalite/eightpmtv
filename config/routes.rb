@@ -6,7 +6,6 @@ Tvshows::Application.routes.draw do
   #get "roles/show"
   #get "actors/index"
   #get "actors/show"
-  resources :subscriptions
   match '/auth/:provider/callback' => "authentications#create"
   resources :authentications
 
@@ -44,8 +43,8 @@ Tvshows::Application.routes.draw do
     end
     member do
       get :add  
-      get :subscribe
-      get :unsubscribe
+      get :follow
+      get :unfollow
       post :comment
       get :get_poster
       get :get_seasons
