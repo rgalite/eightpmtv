@@ -33,7 +33,7 @@ module ShowsHelper
         watchers << "#{friends_watching} of your friends"
       else
         # Otherwise, lists the friends
-        friends_watching.each { |f| watchers << f.username ; people_watching.delete(f) } unless friends_watching.size.zero?
+        friends_watching.each { |f| watchers << link_to(f.username, user_path(f)) ; people_watching.delete(f) } unless friends_watching.size.zero?
       end
 
       # Remove friends from anonymous people
