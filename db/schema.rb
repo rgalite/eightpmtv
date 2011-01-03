@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110101201506) do
+ActiveRecord::Schema.define(:version => 20110103002227) do
 
   create_table "actors", :force => true do |t|
     t.integer   "tvdb_id"
@@ -86,6 +86,16 @@ ActiveRecord::Schema.define(:version => 20110101201506) do
   end
 
   add_index "episodes", ["season_id"], :name => "episodes_season_id_ix"
+
+  create_table "followerships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "follower_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "followerships", ["follower_id"], :name => "followerships_follower_id_ix"
+  add_index "followerships", ["user_id"], :name => "followerships_user_id_ix"
 
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"

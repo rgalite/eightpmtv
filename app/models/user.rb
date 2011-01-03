@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
   has_many :friendships, :dependent => :destroy
   has_many :friends, :through => :friendships
   has_many :likes
+  has_many :followerships, :dependent => :destroy
+  has_many :followers, :through => :followerships, :source => :follower
+  has_many :followings, :through => :followerships, :source => :user
   has_settings
   
   # Include default devise modules. Others available are:
@@ -62,6 +65,10 @@ class User < ActiveRecord::Base
   
   def is_a_friend_of?(user)
     user.friends.include?(self)
+  end
+  
+  def follows?(user)
+    followings.include?(user)
   end
   
   def avatar_url(style = nil)

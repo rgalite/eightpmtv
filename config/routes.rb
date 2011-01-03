@@ -61,6 +61,12 @@ Tvshows::Application.routes.draw do
     collection do
       get :name
     end
+    member do
+      get :follow
+      get :unfollow
+      get :followers
+      get :following
+    end
   end
   resources :comments, :only => [] do
     member do

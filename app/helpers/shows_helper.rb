@@ -56,9 +56,9 @@ module ShowsHelper
   def watch_button(series)
     if user_signed_in?
       if current_user.watch?(series)
-        link_to "Remove", unsubscribe_show_path(series), :remote => true, :class => "rm-icon"
+        link_to "Remove", unsubscribe_show_path(series), :remote => true, :class => "rm-movie-icon"
       else
-        link_to "Add", subscribe_show_path(series), :remote => true, :class => "add-icon"
+        link_to "Add", subscribe_show_path(series), :remote => true, :class => "add-movie-icon"
       end
     else
       "&nbsp;".html_safe

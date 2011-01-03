@@ -1,0 +1,15 @@
+<div class="left_articles">
+  <div class="buttons">
+	  <p><%= follow_link(@user) %></p>
+	</div>
+  <h2><%= @user.name %></h2>
+	<p class="description">&nbsp;</p>
+	<div id="user-<%= @user.id %>" class="user_info">
+  	<div>
+      <%= image_tag(@user.avatar_url(:medium), :class => "thumbnail") %>
+      <div>
+      </div>
+  	</div>
+  	<div class="clear"></div>
+  </div>
+</div>
