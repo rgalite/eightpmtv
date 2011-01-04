@@ -7,8 +7,7 @@
   home page.
 </p>
 <p>
-  You can check <%= @follower.name %>'s profile by clicking <%= link_to "here", @follower %>.<br />
+  You can check <%= @follower.name %>'s profile by clicking <%= link_to "here", user_path(@follower) %>.<br />
   If you don't want <%= @follower.name %> to follow you, you can block him by clicking <%= link_to "here", root_url %>.
 </p>
-
-<p><%= link_to "8PM.TV", root_url %></p>
+<p>This e-mail was sent by <%= link_to "8PM.TV", root_url %> robot. Please do not reply.</p>
