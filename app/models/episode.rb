@@ -18,7 +18,7 @@ class Episode < ActiveRecord::Base
   end
   
   def attach_poster
-    Delayed::Job.enqueue(AttachPosterToEpisodeJob.new(id, @poster_url), 4) unless @poster_url.nil?
+    Delayed::Job.enqueue(AttachPosterToEpisodeJob.new(id, @poster_url), { :priority => 4 }) unless @poster_url.nil?
   end
   
   def poster_url=(value)

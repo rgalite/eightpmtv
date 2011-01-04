@@ -1,6 +1,5 @@
-Delayed::Job.auto_scale = true
 if %w{ production staging }.include?(Rails.env)
-  Delayed::Job.auto_scale_manager = :heroku
+  Delayed::Job.scaler = :heroku
 else
-  Delayed::Job.auto_scale_manager = :local
+  Delayed::Job.scaler = :null
 end

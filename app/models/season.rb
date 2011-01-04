@@ -11,7 +11,7 @@ class Season < ActiveRecord::Base
   after_save :attach_poster
   
   def attach_poster
-    Delayed::Job.enqueue(AttachPosterToSeasonJob.new(id, @poster_url), 2) unless @poster_url.nil?
+    Delayed::Job.enqueue(AttachPosterToSeasonJob.new(id, @poster_url), { :priority => 2 }) unless @poster_url.nil?
   end
   
   def poster_url=(value)
