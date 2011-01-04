@@ -46,5 +46,6 @@ gem 'jquery-rails'
 gem 'delayed_job'
 gem "delayed_paperclip"
 gem 'recaptcha', :require => 'recaptcha/rails'
+gem "workless"
 
 

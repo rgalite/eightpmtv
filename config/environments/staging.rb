@@ -58,4 +58,6 @@ Tvshows::Application.configure do
     :url => ":s3_alias_url",
     :path => ":class/:attachment/:id/:style/:basename.:extension",
   }
+  
+  Delayed::Job.scaler = :heroku
 end
