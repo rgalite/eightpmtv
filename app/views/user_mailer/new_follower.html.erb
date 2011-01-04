@@ -1,0 +1,14 @@
+<h3><%= @follower.name %> is now following you on 8PM.TV</h3>
+<p>
+  Hi <%= @user.name %>!<br />
+  <%= @follower.name %> is now following you on 8PM.TV.<br />
+  That means he can see what TV shows you're watching,
+  who the people you following are and he can see your comments on his
+  home page.
+</p>
+<p>
+  You can check <%= @follower.name %>'s profile by clicking <%= link_to "here", @follower %>.<br />
+  If you don't want <%= @follower.name %> to follow you, you can block him by clicking <%= link_to "here", root_url %>.
+</p>
+
+<p><%= link_to "8PM.TV", root_url %></p>

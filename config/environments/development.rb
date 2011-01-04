@@ -24,10 +24,22 @@ Tvshows::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
   
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
   
   config.paperclip_options = {
     :path => ":rails_root/public/:class/:attachment/:id/:style/:basename.:extension",
     :url => "/:class/:attachment/:id/:style/:basename.:extension",
+  }
+  
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :domain               => "eightpm.tv",
+    :user_name            => "rm@eightpm.tv",
+    :password             => "bgtqmc5u",
+    :authentication       => "plain",
+    :enable_starttls_auto => true
   }
 end
 

@@ -4,8 +4,6 @@ class Series < ActiveRecord::Base
   has_many :roles, :dependent => :destroy
   has_many :actors, :through => :roles, :order => "name ASC"
   has_many :comments, :as => :commentable, :order => "created_at desc"
-#  has_many :subscriptions, :dependent => :destroy
-#  has_many :watchers, :through => :subscriptions, :source => :user
   has_friendly_id :name, :use_slug => true, :approximate_ascii => true,
                   :max_length => 50
   has_and_belongs_to_many :genres, :order => "name ASC"

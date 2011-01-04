@@ -12,7 +12,8 @@ class UsersController < ApplicationController
   def follow
     @user = User.find(params[:id])
     if !current_user.following?(@user)
-      current_user.follow(@user)
+      fw = current_user.follow(@user)
+      UserMailer.new_follower(current_user, @user).deliver if fw && !fw.blocked
       redirect_to user_path(@user), :notice => "Congratulations! You are now following #{@user.username}!"
     else
       redirect_to user_path(@user), :warn => "Uh oh. It's like you're already following #{@user.username}."

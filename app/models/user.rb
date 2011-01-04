@@ -5,11 +5,7 @@ class User < ActiveRecord::Base
   has_friendly_id :username, :use_slug => true, :approximate_ascii => true,
                   :max_length => 50  
   has_many :comments, :dependent => :nullify
-  # has_many :friendships, :dependent => :destroy
-  # has_many :friends, :through => :friendships
   has_many :likes
-  # has_many :followerships, :dependent => :destroy
-  # has_many :followers, :through => :followerships, :source => :follower
   has_settings
   acts_as_follower
   acts_as_followable
@@ -94,6 +90,10 @@ class User < ActiveRecord::Base
   
   def name
     username
+  end
+  
+  def series
+    following_series
   end
     
   protected

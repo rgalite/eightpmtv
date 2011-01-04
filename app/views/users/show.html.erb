@@ -3,12 +3,34 @@
 	  <p><%= follow_link(@user) %></p>
 	</div>
   <h2><%= @user.name %></h2>
-	<p class="description">&nbsp;</p>
+	<p class="description">Joined 8PM.TV community on <%= (l @user.created_at.to_date, :format => :dmy_with_long_month) %></p>
 	<div id="user-<%= @user.id %>" class="user_info">
   	<div>
       <%= image_tag(@user.avatar_url(:medium), :class => "thumbnail") %>
-      <div>
+      <% if !@user.following_users.size.zero? %>
+      <div id="user_followings" style="float:left;width:380px">
+        <p style="margin:0px 0px 3px;border-bottom:1px solid #CCC;font-weight:bold">
+          Following:
+        </p>
+        <% @user.following_users.limit(10).each do |following| %>
+          <div>
+            <%= image_tag(following.avatar_url(:thumb)) %>
+            <br />
+            <span><%= following.name %></span>
+          </div>
+        <% end %>
+        <div class="clear"></div>
       </div>
+      <% end %>
+      <% if !@user.users_followers.size.zero? %>
+      <div id="user_followers" style="float:left;width:380px;margin-left:20px">
+        <p style="margin:0px 0px 3px;border-bottom:1px solid #CCC;font-weight:bold">Followers:</p>
+        <% @user.users_followers.limit(10).each do |follower| %>
+          <div><%= image_tag(follower.avatar_url(:thumb)) %><br /><%= follower.name %></div>
+        <% end %>
+        <div class="clear"></div>
+      </div>
+      <% end %>
   	</div>
   	<div class="clear"></div>
   </div>
