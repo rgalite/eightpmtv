@@ -29,7 +29,7 @@ class Series < ActiveRecord::Base
   end
       
   def attach_poster
-    Delayed::Job.enqueue(AttachPosterToSeriesJob.new(id, @poster_url), 2) unless @poster_url.blank?
+    Delayed::Job.enqueue(AttachPosterToSeriesJob.new(id, @poster_url), 0) unless @poster_url.blank?
   end
   
   def attach_episodes
