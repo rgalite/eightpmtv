@@ -32,6 +32,7 @@ gem 'aws-s3', :require => 'aws/s3'
 group :development do
   gem "ruby-debug"
   gem 'heroku_san'
+  gem "rush"
 end
 
 gem "mongrel"
@@ -43,9 +44,6 @@ gem "paperclip"
 gem "omniauth"
 gem "friendly_id", "~> 3.1"
 gem 'jquery-rails'
-gem 'delayed_job'
 gem "delayed_paperclip"
 gem 'recaptcha', :require => 'recaptcha/rails'
-gem "workless"
-
 
