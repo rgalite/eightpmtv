@@ -4,7 +4,7 @@ class Series < ActiveRecord::Base
   has_many :roles, :dependent => :destroy
   has_many :actors, :through => :roles, :order => "name ASC"
   has_many :comments, :as => :commentable, :order => "created_at desc"
-  has_friendly_id :name, :use_slug => true, :approximate_ascii => true,
+  has_friendly_id :full_name, :use_slug => true, :approximate_ascii => true,
                   :max_length => 50
   has_and_belongs_to_many :genres, :order => "name ASC"
   has_attached_file :poster, {
@@ -47,6 +47,6 @@ class Series < ActiveRecord::Base
   end
   
   def full_name
-    "#{name_prefix} #{name}"
+    @full_name ||= "#{name_prefix} #{name}"
   end
 end
