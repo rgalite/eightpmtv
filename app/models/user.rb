@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username
   validates_length_of :username, :in => 2..24
   has_attached_file :photo, {
-                      :styles => { :medium => "128x128#", :thumb => "48x48#" },
+                      :styles => { :medium => "128x128#", :thumb => "48x48#", :small => "20x20#" },
                       :default_url => "/images/user_default_icon_:style.png"
                     }.merge(Tvshows::Application.config.paperclip_options)
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/jpg', 'image/png']

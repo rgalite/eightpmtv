@@ -1,6 +1,8 @@
 class AuthenticationsController < ApplicationController
   # GET /authentications
   # GET /authentications.xml
+  before_filter :authenticate_user!, :except => [:create]
+  
   def index
     @authentications = current_user.authentications if current_user
   end
@@ -27,9 +29,14 @@ class AuthenticationsController < ApplicationController
   # DELETE /authentications/1.xml
   def destroy
     @authentication = current_user.authentications.find(params[:id])
-    @authentication.destroy
-      
-    redirect_to(authentications_url)
+    if current_user.password.blank? && current_user.authentications.size == 1
+      flash[:error] = "You cannot delete the last connection because you have not set a password."
+      redirect_to(edit_user_registration_url(:tab => "password"))
+    else
+      @authentication.destroy
+      flash[:notice] = "The connection to #{@authentication.provider} has been deleted successfully"
+      redirect_to(edit_user_registration_url(:tab => "connections"))
+    end
   end
   
   private

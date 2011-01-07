@@ -384,6 +384,8 @@ a.rm-movie-icon { background: url(/images/movie_remove.png) no-repeat left cente
 	border-bottom-color:#4582BA;
 }
 #menu-login { float:right !important; }
+#user_photo { display:inline-block; margin-right:5px; vertical-align:middle; }
+#user_name { display:inline-block;}
 
 /* settings */
 #settings_options { margin-right:25px; }
