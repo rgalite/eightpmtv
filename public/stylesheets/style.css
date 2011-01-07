@@ -388,7 +388,10 @@ a.rm-movie-icon { background: url(/images/movie_remove.png) no-repeat left cente
 #user_name { display:inline-block;}
 
 /* settings */
-#settings_options { margin-right:25px; }
+#settings_photo { margin-bottom:10px; }
+#settings_photo span { border:1px solid #CCC;; display:inline-block; margin-left:36px; padding:3px; }
+
+#settings_options { float:left;margin-top:10px;width:200px; margin-right:25px; }
 #settings_options ul { padding-left:0px; list-style:none; }
 #settings_options ul li { 
 	border:1px solid white;

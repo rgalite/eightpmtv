@@ -10,7 +10,12 @@
   });
 </script>
 
-<div style="float:left;margin-top:10px;width:200px" id="settings_options">
+<div id="settings_options">
+  <div id="settings_photo">
+    <span>
+    <%= image_tag(current_user.avatar_url(:medium)) %>
+    </span>
+  </div>
   <ul id="settings_tabs">
     <li ref="#account_settings" class="selected">Account</li>
     <li ref="#email_settings">E-mail</li>
