@@ -2,7 +2,7 @@
 <% for show in @genre.series %>
 <div class="left_articles">
 	<div id="series_info">
-	  <h2><%= link_to show.name, show_path(show) %></h2>
+	  <h2><%= link_to show.full_name, show_path(show) %></h2>
   	<p class="description">
   	  <%= people_watching(show) %>
   	</p>

@@ -31,7 +31,7 @@ class ShowsController < ApplicationController
       results = { :query => params[:query], :suggestions => [], :data => [] }
       series = Series.where("lower(name) LIKE lower(:name)", { :name => "%#{params[:query]}%"} ).all
       series.each do |serie|
-        results[:suggestions] << serie.name
+        results[:suggestions] << serie.full_name
         results[:data] << { :id => serie.id, :param => serie.to_param } 
       end
       render :json => results.to_json
@@ -99,9 +99,14 @@ class ShowsController < ApplicationController
                           :rating_count => s.rating_count,
                           :air_time => s.air_time, :air_day => s.air_day,
                           :seasons_processing => true, :poster_url => s.poster)
+      if series.name.downcase.starts_with?('the ')
+        serie.name_prefix = "The"
+        s.name = serie.name.gsub(/^The\s+/, "")
+      end
+        
       s.genres.each { |genre| series.genres << Genre.find_or_initialize_by_name(genre) }
       if !series.save
-        redirect_to root_url, :notice => "Sorry, there was a problem saving the TV show #{series.name}. Try again later."
+        redirect_to root_url, :notice => "Sorry, there was a problem saving the TV show #{series.full_name}. Try again later."
         return
       end
     end
@@ -114,13 +119,13 @@ class ShowsController < ApplicationController
     if current_user.following?(@series)
       respond_to do |format|
         format.js   # render follow.js.erb
-        format.html { redirect_to shows_path(@series), :notice => "You are not following #{@series.name}." }
+        format.html { redirect_to shows_path(@series), :notice => "You are not following #{@series.full_name}." }
       end
     else
       current_user.follow(@series)
       respond_to do |format|
         format.js   # render follow.js.erb
-        format.html { redirect_to shows_path(@series), :notice => "You are not following #{@series.name} anymore." }
+        format.html { redirect_to shows_path(@series), :notice => "You are not following #{@series.full_name} anymore." }
       end
     end
   end
@@ -155,7 +160,7 @@ class ShowsController < ApplicationController
 
   def my
     if params[:id].blank?
-      @shows = current_user.series if current_user
+      @shows = current_user.series.order("name ASC") if current_user
       render "my_list"
     else
       @show = Series.find()
@@ -199,12 +204,12 @@ class ShowsController < ApplicationController
   
   private
   def name_alpha
-    if params[:letter] == "0" || params[:letter].nil?
+    if params[:letter].nil?
       @series = Series.where("name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ? \
                               OR name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ?",
                               "0%", "1%", "2%", "3%", "4%", "5%", "6%", "7%", "8%", "9%")
     elsif ('A'..'Z').include?(params[:letter])
-      @series = Series.where("name LIKE ? OR name LIKE ?", params[:letter] + '%', "The #{params[:letter]}%").order("name asc")
+      @series = Series.where("name LIKE ?", "#{params[:letter]}%").order("name asc")
     else
       @series = []
     end

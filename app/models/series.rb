@@ -45,4 +45,8 @@ class Series < ActiveRecord::Base
   def watchers
     self.user_followers
   end
+  
+  def full_name
+    "#{name_prefix} #{name}"
+  end
 end
