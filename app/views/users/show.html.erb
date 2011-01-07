@@ -8,26 +8,26 @@
   	<div>
       <%= image_tag(@user.avatar_url(:medium), :class => "thumbnail") %>
       <% if !@user.following_users.size.zero? %>
-      <div id="user_followings" style="float:left;width:380px">
-        <p style="margin:0px 0px 3px;border-bottom:1px solid #CCC;font-weight:bold">
+      <div id="user_followings">
+        <p class="title">
           Following:
         </p>
         <% @user.following_users.limit(10).each do |following| %>
-          <p style="margin:0px;max-width:70px;text-align:center">
-            <%= image_tag(following.avatar_url(:thumb)) %><br />
-            <%= following.name %>
+          <p class="fw-info">
+            <%= link_to(image_tag(following.avatar_url(:thumb)), following) %><br />
+            <%= link_to following.name, following %>
           </p>
         <% end %>
         <div class="clear"></div>
       </div>
       <% end %>
       <% if !@user.users_followers.size.zero? %>
-      <div id="user_followers" style="float:left;width:380px;margin-left:20px">
-        <p style="margin:0px 0px 3px;border-bottom:1px solid #CCC;font-weight:bold">Followers:</p>
+      <div id="user_followers">
+        <p class="title">Followers:</p>
         <% @user.users_followers.limit(10).each do |follower| %>
-          <p style="margin:0px;max-width:70px;text-align:center">
-            <%= image_tag(follower.avatar_url(:thumb)) %><br />
-            <%= follower.name %>
+          <p class="fw-info">
+            <%= link_to((image_tag(follower.avatar_url(:thumb))), follower) %><br />
+            <%= link_to follower.name, follower %>
           </p>
         <% end %>
         <div class="clear"></div>

@@ -52,9 +52,11 @@ $(document).ready(function(){
 	});
 	
 	// NOTICES Stuff
-	$(".flash-handler").click(function(){
-		$(this).parent().parent().slideUp();
-		return false;
+	$(".flash-handler").each(function(){
+		$(this).click(function(){
+			$(this).parent().parent().slideUp();
+			return false;
+		});
 	});
 });
 

@@ -295,6 +295,7 @@ a.rm-movie-icon { background: url(/images/movie_remove.png) no-repeat left cente
 #login-frame #standard-login { margin:0px 10px 0px auto; }
 #login-frame #services-login { margin:0px auto 0px 10px; }
 #login-frame #services-login #my-authentications { text-align:center; }
+.box .title { margin-bottom:20px;text-align:center }
 
 /* Menu */
 #header-bar {
@@ -419,3 +420,17 @@ div.flash p { clear:right;color:black;margin:0px;text-align:center; }
 #flash_notice {	background-color:#B8FFB9;border:1px solid #009100 }
 #flash_error { background-color:#FFE3EA;border:1px solid #E01B4C;}
 #flash_warn { background-color:#FFFEDE;border:1px solid #E8CD00;}
+
+/* Errors in forms */
+div.field_with_errors { display:inline; }
+div.field_with_errors label { color: #E01B4C; }
+div.field_with_errors input { border:1px solid #E01B4C; }
+
+/* User view */
+.user_info { }
+div.user_info p.title { margin:0px 0px 3px;border-bottom:1px solid #CCC;font-weight:bold }
+div.user_info p.fw-info { float:left;margin:0px 5px;max-width:70px;text-align:center }
+div.user_info p.fw-info img { border:1px solid white; }
+div.user_info p.fw-info img:hover { border-color: #CCC; }
+#user_followings, #user_followers { float:left;width:380px }
+#user_followers { margin-left:20px }

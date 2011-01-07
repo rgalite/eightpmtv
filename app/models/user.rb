@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   has_many :authentications, :dependent => :destroy
-  has_many :subscriptions, :dependent => :destroy
   has_many :series, :through => :subscriptions, :order => "name"
   has_friendly_id :username, :use_slug => true, :approximate_ascii => true,
                   :max_length => 50  
@@ -17,9 +16,9 @@ class User < ActiveRecord::Base
          
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation,
-                  :remember_me, :login, :photo,
+                  :remember_me, :login, :photo, :captcha
                   :settings_use_avatar
-  attr_accessor :login,
+  attr_accessor :login, :captcha,
                 :settings_use_avatar
   
   validates_presence_of :username
@@ -95,7 +94,7 @@ class User < ActiveRecord::Base
   def series
     following_series
   end
-    
+  
   protected
   def self.find_for_database_authentication(conditions)
    login = conditions.delete(:login)

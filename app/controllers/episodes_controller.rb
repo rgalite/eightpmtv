@@ -11,9 +11,9 @@ class EpisodesController < ApplicationController
   def comment
     if user_signed_in?
       @episode = Episode.find(params[:id])
-      c = @episode.comments.build(:content => params[:comment][:content],
+      @comment = @episode.comments.build(:content => params[:comment][:content],
                                  :user => current_user) 
-      save_comment(c)
+      save_comment(@comment)
     end
   end
   

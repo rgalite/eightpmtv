@@ -6,9 +6,9 @@ class SeasonsController < ApplicationController
   def comment
     if user_signed_in?
       @season = Season.find(params[:id])
-      c = @season.comments.build(:content => params[:comment][:content],
+      @comment = @season.comments.build(:content => params[:comment][:content],
                                  :user => current_user) 
-      save_comment(c)
+      save_comment(@comment)
     end
   end
   

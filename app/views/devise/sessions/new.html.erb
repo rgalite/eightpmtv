@@ -2,7 +2,7 @@
   <div id="standard-login">
     <div class="boxtop"></div>
     <div class="box">
-      <p style="margin-bottom:20px;text-align:center"><b>Standard sign in</b></p>
+      <p class="title"><b>Standard sign in</b></p>
       <%= form_for(resource, :as => resource_name, 
                    :url => session_path(resource_name)) do |f| %>
         <p style="margin-bottom:10px"><%= f.label :login, "Username or e-mail address" %><br /> <%= f.text_field :login %></p>
@@ -26,7 +26,7 @@
   <div id="services-login">
     <div class="boxtop"></div>
     <div class="box">
-      <p style="margin-bottom:20px;text-align:center"><b>Connect with your social account</b></h2>
+      <p class="title"><b>Connect with your social account</b></h2>
       <div id="my-authentications">
         <div class="auth-method">
           <%= link_to (image_tag "twitter_connect.gif"), "/auth/twitter" %>
