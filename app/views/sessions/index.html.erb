@@ -1,26 +1,24 @@
-<% content_for :slider do %>
-  <div id="slider" style="margin:0 auto">
-	  <%= image_tag "banner_1.jpg", :title => "Chuck banner 1" %>
-	  <%= image_tag "banner_2.jpg", :title => "Chuck banner 2" %>
-	  <%= image_tag "banner_3.jpg", :title => "Chuck banner 3" %>
-	</div>
-<% end %>
-
 <div id="activities">
-  <% @activities.each do |activity| %>
-  <div class="bubble">
-    <blockquote>
-      <div class="actor-avatar">
-        <%= image_tag(activity.actor_img) %>
-      </div>
-      <div style="activity">
-        <div class="activity-content">
-          <%= render_activity(activity) %>
+  <% if @activities.count > 0 %>
+    <% @activities.each do |activity| %>
+    <div class="bubble">
+      <blockquote>
+        <div class="actor-avatar">
+          <%= image_tag(activity.actor_img) %>
         </div>
-        <p style="font-style:italic" class="activity-time"><%= activity.created_at.to_pretty %></p>
-      </div>
-      <div class="clear"></div>
-    </blockquote>
+        <div style="activity">
+          <div class="activity-content">
+            <%= render_activity(activity) %>
+          </div>
+          <p style="font-style:italic" class="activity-time"><%= activity.created_at.to_pretty %></p>
+        </div>
+        <div class="clear"></div>
+      </blockquote>
+    </div>
+    <% end %>
+  <% else %>
+  <div id="no-activity" style="border:1px solid black;height:50px">
+    <p style="margin: auto 0;line-height:4em;text-align:center">Nothing?</p>
   </div>
   <% end %>
 </div>
