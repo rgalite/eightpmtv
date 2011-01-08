@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
          
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation,
-                  :remember_me, :login, :photo, :captcha
+                  :remember_me, :login, :photo, :captcha,
                   :settings_use_avatar
   attr_accessor :login, :captcha,
                 :settings_use_avatar
@@ -68,7 +68,7 @@ class User < ActiveRecord::Base
   
   def gravatar_url(style = nil)
     style ||= :medium
-    styles = { :medium => 128, :thumb => 48 }
+    styles = { :medium => 128, :thumb => 48, :small => 20 }
     gravatar_id = Digest::MD5.hexdigest(email.downcase)
     "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{styles[style]}&r=g"
   end
@@ -109,8 +109,6 @@ class User < ActiveRecord::Base
   def update_settings
     if ["own", "gravatar"].include?(@settings_use_avatar)
       settings.use_avatar = @settings_use_avatar
-    else
-      settings.use_avatar = "own"
     end
   end
   
