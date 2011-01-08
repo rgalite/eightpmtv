@@ -58,7 +58,7 @@
         <ul class="menu" id="menu-login">
           <% if user_signed_in? %>
   				<li class="folded">
-  				  <%= link_to (content_tag :span, image_tag(current_user.avatar_url(:small), :style => "display:inline-block"), :id => "user_photo") + (content_tag :span, current_user.username, :id => "user_name"), edit_user_registration_path %>
+  				  <%= link_to (content_tag :span, image_tag(current_user.avatar_url(:small), :style => "display:inline-block"), :id => "user_photo") + (content_tag :span, current_user.username, :id => "user_name"), current_user %>
   				  <ul class="submenu" style="display:none">
   				    <li><%= link_to "Settings", edit_user_registration_path %>
   				    <li class="last"><%= link_to "Logout", destroy_user_session_path %></li>
