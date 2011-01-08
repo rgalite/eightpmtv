@@ -17,8 +17,9 @@
     </div>
     <% end %>
   <% else %>
-  <div id="no-activity" style="border:1px solid black;height:50px">
-    <p style="margin: auto 0;line-height:4em;text-align:center">Nothing?</p>
-  </div>
+  <p style="margin: 20px 0px;text-align:center">
+    No activity for the moment. <br />
+    Follow <%= link_to 'people', users_path %> or <%= link_to 'series', shows_path %> to keep this page full!
+  </p>
   <% end %>
 </div>

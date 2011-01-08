@@ -20,6 +20,6 @@ class Season < ActiveRecord::Base
   end
   
   def full_name
-    @full_name ||= "#{series.full_name} S#{number.rjust(2, '0')}"
+    @full_name ||= "#{series.full_name} S#{number.to_s.rjust(2, '0')}"
   end
 end
