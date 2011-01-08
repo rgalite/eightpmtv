@@ -27,5 +27,16 @@ module ApplicationHelper
   
   def comment_avatar_url(comment)
     comment.user.nil? ? "/images/user_default_icon_thumb.png" : comment.user.avatar_url(:thumb)
+  end
+  
+  def render_activity(activity)
+    to_render = link_to(content_tag(:span, activity.actor_name), activity.actor_path)
+    activity_data = JSON.parse(activity.data)
+    case activity.kind
+    when "comment"
+      to_render << " wrote a ".html_safe + (link_to 'comment', activity_data['path']) + " about ".html_safe + (link_to activity_data['commented_name'], activity_data['commented_path']) + ":<br />".html_safe
+    end
+    to_render << content_tag(:p, activity_data["content"]) 
+    content_tag(:div, to_render, :class => 'activity-content')
   end    
 end

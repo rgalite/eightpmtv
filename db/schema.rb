@@ -10,7 +10,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110107194111) do
+ActiveRecord::Schema.define(:version => 20110107221902) do
+
+  create_table "activities", :force => true do |t|
+    t.integer  "actor_id"
+    t.string   "actor_type"
+    t.string   "actor_path"
+    t.string   "actor_name"
+    t.string   "actor_img"
+    t.string   "kind"
+    t.string   "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "activities", ["actor_type", "actor_id"], :name => "activities_actor_type_actor_id_ix"
+  add_index "activities", ["created_at"], :name => "activities_created_at_ix"
 
   create_table "actors", :force => true do |t|
     t.integer   "tvdb_id"

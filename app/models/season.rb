@@ -18,4 +18,8 @@ class Season < ActiveRecord::Base
     @poster_url = value
     self.poster_processing = !value.blank?
   end
+  
+  def full_name
+    @full_name ||= "#{series.full_name} S#{number.rjust(2, '0')}"
+  end
 end

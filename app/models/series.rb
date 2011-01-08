@@ -13,11 +13,12 @@ class Series < ActiveRecord::Base
   has_many :likes, :as => :likeable, :dependent => :destroy
   has_many :seasons, :dependent => :destroy, :order => "seasons.number ASC"
   has_many :episodes, :through => :seasons, :dependent => :destroy
+  has_many :activities, :dependent => :destroy, :as => :actor
   process_in_background :poster
   after_save :attach_poster
   after_create :attach_episodes
   attr_reader :poster_url
-  acts_as_followable  
+  acts_as_followable
   
   public  
   def set_actors(actors)
@@ -47,6 +48,6 @@ class Series < ActiveRecord::Base
   end
   
   def full_name
-    @full_name ||= "#{name_prefix} #{name}"
+    @full_name ||= (name_prefix.blank? ? name : "#{name_prefix} #{name}")
   end
 end

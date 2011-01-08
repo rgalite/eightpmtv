@@ -439,3 +439,9 @@ div.user_info p.fw-info img { border:1px solid white; }
 div.user_info p.fw-info img:hover { border-color: #CCC; }
 #user_followings, #user_followers { float:left;width:380px }
 #user_followers { margin-left:20px }
+
+/* activities */
+#activities .bubble blockquote { padding:10px; }
+#activities .activity-content, #activities .activity-time { margin:0px 0px 0px 60px; }
+#activities .actor-avatar { float:left; }
+#activities .activity { float:left }

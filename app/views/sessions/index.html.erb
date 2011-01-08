@@ -5,3 +5,20 @@
 	  <%= image_tag "banner_3.jpg", :title => "Chuck banner 3" %>
 	</div>
 <% end %>
+
+<div id="activities">
+  <% @activities.each do |activity| %>
+    <div class="bubble">
+      <blockquote>
+        <div class="actor-avatar">
+          <%= image_tag(activity.actor_img) %>
+        </div>
+        <div style="activity">
+          <%= render_activity(activity) %>
+          <p style="font-style:italic" class="activity-time"><%= activity.created_at.to_pretty %></p>
+        </div>
+        <div class="clear"></div>
+      </blockquote>
+    </div>
+  <% end %>
+</div>

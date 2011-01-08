@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
                     }.merge(Tvshows::Application.config.paperclip_options)
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/jpg', 'image/png']
   validates_attachment_size :photo, :less_than => 2.megabytes
+  has_many :activities, :dependent => :destroy, :as => :actor
   after_save :update_settings
   before_create :create_settings
   
@@ -91,10 +92,14 @@ class User < ActiveRecord::Base
     username
   end
   
+  def full_name
+    username
+  end
+  
   def series
     following_series
   end
-  
+    
   protected
   def self.find_for_database_authentication(conditions)
    login = conditions.delete(:login)

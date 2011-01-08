@@ -33,4 +33,8 @@ class Episode < ActiveRecord::Base
   def aired?
     !first_aired.nil? && first_aired <= Date.today
   end
+  
+  def full_name
+    @full_name ||= "#{series.full_name} S#{number.rjust(2, '0')}"
+  end
 end
