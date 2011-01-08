@@ -121,9 +121,10 @@ class ShowsController < ApplicationController
         format.html { redirect_to shows_path(@series), :notice => "You are not following #{@series.full_name}." }
       end
     else
-      current_user.follow(@series)
+      fw = current_user.follow(@series)
       a = current_user.activities.create(:actor_path => user_path(current_user),
                                          :actor_img => current_user.photo.url(:thumb),
+                                         :subject => fw,
                                          :kind => "follow_serie",
                                          :data => { "serie_path" => show_path(@series),
                                                     "serie_name" => @series.full_name,

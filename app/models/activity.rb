@@ -1,5 +1,6 @@
 class Activity < ActiveRecord::Base
   belongs_to :actor, :polymorphic => true
+  belongs_to :subject, :polymorphic => true
   
   validates :actor_name, :presence => true
   validates :kind, :presence => true

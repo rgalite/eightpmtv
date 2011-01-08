@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110107221902) do
+ActiveRecord::Schema.define(:version => 20110108011715) do
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
@@ -22,10 +22,12 @@ ActiveRecord::Schema.define(:version => 20110107221902) do
     t.string   "data"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "subject_id"
+    t.string   "subject_type"
   end
 
-  add_index "activities", ["actor_type", "actor_id"], :name => "activities_actor_type_actor_id_ix"
-  add_index "activities", ["created_at"], :name => "activities_created_at_ix"
+  add_index "activities", ["actor_type", "actor_id"], :name => "altered_activities_actor_type_actor_id_ix"
+  add_index "activities", ["created_at"], :name => "altered_activities_created_at_ix"
 
   create_table "actors", :force => true do |t|
     t.integer   "tvdb_id"
