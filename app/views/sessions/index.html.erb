@@ -8,17 +8,19 @@
 
 <div id="activities">
   <% @activities.each do |activity| %>
-    <div class="bubble">
-      <blockquote>
-        <div class="actor-avatar">
-          <%= image_tag(activity.actor_img) %>
-        </div>
-        <div style="activity">
+  <div class="bubble">
+    <blockquote>
+      <div class="actor-avatar">
+        <%= image_tag(activity.actor_img) %>
+      </div>
+      <div style="activity">
+        <div class="activity-content">
           <%= render_activity(activity) %>
-          <p style="font-style:italic" class="activity-time"><%= activity.created_at.to_pretty %></p>
         </div>
-        <div class="clear"></div>
-      </blockquote>
-    </div>
+        <p style="font-style:italic" class="activity-time"><%= activity.created_at.to_pretty %></p>
+      </div>
+      <div class="clear"></div>
+    </blockquote>
+  </div>
   <% end %>
 </div>

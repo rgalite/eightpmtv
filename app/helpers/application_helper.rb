@@ -30,13 +30,6 @@ module ApplicationHelper
   end
   
   def render_activity(activity)
-    to_render = link_to(content_tag(:span, activity.actor_name), activity.actor_path)
-    activity_data = JSON.parse(activity.data)
-    case activity.kind
-    when "comment"
-      to_render << " wrote a ".html_safe + (link_to 'comment', activity_data['path']) + " about ".html_safe + (link_to activity_data['commented_name'], activity_data['commented_path']) + ":<br />".html_safe
-    end
-    to_render << content_tag(:p, activity_data["content"]) 
-    content_tag(:div, to_render, :class => 'activity-content')
+    render :partial => "shared/activity_#{activity.kind}", :locals => { :activity => activity } 
   end    
 end

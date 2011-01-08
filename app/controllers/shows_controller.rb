@@ -123,6 +123,13 @@ class ShowsController < ApplicationController
       end
     else
       current_user.follow(@series)
+      a = current_user.activities.create(:actor_path => user_path(current_user),
+                                         :actor_img => current_user.photo.url(:thumb),
+                                         :kind => "follow_serie",
+                                         :data => { "serie_path" => show_path(@series),
+                                                    "serie_name" => @series.full_name,
+                                                    "serie_img" => @series.poster.url(:small),
+                                                    "serie_desc" => @series.description }.to_json)
       respond_to do |format|
         format.js   # render follow.js.erb
         format.html { redirect_to shows_path(@series), :notice => "You are not following #{@series.full_name} anymore." }
