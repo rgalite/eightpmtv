@@ -103,7 +103,6 @@ class ShowsController < ApplicationController
         series.name_prefix = "The"
         series.name.gsub!(/^The\s+/, "")
       end
-      debugger
       s.genres.each { |genre| series.genres << Genre.find_or_initialize_by_name(genre) }
       if !series.save
         redirect_to root_url, :notice => "Sorry, there was a problem saving the TV show #{series.full_name}. Try again later."
@@ -128,7 +127,7 @@ class ShowsController < ApplicationController
                                          :kind => "follow_serie",
                                          :data => { "serie_path" => show_path(@series),
                                                     "serie_name" => @series.full_name,
-                                                    "serie_img" => @series.poster.url(:small),
+                                                    "serie_img" => @series.poster.url(:thumb),
                                                     "serie_desc" => @series.description }.to_json)
       respond_to do |format|
         format.js   # render follow.js.erb

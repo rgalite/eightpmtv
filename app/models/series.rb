@@ -8,7 +8,7 @@ class Series < ActiveRecord::Base
                   :max_length => 50
   has_and_belongs_to_many :genres, :order => "name ASC"
   has_attached_file :poster, {
-                      :styles => { :small => "150x220>", :medium => "204x300>" },
+                      :styles => { :small => "150x220#", :medium => "204x300#", :thumb => "100x147#" },
                     }.merge(Tvshows::Application.config.paperclip_options)
   has_many :likes, :as => :likeable, :dependent => :destroy
   has_many :seasons, :dependent => :destroy, :order => "seasons.number ASC"
