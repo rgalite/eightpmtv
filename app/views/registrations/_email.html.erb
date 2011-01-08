@@ -1,6 +1,7 @@
-<div id="email_settings" style="display:none" class="settings_block">
+<div id="email_settings" class="settings_block"<%= " style='display:none'" if tab_active_class("email").blank? %>>
   <h3>Change your e-mail preferences</h3>
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+    <%= hidden_field_tag :tab, "email" %>
     <p><%= f.label :email %><br />
     <%= f.text_field :email %></p>
     

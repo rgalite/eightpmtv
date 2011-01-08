@@ -1,4 +1,4 @@
-<div id="social_settings" style="display:none" class="settings_block">
+<div id="social_settings" class="settings_block"<%= " style='display:none'" if tab_active_class("social").blank? %>>
   <h3>My social networks</h3>
   <div style="border-bottom:1px solid gray">
     <% if current_user.authentications.size > 0 %>

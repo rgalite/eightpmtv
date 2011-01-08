@@ -28,4 +28,8 @@ class RegistrationsController < Devise::RegistrationsController
       @user.apply_omniauth(session[:omniauth])
     end
   end
+  
+  def after_update_path_for(resource)
+    edit_user_registration_path(:tab => params[:tab])
+  end
 end

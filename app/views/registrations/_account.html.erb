@@ -1,10 +1,10 @@
-<div id="account_settings" class="settings_block">
+<div id="account_settings" class="settings_block"<%= " style='display:none'" if tab_active_class('account').blank? %>>
   <h3>Edit your account information</h3>
 
-  <div style="border-bottom:1px solid gray">
+  <div style="border-bottom:1px solid gray;">
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
     <%= devise_error_messages! %>
-
+    <%= hidden_field_tag :tab, "account" %>
     <p><%= f.label :username %><br />
     <%= f.text_field :username %></p>
 

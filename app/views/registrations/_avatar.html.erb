@@ -1,8 +1,8 @@
-<div id="avatar_settings"  class="settings_block" style="display:none">
+<div id="avatar_settings" class="settings_block" <%= " style='display:none'" if tab_active_class("avatar").blank? %>>
   <h3>Your profile picture</h3>
   <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :multipart => true }) do |f| %>
     <%= devise_error_messages! %>
-  
+    <%= hidden_field_tag :tab, "avatar" %>
   <div id="my_avatar">
     <p class="title">
       <%= f.radio_button :settings_use_avatar, "own", { :checked => current_user.settings.use_avatar == "own" } %>

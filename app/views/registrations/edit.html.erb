@@ -17,10 +17,10 @@
     </span>
   </div>
   <ul id="settings_tabs">
-    <li ref="#account_settings" class="selected">Account</li>
-    <li ref="#email_settings">E-mail</li>
-    <li ref="#social_settings">Connections</li>
-    <li ref="#avatar_settings">Profile picture</li>
+    <li ref="#account_settings" <%= tab_active_class('account') %>>Account</li>
+    <li ref="#email_settings" <%= tab_active_class('email') %>>E-mail</li>
+    <li ref="#social_settings" <%= tab_active_class('social') %>>Connections</li>
+    <li ref="#avatar_settings" <%= tab_active_class('avatar') %>>Profile picture</li>
   </ul>      
 </div>
 
