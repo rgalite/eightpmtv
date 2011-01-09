@@ -1,10 +1,17 @@
 namespace :app do
-  desc "Look for updates and update the current database"
-  task :update_database_with_tvdb => :environment do |t, args|
+  desc "Look for updates and update the current database [activity=true/false,day=yyyy-mm-dd]"
+  task :update_database_with_tvdb, :activity, :day, :needs => :environment do |t, args|
+    args.with_defaults(:activity => false, :day => nil)
     tvdb = TvdbParty::Search.new(Tvshows::Application.config.the_tv_db_api_key)
-    a_time = ApplicationSetting.last_update
+    a_time = Settings.last_update
+    if args.day.nil?
+      series_ids, episodes_ids, b_time = tvdb.get_updates(a_time)
+    else
+      series_ids, episodes_ids, b_time = tvdb.get_updates(a_time, :day => args.day)
+    end
+    debugger
+    raise a_time.to_s
     
-    series_ids, episodes_ids, b_time = tvdb.get_updates(a_time)
     series_ids.each do |serie_id|
       serie = Series.find_by_tvdb_id(serie_id)
       s = tvdb.get_series_by_id(serie_id)

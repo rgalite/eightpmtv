@@ -31,10 +31,16 @@ module TvdbParty
       return response["Items"]["Time"].to_i
     end
     
-    def get_updates(a_time)
-      response = self.class.get("/Updates.php", { :query => { :type => "all", :time => a_time } }).parsed_response
+    def get_updates(a_time, options = {})
+      if options.empty?
+        response = self.class.get("/Updates.php", { :query => { :type => "all", :time => a_time } }).parsed_response
+      else
+        raise "Date not given" if !options.has_key?(:day)
+        response = self.class.get("/#{@api_key}/updates/#{options[:day]}.xml").parsed_response
+      end
+      debugger
       series = response["Items"]["Series"] || []
-      episodes = response["Items"]["Episodes"] || []
+      episodes = response["Items"]["Episode"] || []
       b_time = response["Items"]["Time"]
       
       return series, episodes, b_time

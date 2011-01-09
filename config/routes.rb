@@ -1,23 +1,15 @@
 Tvshows::Application.routes.draw do
-  #get "episodes/show"
-  #get "seasons/show"
-  #get "genres/show"
-  #get "roles/index"
-  #get "roles/show"
-  #get "actors/index"
-  #get "actors/show"
   match '/auth/:provider/callback' => "authentications#create"
-  resources :authentications
+  resources :authentications, :only => [:create, :destroy]
 
   devise_for :users, :path_names => { :sign_up => "register",
                                       :sign_in => "login",
-                                      :sign_out => "logout",
-                                      :edit => "profile" },
-             :controllers => { :registrations => 'registrations' } do
-    get "users/cancel_omniauth", :to => "registrations#cancel_omniauth"
-  end      
+                                      :sign_out => "logout" },
+             :controllers => { :registrations => 'registrations', :sessions => 'sessions' } do
+    get "users/cancel_omniauth", :to => "registrations#cancel_omniauth", :as => "cancel_omniauth"
 
-  get "shows/index"
+    root :to => "sessions#index"
+  end      
 
   resources :actors, :only => [:show]
   resources :seasons, :only => [:comment] do

@@ -37,13 +37,9 @@ class User < ActiveRecord::Base
   def apply_omniauth(omniauth)
     authentication = self.authentications.build(:provider => omniauth["provider"],
                                                 :uid => omniauth["uid"])
-    case omniauth["provider"]
-    when "twitter"
-      self.username = omniauth["user_info"]["nickname"] if self.username.blank?
-      authentication.avatar = omniauth["user_info"]["image"]
-    when "facebook"
-      self.email = omniauth["user_info"]["email"] if self.email.blank?
-    end
+    self.username = omniauth["user_info"]["nickname"] if self.username.blank?
+    authentication.avatar = omniauth["user_info"]["image"]
+    self.email = omniauth["user_info"]["email"] if self.email.blank?
   end
     
   def password_required?
