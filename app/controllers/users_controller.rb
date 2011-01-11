@@ -21,7 +21,7 @@ class UsersController < ApplicationController
                                          :kind => "follow_user",
                                          :data => { "user_path" => user_path(@user),
                                                     "user_name" => @user.full_name,
-                                                    "user_img" => @user.poster.url(:thumb) })
+                                                    "user_img" => @user.photo.url(:thumb) })
     else
       redirect_to user_path(@user), :warn => "Uh oh. It's like you're already following #{@user.username}."
     end

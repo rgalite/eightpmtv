@@ -11,12 +11,12 @@ class SeasonsController < ApplicationController
       save_comment(@comment)
       a = current_user.activities.create(:actor_path => user_path(current_user),
                                          :actor_img => current_user.photo.url(:thumb),
-                                         :subject => c,
+                                         :subject => @comment,
                                          :kind => "comment",
-                                         :data => { "content" => c.content,
-                                                    "path" => season_path(@season, :anchor => "comment-#{c.id}"),
-                                                    "commented_name" => c.commentable.full_name,
-                                                    "commented_path" => season_path(@season) }.to_json)
+                                         :data => { "content" => @comment.content,
+                                                    "path" => show_season_path(:show_id => @season.series.id, :season_number => @season.number, :anchor => "comment-#{@comment.id}"),
+                                                    "commented_name" => @comment.commentable.full_name,
+                                                    "commented_path" => show_season_path(:show_id => @season.series.id, :season_number => @season.number) }.to_json)
     end
   end
   
