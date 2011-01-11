@@ -1,12 +1,13 @@
 namespace :app do
   desc "Look for updates and update the current database [activity=true/false,update_type=all/day/month]"
   task :update_database_with_tvdb, :activity, :update_type, :needs => :environment do |t, args|
-    args.with_defaults(:activity => false, :update_type => "day")
+    args.with_defaults(:activity => false, :update_type => nil)
     puts "Updating the database with options activity=#{args.activity} and update_type=#{args.update_type}"
     tvdb = TvdbParty::Search.new(Tvshows::Application.config.the_tv_db_api_key)
     a_time = Settings.last_update
     if args.update_type.nil?
       series_ids, episodes_ids, b_time = tvdb.get_updates(a_time)
+      raise "The last partial update ran more that 24 hours earlier. Run a full update." if b_time.to_i - a_time.to_i > 86400
     else
       series_ids, episodes_ids, b_time = tvdb.get_updates(a_time, :update_type => args.update_type)
     end
