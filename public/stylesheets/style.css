@@ -445,3 +445,4 @@ div.user_info p.fw-info img:hover { border-color: #CCC; }
 #activities .activity-content, #activities .activity-time { margin:0px 0px 0px 60px; }
 #activities .actor-avatar { float:left; }
 #activities .activity { float:left }
+#activities .bubble { margin:10px 0px; }
