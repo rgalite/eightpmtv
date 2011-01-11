@@ -45,7 +45,7 @@ module ShowsHelper
         desc = "#{watchers.to_sentence} watching this show"
       else
         watchers << "#{pluralize(people_watching.size, 'other person', 'other people')}" unless people_watching.size.zero?
-        desc = "#{watchers.to_sentence} are watching this show"
+        desc = "#{watchers.to_sentence} " + (serie.watchers.size == 1 ? "is" : "are") + " watching this show"
       end
     else
       desc = "#{pluralize(people_watching.size, 'person is', 'people are')} watching this TV show"

@@ -386,6 +386,7 @@ a.rm-movie-icon { background: url(/images/movie_remove.png) no-repeat left cente
 #menu-login { float:right !important; }
 #user_photo { display:inline-block; margin-right:5px; vertical-align:middle; }
 #user_name { display:inline-block;}
+#menu-login li { width: 120px !important; }
 
 /* settings */
 #settings_photo { margin-bottom:10px; }
