@@ -442,7 +442,7 @@ div.user_info p.fw-info img:hover { border-color: #CCC; }
 #user_followers { margin-left:20px }
 
 /* Users list view */
-.users-list .user-info { float: left; text-align:center; }
+.users-list .user-info { float: left; margin:5px 20px 5px 0px;text-align:center; }
 .users-list .user-info .user-name { display:block; }
 
 /* activities */
