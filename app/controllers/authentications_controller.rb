@@ -37,7 +37,6 @@ class AuthenticationsController < ApplicationController
   
   private
   def clean_omniauth(omniauth)
-    debugger
     case omniauth["provider"]
     when "facebook"
       omniauth["user_info"]["nickname"] = omniauth["extra"]["user_hash"]["name"]
