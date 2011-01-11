@@ -32,17 +32,21 @@ module TvdbParty
     end
     
     def get_updates(a_time, options = {})
-      if options.empty?
+      if !options.has_key?(:update_type)
         response = self.class.get("/Updates.php", { :query => { :type => "all", :time => a_time } }).parsed_response
+        series = response["Items"]["Series"] || []
+        episodes = response["Items"]["Episode"] || []
+        b_time = response["Items"]["Time"]
+        puts "Partial update (to #{Time.at b_time.to_i})"
       else
-        raise "Date not given" if !options.has_key?(:day)
-        response = self.class.get("/#{@api_key}/updates/#{options[:day]}.xml").parsed_response
+        response = self.class.get("/#{@api_key}/updates/updates_#{options[:update_type]}.xml").parsed_response
+        series = []
+        response["Data"]["Series"].each { |s| series << s["id"] if s["id"] > a_time }
+        episodes = []
+        response["Data"]["Episode"].each { |e| episodes << e["id"] if e["id"] > a_time }
+        b_time = response["Data"]["time"]
+        puts "Full update (to #{Time.at b_time.to_i})"
       end
-      debugger
-      series = response["Items"]["Series"] || []
-      episodes = response["Items"]["Episode"] || []
-      b_time = response["Items"]["Time"]
-      
       return series, episodes, b_time
     end
     
