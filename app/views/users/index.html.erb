@@ -2,7 +2,7 @@
 <% if (users = @users.find_all { |u| !u.name.downcase.match(/^[^a-z]/).nil? }).size > 0 %>
   <div class="left_articles">
     <h2>#</h2>
-  	<p class="description"><%= link_to "See all (#{users.size})", name_users_path(:l => l) %></p>
+  	<p class="description"><%= link_to "See all (#{users.size})", name_users_path() %></p>
   	<div id="users-#" class="users_list">
   	  <% users.each do |user| %>
   	  <div style="width:128px">

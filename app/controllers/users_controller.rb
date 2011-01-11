@@ -37,4 +37,8 @@ class UsersController < ApplicationController
       redirect_to user_path(@user), :warn => "You are not following #{@user.username}."
     end
   end
+  
+  def name
+    redirect_to users_path
+  end
 end
