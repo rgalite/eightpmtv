@@ -3,11 +3,10 @@
   <div class="left_articles">
     <h2>#</h2>
   	<p class="description"><%= link_to "See all (#{users.size})", name_users_path() %></p>
-  	<div id="users-#" class="users_list">
+  	<div id="users_" class="users-list">
   	  <% users.each do |user| %>
-  	  <div style="width:128px">
-        <%= image_tag(user.avatar_url(:thumb), :class => "poster thumbnail") %><br />
-        <span style="margin:0px;text-align:center"><%= link_to user.name, user %></span>
+  	  <div class="user-info">
+        <%= link_to(image_tag(user.avatar_url(:thumb), :class => "poster") + content_tag(:span, user.name, :class => "user-name"), user) %>
       </div>
       <% end %>
   	  <div class="clear"></div>
@@ -20,11 +19,10 @@
     <div class="left_articles">
       <h2><%= l.upcase %></h2>
     	<p class="description"><%= link_to "See all (#{users.size})", name_users_path(:l => l) %></p>
-    	<div id="users-#" class="users_list">
+    	<div id="users_<%= l %>" class="users-list">
     	  <% users.each do |user| %>
-    	  <div style="width:128px">
-          <%= link_to(image_tag(user.avatar_url(:thumb), :class => "poster thumbnail"), user) %><br />
-          <span style="margin:0px;text-align:center"><%= link_to user.name, user %></span>
+    	  <div class="user-info">
+          <%= link_to(image_tag(user.avatar_url(:thumb), :class => "poster") + content_tag(:span, user.name, :class => "user-name"), user) %>
         </div>
         <% end %>
     	  <div class="clear"></div>

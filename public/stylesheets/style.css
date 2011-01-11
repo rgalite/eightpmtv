@@ -441,6 +441,10 @@ div.user_info p.fw-info img:hover { border-color: #CCC; }
 #user_followings, #user_followers { float:left;width:380px }
 #user_followers { margin-left:20px }
 
+/* Users list view */
+.users-list .user-info { float: left; text-align:center; }
+.users-list .user-info .user-name { display:block; }
+
 /* activities */
 #activities .bubble blockquote { padding:10px; }
 #activities .activity-content, #activities .activity-time { margin:0px 0px 0px 60px; }
