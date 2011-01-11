@@ -26,7 +26,7 @@
       <div>
         <% description = truncate(@series.description, 795, "") %>
         <%= description %>
-        <% if @series.description.length > description.length %>
+        <% if !@series.description.blank? && @series.description.length > description.length %>
           <%= link_to_function("...", "showMoreDescription(this);") %>
           <span style="display:none">
             <%= @series.description[(description.length)..-1] %>

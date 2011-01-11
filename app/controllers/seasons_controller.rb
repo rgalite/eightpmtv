@@ -9,6 +9,14 @@ class SeasonsController < ApplicationController
       @comment = @season.comments.build(:content => params[:comment][:content],
                                  :user => current_user) 
       save_comment(@comment)
+      a = current_user.activities.create(:actor_path => user_path(current_user),
+                                         :actor_img => current_user.photo.url(:thumb),
+                                         :subject => c,
+                                         :kind => "comment",
+                                         :data => { "content" => c.content,
+                                                    "path" => season_path(@season, :anchor => "comment-#{c.id}"),
+                                                    "commented_name" => c.commentable.full_name,
+                                                    "commented_path" => season_path(@season) }.to_json)
     end
   end
   

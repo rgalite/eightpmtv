@@ -7,6 +7,8 @@ class Activity < ActiveRecord::Base
   validates :data, :presence => true
   validates :actor_path, :presence => true
   
+  validates :subject, :associated => true
+  
   before_validation :set_actor_name
   
   def set_actor_name
