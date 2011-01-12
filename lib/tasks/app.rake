@@ -48,7 +48,7 @@ namespace :app do
               if season.nil?
                 puts "New season!"
                 season = serie.seasons.build(:tvdb_id => ep.season_id.to_i,
-                :number => ep.season_number)
+                                             :number => ep.season_number)
                 s = tvdb.get_series_by_id(ep.series_id)
                 season.poster_url = s.season_posters(season.number).first.path unless s.season_posters(season.number).first.nil?
               end
@@ -62,9 +62,14 @@ namespace :app do
                                               :writer => ep.writer,
                                               :first_aired => ep.air_date,
                                               :poster_url => ep.thumb)
-              episode.save
-              puts "Processing new episode #{episode.full_name}. Saved.".to_color("green")
-              episodes_updated[:new] << episode
+              if episode.save
+                puts "Processing new episode #{episode.full_name}. Saved.".to_color("green")
+                episodes_updated[:new] << episode
+              else
+                puts "Episode #{ep.series.full_name} - #{ep.name} not saved!"
+                puts "#{ep.errors.full_messages}"
+                raise "Episode could not be saved."
+              end
             else
               if ep.last_updated.to_i >= a_time 
                 puts "Episode found. #{episode.full_name}. Updated.".to_color("green")
