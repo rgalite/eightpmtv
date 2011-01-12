@@ -35,6 +35,6 @@ class Episode < ActiveRecord::Base
   end
   
   def full_name
-    @full_name ||= "#{series.name} S#{season.number.to_s.rjust(2, '0')}E#{number.to_s.rjust(2, '0')} - #{name}"
+    @full_name ||= "#{series.name} S#{season.number.to_s.rjust(2, '0')}E#{number.to_s.rjust(2, '0')} - #{self.name}"
   end
 end

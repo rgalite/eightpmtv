@@ -48,4 +48,3 @@ gem "delayed_job"
 gem "workless"
 gem "delayed_paperclip"
 gem 'recaptcha', :require => 'recaptcha/rails'
-

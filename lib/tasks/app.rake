@@ -23,16 +23,16 @@ namespace :app do
       if !serie.nil?
         s = tvdb.get_series_by_id(serie_id)
         puts "Updating the serie #{serie.name}."
-        serie.update_attributes(:name => s.name, :series_id => s.id,
-                                :description => s.overview,
-                                :first_aired => s.first_aired,
-                                :network => s.network,
-                                :rating => s.rating, :runtime => s.runtime,
-                                :status => s.status == "Continuing",
-                                :imdb_id => s.imdb_id,
-                                :rating_count => s.rating_count,
-                                :air_time => s.air_time, :air_day => s.air_day,
-                                :poster_url => s.poster)
+        serie.update_attributes!(:name => s.name, :series_id => s.id,
+                                 :description => s.overview,
+                                 :first_aired => s.first_aired,
+                                 :network => s.network,
+                                 :rating => s.rating, :runtime => s.runtime,
+                                 :status => s.status == "Continuing",
+                                 :imdb_id => s.imdb_id,
+                                 :rating_count => s.rating_count,
+                                 :air_time => s.air_time, :air_day => s.air_day,
+                                 :poster_url => s.poster)
         series_updated << serie
         episodes = s.episodes
         episodes.each_with_index do |ep, i|
@@ -51,29 +51,23 @@ namespace :app do
                                              :number => ep.season_number)
                 s = tvdb.get_series_by_id(ep.series_id)
                 season.poster_url = s.season_posters(season.number).first.path unless s.season_posters(season.number).first.nil?
+                season.save!
               end
 
               # The season exists now. Add the episode
-              episode = season.episodes.build(:tvdb_id => ep.id,
-                                              :number => ep.number,
-                                              :name => ep.name,
-                                              :description => ep.overview,
-                                              :director => ep.director,
-                                              :writer => ep.writer,
-                                              :first_aired => ep.air_date,
-                                              :poster_url => ep.thumb)
-              if episode.save
-                puts "Processing new episode #{episode.full_name}. Saved.".to_color("green")
-                episodes_updated[:new] << episode
-              else
-                puts "Episode #{ep.series.full_name} - #{ep.name} not saved!"
-                puts "#{ep.errors.full_messages}"
-                raise "Episode could not be saved."
-              end
+              episode = season.episodes.create!(:tvdb_id => ep.id,
+                                                :number => ep.number,
+                                                :name => ep.name,
+                                                :description => ep.overview,
+                                                :director => ep.director,
+                                                :writer => ep.writer,
+                                                :first_aired => ep.air_date,
+                                                :poster_url => ep.thumb)
+              puts "Episode #{episode.full_name}. Created."
+              episodes_updated[:new] << episode
             else
               if ep.last_updated.to_i >= a_time 
-                puts "Episode found. #{episode.full_name}. Updated.".to_color("green")
-                episode.update_attributes(:tvdb_id => ep.id,
+                episode.update_attributes!(:tvdb_id => ep.id,
                                           :number => ep.number,
                                           :name => ep.name,
                                           :description => ep.overview,
@@ -81,6 +75,7 @@ namespace :app do
                                           :writer => ep.writer,
                                           :first_aired => ep.air_date,
                                           :poster_url => ep.thumb)
+                puts "Episode #{episode.full_name}. Updated."
                 episodes_updated[:updated] << episode
               end
             end
