@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!, :only => [:follow]
   
   def index
-    @users = User.order("username DESC")
+    @users = User.order("username ASC")
   end
   
   def show

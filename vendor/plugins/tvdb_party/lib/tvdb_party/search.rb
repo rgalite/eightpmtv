@@ -35,17 +35,16 @@ module TvdbParty
       if !options.has_key?(:update_type)
         response = self.class.get("/Updates.php", { :query => { :type => "all", :time => a_time } }).parsed_response
         series = response["Items"]["Series"] || []
-        episodes = response["Items"]["Episode"] || []
-        b_time = response["Items"]["Time"]
-        puts "Partial update (to #{Time.at b_time.to_i})"
+        episodes = []
+        b_time = response["Items"]["Time"].to_i
+        puts "Partial update (to #{Time.at b_time})"
       else
         response = self.class.get("/#{@api_key}/updates/updates_#{options[:update_type]}.xml").parsed_response
         series = []
-        response["Data"]["Series"].each { |s| series << s["id"] if s["id"] > a_time }
+        response["Data"]["Series"].each { |s| series << s["id"] if s["time"].to_i > a_time }
         episodes = []
-        response["Data"]["Episode"].each { |e| episodes << e["id"] if e["id"] > a_time }
-        b_time = response["Data"]["time"]
-        puts "Full update (to #{Time.at b_time.to_i})"
+        b_time = response["Data"]["time"].to_i
+        puts "Full update (to #{Time.at b_time})"
       end
       return series, episodes, b_time
     end
