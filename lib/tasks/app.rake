@@ -1,4 +1,3 @@
-require 'lib/colorize_string'
 namespace :app do
   desc "Look for updates and update the current database [activity=true/false,update_type=all/day/month]"
   task :update_database_with_tvdb, :activity, :update_type, :needs => :environment do |t, args|
