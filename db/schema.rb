@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110108114437) do
+ActiveRecord::Schema.define(:version => 20110114101937) do
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
@@ -204,6 +204,7 @@ ActiveRecord::Schema.define(:version => 20110108114437) do
     t.boolean  "poster_processing"
     t.boolean  "seasons_processing"
     t.string   "name_prefix",                         :default => ""
+    t.integer  "follows_count"
   end
 
   create_table "settings", :force => true do |t|
