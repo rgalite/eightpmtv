@@ -3,7 +3,7 @@
    	author: luka cvrk (www.solucija.com) 
 */
    
-body { padding: 0; margin: 0; font: 0.7em Tahoma, Arial, sans-serif; line-height: 1.6em; background: #fff; color: #454545; }
+body { padding: 0; margin: 0; font: 0.7em Tahoma, Arial, sans-serif; line-height: 1.6em; background: #E7EAED; color: #454545; }
 
 /* links */
 a { color: #003B6E; background: inherit; }
@@ -23,7 +23,7 @@ input.search { width: 279px; border: 1px solid #003B6E; padding: 8px 10px; color
 input.button { padding: 3px; }
 
 /* content holder */
-#content { margin: 0px auto 10px; width: 960px; }
+#content { background-color: white; border: 1px solid #CCC; margin: 10px auto 10px; padding:0px 20px 20px; width: 960px; }
 
 /* header */
 #header { padding:15px 0px 5px; }

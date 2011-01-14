@@ -19,6 +19,14 @@ class Series < ActiveRecord::Base
   after_create :attach_episodes
   attr_reader :poster_url
   acts_as_followable
+  has_many :follows, :as => :followable
+  
+  scope :most_followed, :joins => [:follows], :group => "follows.followable_id",
+                        :order => "COUNT(follows.followable_id) DESC, name ASC",
+                        :conditions => ["status = ?", true]
+  scope :last_updated,  :conditions => ["updated_at > ?", 3.days.ago],
+                        :order => "updated_at DESC",
+                        :conditions => ["status = ?", true]
   
   public  
   def set_actors(actors)

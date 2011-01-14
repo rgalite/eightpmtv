@@ -1,0 +1,13 @@
+<div id="series-list-name">
+<% series.each do |show| %>
+  <div id="series-<%= show.id %>" class="serie">
+  	<p>
+      <span class="title"><%= link_to show.full_name, show_path(show) %></span>
+  	  <% if show.poster? %>
+        <%= link_to(image_tag(show.poster.url(:small), :style => "border:1px solid #dedede"), show_path(show)) %>
+      <% end %>
+  	</p>
+  </div>
+<% end %>
+  <div class="clear"></div>
+</div>

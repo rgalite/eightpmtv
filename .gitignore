@@ -1,7 +1,7 @@
 .bundle
 db/*.sqlite3
 log/*.log
-tmp/**/*
+tmp
 public/assets/search/banners/*
 tmp/restart.txt
 .idea

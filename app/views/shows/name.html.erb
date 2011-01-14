@@ -20,18 +20,5 @@
     <%= link_to "#", name_shows_path %></li>
     <%= az_shows_initials(params[:letter]) %>
   </ul>
-  
-  <div id="series-list-name">
-    <% for show in @series %>
-    	<div id="series-<%= show.id %>" class="serie">
-      	<p>
-          <span class="title"><%= link_to show.full_name, show_path(show) %></span>
-      	  <% if show.poster? %>
-            <%= link_to(image_tag(show.poster.url(:small), :style => "border:1px solid #dedede"), show_path(show)) %>
-          <% end %>
-      	</p>
-      </div>
-    <% end %>
-  	<div style="clear:both"></div>
-  </div>
+  <%= render :partial => "series_list", :locals => { :series => @series } %>
 </div>

@@ -1,0 +1,72 @@
+<style>
+  .announcement { border:1px solid #CCC; padding:10px; }
+  .announcement p {
+    font: normal normal bold 1.5em/normal Arial, sans-serif;
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  .announcement p.text { text-align:center; }
+  
+  #announcement_demo { margin:30px 0px; }
+  #announcement_demo div.announcement-demo { float:left; margin-right:15px; width:300px; }
+  #announcement_demo div.announcement-demo p { text-align:center; }
+</style>
+<div id="announcement" class="announcement">
+  <p class="text">
+    8PM.TV is a social network for TV Shows watchers
+  </p>
+</div>
+
+<div id="announcement_demo">
+  <div id="annoucement_1" class="announcement-demo">
+    <%= image_tag "demo_2.png", :width => "300px" %>
+    <p><span style="font-weight:bold">Follow series you like</span></p>
+  </div>
+  <div id="annoucement_1" class="announcement-demo">
+    <%= image_tag "demo_1.png", :width => "300px" %>
+    <p><span style="font-weight:bold">Be aware of the series updates</span></p>
+  </div>
+  <div id="annoucement_2" class="announcement-demo">
+    <%= image_tag "demo_1.png", :width => "300px" %>
+    <p><span style="font-weight:bold">Check your friends activity</span></p>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="announcement" style="margin-bottom:30px">
+  <p class="text">
+    ... and many more features! It's free! Just <%= link_to "SIGN UP", new_user_registration_path %> and join the <%= link_to "community", users_path %>
+  </p>
+</div>
+
+<div class="left_articles">
+  <div class="buttons">
+	  <p>
+	    <%= link_to "See all" %>
+	  </p>
+	</div>
+	<h2>What's hot? - Most followed series</h2>
+	<div>
+	  <%= render :partial => "shows/series_list", :locals => { :series => @most_followed_series.limit(10) } %>
+	</div>
+</div>
+
+<div class="left_articles">
+  <div class="buttons">
+	  <p>
+	    <%= link_to "See all" %>
+	  </p>
+	</div>
+	<h2>What's new? - Last updated series</h2>
+	<div>
+	  <%= render :partial => "shows/series_list", :locals => { :series => @last_updated_series.limit(10) } %>
+	</div>
+</div>
+
+<div class="left_articles">
+	<h2>What's happening?</h2>
+	<p>
+	</p>
+</div>
+
