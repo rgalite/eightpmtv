@@ -46,9 +46,9 @@
 	    <%= link_to "See all" %>
 	  </p>
 	</div>
-	<h2>What's hot? - Most followed series</h2>
+	<h2>What's hot? - The 10 most followed series</h2>
 	<div>
-	  <%#= render :partial => "shows/series_list", :locals => { :series => @most_followed_series.limit(10) } %>
+	  <%= render :partial => "shows/series_list", :locals => { :series => @most_followed_series.limit(10) } %>
 	</div>
 </div>
 
@@ -58,7 +58,7 @@
 	    <%= link_to "See all" %>
 	  </p>
 	</div>
-	<h2>What's new? - Last updated series</h2>
+	<h2>What's new? - The 10 last updated series</h2>
 	<div id="series-updated">
 	  <%= render :partial => "shows/series_list", :locals => { :series => @last_updated_series.limit(10) } %>
 	</div>

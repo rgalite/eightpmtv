@@ -11,7 +11,7 @@ class Follow < ActiveRecord::Base
   scope :blocked,             where(:blocked => true)
   
   # NOTE: Follows belong to the "followable" interface, and also to followers
-  belongs_to :followable, :polymorphic => true
+  belongs_to :followable, :polymorphic => true, :counter_cache => true
   belongs_to :follower,   :polymorphic => true
   
   has_many :activities, :as => :subject, :dependent => :destroy
