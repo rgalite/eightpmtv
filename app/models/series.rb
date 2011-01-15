@@ -19,7 +19,7 @@ class Series < ActiveRecord::Base
   after_create :attach_episodes
   attr_reader :poster_url
   acts_as_followable
-  scope :most_followed, :order => "follows_count DESC, name ASC"
+  scope :most_followed, :order => "follows_count DESC, name ASC", :conditions => ["status = ?", true]
   scope :last_updated,  :conditions => ["updated_at > ? AND status = ?", 3.days.ago, true],
                         :order => "updated_at DESC"
   
