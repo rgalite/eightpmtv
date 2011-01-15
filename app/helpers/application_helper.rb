@@ -39,7 +39,7 @@ module ApplicationHelper
     case activity.kind
     when "comment"
       res = link_to(content_tag(:span, activity.actor_name), activity.actor_path)<<
-      "wrote a " + (link_to 'comment', activity_data['path']) + " about " <<
+      " wrote a " + (link_to 'comment', activity_data['path']) + " about " <<
       (link_to activity_data['commented_name'], activity_data['commented_path'])
     when "follow_serie"
       res = link_to(content_tag(:span, activity.actor_name), activity.actor_path)<<
@@ -47,5 +47,6 @@ module ApplicationHelper
       (link_to activity_data['serie_name'], activity_data['serie_path'])
     end
     res + " - " + content_tag(:span, activity.created_at.to_pretty, :style => "font-style:italic")
+    res.html_safe
   end
 end
