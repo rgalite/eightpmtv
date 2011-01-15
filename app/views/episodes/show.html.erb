@@ -17,12 +17,16 @@
       <% if @episode.available? %>
         <div>
           <% description = truncate(@episode.description, 795, "") %>
-          <%= description %>
-          <% if !@episode.description.blank? && @episode.description.length > description.length %>
-            <%= link_to_function("...", "showMoreDescription(this);") %>
-            <span style="display:none">
-              <%= @episode.description[(description.length)..-1] %>
-            </span>
+          <% if @episode.description.blank? %>
+            <p style="padding-top:60px;text-align:center">The description is not available yet.</p>
+          <% else %>
+            <%= description %>
+            <% if @episode.description.length > description.length %>
+              <%= link_to_function("...", "showMoreDescription(this);") %>
+              <span style="display:none">
+                <%= @episode.description[(description.length)..-1] %>
+              </span>
+            <% end %>
           <% end %>
         </div>
       <% else %>
