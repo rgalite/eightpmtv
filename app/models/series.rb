@@ -21,7 +21,7 @@ class Series < ActiveRecord::Base
   acts_as_followable
   scope :most_followed, :order => "follows_count DESC, name ASC", :conditions => ["status = ?", true]
   scope :last_updated,  :conditions => ["updated_at > ? AND status = ?", 3.days.ago, true],
-                        :order => "updated_at DESC"
+                        :order => "updated_at DESC, name ASC"
   
   public  
   

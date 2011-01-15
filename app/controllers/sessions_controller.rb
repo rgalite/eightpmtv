@@ -5,6 +5,7 @@ class SessionsController < Devise::SessionsController
     else
       @most_followed_series = Series.most_followed.limit(10)
       @last_updated_series = Series.last_updated.limit(10).order('name ASC')
+      @last_activities = Activity.order("created_at DESC").limit(10)
       render "home"
     end
   end

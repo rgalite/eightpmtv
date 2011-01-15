@@ -46,7 +46,7 @@
 	    <%= link_to "See all" %>
 	  </p>
 	</div>
-	<h2>What's hot? - The 10 most followed series</h2>
+	<h3>What's hot? - The 10 most followed series</h3>
 	<div>
 	  <%= render :partial => "shows/series_list", :locals => { :series => @most_followed_series.limit(10) } %>
 	</div>
@@ -58,15 +58,21 @@
 	    <%= link_to "See all" %>
 	  </p>
 	</div>
-	<h2>What's new? - The 10 last updated series</h2>
+	<h3>What's new? - The 10 last updated series</h3>
 	<div id="series-updated">
 	  <%= render :partial => "shows/series_list", :locals => { :series => @last_updated_series.limit(10) } %>
 	</div>
 </div>
 
+<% if @last_activities.size > 0 %>
 <div class="left_articles">
-	<h2>What's happening?</h2>
-	<p>
-	</p>
+	<h3>What's happening?</h3>
+	<div class="bubble">
+	  <blockquote>
+    	<% @last_activities.each do |activity| %>
+        <p><%= render_activity_title(activity) %></p>
+      <% end %>
+    <blockquoite>
+  </div>
 </div>
-
+<% end %>
