@@ -99,10 +99,6 @@ class ShowsController < ApplicationController
                           :rating_count => s.rating_count,
                           :air_time => s.air_time, :air_day => s.air_day,
                           :seasons_processing => true, :poster_url => s.poster)
-      if series.name.downcase.starts_with?('the ')
-        series.name_prefix = "The"
-        series.name.gsub!(/^The\s+/, "")
-      end
       s.genres.each { |genre| series.genres << Genre.find_or_initialize_by_name(genre) }
       if !series.save
         redirect_to root_url, :notice => "Sorry, there was a problem saving the TV show #{series.full_name}. Try again later."
