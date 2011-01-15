@@ -37,3 +37,11 @@
   	<div class="clear"></div>
   </div>
 </div>
+
+<div class="left_articles">
+  <h2>Following:</h2>
+  <p class="description"><%= pluralize(@user.series.size, "serie") %></p>
+  <div id="user_series_following">
+    <%= render :partial => "shows/series_list", :locals => { :series => @user.series.order("name")} %>
+  </div>
+</div>
