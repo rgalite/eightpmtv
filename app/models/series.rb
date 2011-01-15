@@ -1,6 +1,6 @@
 class Series < ActiveRecord::Base
-  include CallRake
   include ActiveModel::Serializers::JSON
+  include HasPoster
   has_many :roles, :dependent => :destroy
   has_many :actors, :through => :roles, :order => "name ASC"
   has_many :comments, :as => :commentable, :order => "created_at desc"
@@ -63,5 +63,10 @@ class Series < ActiveRecord::Base
     else
       @name = value
     end
+  end
+  
+  def as_json(options={})
+    super(:include => [:episodes, :seasons],
+          :methods => [:poster_url_small, :poster_url_medium, :poster_url_thumb, :poster_url_original])
   end
 end
