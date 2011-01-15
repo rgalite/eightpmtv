@@ -10,7 +10,7 @@
   
   #announcement_demo { margin:30px 0px; }
   #announcement_demo div.announcement-demo { float:left; margin-right:15px; width:300px; }
-  #announcement_demo div.announcement-demo p { text-align:center; }
+  #announcement_demo div.announcement-demo p { font-weight:bold; text-align:center; }
 </style>
 <div id="announcement" class="announcement">
   <p class="text">
@@ -21,15 +21,15 @@
 <div id="announcement_demo">
   <div id="annoucement_1" class="announcement-demo">
     <%= image_tag "demo_2.png", :width => "300px" %>
-    <p><span style="font-weight:bold">Follow series you like</span></p>
+    <p>Follow series you like</p>
   </div>
   <div id="annoucement_1" class="announcement-demo">
     <%= image_tag "demo_1.png", :width => "300px" %>
-    <p><span style="font-weight:bold">Be aware of the series updates</span></p>
+    <p>Be aware of the series updates</p>
   </div>
   <div id="annoucement_2" class="announcement-demo">
     <%= image_tag "demo_1.png", :width => "300px" %>
-    <p><span style="font-weight:bold">Check your friends activity</span></p>
+    <p>Check your friends activity</p>
   </div>
   <div class="clear"></div>
 </div>
@@ -59,7 +59,7 @@
 	  </p>
 	</div>
 	<h2>What's new? - Last updated series</h2>
-	<div>
+	<div id="series-updated">
 	  <%= render :partial => "shows/series_list", :locals => { :series => @last_updated_series.limit(10) } %>
 	</div>
 </div>

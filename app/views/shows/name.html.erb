@@ -1,14 +1,3 @@
-<script type="text/javascript">
-  $(document).ready(function(){
-    $("#series-list-name .serie").hover(
-      function(){
-        $(this).addClass('serie-hovered');
-      },
-      function(){
-        $(this).removeClass('serie-hovered');
-      });
-  });
-</script>
 <%= render "series_categories" %>
 <div id="series_initials">
   <ul id="navlist">
@@ -20,5 +9,7 @@
     <%= link_to "#", name_shows_path %></li>
     <%= az_shows_initials(params[:letter]) %>
   </ul>
-  <%= render :partial => "series_list", :locals => { :series => @series } %>
+  <div id="series-list-name">
+    <%= render :partial => "series_list", :locals => { :series => @series } %>
+  </div>
 </div>

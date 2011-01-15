@@ -252,23 +252,32 @@ a.rm-movie-icon { background: url(/images/movie_remove.png) no-repeat left cente
 #navlist li.selected a, #navlist li:hover a { color: white; }
 #navlist li a { padding: 0px 12px; text-decoration:none; }
 
-#series-list-name .serie { float:left; margin-right:20px; }
-#series-list-name .serie p { text-align:center; }
-#series-list-name .serie span.title {
+.serie-thumb { float:left; margin-right:20px; }
+.serie-thumb p { text-align:center; }
+.serie-thumb a span.title {
 	display:block;
-	border-left:1px solid white;
-	border-right:1px solid white;
-	border-top:1px solid white;
+	border:1px solid white;
 }
-#series-list-name .serie span.title a { display:block; text-decoration:none; }
-#series-list-name .serie-hovered img { border:1px solid #003B6E !important; }
-#series-list-name .serie-hovered span.title {
-	background-color: #1D66A8 !important;
-	border-left:1px solid #003B6E;
-	border-right:1px solid #003B6E;
+.serie-thumb a.serie-with-image:hover span.title {
+	background-color: #1D66A8;
 	border-top:1px solid #003B6E;
+	border-right:1px solid #003B6E;
+	border-bottom:1px solid #1D66A8;
+	border-left:1px solid #003B6E;
 }
-#series-list-name .serie-hovered span.title a { color:white; }
+
+.serie-thumb a.serie-with-image span.img img { border: 1px solid #DEDEDE; }
+
+.serie-thumb a.serie-with-image:hover span.img img {
+	border:1px solid #003B6E;
+}
+.serie-thumb a.serie-with-image {
+	text-decoration:none;
+}
+.serie-thumb a.serie-with-image:hover {
+	color:white;
+	text-decoration:none;
+}
 
 #series_seasons { border-bottom: 1px dotted #CCC; margin-bottom:20px; }
 #series_seasons .thirds { margin:0px 17px 15px }

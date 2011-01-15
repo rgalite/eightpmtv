@@ -1,13 +1,10 @@
-<div id="series-list-name">
 <% series.each do |show| %>
-  <div id="series-<%= show.id %>" class="serie">
+  <div id="series-<%= show.id %>" class="serie serie-thumb">
   	<p>
-      <span class="title"><%= link_to show.full_name, show_path(show) %></span>
   	  <% if show.poster? %>
-        <%= link_to(image_tag(show.poster.url(:small), :style => "border:1px solid #dedede"), show_path(show)) %>
+        <%= link_to(content_tag(:span, show.full_name, :class => "title" ) + content_tag(:span, image_tag(show.poster.url(:small)), :class => "img"), show_path(show), :class => "serie-with-image") %>
       <% end %>
   	</p>
   </div>
 <% end %>
-  <div class="clear"></div>
-</div>
+<div class="clear"></div>
