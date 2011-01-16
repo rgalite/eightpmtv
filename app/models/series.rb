@@ -58,11 +58,8 @@ class Series < ActiveRecord::Base
   def name=(value)
     if value.downcase.starts_with?('the ')
       @name_prefix = "The"
-      @name = value.gsub(/^The\s+/, "")
-      super
-    else
-      @name = value
     end
+    super
   end
   
   def as_json(options={})
