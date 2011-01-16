@@ -8,7 +8,7 @@ namespace :app do
       a_time = Settings.last_update.to_i
       if args.update_type.nil?
         series_ids, episodes_ids, b_time = tvdb.get_updates(a_time)
-        raise "The last update ran more that 24 hours earlier (#{Time.at a_time} - #{Time.at b_time}). Run a full update." if b_time - a_time > 86400
+        raise "The last update ran more than 24 hours earlier (#{Time.at a_time} - #{Time.at b_time}). Run a full update." if b_time - a_time > 86400
       else
         series_ids, episodes_ids, b_time = tvdb.get_updates(a_time,
                                               :update_type => args.update_type)

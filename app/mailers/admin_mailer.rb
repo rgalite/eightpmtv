@@ -3,7 +3,6 @@ class AdminMailer < ActionMailer::Base
   
   def series_update_succeeded(results)
     @results = results
-    @follower = User.find(follower_id)
         
     mail(:to => "rudth.mael.galite@gmail.com",
          :subject => "The series have been updated successfully on 8PM.TV")
@@ -15,5 +14,4 @@ class AdminMailer < ActionMailer::Base
     mail(:to => "rudth.mael.galite@gmail.com",
          :subject => "An error occurred when updating the series on 8PM.TV")
   end
-
 end
