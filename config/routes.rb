@@ -42,7 +42,7 @@ Tvshows::Application.routes.draw do
       get :get_seasons
       get :my
     end
-    match "/season/:season_number" => "seasons#show", :constraints => { :season_number => /\d+/, :show_id => /\d+/ }, :as => "season"
+    match "/season/:season_number" => "seasons#show", :constraints => { :season_number => /\d+/ }, :as => "season"
     match "/:season_number/:episode_number" => "episodes#show", :constraints => { :season_number => /\d+/, :episode_number => /\d+/ }, :as => "season_episode"
   end
   scope "shows", :as => "shows" do

@@ -1,3 +1,4 @@
+include Rails.application.routes.url_helpers
 namespace :app do
   desc "Look for updates and update the current database [activity=true/false,update_type=all/day/month]"
   task :update_database_with_tvdb, :activity, :update_type, :needs => :environment do |t, args|
@@ -64,9 +65,26 @@ namespace :app do
                                                   :first_aired => ep.air_date,
                                                   :poster_url => ep.thumb)
                 puts "Episode #{episode.full_name}. Created."
+                if args.activity
+                  # The episode is scheduled
+                  puts "Episode #{episode.full_name} is scheduled."
+                  Activity.create!(:actor_name => episode.series.full_name,
+                                    :actor_img => episode.series.poster.url(:thumb),
+                                    :actor_path => show_path(episode.series),
+                                    :subject => episode,
+                                    :kind => "new_episode_scheduled",
+                                    :data => { :episode_name => episode.full_name,
+                                               :episode_path => show_season_episode_path(:show_id => episode.series.id,
+                                                                                       :season_number => episode.season.number,
+                                                                                       :episode_number => episode.number),
+                                               :season_number => episode.season.number,
+                                               :episode_number => episode.number,
+                                               :episode_time => episode.first_aired }.to_json)
+                end
                 episodes_updated[:new] << episode
               else
-                if ep.last_updated.to_i >= a_time 
+                if ep.last_updated.to_i >= a_time
+                  available = episode.available? 
                   episode.update_attributes!(:tvdb_id => ep.id,
                                             :number => ep.number,
                                             :name => ep.name,
@@ -75,6 +93,16 @@ namespace :app do
                                             :writer => ep.writer,
                                             :first_aired => ep.air_date,
                                             :poster_url => ep.thumb)
+                  if args.activity && !available && episode.available? # The episode is NOW available
+                    puts "Episode #{episode.full_name} is now available."
+                    Activity.create!(:actor_name => episode.full_name,
+                                      :actor_img => episode.poster.url(:thumb),
+                                      :actor_path => show_season_episode_path(:show_id => episode.series.id,
+                                                                               :season_number => episode.season.number,
+                                                                               :episode_number => episode.number),
+                                      :kind => "new_episode_available",
+                                      :data => { :episode_description => episode.description }.to_json)
+                  end
                   puts "Episode #{episode.full_name}. Updated."
                   episodes_updated[:updated] << episode
                 end
