@@ -457,6 +457,12 @@ div.user_info p.fw-info img:hover { border-color: #CCC; }
 /* activities */
 #activities .bubble blockquote { padding:10px; }
 #activities .activity-content, #activities .activity-time { margin:0px 0px 0px 60px; }
+#activities .activity-time { font-style:italic; }
+#activities .activity-new_episode_scheduled .activity-content,
+#activities .activity-new_episode_scheduled .activity-time
+{
+	margin-left:112px !important;
+}
 #activities .actor-avatar { float:left; }
 #activities .activity { float:left }
 #activities .bubble { margin:10px 0px; }

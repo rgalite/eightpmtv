@@ -1,0 +1,19 @@
+<% activity_data = JSON.parse(activity.data) %>
+<div class="bubble">
+  <blockquote>
+    <div class="actor-avatar">
+      <%= image_tag(activity.actor_img) %>
+    </div>
+    <div style="activity activity-<%= activity.kind %>">
+      <div class="activity-content">
+        A new episode of <%= link_to activity.actor.full_name, activity.actor_path %> has been scheduled.
+        <div>
+          <%= link_to(activity_data["episode_name"], activity_data["episode_path"]) %> will be aired on <%= activity_data["episode_air_time"]%>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <p class="activity-time"><%= activity.created_at.to_pretty %></p>
+    </div>
+    <div class="clear"></div>
+  </blockquote>
+</div>

@@ -32,8 +32,7 @@ namespace :app do
                                    :status => s.status == "Continuing",
                                    :imdb_id => s.imdb_id,
                                    :rating_count => s.rating_count,
-                                   :air_time => s.air_time, :air_day => s.air_day,
-                                   :poster_url => s.poster)
+                                   :air_time => s.air_time, :air_day => s.air_day)
           series_updated << serie
           episodes = s.episodes
           episodes.each_with_index do |ep, i|
@@ -63,12 +62,13 @@ namespace :app do
                                                   :director => ep.director,
                                                   :writer => ep.writer,
                                                   :first_aired => ep.air_date,
-                                                  :poster_url => ep.thumb)
+                                                  :poster => RemoteFile.new("http://thetvdb.com/banners/#{ep.thumb}"))
                 puts "Episode #{episode.full_name}. Created."
                 if args.activity
                   # The episode is scheduled
                   puts "Episode #{episode.full_name} is scheduled."
-                  Activity.create!(:actor_name => episode.series.full_name,
+                  Activity.delay(:priority => 10).create!(:actor => episode.series,
+                                    :actor_name => episode.series.full_name,
                                     :actor_img => episode.series.poster.url(:thumb),
                                     :actor_path => show_path(episode.series),
                                     :subject => episode,
@@ -114,6 +114,7 @@ namespace :app do
 
       puts "The series have been updated at #{Time.at(b_time.to_i)}"
       results = "#{series_updated.size} series updated. #{episodes_updated[:new].size} new episodes. #{episodes_updated[:updated].size} episodes updated."
+      puts results
       AdminMailer.deliver_series_update_succeeded(results) unless %w{ test development }.include?(Rails.env)
       Settings.last_update = b_time.to_s
     rescue Exception => e

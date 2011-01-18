@@ -1,4 +1,0 @@
-<%= link_to(content_tag(:span, activity.actor_name), activity.actor_path) %>
-<% activity_data = JSON.parse(activity.data) %>
-wrote a <%= link_to 'comment', activity_data['path'] %> about <%= link_to activity_data['commented_name'], activity_data['commented_path'] %><br />
-<p><%= activity_data["content"] %></p> 

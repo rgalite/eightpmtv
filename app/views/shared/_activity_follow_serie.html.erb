@@ -1,7 +1,0 @@
-<% activity_data = JSON.parse(activity.data) %>
-<%= link_to(content_tag(:span, activity.actor_name), activity.actor_path) %> started following the serie <%= link_to activity_data['serie_name'], activity_data['serie_path'] %>
-<div style="">
-  <%= link_to(image_tag(activity_data["serie_img"], :class => "thumbnail"), activity_data["serie_path"]) %>
-  <p><%= activity_data["serie_desc"] %></p>
-</div>
-<div class="clear"></div>

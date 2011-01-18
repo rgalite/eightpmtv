@@ -27,11 +27,7 @@ module ApplicationHelper
   
   def comment_avatar_url(comment)
     comment.user.nil? ? "/images/user_default_icon_thumb.png" : comment.user.avatar_url(:thumb)
-  end
-  
-  def render_activity(activity)
-    render :partial => "shared/activity_#{activity.kind}", :locals => { :activity => activity } 
-  end    
+  end   
   
   def render_activity_title(activity)
     activity_data = JSON.parse(activity.data)
