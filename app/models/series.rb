@@ -57,7 +57,8 @@ class Series < ActiveRecord::Base
   
   def name=(value)
     if value.downcase.starts_with?('the ')
-      @name_prefix = "The"
+      self.name_prefix = "The"
+      value.gsub!(/^The\s+/, "")
     end
     super
   end
