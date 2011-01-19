@@ -64,7 +64,7 @@ namespace :app do
                                                   :first_aired => ep.air_date,
                                                   :poster => RemoteFile.new("http://thetvdb.com/banners/#{ep.thumb}"))
                 puts "Episode #{episode.full_name}. Created."
-                if args.activity
+                if args.activity && episode.first_aired.to_date > Date.today
                   # The episode is scheduled
                   puts "Episode #{episode.full_name} is scheduled."
                   Activity.delay(:priority => 10).create!(:actor => episode.series,
@@ -74,7 +74,7 @@ namespace :app do
                                     :subject => episode,
                                     :kind => "new_episode_scheduled",
                                     :data => { :episode_name => episode.full_name,
-                                               :episode_path => show_season_episode_path(:show_id => episode.series.id,
+                                               :episode_path => show_season_episode_path(:show_id => episode.series,
                                                                                        :season_number => episode.season.number,
                                                                                        :episode_number => episode.number),
                                                :season_number => episode.season.number,
@@ -97,7 +97,7 @@ namespace :app do
                     puts "Episode #{episode.full_name} is now available."
                     Activity.create!(:actor_name => episode.full_name,
                                       :actor_img => episode.poster.url(:thumb),
-                                      :actor_path => show_season_episode_path(:show_id => episode.series.id,
+                                      :actor_path => show_season_episode_path(:show_id => episode.series,
                                                                                :season_number => episode.season.number,
                                                                                :episode_number => episode.number),
                                       :kind => "new_episode_available",

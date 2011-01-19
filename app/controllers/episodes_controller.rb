@@ -27,7 +27,7 @@ class EpisodesController < ApplicationController
                                          :kind => "comment",
                                          :data => { "content" => @comment.content,
                                                     "commented_name" => @comment.commentable.full_name,
-                                                    "commented_path" => show_season_episode_path(:show_id => series.id, :season_number => season.number, :episode_number => @episode.number) }.to_json)
+                                                    "commented_path" => show_season_episode_path(:show_id => series, :season_number => season.number, :episode_number => @episode.number) }.to_json)
     end
   end
   

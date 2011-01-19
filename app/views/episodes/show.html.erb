@@ -5,11 +5,25 @@
     updateProcessingElements(posterIntervalID, "#poster.processing", getPosterPath);
   });
 </script>
+<style>
+  div.buttons { padding-top:0px; }
+</style>
 <div class="left_articles">
   <h2>
     <%= link_to "#{@episode.series.full_name}", show_path(@episode.series) %>
-    <%= link_to "S#{@episode.season.number.to_s.rjust(2, "0")}", show_season_path(:season_number => @episode.season.number, :show_id => @episode.series.id) %><%= "E#{@episode.number.to_s.rjust(2, "0")}" %> - <%= @episode.name %>
+    <%= link_to "S#{@episode.season.number.to_s.rjust(2, "0")}", show_season_path(:season_number => @episode.season.number, :show_id => @episode.series) %><%= "E#{@episode.number.to_s.rjust(2, "0")}" %> - <%= @episode.name %>
   </h2>
+  <div class="buttons">
+    <% if @episode.previous %>
+      <%= link_to "<< #{@episode.previous.full_name}", show_season_episode_path(:show_id => @episode.series, :season_number => @episode.previous.season.number, :episode_number => @episode.previous.number) %>
+    <% end %>
+    <% if !@episode.previous.nil? && !@episode.next.nil? %>
+      &nbsp;|&nbsp;
+    <% end %>
+    <% if @episode.next %>
+      <%= link_to "#{@episode.next.full_name} >>", show_season_episode_path(:show_id => @episode.series, :season_number => @episode.next.season.number, :episode_number => @episode.next.number) %>
+    <% end %>
+  </div>
 	<p class="description"><%= aired_on(@episode.first_aired) %></p>
 	<div id="episode-<%= @episode.id %>" class="episode_info">
   	<div>

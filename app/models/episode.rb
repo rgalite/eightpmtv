@@ -38,4 +38,16 @@ class Episode < ActiveRecord::Base
   def full_name
     @full_name ||= "#{series.name} S#{season.number.to_s.rjust(2, '0')}E#{number.to_s.rjust(2, '0')} - #{self.name}"
   end
+  
+  def previous
+    if @previous.nil?
+      cur_index = series.episodes.find_index(self)
+      @previous = series.episodes[cur_index - 1] unless cur_index.zero?
+    end
+    @previous
+  end
+  
+  def next
+    @next ||= series.episodes[series.episodes.find_index(self) + 1]
+  end
 end

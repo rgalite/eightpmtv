@@ -4,7 +4,7 @@
     <%= render :partial => "seasons/poster_small", :locals => { :season => season } %>
     <p>
 	    <%= link_to "Season #{season.number}",
-	                show_season_path(:show_id => season.series.id, :season_number => season.number) %>
+	                show_season_path(:show_id => season.series, :season_number => season.number) %>
 	  </p>
 	</div>
 </div>
