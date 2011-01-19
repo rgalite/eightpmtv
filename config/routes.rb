@@ -57,6 +57,8 @@ Tvshows::Application.routes.draw do
       get :unfollow
       get :followers
       get :following
+      get :block
+      get :unblock
     end
   end
   resources :comments, :only => [] do

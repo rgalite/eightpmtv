@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   has_many :activities, :dependent => :destroy, :as => :actor
   after_save :update_settings
   before_create :create_settings
-  
+  attr_readonly :follows_count
   def apply_omniauth(omniauth)
     authentication = self.authentications.build(:provider => omniauth["provider"],
                                                 :uid => omniauth["uid"])

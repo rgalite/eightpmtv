@@ -61,20 +61,20 @@ input.button { padding: 3px; }
 
 /* left side */
 .left { float: left; width: 650px; margin: 0 0 10px 0; }
-	.left_articles {
-		margin: 0 20px 15px 10px;
-		padding: 10px 0 10px 0;
-		text-align: justify;
-		border-bottom: 1px dotted #ccc;
-		color: #000;
-		background: #fff;
-	}
+.left_articles {
+	margin: 0 20px 15px 10px;
+	padding: 10px 0 10px 0;
+	text-align: justify;
+	border-bottom: 1px dotted #ccc;
+	color: #000;
+	background: #fff;
+}
 	
-	.calendar { height: 50px; float: left; background: #fff url(/images/calendar.gif) no-repeat; width: 50px; padding: 5px 0 0 9px;  color: #808080;}
-	.calendar p { padding: 0; margin: 0; }
-	.description { padding: 0 0 2px 0; margin: 0 10px 5px 0; border-bottom: 1px dotted #ccc; }
-	.thumbnail { float: left; margin: 0 18px 8px 0; border: 1px solid #dedede; }
-    .width-full { width:100% }
+.calendar { height: 50px; float: left; background: #fff url(/images/calendar.gif) no-repeat; width: 50px; padding: 5px 0 0 9px;  color: #808080;}
+.calendar p { padding: 0; margin: 0; }
+.description { padding: 0 0 2px 0; margin: 0 10px 5px 0; border-bottom: 1px dotted #ccc; }
+.thumbnail { float: left; margin: 0 18px 8px 0; border: 1px solid #dedede; }
+.width-full { width:100% }
 
 /* bottom thirds */
 .thirds { float: left; width: 203px; background: #eee; margin: 0 12px 0 0; color: #5d5d5d; }
@@ -456,13 +456,7 @@ div.user_info p.fw-info img:hover { border-color: #CCC; }
 
 /* activities */
 #activities .bubble blockquote { padding:10px; }
-#activities .activity-content, #activities .activity-time { margin:0px 0px 0px 60px; }
-#activities .activity-time { font-style:italic; }
-#activities .activity-new_episode_scheduled .activity-content,
-#activities .activity-new_episode_scheduled .activity-time
-{
-	margin-left:112px !important;
-}
+#activities .activity-time { font-style:italic;margin:0px; }
 #activities .actor-avatar { float:left; }
-#activities .activity { float:left }
+#activities .activity { float:left;margin-left:10px; }
 #activities .bubble { margin:10px 0px; }

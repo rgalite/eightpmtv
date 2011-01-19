@@ -49,7 +49,6 @@ Tvshows::Application.configure do
   
   config.action_mailer.default_url_options = { :host => 'eightpm.tv' }
   
-  
   config.paperclip_options = {
     :storage => :s3,
     :s3_credentials => "#{Rails.root}/config/amazon_s3.yml",

@@ -4,16 +4,16 @@
     <div class="actor-avatar">
       <%= image_tag(activity.actor_img) %>
     </div>
-    <div style="activity">
+    <div class="activity" style="width:90%">
       <div class="activity-content">
-        <%= link_to(content_tag(:span, activity.actor_name), activity.actor_path) %> started following the serie <%= link_to activity_data['serie_name'], activity_data['serie_path'] %>
+        <%= link_to(content_tag(:span, activity.actor_name), activity.actor_path) %> started following <%= link_to activity_data['serie_name'], activity_data['serie_path'] %>
         <div>
           <%= link_to(image_tag(activity_data["serie_img"], :class => "thumbnail"), activity_data["serie_path"]) %>
           <p><%= activity_data["serie_desc"] %></p>
         </div>
         <div class="clear"></div>
       </div>
-      <p style="font-style:italic" class="activity-time"><%= activity.created_at.to_pretty %></p>
+      <p class="activity-time"><%= activity.created_at.to_pretty %></p>
     </div>
     <div class="clear"></div>
   </blockquote>

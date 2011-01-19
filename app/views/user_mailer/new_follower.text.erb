@@ -1,0 +1,11 @@
+<%= @follower.name %> is now following you on 8PM.TV
+==============================================================================
+
+    Hi <%= @user.name %>!
+<%= @follower.name %> is now following you on 8PM.TV
+That means he can see what TV shows you're watching,
+who the people you following are and he can see your comments on his
+home page.
+
+You can check <%= @follower.name %>'s profile by clicking <%= link_to "here", user_url(@follower) %>
+If you don't want <%= @follower.name %> to follow you, you can block him by clicking <%= link_to "here", block_user_url(@follower) %>.

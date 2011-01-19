@@ -161,9 +161,9 @@ class ShowsController < ApplicationController
       a = current_user.activities.create(:actor_path => user_path(current_user),
                                          :actor_img => current_user.photo.url(:thumb),
                                          :subject => @comment,
+                                         :subject_path => show_path(@series, :anchor => "comment-#{@comment.id}"),
                                          :kind => "comment",
                                          :data => { "content" => @comment.content,
-                                                    "path" => show_path(@series, :anchor => "comment-#{@comment.id}"),
                                                     "commented_name" => @comment.commentable.full_name,
                                                     "commented_path" => show_path(@series) }.to_json)
     end

@@ -16,8 +16,18 @@ class EpisodesController < ApplicationController
     if user_signed_in?
       @episode = Episode.find(params[:id])
       @comment = @episode.comments.build(:content => params[:comment][:content],
-                                 :user => current_user) 
+                                 :user => current_user)
+      series = @episode.series
+      season = @episode.season 
       save_comment(@comment)
+      a = current_user.activities.create(:actor_path => user_path(current_user),
+                                         :actor_img => current_user.photo.url(:thumb),
+                                         :subject => @comment,
+                                         :subject_path => show_path(series, :anchor => "comment-#{@comment.id}"),
+                                         :kind => "comment",
+                                         :data => { "content" => @comment.content,
+                                                    "commented_name" => @comment.commentable.full_name,
+                                                    "commented_path" => show_season_episode_path(:show_id => series.id, :season_number => season.number, :episode_number => @episode.number) }.to_json)
     end
   end
   

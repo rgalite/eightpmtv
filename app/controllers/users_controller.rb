@@ -41,4 +41,10 @@ class UsersController < ApplicationController
   def name
     redirect_to users_path
   end
+  
+  def block
+  end
+  
+  def unblock
+  end
 end

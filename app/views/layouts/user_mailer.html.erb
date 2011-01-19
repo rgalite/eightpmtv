@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <style>
+    body { padding: 0; margin: 0; font: 0.7em Tahoma, Arial, sans-serif; line-height: 1.6em; background: #E7EAED; color: #454545; }
+
+    /* links */
+    a { color: #003B6E; background: inherit; }
+    a:hover { color: #9EC068; background: inherit; }	
+
+    /* headings */
+    h1 { font: bold 2.5em "Arial", Sans-Serif; margin: 0; letter-spacing: -1px; }
+    #logo .title { color: #003B6E; background: #fff; }
+  
+    /* content holder */
+    #content { background-color: white; border: 1px solid #CCC; margin: 10px 10px; padding:20px 20px; }
+
+    /* header */
+    #header { padding:15px 0px 5px; }
+    #logo { float:left; padding: 0px 0 0 25px; }
+    #logo a { background: url(http://staging.eightpm.tv/images/tv-logo.png) no-repeat; display:block; padding: 15px 0px 0px 55px; }
+    #logo p { margin: 0; padding: 0 0 0 10px; color: #003B6E; background: #fff; }
+
+    /* content */
+    .left { float: left; margin: 0 0 10px 0; }
+    
+    /* footer */
+    .footer { clear: both; text-align: center; line-height: 1.8em; padding: 10px 0 10px 0; border-top: 1px solid #ccc; }
+
+    /* Clearer */
+    .clear { clear:both; }
+  </style>
+</head>
+<body>
+	<div id="content">
+	  <div id="header">
+	    <div id="logo">
+	      <a href="<%= root_url %>" title="8PM.TV">
+  	      <h1>
+  	        <%= "8PM.#{content_tag :span, 'TV', :class => 'title'}".html_safe %>
+  	      </h1>
+  	    </a>
+        <p><span style="color:black">TV Shows go social!</span> Share your favorites TV shows with your friends</p>
+	    </div>
+	    <div class="clear"></div>
+	  </div>
+
+    <div class="left">
+      <%= yield %>
+      <p>This e-mail was sent by <%= link_to "8PM.TV", root_url %> robot. Please do not reply.</p>
+    </div>
+
+		<div class="footer">
+			<p>Follow us on Twitter! <a href="http://twitter.com/8PMTV" target="_blank">@8PMTV</a> &middot;</p>
+		</div>
+	</div>
+</body>
+</html>
+
+

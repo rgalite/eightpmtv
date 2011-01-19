@@ -22,7 +22,7 @@ class Series < ActiveRecord::Base
   scope :most_followed, :order => "follows_count DESC, name ASC", :conditions => ["status = ?", true]
   scope :last_updated,  :conditions => ["updated_at > ? AND status = ?", 3.days.ago, true],
                         :order => "updated_at DESC, name ASC"
-  
+  attr_readonly :follows_count
   public  
   
   def set_actors(actors)

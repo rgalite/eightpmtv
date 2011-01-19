@@ -4,7 +4,7 @@
     <div class="actor-avatar">
       <%= image_tag(activity.actor_img) %>
     </div>
-    <div style="activity activity-<%= activity.kind %>">
+    <div class="activity activity-<%= activity.kind %>">
       <div class="activity-content">
         A new episode of <%= link_to activity.actor.full_name, activity.actor_path %> has been scheduled.
         <div>

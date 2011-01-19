@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110115151004) do
+ActiveRecord::Schema.define(:version => 20110119112457) do
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
@@ -24,6 +24,9 @@ ActiveRecord::Schema.define(:version => 20110115151004) do
     t.datetime "updated_at"
     t.integer  "subject_id"
     t.string   "subject_type"
+    t.string   "subject_path"
+    t.string   "subject_name"
+    t.string   "subject_img"
   end
 
   add_index "activities", ["actor_type", "actor_id"], :name => "altered_activities_actor_type_actor_id_ix"
@@ -249,6 +252,7 @@ ActiveRecord::Schema.define(:version => 20110115151004) do
     t.string    "photo_content_type"
     t.integer   "photo_file_size"
     t.datetime  "photo_updated_at"
+    t.integer   "follows_count"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -4,13 +4,13 @@
     <div class="actor-avatar">
       <%= image_tag(activity.actor_img) %>
     </div>
-    <div style="activity">
+    <div class="activity" style="width:90%">
       <div class="activity-content">
         <%= link_to(content_tag(:span, activity.actor_name), activity.actor_path) %>
-        wrote a <%= link_to 'comment', activity_data['path'] %> about <%= link_to activity_data['commented_name'], activity_data['commented_path'] %><br />
+        wrote a <%= link_to 'comment', activity.subject_path %> about <%= link_to activity_data['commented_name'], activity_data['commented_path'] %><br />
         <p><%= activity_data["content"] %></p> 
       </div>
-      <p style="font-style:italic" class="activity-time"><%= activity.created_at.to_pretty %></p>
+      <p class="activity-time"><%= activity.created_at.to_pretty %></p>
     </div>
     <div class="clear"></div>
   </blockquote>
