@@ -460,3 +460,11 @@ div.user_info p.fw-info img:hover { border-color: #CCC; }
 #activities .actor-avatar { float:left; }
 #activities .activity { float:left;margin-left:10px; }
 #activities .bubble { margin:10px 0px; }
+
+/* Authentication methods */
+#auth_methods .auth-method { border:1px solid #CCC; border-radius:5px; float:left; margin-right:20px; width:200px }
+#auth_methods .auth-method-wrapper { float:left; padding:5px; }
+#auth_methods .auth-method-content { float:left; width:180px; }
+#auth_methods .auth-method-content p { float:left; margin:0px; }
+#auth_methods a.del-auth-method { float:right; }
+#social_settings #authentication_forms .auth-method { float:left; }

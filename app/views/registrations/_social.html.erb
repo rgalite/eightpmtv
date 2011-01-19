@@ -1,25 +1,48 @@
+<script type="text/javascript">
+  $(function(){
+    $("a.del-auth-method")
+      .bind('ajax:success', function(data, status, xhr){
+        $(this).parent().parent().hide('slow');
+      })
+      .bind('ajax:failure', function(data, status, xhr){
+      
+      });
+  });
+</script>
 <div id="social_settings" class="settings_block"<%= " style='display:none'" if tab_active_class("social").blank? %>>
-  <h3>My social networks</h3>
-  <div style="border-bottom:1px solid gray">
-    <% if current_user.authentications.size > 0 %>
-    <div>
-      <% current_user.authentications.each do |auth| %>
-      <div>
-        <div>
+  <% if current_user.authentications.size > 0 %>
+  <h3>Your social networks</h3>
+  <div id="auth_methods">
+    <% current_user.authentications.each do |auth| %>
+    <div id="auth_method_<%= "#{auth.provider}_#{auth.uid}" %>" class="auth-method">
+      <div class="auth-method-wrapper">
+        <%= link_to 'X', auth, :confirm => 'Are you sure?',
+            :method => :delete, :remote => true, :class => "del-auth-method" %>
+        <div class="auth-method-content">
           <%= image_tag "icons/#{auth.provider}_32.png", :style => "float:left" %>
-          <p style="margin:0px; margin-top:6px;width:180px">
-            <%= auth.provider.capitalize %> (<%= auth.uid %>)
+          <p>
+            <%= auth.provider.capitalize %><br />(<%= auth.uid %>)
           </p>
-          <div></div>
+          <div class="clear"></div>
         </div>
-        <div>
-          <%= link_to 'X', auth, :confirm => 'Are you sure?',
-              :method => :delete %>
-        </div>
-        <div style="clear:both"></div>
+        <div class="clear"></div>
       </div>
-      <% end %>
+      <div class="clear"></div>
     </div>
     <% end %>
+    <div class="clear"></div>
   </div>
+  <% end %>
+  
+  <p class="title"><b>Connect with your social account</b></h2>
+  <div id="authentication_forms">
+    <div class="auth-method">
+      <%= link_to (image_tag "twitter_connect.gif"), "/auth/twitter" %>
+    </div>
+    <div class="auth-method" style="margin-left:20px">
+      <%= link_to (image_tag "facebook_connect.gif"), "/auth/facebook" %>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
 </div>
