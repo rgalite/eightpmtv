@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/jpg', 'image/png']
   validates_attachment_size :photo, :less_than => 2.megabytes
   has_many :activities, :dependent => :destroy, :as => :actor
-  after_save :update_settings
+  after_save :update_settings, :update_activities_avatar
   before_create :create_settings
   attr_readonly :follows_count
   def apply_omniauth(omniauth)
@@ -110,5 +110,9 @@ class User < ActiveRecord::Base
   
   def create_settings
     settings.use_avatar = "own"
+  end
+  
+  def update_activities_avatar
+    Delayed::Job.enqueue(AttachImageToActorActivitiesJob.new(id))
   end
 end

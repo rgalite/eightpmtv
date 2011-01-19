@@ -7,9 +7,10 @@
     <div class="activity activity-<%= activity.kind %>">
       <div class="activity-content">
         A new episode of <%= link_to activity.actor.full_name, activity.actor_path %> has been scheduled.
-        <div>
-          <%= link_to(activity_data["episode_name"], activity_data["episode_path"]) %> will be aired on <%= activity_data["episode_air_time"]%>
-        </div>
+        <p>
+          <%= link_to(activity_data["episode_name"], activity_data["episode_path"]) %> will be aired on
+          <%= activity_data["episode_air_time"].blank? ? "(TBA)" : activity_data["episode_air_time"] %>
+        </p>
         <div class="clear"></div>
       </div>
       <p class="activity-time"><%= activity.created_at.to_pretty %></p>
