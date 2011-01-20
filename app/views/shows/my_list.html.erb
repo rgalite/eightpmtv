@@ -1,12 +1,6 @@
 <%= render "series_categories" %>
 <% for show in @shows %>
 <div class="left_articles">
-	<div class="buttons">
-	  <p>
-	    <a href="#" class="bluebtn">Watc</a>&nbsp;
-	    <a href="#" class="greenbtn">Remove</a>
-	  </p>
-	</div>
 	<div id="series_info">
 	  <h2><%= show.full_name %></h2>
   	<p class="description">
@@ -16,20 +10,17 @@
   	  <% if show.poster? %>
         <%= image_tag show.poster.url(:small), :class => "thumbnail" %>
       <% end %>
-      <div>
-        <% description = truncate(show.description, 795, "") %>
-        <%= description %>
-        <% if show.description.length > description.length %>
-          <%= link_to_function("...", "showMoreDescription(this);") %>
-          <span style="display:none">
-            <%= show.description[(description.length)..-1] %>
-          </span>
-        <% end %>
-      </div>
-      <div>
-        <span class="label"><%= t '.air_time'%>:</span>
-        <%= show.air_day %> <%= t '.at' %>
-        <%= show.air_time %> (<%= show.runtime %> mn)
+      <div id="latest_episodes_<%= show.id %>">
+        <p class="title">Last episodes:</p>
+        <div class="latest_episodes">
+          <% show.episodes.available.last(3).each do |episode| %>
+            <div class="last_episode">
+              <%= link_to (image_tag(episode.poster.url(:small)) + content_tag(:span, episode.full_name, :style => "display:block")),
+                          show_season_episode_path(:show_id => episode.series, :season_number => episode.season.number, :episode_number => episode.number) %>
+            </div>
+          <% end %>
+          <div class="clear"></div>
+        </div>
       </div>
   	</p>
   	<div style="clear:both"></div>

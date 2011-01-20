@@ -93,9 +93,10 @@ namespace :app do
                                             :writer => ep.writer,
                                             :first_aired => ep.air_date,
                                             :poster_url => ep.thumb)
-                  if args.activity && !available && episode.available? # The episode is NOW available
+                  if args.activity && (!available && episode.available?) # The episode is NOW available
+                    debugger
                     puts "Episode #{episode.full_name} is now available."
-                    Activity.create!(:actor_name => episode.full_name,
+                    Activity.delay(:priority => 10).create!(:actor_name => episode.full_name,
                                       :actor_img => episode.poster.url(:thumb),
                                       :actor_path => show_season_episode_path(:show_id => episode.series,
                                                                                :season_number => episode.season.number,

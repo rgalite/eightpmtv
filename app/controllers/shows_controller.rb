@@ -173,8 +173,6 @@ class ShowsController < ApplicationController
     if params[:id].blank?
       @shows = current_user.series.order("name ASC") if current_user
       render "my_list"
-    else
-      @show = Series.find()
     end
   end
   

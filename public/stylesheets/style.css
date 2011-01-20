@@ -468,3 +468,6 @@ div.user_info p.fw-info img:hover { border-color: #CCC; }
 #auth_methods .auth-method-content p { float:left; margin:0px; }
 #auth_methods a.del-auth-method { float:right; }
 #social_settings #authentication_forms .auth-method { float:left; }
+
+/* My series */
+.last_episode { float: left; margin-right: 20px; text-align:center; width: 200px; }
