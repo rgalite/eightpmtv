@@ -38,6 +38,10 @@ module ApplicationHelper
       (link_to activity_data['commented_name'], activity_data['commented_path'])
     when "follow_serie"
       res = link_to(content_tag(:span, activity.actor_name), activity.actor_path) + " started following " + (link_to activity_data['serie_name'], activity_data['serie_path'])
+    when "new_episode_available"
+      res = link_to(content_tag(:span, activity.subject.full_name), activity.subject_path) + " is now available."
+    when "new_episode_scheduled"
+      res = link_to(content_tag(:span, activity.subject.full_name), JSON.parse(activity.data)["episode_path"]) + " is scheduled."
     end
     res + " - " + content_tag(:span, activity.created_at.to_pretty, :style => "font-style:italic")
   end
