@@ -2,6 +2,7 @@ class Season < ActiveRecord::Base
   include HasPoster
   has_attached_file :poster, {
                     :styles => { :medium => "200x289>", :small => "150x217>" },
+                    :default_url => "/images/season_default_image.png"
                   }.merge(Tvshows::Application.config.paperclip_options)
   process_in_background :poster
   has_many :episodes, :dependent => :destroy, :order => "number ASC"
