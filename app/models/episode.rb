@@ -4,7 +4,7 @@ class Episode < ActiveRecord::Base
   belongs_to :season
   has_one :series, :through => :season
   has_attached_file :poster, {
-                    :styles => { :small => "200x112>", :medium => "300x168>" },
+                    :styles => { :small => "200x112>", :medium => "300x168>", :thumb => "172x97>" },
                     :default_url => "/images/episode_default_image.png",
                   }.merge(Tvshows::Application.config.paperclip_options)
   process_in_background :poster
@@ -29,7 +29,15 @@ class Episode < ActiveRecord::Base
   end
   
   def available?
-    aired? && updated_at.to_date >= Time.at(ApplicationSetting.last_update.to_i).to_date
+    aired? && updated_at.to_date >= first_aired # Time.at(Settings.last_update.to_i).to_date
+  end
+  
+  def available_before?(date)
+    aired_before?(date) && updated_at.to_date >= first_aired # Time.at(Settings.last_update.to_i).to_date
+  end
+  
+  def aired_before?(date)
+    !first_aired.nil? && first_aired < date
   end
   
   def aired?

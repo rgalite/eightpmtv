@@ -63,7 +63,7 @@ namespace :app do
                                                   :director => ep.director,
                                                   :writer => ep.writer,
                                                   :first_aired => ep.air_date,
-                                                  :poster => (ep.thumb.nil? ? nil : RemoteFile.new("http://thetvdb.com/banners/#{ep.thumb}")))
+                                                  :poster_url => ep.thumb)
                 puts "Episode #{episode.full_name}. Created."
                 if args.activity && episode.first_aired.to_date > Date.today
                   # The episode is scheduled
@@ -85,7 +85,7 @@ namespace :app do
                 episodes_updated[:new] << episode
               else
                 if ep.last_updated.to_i >= a_time
-                  available = episode.available? 
+                  available = episode.available_before?(Time.at(a_time).to_date) 
                   episode.update_attributes!(:tvdb_id => ep.id,
                                             :number => ep.number,
                                             :name => ep.name,
@@ -95,15 +95,20 @@ namespace :app do
                                             :first_aired => ep.air_date,
                                             :poster_url => ep.thumb)
                   if args.activity && (!available && episode.available?) # The episode is NOW available
-                    debugger
                     puts "Episode #{episode.full_name} is now available."
                     Activity.delay(:priority => 10).create!(:actor_name => episode.full_name,
-                                      :actor_img => episode.poster.url(:thumb),
-                                      :actor_path => show_season_episode_path(:show_id => episode.series,
-                                                                               :season_number => episode.season.number,
-                                                                               :episode_number => episode.number),
+                                      :actor => episode.series,
+                                      :actor_img => episode.series.poster.url(:thumb),
+                                      :actor_path => show_path(episode.series),
+                                      :subject => episode,
+                                      :subject_img => episode.poster.url(:thumb),
+                                      :subject_path => show_season_episode_path(:show_id => episode.series,
+                                                                                :season_number => episode.season.number,
+                                                                                :episode_number => episode.number),
                                       :kind => "new_episode_available",
-                                      :data => { :episode_description => episode.description }.to_json)
+                                      :data => { }.to_json)
+                  else
+                    puts "#{available ? "A" : "Not A"}vailable: updated on #{episode.updated_at.to_date}"
                   end
                   puts "Episode #{episode.full_name}. Updated."
                   episodes_updated[:updated] << episode

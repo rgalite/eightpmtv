@@ -1,0 +1,25 @@
+<% activity_data = JSON.parse(activity.data) %>
+<div class="bubble">
+  <blockquote>
+    <div class="actor-avatar">
+      <%= image_tag(activity.actor_img) %>
+    </div>
+    <div class="activity" style="width:80%">
+      <div class="activity-content">
+        A new episode of <%= link_to activity.actor.full_name, activity.actor_path %> is now available.
+        <div>
+          <%= link_to(image_tag(activity.subject.poster.url(:thumb), :class => "thumbnail"), activity.subject_path) %>
+          <p>
+            <%= link_to(activity.subject.full_name, activity.subject_path) %>
+          </p>
+          <p>
+            <%= activity_data["episode_description"] %>
+          </p>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <p class="activity-time"><%= activity.created_at.to_pretty %></p>
+    </div>
+    <div class="clear"></div>
+  </blockquote>
+</div>
