@@ -32,8 +32,12 @@ Tvshows::Application.configure do
   config.serve_static_assets = false
 
   # Enable serving of images, stylesheets, and javascripts from an asset server
-  # config.action_controller.asset_host = "http://assets.example.com"
-
+  config.action_controller.asset_host = Proc.new { |source|
+    unless source.starts_with?('/stylesheets' || '/javascripts')
+      "http://assets#{rand(4)}.eightpm.tv"
+    end
+  }
+  
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
