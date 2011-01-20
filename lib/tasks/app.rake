@@ -32,7 +32,8 @@ namespace :app do
                                    :status => s.status == "Continuing",
                                    :imdb_id => s.imdb_id,
                                    :rating_count => s.rating_count,
-                                   :air_time => s.air_time, :air_day => s.air_day)
+                                   :air_time => s.air_time,
+                                   :air_day => s.air_day)
           series_updated << serie
           episodes = s.episodes
           episodes.each_with_index do |ep, i|
@@ -62,7 +63,7 @@ namespace :app do
                                                   :director => ep.director,
                                                   :writer => ep.writer,
                                                   :first_aired => ep.air_date,
-                                                  :poster => RemoteFile.new("http://thetvdb.com/banners/#{ep.thumb}"))
+                                                  :poster => (ep.thumb.nil? ? nil : RemoteFile.new("http://thetvdb.com/banners/#{ep.thumb}")))
                 puts "Episode #{episode.full_name}. Created."
                 if args.activity && episode.first_aired.to_date > Date.today
                   # The episode is scheduled
