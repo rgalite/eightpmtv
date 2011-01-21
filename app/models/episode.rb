@@ -5,7 +5,7 @@ class Episode < ActiveRecord::Base
   has_one :series, :through => :season
   has_attached_file :poster, {
                     :styles => { :small => "200x112>", :medium => "300x168>", :thumb => "172x97>" },
-                    :default_url => "/images/episode_default_image.png",
+                    :default_url => "/images/episode_default_image_:style.png",
                   }.merge(Tvshows::Application.config.paperclip_options)
   process_in_background :poster
   has_many :comments, :as => :commentable, :order => "created_at desc"

@@ -5,7 +5,4 @@ tmp
 public/assets/search/banners/*
 tmp/restart.txt
 .idea
-public/episodes
-public/series
-public/seasons
-public/users
+public/static

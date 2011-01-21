@@ -471,3 +471,4 @@ div.user_info p.fw-info img:hover { border-color: #CCC; }
 
 /* My series */
 .last_episode { float: left; margin-right: 20px; text-align:center; width: 200px; }
+.last_episode img { border:1px solid #CCC; }
