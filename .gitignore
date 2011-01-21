@@ -6,3 +6,4 @@ public/assets/search/banners/*
 tmp/restart.txt
 .idea
 public/static
+lib/tasks/assets.rake

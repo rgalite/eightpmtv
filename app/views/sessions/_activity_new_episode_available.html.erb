@@ -6,7 +6,7 @@
     </div>
     <div class="activity" style="width:80%">
       <div class="activity-content">
-        A new episode of <%= link_to activity.actor.full_name, activity.actor_path %> is now available.
+        A new episode of <%= link_to activity.actor_name, activity.actor_path %> is now available.
         <div>
           <%= link_to(image_tag(activity.subject.poster.url(:thumb), :class => "thumbnail"), activity.subject_path) %>
           <p>

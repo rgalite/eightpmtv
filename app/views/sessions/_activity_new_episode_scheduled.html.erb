@@ -6,7 +6,7 @@
     </div>
     <div class="activity activity-<%= activity.kind %>">
       <div class="activity-content">
-        A new episode of <%= link_to activity.actor.full_name, activity.actor_path %> has been scheduled.
+        A new episode of <%= link_to activity.actor_name, activity.actor_path %> has been scheduled.
         <p>
           <%= link_to(activity_data["episode_name"], activity_data["episode_path"]) %> will be aired on
           <%= activity_data["episode_time"].blank? ? "(TBA)" : (l activity_data["episode_time"].to_date, :format => :dmy_with_long_month) %>
