@@ -432,9 +432,10 @@ div.flash { margin-bottom:10px; }
 div.flash .flash-content { margin:0px; padding:5px 5px 20px 20px;}
 div.flash .flash-content .flash-handler { float:right; }
 div.flash p { clear:right;color:black;margin:0px;text-align:center; }
-#flash_notice {	background-color:#B8FFB9;border:1px solid #009100 }
-#flash_error { background-color:#FFE3EA;border:1px solid #E01B4C;}
-#flash_warn { background-color:#FFFEDE;border:1px solid #E8CD00;}
+#flash_notice, #flash_error, #flash_warn { border: 1px solid #CCC; padding:1px; }
+#flash_notice .flash-content {	background-color:#B8FFB9; }
+#flash_error .flash-content {	background-color:#FFE3EA; }
+#flash_warn .flash-content {	background-color:#FFFEDE; }
 
 /* Errors in forms */
 div.field_with_errors { display:inline; }

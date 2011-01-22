@@ -54,11 +54,16 @@ $(document).ready(function(){
 	// NOTICES Stuff
 	$(".flash-handler").each(function(){
 		$(this).click(function(){
-			$(this).parent().parent().slideUp();
+			$(this).parent().parent().fadeOut();
 			return false;
 		});
 	});
+	setTimeout("clearFlashes()", 3000); // Auto hide flashes after 3 secs
 });
+
+function clearFlashes(){
+	$(".flash-handler").parent().parent().fadeOut();
+}
 
 function showMoreDescription(linkMore)
 {
