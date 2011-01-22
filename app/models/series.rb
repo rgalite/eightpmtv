@@ -14,6 +14,7 @@ class Series < ActiveRecord::Base
   has_many :seasons, :dependent => :destroy, :order => "seasons.number ASC"
   has_many :episodes, :through => :seasons, :dependent => :destroy, :order => "seasons.number ASC, episodes.number ASC"
   has_many :activities, :dependent => :destroy, :as => :actor
+  has_many :inv_activities, :class_name => "Activity", :dependent => :destroy, :as => :subject
   process_in_background :poster
   after_save :attach_poster
   after_create :attach_episodes

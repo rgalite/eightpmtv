@@ -9,10 +9,11 @@ class Episode < ActiveRecord::Base
                   }.merge(Tvshows::Application.config.paperclip_options)
   process_in_background :poster
   has_many :comments, :as => :commentable, :order => "created_at desc"
-  
+  has_many :activities, :dependent => :destroy, :as => :actor
+  has_many :inv_activities, :class_name => "Activity", :dependent => :destroy, :as => :subject
   attr_reader :poster_url
   after_save :attach_poster
-  named_scope :available, :conditions => [ "episodes.first_aired IS NOT NULL AND episodes.first_aired <= ? AND episodes.updated_at >= ?", Date.today, Time.at(ApplicationSetting.last_update.to_i).to_date]
+  named_scope :available, :conditions => [ "episodes.first_aired IS NOT NULL AND episodes.first_aired <= ? AND episodes.updated_at >= ?", Date.today, Time.at(Settings.last_update.to_i).to_date]
   
   def self.find_by_show_id_and_season_number_and_episode_number(show_id, season_number, episode_number)
     Series.find(show_id).episodes.includes(:season).where("seasons.number" => season_number,

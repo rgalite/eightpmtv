@@ -9,8 +9,6 @@ class CreateSettings < ActiveRecord::Migration
     end
     
     add_index :settings, [ :target_type, :target_id, :var ], :unique => true
-    Settings.last_update = ApplicationSetting.last_update
-    User.all.each { |u| u.settings.use_avatar = "own" }
   end
 
   def self.down

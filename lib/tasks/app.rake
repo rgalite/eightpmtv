@@ -65,25 +65,10 @@ namespace :app do
                                                   :first_aired => ep.air_date,
                                                   :poster_url => ep.thumb)
                 puts "Episode #{episode.full_name}. Created."
-                if args.activity && episode.first_aired.to_date > Date.today
+                if args.activity && !episode.first_aired.nil? && episode.first_aired.to_date > Date.today
                   # The episode is scheduled
                   puts "Episode #{episode.full_name} is scheduled."
-                  Activity.delay(:priority => 10).create!(:actor => episode.series,
-                                    :actor_name => episode.series.full_name,
-                                    :actor_img => episode.series.poster.url(:thumb),
-                                    :actor_path => show_path(episode.series),
-                                    :subject => episode,
-                                    :kind => "new_episode_scheduled",
-                                    :subject_path => show_season_episode_path(:show_id => episode.series,
-                                                                             :season_number => episode.season.number,
-                                                                             :episode_number => episode.number),
-                                    :data => { :episode_name => episode.full_name,
-                                               :episode_path => show_season_episode_path(:show_id => episode.series,
-                                                                                       :season_number => episode.season.number,
-                                                                                       :episode_number => episode.number),
-                                               :season_number => episode.season.number,
-                                               :episode_number => episode.number,
-                                               :episode_time => episode.first_aired }.to_json)
+                  Delayed::Job.enqueue(NewEpisodeScheduledJob.new(episode.id), :priority => 5)
                 end
                 episodes_updated[:new] << episode
               else
@@ -99,17 +84,7 @@ namespace :app do
                                             :poster_url => ep.thumb)
                   if args.activity && (!available && episode.available?) # The episode is NOW available
                     puts "Episode #{episode.full_name} is now available."
-                    Activity.delay(:priority => 10).create!(:actor_name => episode.full_name,
-                                      :actor => episode.series,
-                                      :actor_img => episode.series.poster.url(:thumb),
-                                      :actor_path => show_path(episode.series),
-                                      :subject => episode,
-                                      :subject_img => episode.poster.url(:thumb),
-                                      :subject_path => show_season_episode_path(:show_id => episode.series,
-                                                                                :season_number => episode.season.number,
-                                                                                :episode_number => episode.number),
-                                      :kind => "new_episode_available",
-                                      :data => { }.to_json)
+                    Delayed::Job.enqueue(NewEpisodeAvailableJob.new(episode.id), :priority => 5)
                   else
                     puts "#{available ? "A" : "Not A"}vailable: updated on #{episode.updated_at.to_date}"
                   end

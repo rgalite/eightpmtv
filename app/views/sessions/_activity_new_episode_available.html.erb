@@ -8,9 +8,9 @@
       <div class="activity-content">
         A new episode of <%= link_to activity.actor_name, activity.actor_path %> is now available.
         <div>
-          <%= link_to(image_tag(activity.subject.poster.url(:thumb), :class => "thumbnail"), activity.subject_path) %>
+          <%= link_to(image_tag(activity.subject_img, :class => "thumbnail"), activity.subject_path) %>
           <p>
-            <%= link_to(activity.subject.full_name, activity.subject_path) %>
+            <%= link_to(activity.subject_name, activity.subject_path) %>
           </p>
           <p>
             <%= activity_data["episode_description"] %>

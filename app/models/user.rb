@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/jpg', 'image/png']
   validates_attachment_size :photo, :less_than => 2.megabytes
   has_many :activities, :dependent => :destroy, :as => :actor
+  has_many :inv_activities, :class_name => "Activity", :dependent => :destroy, :as => :subject
   after_save :update_settings, :update_activities_avatar
   before_create :create_settings
   attr_readonly :follows_count
