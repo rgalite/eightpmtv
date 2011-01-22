@@ -60,4 +60,9 @@ class Episode < ActiveRecord::Base
   def next
     @next ||= series.episodes[series.episodes.find_index(self) + 1]
   end
+  
+  def as_json(options = {})
+    super(:methods => [ :poster_url_small, :full_name ],
+          :only => [ :full_name, :description, :first_aired ])
+  end
 end

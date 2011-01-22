@@ -24,4 +24,17 @@ class Season < ActiveRecord::Base
   def full_name
     @full_name ||= "#{series.full_name} S#{number.to_s.rjust(2, '0')}"
   end
+  
+  def episodes_count
+    episodes.size
+  end
+  
+  def as_json(options = {})
+    episodes_h = { :methods => [ :full_name ], :only => [ :full_name, :number ] }
+    super(:include => {
+                        :episodes => episodes_h
+                      },
+          :methods => [ :poster_url_small, :episodes_count ],
+          :only => [ :number, :description ])
+  end
 end

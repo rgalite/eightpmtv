@@ -4,7 +4,15 @@
     <%= hidden_field_tag :tab, "email" %>
     <p><%= f.label :email %><br />
     <%= f.text_field :email %></p>
-    
+
+  <h3>Notifications</h3>
+    <%= hidden_field_tag :tab, "email" %>
+    <p><%= f.check_box :settings_notification_episode_available, { :checked => current_user.settings.notification_episode_available == "yes" }, "yes", "no" %>
+        <%= f.label :settings_notification_episode_available, "Send me an e-mail when an episode of a TV show I'm following is available" %>
+    </p>
+    <p><%= f.check_box :settings_notification_episode_scheduled, { :checked => current_user.settings.notification_episode_scheduled == "yes" }, "yes", "no" %>
+        <%= f.label :settings_notification_episode_scheduled, "Send me an e-mail when an episode of a TV show I'm following is scheduled" %>
+    </p>    
     <p><%= f.submit "Update" %></p>
   <% end %>
 </div>

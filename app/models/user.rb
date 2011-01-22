@@ -17,9 +17,11 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, :email, :password, :password_confirmation,
                   :remember_me, :login, :photo, :captcha,
-                  :settings_use_avatar
+                  :settings_use_avatar, :settings_notification_episode_available,
+                  :settings_notification_episode_scheduled
   attr_accessor :login, :captcha,
-                :settings_use_avatar
+                :settings_use_avatar, :settings_notification_episode_available,
+                :settings_notification_episode_scheduled
   
   validates_presence_of :username
   validates_uniqueness_of :username
@@ -96,6 +98,10 @@ class User < ActiveRecord::Base
   def series
     following_series
   end
+  
+  def has_settings?(settingz)
+    !settings[settingz].nil?
+  end
     
   protected
   def self.find_for_database_authentication(conditions)
@@ -107,6 +113,8 @@ class User < ActiveRecord::Base
     if ["own", "gravatar"].include?(@settings_use_avatar)
       settings.use_avatar = @settings_use_avatar
     end
+    settings.notification_episode_available = @settings_notification_episode_available
+    settings.notification_episode_scheduled = @settings_notification_episode_scheduled
   end
   
   def create_settings

@@ -1,6 +1,11 @@
 class SeasonsController < ApplicationController
   def show
     @season = Season.find_by_series_id_and_number(Series.find(params[:show_id]), params[:season_number])
+    
+    respond_to do |format|
+      format.json { render :json => @season }
+      format.html
+    end
   end
 
   def comment

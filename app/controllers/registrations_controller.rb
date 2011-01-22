@@ -10,6 +10,11 @@ class RegistrationsController < Devise::RegistrationsController
       session[:omniauth] = nil unless @user.new_record? #OmniAuth
     end
   end
+  
+  def edit
+    super
+    @user.settings_notification_episode_available = @user.settings.notification_episode_available
+  end
 
   def cancel_omniauth
     session[:omniauth] = nil

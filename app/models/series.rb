@@ -64,8 +64,16 @@ class Series < ActiveRecord::Base
     super
   end
   
+  def episodes_count
+    episodes.size
+  end
+  
   def as_json(options={})
-    super(:include => [:episodes, :seasons],
-          :methods => [:poster_url_small, :poster_url_medium, :poster_url_thumb, :poster_url_original])
+    seasons_h = { :only => [ :number ], :methods => [] }
+    super(:include => {
+                        :seasons => seasons_h
+                      },
+          :methods => [ :poster_url_small, :full_name, :episodes_count ],
+          :only => [ :air_time, :description ])
   end
 end
