@@ -405,9 +405,8 @@ a.rm-movie-icon { background: url(/images/movie_remove.png) no-repeat left cente
 #settings_options ul { padding-left:0px; list-style:none; }
 #settings_options ul li { 
 	border:1px solid white;
-	border-radius: 5px;
 	margin:2px 0px;
-	padding:5px 0px 5px 5px;
+	padding:1px 0px 1px 5px;
 }
 #settings_options ul li.selected {
 	background-color: #1D66A8;

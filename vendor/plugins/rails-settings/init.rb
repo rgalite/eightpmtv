@@ -14,6 +14,11 @@ ActiveRecord::Base.class_eval do
       named_scope :with_settings_for, lambda { |var| { :joins => "JOIN settings ON (settings.target_id = #{self.table_name}.#{self.primary_key} AND
                                                                                     settings.target_type = '#{self.base_class.name}') AND
                                                                                     settings.var = '#{var}'" } }
+
+      named_scope :with_settings_for_value, lambda { |var, value| { :joins => "JOIN settings ON (settings.target_id = #{self.table_name}.#{self.primary_key} AND
+                                                                                    settings.target_type = '#{self.base_class.name}') AND
+                                                                                    settings.var = '#{var}'",
+                                                                    :conditions => ["settings.value = ?", value] } }
                                                                
       named_scope :without_settings, :joins => "LEFT JOIN settings ON (settings.target_id = #{self.table_name}.#{self.primary_key} AND
                                                                        settings.target_type = '#{self.base_class.name}')",
@@ -23,6 +28,10 @@ ActiveRecord::Base.class_eval do
                                                                                             settings.target_type = '#{self.base_class.name}') AND
                                                                                             settings.var = '#{var}'",
                                                           :conditions => 'settings.id IS NULL' } }
+      named_scope :with_settings_for_value, lambda { |var, value| { :joins => "JOIN settings ON (settings.target_id = #{self.table_name}.#{self.primary_key} AND
+                                                                                    settings.target_type = '#{self.base_class.name}') AND
+                                                                                    settings.var = '#{var}'",
+                                                                    :conditions => ["settings.value IS NULL OR settings.value != ?", value] } }
     end
   end
 end

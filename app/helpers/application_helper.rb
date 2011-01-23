@@ -42,6 +42,8 @@ module ApplicationHelper
       res = link_to(content_tag(:span, activity.subject.full_name), activity.subject_path) + " is now available."
     when "new_episode_scheduled"
       res = link_to(content_tag(:span, activity.subject.full_name), JSON.parse(activity.data)["episode_path"]) + " is scheduled."
+    when "follow_user"
+      res = link_to(content_tag(:span, activity.actor_name), user_path(activity.actor)) + " is now following " + link_to(content_tag(:span, activity_data["user_name"]), activity_data["user_path"])
     end
     res + " - " + content_tag(:span, activity.created_at.to_pretty, :style => "font-style:italic")
   end
