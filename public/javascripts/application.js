@@ -54,7 +54,7 @@ $(document).ready(function(){
 	// NOTICES Stuff
 	$(".flash-handler").each(function(){
 		$(this).click(function(){
-			$(this).parent().parent().fadeOut();
+			$(this).parent().parent('#flash_notice').fadeOut();
 			return false;
 		});
 	});

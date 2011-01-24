@@ -437,9 +437,9 @@ div.flash p { clear:right;color:black;margin:0px;text-align:center; }
 #flash_warn .flash-content {	background-color:#FFFEDE; }
 
 /* Errors in forms */
-div.field_with_errors { display:inline; }
-div.field_with_errors label { color: #E01B4C; }
-div.field_with_errors input { border:1px solid #E01B4C; }
+.field_with_errors { display:inline; }
+.field_with_errors label { color: #E01B4C; }
+.field_with_errors input { border:1px solid #E01B4C; }
 
 /* User view */
 .user_info { }

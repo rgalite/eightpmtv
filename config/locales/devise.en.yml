@@ -4,6 +4,11 @@ en:
       not_found: "not found"
       already_confirmed: "was already confirmed"
       not_locked: "was not locked"
+    template:
+      header:
+        one:   "You are 1 errors away from being registered!"
+        other:  "You are {{count}} errors away from being registered!"
+      body: "There were problems with the following fields:"
 
   devise:
     failure:

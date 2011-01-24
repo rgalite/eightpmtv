@@ -1,14 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
   def create
-    if session[:omniauth] == nil #OmniAuth
-      build_resource
-      clean_up_passwords(resource)
-      flash[:error] = "There was an error with the recaptcha code below. Please re-enter the code and click submit."
-      render_with_scope :new
-    else
-      super
-      session[:omniauth] = nil unless @user.new_record? #OmniAuth
-    end
+    super
+    session[:omniauth] = nil unless @user.new_record? #OmniAuth
   end
   
   def edit

@@ -1,23 +1,40 @@
+<script type="text/javascript">
+  $(function(){
+    $('.field_with_errors').tipsy(
+      {
+        html: true,
+        gravity: "w",
+        title: function(){
+                return $("#" + $(this).children(':input').attr('id') + "_tip").html();
+               },
+      });
+  });
+</script>
 <%= form_for(resource, :as => resource_name,
              :url => registration_path(resource_name)) do |f| %>
-<%= devise_error_messages! %>
 <div id="signup-frame" style="margin:0 auto;width:295px">
   <div class="boxtop"></div>
   <div class="box">
     <p class="title">Sign up</p>
       <div class="fields">
-        <p><%= f.label :username %><br />
-        <%= f.text_field :username %></p>
+        <p>
+          <%= f.label :username %><br />
+          <%= f.text_field :username %>
+        </p>
+        <%= error_explanation_tag(resource, :username, resource_name) %>
 
         <p><%= f.label :email %><br />
         <%= f.text_field :email %></p>
+        <%= error_explanation_tag(resource, :email, resource_name) %>
 
         <% if @user.password_required? %>
           <p><%= f.label :password %><br />
           <%= f.password_field :password %></p>
+          <%= error_explanation_tag(resource, :password, resource_name) %>
 
           <p><%= f.label :password_confirmation %><br />
           <%= f.password_field :password_confirmation %></p>
+          <%= error_explanation_tag(resource, :password_confirmation, resource_name) %>
         <% end %>
       </div>
       <% unless @user.authentications.first.nil? %>
