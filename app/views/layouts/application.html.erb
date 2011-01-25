@@ -88,6 +88,15 @@
         </div>
       </div>
     <% end %>
+
+    <% if flash[:alert] %>
+      <div id="flash_error" class="flash">
+        <div class="flash-content">
+          <a href="#" class="flash-handler">Hide</a>
+          <p><%= flash[:alert] %></p>
+        </div>
+      </div>
+    <% end %>
     
     <% if flash[:warn] %>
       <div id="flash_warn" class="flash">

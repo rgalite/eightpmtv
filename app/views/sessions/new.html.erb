@@ -1,10 +1,11 @@
 <div id="login-frame">
   <div id="standard-login">
+    <%= debug flash %>
     <div class="boxtop"></div>
     <div class="box">
       <p class="title"><b>Standard sign in</b></p>
       <%= form_for(resource, :as => resource_name, 
-                   :url => user_session_path(resource_name)) do |f| %>
+                   :url => session_path(resource_name)) do |f| %>
         <p style="margin-bottom:10px"><%= f.label :login, "Username or e-mail address" %><br /> <%= f.text_field :login %></p>
         <p style="margin-bottom:10px">
           <%= f.label :password %><br />

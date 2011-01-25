@@ -9,4 +9,8 @@ class SessionsController < Devise::SessionsController
       render "home"
     end
   end
+  
+  def create
+    super
+  end
 end

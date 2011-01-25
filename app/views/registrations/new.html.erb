@@ -36,23 +36,18 @@
           <%= f.password_field :password_confirmation %></p>
           <%= error_explanation_tag(resource, :password_confirmation, resource_name) %>
         <% end %>
+
+        <% unless @user.authentications.first.nil? %>
+        <p>
+          <label>Registering with:</label><br />
+          <span style="display:block;float:left">
+            <%= image_tag("#{@user.authentications.first.provider}_connect.gif") %>
+          </span>
+          <%= link_to "Cancel", "cancel_omniauth", :style => "float:left;margin-left:10px;margin-top:5px" %>
+        </p>
+        <% end %>
       </div>
-      <% unless @user.authentications.first.nil? %>
-      <div class="connection">
-        <div style="">
-          <p style="float:left;margin-top:60px">
-            <%= t ".Registering with" %>:
-          </p>
-          <p class="backg-twitter-32 social-button"
-             style="float:left;margin-top:50px;margin-left:10px">
-            <%= @user.authentications.first.provider.capitalize %>
-            &nbsp;-&nbsp;<%= link_to "Cancel", "cancel_omniauth" %>
-          </p>
-          <div class="clear"></div>
-        </div>
-      </div>
-      <% end %>
-      <div class="clear"></div>
+      <div class="clear" style="height:20px"></div>
       <p style="text-align:center"><%= f.submit "Sign up" %></p>
 
     <p><%= render :partial => "devise/shared/links" %></p>

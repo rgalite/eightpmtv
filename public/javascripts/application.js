@@ -54,7 +54,7 @@ $(document).ready(function(){
 	// NOTICES Stuff
 	$(".flash-handler").each(function(){
 		$(this).click(function(){
-			$(this).parent().parent('#flash_notice').fadeOut();
+			$(this).parent().parent().fadeOut();
 			return false;
 		});
 	});
@@ -62,7 +62,7 @@ $(document).ready(function(){
 });
 
 function clearFlashes(){
-	$(".flash-handler").parent().parent().fadeOut();
+	$("#flash_notice").fadeOut();
 }
 
 function showMoreDescription(linkMore)
