@@ -3,10 +3,21 @@ class UsersController < ApplicationController
   
   def index
     @users = User.order("username ASC")
+    
+    respond_to do |format|
+      format.json { render :json => @users }
+      format.html
+    end
   end
   
   def show
     @user = User.find(params[:id])
+
+    respond_to do |format|
+      format.json { render :json => @user.as_json(:methods => [:join_date],
+                                                  :only => [:join_date]) }
+      format.html
+    end
   end
   
   def follow
@@ -46,5 +57,9 @@ class UsersController < ApplicationController
   end
   
   def unblock
+  end
+  
+  def followers
+    
   end
 end

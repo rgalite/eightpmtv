@@ -102,6 +102,20 @@ class User < ActiveRecord::Base
   def has_settings?(settingz)
     !settings[settingz].nil?
   end
+  
+  def join_date
+    created_at.to_date
+  end
+  
+  def as_json(options = {})
+    options.merge!(:methods => [ :image_url_small, :full_name, :join_date ],
+                   :only => [ :full_name, :image_url_small ]){ |key, v1, v2| v1+v2 }
+    super(options)
+  end
+  
+  def image_url_small
+    avatar_url(:small)
+  end
     
   protected
   def self.find_for_database_authentication(conditions)
