@@ -29,7 +29,6 @@ Tvshows::Application.routes.draw do
     collection do
       post :search
       get :search
-      get :my
       get :name
       get :popular
     end
@@ -68,6 +67,10 @@ Tvshows::Application.routes.draw do
       get :dislike
       get :undislike
     end
+  end
+  
+  namespace "my" do
+    resources :shows
   end
   # The priority is based upon order of creation:
   # first created -> highest priority.

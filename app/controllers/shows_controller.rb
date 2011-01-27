@@ -168,13 +168,6 @@ class ShowsController < ApplicationController
                                                     "commented_path" => show_path(@series) }.to_json)
     end
   end
-
-  def my
-    if params[:id].blank?
-      @shows = current_user.series.order("name ASC") if current_user
-      render "my_list"
-    end
-  end
   
   def name
     name_alpha
