@@ -72,6 +72,8 @@ Tvshows::Application.routes.draw do
   namespace "my" do
     resources :shows
   end
+  
+  match '/robots.txt', :controller => :application, :action => :robots
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

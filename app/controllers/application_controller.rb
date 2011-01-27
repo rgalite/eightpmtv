@@ -2,6 +2,10 @@ class ApplicationController < ActionController::Base
   include CallRake
   protect_from_forgery
   
+  def robots
+    render :text => open(File.join(Rails.root, "public", "robots.#{Rails.env}.txt")).read, :layout => false
+  end
+  
   protected
   def save_comment(c)
     if c.save

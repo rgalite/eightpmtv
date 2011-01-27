@@ -136,6 +136,6 @@ class User < ActiveRecord::Base
   end
   
   def update_activities_avatar
-    Delayed::Job.enqueue(AttachImageToActorActivitiesJob.new(id))
+    Delayed::Job.enqueue(AttachImageToUserActivitiesJob.new(id))
   end
 end

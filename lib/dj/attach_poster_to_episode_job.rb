@@ -3,7 +3,7 @@ class AttachPosterToEpisodeJob < Struct.new(:episode_id, :poster_url)
     episode = Episode.find(episode_id)
     episode.poster = RemoteFile.new("http://thetvdb.com/banners/#{poster_url}")
     episode.save
-    episode.activities.each {|act| act.update_attributes(:actor_img => episode.poster.url(:thumb)) }
-    episode.inv_activities.each {|act| act.update_attributes(:subject_img => episode.poster.url(:thumb)) }
+    
+    Delayed::Job.enqueue(AttachImageToEpisodeActivitiesJob.new(episode_id), :priority => 4)
   end
 end
