@@ -1,10 +1,7 @@
-<div class="thirds">
-	<div class="smallboxtop"></div>
-	<div class="smallbox">
-    <%= render :partial => "seasons/poster_small", :locals => { :season => season } %>
-    <p>
-	    <%= link_to "Season #{season.number}",
-	                show_season_path(:show_id => season.series, :season_number => season.number) %>
-	  </p>
-	</div>
+<div style="background-color:white" class="thirds">
+  <%= render :partial => "seasons/poster_small", :locals => { :season => season } %>
+  <p>
+    <%= link_to "Season #{season.number}",
+                show_season_path(:show_id => season.series, :season_number => season.number) %>
+  </p>
 </div>

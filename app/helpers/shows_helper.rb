@@ -54,17 +54,11 @@ module ShowsHelper
   end
   
   def people_watching_except_you(serie)
-    people_watching = serie.watchers.all.reject{|u| u.id == current_user.id}
+    people_watching = serie.watchers.all.reject{|u| u == current_user}
     if people_watching.size.zero?
       desc = "Nobody else is watching this TV show"
     elsif user_signed_in?
       watchers = []
-    
-      # Put the current user in the watchers list if he watches the serie
-      if people_watching.include?(current_user) 
-        watchers << "You"
-        people_watching = people_watching - [current_user]
-      end
       
       followings_watching = current_user.followings_watching(serie)
       
@@ -86,7 +80,7 @@ module ShowsHelper
         desc = "#{watchers.to_sentence} watching this show"
       else
         watchers << "#{pluralize(people_watching.size, 'other person', 'other people')}" unless people_watching.size.zero?
-        desc = "#{watchers.to_sentence} " + (serie.watchers.size == 1 && serie.watchers.first != current_user ? "is" : "are") + " watching this show"
+        desc = "#{watchers.to_sentence} " + (serie.watchers.reject{|w| w == current_user}.size == 1 ? "is" : "are") + " watching this show"
       end
     else
       desc = "#{pluralize(people_watching.size, 'person is', 'people are')} watching this TV show"

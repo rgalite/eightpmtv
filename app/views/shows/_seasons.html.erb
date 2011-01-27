@@ -6,7 +6,7 @@
     </p>
   </div>
 <% else %>
-  <div id="series_seasons">
+  <div id="series_seasons" style="overflow:overflow-y">
     <% unless @series.seasons.size.zero? %>
       <%= render :partial => "season", :collection => @series.seasons %>
       <div class="clear"></div>

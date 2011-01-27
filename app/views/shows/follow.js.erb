@@ -1,2 +1,2 @@
 $("p.description").html('<%= escape_javascript(people_watching(@series)) %>');
-$("#watch_button").html('<%= escape_javascript(watch_button(@series)) %>');
+$("#watch_button").html('<%= escape_javascript(watch_button(@series)) %>').closest('p').effect("highlight", {}, 1000);;
