@@ -59,7 +59,6 @@ class UsersController < ApplicationController
   def unblock
   end
   
-  def followers
-    
+  def followers  
   end
 end

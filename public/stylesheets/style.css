@@ -459,7 +459,7 @@ div.user_info p.fw-info img:hover { border-color: #CCC; }
 #activities .activity-time { font-style:italic;margin:0px; }
 #activities .actor-avatar { float:left; }
 #activities .activity { float:left;margin-left:10px; }
-#activities .bubble { margin:10px 0px; }
+#activities .bubble { margin-bottom:20px; }
 
 /* Authentication methods */
 #auth_methods .auth-method { border:1px solid #CCC; border-radius:5px; float:left; margin-right:20px; width:200px }

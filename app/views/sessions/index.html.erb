@@ -10,3 +10,27 @@
   </p>
   <% end %>
 </div>
+
+<% if @today_episodes.size > 0 %>
+  <% content_for :right do %>
+  <div id="right">
+  	<div class="boxtop"></div>
+  	<div class="box">
+  		<p style="text-align:center">
+  		  <b>What's on TV today?</b>
+  		</p>
+		  <ul>
+		    <% @today_episodes.each do |episode| %>
+		    <li>
+		        <%= link_to(content_tag(:span, episode.full_name), 
+		                    show_season_episode_path(:show_id => episode.series,
+		                                             :season_number => episode.season.number,
+                                                 :episode_number => episode.number)) %>
+		    </li>
+		    <% end %>
+		  </ul>
+		  <div class="clear"></div>
+  	</div>
+  </div>
+  <% end %>
+<% end %>
