@@ -13,7 +13,7 @@ class Episode < ActiveRecord::Base
   has_many :inv_activities, :class_name => "Activity", :dependent => :destroy, :as => :subject
   attr_reader :poster_url
   after_save :attach_poster
-  named_scope :available, :conditions => [ "episodes.first_aired IS NOT NULL AND episodes.first_aired <= ? AND episodes.updated_at >= ?", Date.today, Time.at(Settings.last_update.to_i).to_date]
+  named_scope :available, :conditions => [ "first_aired IS NOT NULL AND first_aired <= ?", Date.today]
   
   def self.find_by_show_id_and_season_number_and_episode_number(show_id, season_number, episode_number)
     Series.find(show_id).episodes.includes(:season).where("seasons.number" => season_number,

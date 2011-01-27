@@ -4,12 +4,10 @@
 	<div id="series_info">
 	  <h2><%= show.full_name %></h2>
   	<p class="description">
-  	  <%= people_watching(show) %>
+  	  <%= people_watching_except_you(show) %>
   	</p>
   	<p>
-  	  <% if show.poster? %>
-        <%= image_tag show.poster.url(:small), :class => "thumbnail" %>
-      <% end %>
+      <%= image_tag show.poster.url(:small), :class => "thumbnail" %>
       <div id="latest_episodes_<%= show.id %>">
         <p class="title">Last episodes:</p>
         <div class="latest_episodes">
