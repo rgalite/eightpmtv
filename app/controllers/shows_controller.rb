@@ -2,22 +2,6 @@ class ShowsController < ApplicationController
   require 'net/http'
   
   before_filter :authenticate_user!, :only => [ :my, :subscribe, :unsubscribe ]
-  private
-  def download_banner(series_banner)
-    unless series_banner.nil?    
-      begin
-        banner_url = "http://thetvdb.com/banners/#{series_banner}"
-        banner_s3_path = "assets/#{series_banner}"
-        banner = AWS::S3::S3Object.find(banner_s3_path, "rmgalite-tvshows")
-      rescue
-        AWS::S3::S3Object.store(banner_s3_path, open(banner_url), 'rmgalite-tvshows',
-                                :access => :private)
-        banner = AWS::S3::S3Object.find(banner_s3_path, "rmgalite-tvshows")
-      ensure
-        return banner.url
-      end                              
-    end
-  end
   
   public
   
