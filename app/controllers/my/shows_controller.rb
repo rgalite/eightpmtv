@@ -6,5 +6,6 @@ class My::ShowsController < ApplicationController
   def show
     @show = Series.find(params[:id])
     @unseen_episodes = @show.episodes.available.unseen_by(current_user)
+    @next_episode = @show.next_episode
   end
 end
