@@ -17,7 +17,6 @@
   	  <div class="episodes-list">
         <% for episode in @season.episodes %>
         	<span id="episode-<%= episode.id %>" class="episode_info">
-        	  <%= check_box_tag "check_box_episode_#{episode.id}" %>
         	  <%= link_to "S#{@season.number.to_s.rjust(2, "0")}E#{episode.number.to_s.rjust(2, "0")} #{episode.name}",
         	              show_season_episode_path(:show_id => @season.series, :episode_number => episode.number,
         	              :season_number => @season.number) %>

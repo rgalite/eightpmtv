@@ -76,4 +76,8 @@ class Series < ActiveRecord::Base
           :methods => [ :poster_url_small, :full_name, :episodes_count ],
           :only => [ :air_time, :description ])
   end
+  
+  def next_episode
+    episodes.where(["first_aired >= ?", Date.today]).first
+  end
 end

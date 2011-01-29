@@ -39,7 +39,6 @@ Tvshows::Application.routes.draw do
       post :comment
       get :get_poster
       get :get_seasons
-      get :my
     end
     match "/season/:season_number" => "seasons#show", :constraints => { :season_number => /\d+/ }, :as => "season"
     match "/:season_number/:episode_number" => "episodes#show", :constraints => { :season_number => /\d+/, :episode_number => /\d+/ }, :as => "season_episode"
@@ -70,7 +69,7 @@ Tvshows::Application.routes.draw do
   end
   
   namespace "my" do
-    resources :shows
+    resources :shows, :only => [:index, :show]
   end
   
   match '/robots.txt', :controller => :application, :action => :robots

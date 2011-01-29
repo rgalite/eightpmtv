@@ -1,0 +1,56 @@
+<style>
+  .left_articles .title { font-weight:bold; }
+  .season_info .episode_info { width:450px; }
+</style>
+<div class="left_articles">
+	<div id="series_info">
+	  <h2><%= link_to @show.full_name %></h2>
+  	<p class="description">
+  	  <%= people_watching_except_you(@show) %>
+  	</p>
+  	<div>
+      <%= image_tag @show.poster.url(:small), :class => "thumbnail" %>
+      <div id="latest_episodes">
+        <p class="title">Last episodes unseen (<%= "#{@unseen_episodes.size}/#{@show.episodes.available.size}" %>):</p>
+        <div class="latest_episodes">
+          <% @unseen_episodes.last(3).each do |episode| %>
+            <div class="last_episode">
+              <%= link_to (image_tag(episode.poster.url(:small)) + content_tag(:span, episode.full_name + " (" + (l episode.first_aired, :format => :dmy_with_long_month) + ")", :style => "display:block")),
+                          show_season_episode_path(:show_id => episode.series, :season_number => episode.season.number, :episode_number => episode.number) %>
+            </div>
+          <% end %>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <% if @show.next_episode %>
+      <div id="new_episode">
+        <p style="text-align:center;">
+          <span class="title">Next episode:</span>
+          <%= (link_to @show.next_episode.full_name, show_season_episode_path(:show_id => @show, :season_number => @show.next_episode.season.number, :episode_number => @show.next_episode.number)) + " on " + (l @show.next_episode.first_aired, :format => :dmy_with_long_month ) + " at " + @show.air_time %>
+        </p>
+      </div>
+      <% end %>
+      <div id="unseen_episodes" style="border-top:1px solid #CCC;margin-top:20px;padding-top:20px">
+        <% for season in @show.seasons %>
+          <div id="season_<%= season.number %>" class="season_info" style>
+            <p style="background-color:#CCC;border:1px solid black;padding:5px;text-align:center" class="title">Season <%= season.number%></p>
+            <p>
+            <% for episode in season.episodes.available %>
+            	<p id="episode-<%= episode.id %>" class="episode_info">
+            	  <%= image_tag episode.poster.url(:thumb), :class => "thumbnail" %>
+                <span>
+            	    <%= link_to episode.full_name,
+            	              show_season_episode_path(:show_id => @show, :episode_number => episode.number,
+            	              :season_number => episode.season.number), :style => "display:inline-block;float:left;width:240px" %>
+            	  </span><br />
+            	  <span>Aired on: <%= (l episode.first_aired, :format => :dmy_with_long_month ) %></span>
+            	</p>
+            <% end %>
+            </p>
+            <div class="clear"></div>
+          </div>
+        <% end%>
+      </div>
+  	</div>
+  </div>
+</div>

@@ -2,7 +2,7 @@
 <% for show in @shows %>
 <div class="left_articles">
 	<div id="series_info">
-	  <h2><%= show.full_name %></h2>
+	  <h2><%= link_to show.full_name, my_show_path(show) %></h2>
   	<p class="description">
   	  <%= people_watching_except_you(show) %>
   	</p>

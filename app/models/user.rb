@@ -34,6 +34,9 @@ class User < ActiveRecord::Base
   validates_attachment_size :photo, :less_than => 2.megabytes
   has_many :activities, :dependent => :destroy, :as => :actor
   has_many :inv_activities, :class_name => "Activity", :dependent => :destroy, :as => :subject
+  has_many :seens
+  has_many :episodes_seen, :through => :seens, :class_name => "Episode"
+  
   after_save :update_settings, :update_activities_avatar
   before_create :create_settings
   attr_readonly :follows_count
@@ -115,6 +118,10 @@ class User < ActiveRecord::Base
   
   def image_url_small
     avatar_url(:small)
+  end
+  
+  def has_seen?(seenable)
+    seens.any? { |s| s.seenable_id == seenable.id && s.seenable_type == seenable.class.to_s  }
   end
     
   protected
