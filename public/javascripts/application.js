@@ -35,7 +35,8 @@ $(document).ready(function(){
 	// AUTOCOMPLETE
 	$("#q_search").autocomplete({
 	  serviceUrl:showsPath,
-	  minChars:1,
+	  minChars:2,
+		selectFirst:true,
 	  onSelect: function(value, data){
 	    window.location = '/shows/' + data.param;          
 	  } 

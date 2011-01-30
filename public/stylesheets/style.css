@@ -228,6 +228,7 @@ color:#999999;
 .clear { clear:both; }
 
 /* buttons */
+#comments_button { margin-right:10px; }
 #comments_button a { background: url(/images/comment.png) no-repeat; padding-left:20px; }
 
 /* footer  */
