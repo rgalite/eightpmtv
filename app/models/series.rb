@@ -80,4 +80,8 @@ class Series < ActiveRecord::Base
   def next_episode
     episodes.where(["first_aired >= ?", Date.today]).first
   end
+  
+  def get_episode(season_number, episode_number)
+    self.episodes.detect{ |e| e.season.number == season_number && e.number == episode_number }
+  end
 end

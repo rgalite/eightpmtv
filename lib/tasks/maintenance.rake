@@ -1,7 +1,7 @@
 namespace :maintenance do
   desc "Restore episodes that poster has not been processed but marked as processing"
   task :restore_episode_poster => :environment do
-    episodes = Episode.where("poster_file_name IS NULL")
+    episodes = Episode.where(["poster_file_name IS NULL || poster_processing = ?", true])
     puts "#{episodes.count} episodes to update"
     episodes.each_with_index do |episode, i|
       puts "Updating #{episode.full_name} (#{i + 1}/#{episodes.count})"

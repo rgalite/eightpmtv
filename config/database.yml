@@ -6,6 +6,12 @@ development:
   pool: 5
   timeout: 10000
 
+staging:
+  adapter: sqlite3
+  database: db/staging.sqlite3
+  pool: 5
+  timeout: 10000
+
 #development:
 #  adapter: postgresql
 #  host: localhost
