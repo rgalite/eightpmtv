@@ -16,7 +16,12 @@
 
 <div class="left_articles">
   <div class="buttons">
-	  <p><span id="watch_button"><%= watch_button(@series) %></span></p>
+	  <p>
+	    <span id="comments_button">
+	      <%= link_to "Comments (#{@series.comments.count})", :anchor => "comments" %>
+	    </span>
+	    <span id="watch_button"><%= watch_button(@series) %></span>
+	  </p>
 	</div>
   <h2><%= @series.full_name %></h2>
 	<p class="description"><%= people_watching(@series) %></p>
@@ -53,4 +58,5 @@
 <%= render "seasons" %>
 
 <!-- Comments -->
+<a name="comments"></a>
 <%= render :partial => "shared/comments", :locals => { :comment_path => comment_show_path(@series), :comments => @series.comments } %>
