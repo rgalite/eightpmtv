@@ -61,21 +61,30 @@ module TvdbParty
     def get_episode_by_id(episode_id, language = self.language)
       response = self.class.get("/#{@api_key}/episodes/#{episode_id}/#{language}.xml").parsed_response
       if response["Data"] && response["Data"]["Episode"]
-        Episode.new(response["Data"]["Episode"])
-      else
-        nil
-      end
-    end
-    
-    def get_episode(series, season_number, episode_number, language = self.language)
-      response = self.class.get("/#{@api_key}/series/#{series.id}/default/#{season_number}/#{episode_number}/#{language}.xml").parsed_response
-      if response["Data"] && response["Data"]["Episode"]
-        Episode.new(response["Data"]["Episode"])
+        Episode.new(self, response["Data"]["Episode"])
       else
         nil
       end
     end
 
+    def get_episode_by_series_id_season_number_and_episode_number(series_id, season_number, episode_number, language = self.language)
+      response = self.class.get("/#{@api_key}/series/#{series_id}/default/#{season_number}/#{episode_number}/#{language}.xml").parsed_response
+      if response["Data"] && response["Data"]["Episode"]
+        Episode.new(self, response["Data"]["Episode"])
+      else
+        nil
+      end
+    end
+        
+    def get_episode(series, season_number, episode_number, language = self.language)
+      response = self.class.get("/#{@api_key}/series/#{series.id}/default/#{season_number}/#{episode_number}/#{language}.xml").parsed_response
+      if response["Data"] && response["Data"]["Episode"]
+        Episode.new(self, response["Data"]["Episode"])
+      else
+        nil
+      end
+    end
+    
     def get_actors(series)
       response = self.class.get("/#{@api_key}/series/#{series.id}/actors.xml").parsed_response
       if response["Actors"] && response["Actors"]["Actor"]
@@ -102,7 +111,7 @@ module TvdbParty
       # Get the episodes
       episodes = []
       response = self.class.get("/#{@api_key}/series/#{series.id}/all/#{language}.xml").parsed_response
-      response["Data"]["Episode"].each { |episode_xml| episodes << Episode.new(episode_xml) }
+      response["Data"]["Episode"].each { |episode_xml| episodes << Episode.new(self, episode_xml) }
       return episodes
     end
   end

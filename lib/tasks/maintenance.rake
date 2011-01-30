@@ -6,9 +6,11 @@ namespace :maintenance do
     episodes.each_with_index do |episode, i|
       puts "Updating #{episode.full_name} (#{i + 1}/#{episodes.count})"
       tvdb = TvdbParty::Search.new(Tvshows::Application.config.the_tv_db_api_key)
-      tvdb_episode = tvdb.get_episode_by_id(episode.tvdb_id)
+      tvdb_episode = tvdb.get_episode_by_series_id_season_number_and_episode_number(episode.series.tvdb_id,
+                    episode.season.number, episode.number)
       if tvdb_episode
-        puts "#{episode.update_attribute(:poster_url, tvdb_episode.thumb) ? 'updated' : 'failed'}"
+        puts "Poster url: #{tvdb_episode.thumb}"
+        puts "Episode: #{episode.update_attributes(:poster_url => tvdb_episode.thumb) ? 'updated' : 'failed'}"
       end 
     end
   end
