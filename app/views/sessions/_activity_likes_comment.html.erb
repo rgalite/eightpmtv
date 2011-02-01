@@ -1,0 +1,21 @@
+<% activity_data = JSON.parse(activity.data) %>
+<div class="bubble user-activity">
+  <blockquote>
+    <div class="actor-avatar">
+      <%= image_tag(activity.actor_img) %>
+    </div>
+    <div class="activity" style="width:90%">
+      <div class="activity-content">
+        <%= link_to(content_tag(:span, activity.actor_name), activity.actor_path) %>
+        likes <%= link_to activity_data["comment_author_name"], activity_data["comment_autor_path"] %>'s <%= link_to 'comment', activity_data["comment_path"] %>
+        about <%= link_to activity_data['commented_name'], activity_data['commented_path'] %>
+        <div style="margin-top:10px">
+          <%= link_to(image_tag(activity_data["comment_author_img"], :class => "thumbnail"), activity_data["comment_autor_path"]) %>
+          <p style="float:left"><%= activity_data["comment_content"] %></p> 
+        </div>
+      </div>
+      <p class="activity-time clear"><%= activity.created_at.to_pretty %></p>
+    </div>
+    <div class="clear"></div>
+  </blockquote>
+</div>
