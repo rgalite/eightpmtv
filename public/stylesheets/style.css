@@ -229,7 +229,7 @@ color:#999999;
 
 /* buttons */
 #comments_button { margin-right:10px; }
-#comments_button a { background: url(/images/comment.png) no-repeat; padding-left:20px; }
+#comments_button a { background: url(/images/comment.png) no-repeat; padding-left:18px; }
 
 /* footer  */
 .footer { clear: both; text-align: center; line-height: 1.8em; padding: 10px 0 10px 0; border-top: 1px solid #ccc; }
@@ -240,7 +240,7 @@ color:#999999;
 .series_info #poster.processing img { margin:auto; margin-top:215px;display:block; }
 .series_info span.label { font-weight: bold; }
 
-a.add-movie-icon, a.rm-movie-icon { display:inline-block ; padding-left:16px; }
+a.add-movie-icon, a.rm-movie-icon { display:inline-block ; padding-left:18px; }
 a.add-movie-icon { background: url(/images/movie_add.png) no-repeat left center; }
 a.rm-movie-icon { background: url(/images/movie_remove.png) no-repeat left center; }
 
@@ -418,12 +418,13 @@ a.rm-movie-icon { background: url(/images/movie_remove.png) no-repeat left cente
 	border: 1px solid #003B6E;
 	color:white;
 }
-#settings_options ul li:hover {
+#settings_options ul li:hover, #series_options ul li:hover {
 	background-color: #1D66A8;
 	border: 1px solid #003B6E;
 	color:white;
 	cursor:pointer;
 }
+
 #settings div.settings_block { float:left; width:700px; }
 
 #avatar_settings #my_avatar p.title { border-bottom:1px solid #CCC; font-weight:bold; }
@@ -477,3 +478,53 @@ div.user_info p.fw-info img:hover { border-color: #CCC; }
 /* My series */
 .last_episode { float: left; margin-right: 20px; text-align:center; width: 200px; }
 .last_episode img { border:1px solid #CCC; }
+
+/* Text overlay */
+.ic_container{
+    vertical-align:baseline;
+    margin:10px;
+    position:relative;
+    /*-moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    -khtml-border-radius:10px;
+    -moz-box-shadow: 0 1px 3px #888;
+    -webkit-box-shadow: 0 1px 3px #888;*/
+}
+.overlay{
+    opacity:0.3;
+    position:absolute;
+    top:0px;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);
+}
+.ic_caption{
+    position:absolute;    
+    opacity:0.6;   
+    overflow:hidden;
+    margin:0px;
+    padding:0px;
+    left:0px;
+    right:0px;
+    cursor:default;
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=60);
+}
+.ic_category{
+    text-transform:uppercase;
+    font-size:11px;
+    letter-spacing:3px;
+    padding:5px;
+    margin:0px;
+}
+.ic_caption h3{
+    padding:0px 5px 5px 5px;
+    margin:0px;
+    font-size:18px;
+}
+.ic_text{
+    padding:5px;
+    margin:0px;
+    text-align:justify;
+    font-size:11px;
+}

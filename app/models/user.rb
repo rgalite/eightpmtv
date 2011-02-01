@@ -112,8 +112,26 @@ class User < ActiveRecord::Base
   
   def as_json(options = {})
     options.merge!(:methods => [ :image_url_small, :full_name, :join_date ],
-                   :only => [ :full_name, :image_url_small ]){ |key, v1, v2| v1+v2 }
+                   :only => [ :full_name, :image_url_small ]){ |key, v1, v2| v1 + v2 }
     super(options)
+  end
+  
+  def users_followers_json
+    users_followers.as_json(:only => [ :full_name, :image_url_small ], :methods => [ :image_url_small, :full_name ])
+  end
+  
+  def following_users_json
+    following_users.as_json(:only => [ :full_name, :image_url_small ], :methods => [ :image_url_small, :full_name ])
+  end
+  
+  def as_json_with_followers_and_followings
+    series_h = { :methods => [ :poster_url_small, :full_name ], :only => [ :full_name, :poster_url_small ] }
+    options = { :methods => [ :join_date, :users_followers_json, :following_users_json ],
+                :include => {
+                              :series => series_h
+                            },
+                :only => [ :join_date ] }
+    as_json(options)
   end
   
   def image_url_small

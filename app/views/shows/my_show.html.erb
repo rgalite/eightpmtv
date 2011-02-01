@@ -1,0 +1,90 @@
+<script type="text/javascript">
+  function toggleLoading(from)
+  {
+    $("#ajax-loader").toggle();
+  }
+  var getSeasonsPath = "<%= get_seasons_show_path(@series) %>";
+  var getPosterPath = "<%= get_poster_show_path(@series) %>";
+  var posterIntervalID = null;
+  var seasonsIntervalID = null;
+  
+  $(document).ready(function(){
+    updateProcessingElements(posterIntervalID, "#poster.processing", getPosterPath);
+    updateProcessingElements(seasonsIntervalID, "#series_seasons.processing", getSeasonsPath);   
+  });
+</script>
+
+<div class="left_articles">
+  <div class="buttons">
+	  <p>
+	    <span id="comments_button">
+	      <%= link_to "Comments (#{@series.comments.count})", :anchor => "comments" %>
+	    </span>
+	    <span id="watch_button">
+	      <%= watch_button(@series) %>
+	    </span>
+	  </p>
+	</div>
+  <h2><%= @series.full_name %></h2>
+	<p class="description"><%= people_watching(@series) %></p>
+	<div id="series-<%= @series.id %>" class="series_info">
+  	<div style="float:left;max-width:215px">
+      <%= render "poster" %>
+      <div class="clear"></div>
+      <div style="border:1px solid #CCC;margin-top:5px;padding:5px;width:194px">
+        <% description = truncate(@series.description, 795, "") %>
+        <%= description %>
+        <% if !@series.description.blank? && @series.description.length > description.length %>
+          <%= link_to_function("...", "showMoreDescription(this);") %>
+          <span style="display:none">
+            <%= @series.description[(description.length)..-1] %>
+          </span>
+        <% end %>
+      </div>
+      <ul id="series_options" style="margin-top:5px">
+        <li>Actors (<%= @series.actors.count %>)</li>
+        <li>Seasons (<%= @series.seasons.count %>)</li>
+      </ul>
+  	</div>
+  	<div style="float:left">
+  	  <div id="latest_episodes">
+        <p class="title">Last episodes unseen (<%= "#{@unseen_episodes.size}/#{@series.episodes.available.size}" %>):</p>
+        <div class="latest_episodes">
+          <% @unseen_episodes.last(3).each do |episode| %>
+            <div class="last_episode">
+              <%= link_to (image_tag(episode.poster.url(:small)) + content_tag(:span, episode.full_name + " (" + (l episode.first_aired, :format => :dmy_with_long_month) + ")", :style => "display:block")),
+                          show_season_episode_path(:show_id => episode.series, :season_number => episode.season.number, :episode_number => episode.number) %>
+            </div>
+          <% end %>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <% if @next_episode %>
+      <div id="new_episode">
+        <p style="text-align:left;">
+          <span class="title">Next episode:</span><br />
+          <% if @next_episode.poster.file? %>
+          <%= (link_to (image_tag @next_episode.poster.url(:thumb)) + content_tag(:span, @next_episode.full_name, :style => "display:block"),
+                       show_season_episode_path(:show_id => @series,
+                                                :season_number => @next_episode.season.number,
+                                                :episode_number => @next_episode.number)) %>
+          <% else %>
+          <%= link_to @next_episode.full_name, show_season_episode_path(:show_id => @series, :season_number => @next_episode.season.number, :episode_number => @next_episode.number) %>
+          <br />
+          <% end %>
+           on <%= (l @series.next_episode.first_aired, :format => :dmy_with_long_month ) %>
+           at <%= @series.air_time %>
+        </p>
+      </div>
+      <% end %>
+  	</div>
+  	<div class="clear"></div>
+  </div>
+</div>
+
+<!-- Seasons -->
+<%#= render "seasons" %>
+
+<!-- Comments -->
+<a name="comments"></a>
+<%= render :partial => "shared/comments", :locals => { :comment_path => comment_show_path(@series), :comments => @series.comments } %>

@@ -40,7 +40,7 @@ module Tvshows
     config.filter_parameters += [:password]
     
     # Constants
-    config.the_tv_db_api_key = "D924D9C9745AE7D8"
+    config.the_tv_db_api_key = "D8144EA3AF86404C"
     
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {

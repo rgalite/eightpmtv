@@ -61,10 +61,14 @@ class ShowsController < ApplicationController
     @series = Series.find(params[:id])
     if current_user
       @comment = Comment.new
+      @unseen_episodes = @series.episodes.available.unseen_by(current_user)
+      @next_episode = @series.next_episode
     end
     
     respond_to do |format|
-      format.html # show.html.erb
+      format.html do 
+        return (render :my_show) if current_user && current_user.watch?(@series)
+      end 
       format.json { render :json => @series.as_json }
     end
   end

@@ -18,6 +18,9 @@ class CommentsController < ApplicationController
     @like = @comment.votes.build(:value => 1, :user => current_user)
 
     if @like.save
+      Activty.create!(:kind => "likes_comment",
+                      :actor => current_user, :actor_img => current_user.avatar_url(:thumb),
+                      :subject => @like, :data => { :comment_link => , :comment_content })
       respond_to_like
     else
       render :text => @like.errors.full_messages.to_s

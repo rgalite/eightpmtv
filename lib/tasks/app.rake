@@ -107,16 +107,4 @@ namespace :app do
       raise e
     end
   end
-  
-  desc "Update images to new path"
-  task :update_s3_poster_path => :environment do |t, args|
-    require 'aws/s3'
-    s3_config = YAML.load_file(File.join(Rails.root, 'config', 'amazon_s3.yml'))[Rails.env]
-    AWS::S3::Base.establish_connection!(
-       :access_key_id     => s3_config["access_key_id"],
-       :secret_access_key => s3_config["secret_access_key"]
-    )
-    eightpm_bucket = AWS::S3::Bucket.find(s3_config["bucket"])
-    puts "There are #{eightpm_bucket.objects.size} objects in the eightpm bucket"
-  end
 end

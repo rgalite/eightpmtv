@@ -24,7 +24,7 @@
       <%= link_to "#{@episode.next.full_name} >>", show_season_episode_path(:show_id => @episode.series, :season_number => @episode.next.season.number, :episode_number => @episode.next.number) %>
     <% end %>
   </div>
-	<p class="description"><%= aired_on(@episode.first_aired) %></p>
+	<p class="description"><%= aired_on(@episode.first_aired, @episode.series.air_time) %></p>
 	<div id="episode-<%= @episode.id %>" class="episode_info">
   	<div>
       <%= render "poster" %>

@@ -14,8 +14,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     respond_to do |format|
-      format.json { render :json => @user.as_json(:methods => [:join_date],
-                                                  :only => [:join_date]) }
+      format.json do
+        render :json => @user.as_json_with_followers_and_followings
+        end
+                                                  
       format.html
     end
   end
