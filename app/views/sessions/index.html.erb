@@ -1,3 +1,35 @@
+<script type="text/javascript">
+  $(function(){
+    $("#friends_switcher").click(function(){
+      $("#activities_switcher").find('li').removeClass('selected');
+      $(this).parent('li').addClass('selected');
+      $(".series-activity:visible").fadeOut();
+      $(".user-activity:hidden").fadeIn();
+      return false;
+    });
+    $("#series_switcher").click(function(){
+      $("#activities_switcher").find('li').removeClass('selected');
+      $(this).parent('li').addClass('selected');
+      $(".user-activity:visible").fadeOut();
+      $(".series-activity:hidden").fadeIn();
+      return false;
+    });
+    $("#all_switcher").click(function(){
+      $("#activities_switcher").find('li').removeClass('selected');
+      $(this).parent('li').addClass('selected');
+      $(".user-activity:hidden").fadeIn();
+      $(".series-activity:hidden").fadeIn();
+      return false;
+    });
+  });
+</script>
+<div id="activities_switcher">
+  <ul>
+    <li class="selected"><%= link_to "All", "#", :id => "all_switcher" %></li>
+    <li><%= link_to "Friends", "#", :id => "friends_switcher" %></li>
+    <li><%= link_to "Series", "#", :id => "series_switcher" %></li>
+  </ul>
+</div>
 <div id="activities">
   <% if @activities.count > 0 %>
     <% @activities.each do |activity| %>

@@ -9,7 +9,7 @@
     <%= link_to "#", name_shows_path %></li>
     <%= az_shows_initials(params[:letter]) %>
   </ul>
-  <div id="series-list-name">
-    <%= render :partial => "series_list", :locals => { :series => @series } %>
-  </div>
+</div>
+<div id="series-list-name">
+  <%= render :partial => "series_list", :locals => { :series => @series } %>
 </div>
