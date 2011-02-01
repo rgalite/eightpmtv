@@ -226,7 +226,6 @@ color:#999999;
 .clear-left { clear:left; }
 .clear-right { clear:right; }
 .clear { clear:both; }
-
 /* buttons */
 #comments_button { margin-right:10px; }
 #comments_button a { background: url(/images/comment.png) no-repeat; padding-left:18px; }
@@ -451,8 +450,9 @@ div.flash p { clear:right;color:black;margin:0px;text-align:center; }
 .user_info { }
 div.user_info p.title { margin:0px 0px 3px;border-bottom:1px solid #CCC;font-weight:bold }
 div.user_info p.fw-info { float:left;margin:0px 5px;max-width:70px;text-align:center }
-div.user_info p.fw-info img { border:1px solid white; }
-div.user_info p.fw-info img:hover { border-color: #CCC; }
+div.user_info p.fw-info a span { display:block; }
+div.user_info p.fw-info a img { border:1px solid white; }
+div.user_info p.fw-info a img:hover { border-color: #CCC; }
 #user_followings, #user_followers { float:left;width:380px }
 #user_followers { margin-left:20px }
 

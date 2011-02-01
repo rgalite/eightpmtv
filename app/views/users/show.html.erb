@@ -14,8 +14,7 @@
         </p>
         <% @user.following_users.limit(10).each do |following| %>
           <p class="fw-info">
-            <%= link_to(image_tag(following.avatar_url(:thumb)), following) %><br />
-            <%= link_to following.name, following %>
+            <%= link_to(image_tag(following.avatar_url(:thumb)) + content_tag(:span, following.name), following) %>
           </p>
         <% end %>
         <div class="clear"></div>
@@ -26,8 +25,7 @@
         <p class="title">Followers:</p>
         <% @user.users_followers.limit(10).each do |follower| %>
           <p class="fw-info">
-            <%= link_to((image_tag(follower.avatar_url(:thumb))), follower) %><br />
-            <%= link_to follower.name, follower %>
+            <%= link_to(image_tag(follower.avatar_url(:thumb)) + content_tag(:span, follower.name), follower) %><br />
           </p>
         <% end %>
         <div class="clear"></div>

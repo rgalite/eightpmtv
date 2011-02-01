@@ -26,4 +26,27 @@ namespace :maintenance do
     eightpm_bucket = AWS::S3::Bucket.find(s3_config["bucket"])
     puts "There are #{eightpm_bucket.objects.size} objects in the eightpm bucket"
   end
+  
+  desc "Update users image"
+  task :update_follow_activities => [:environment] do |t, args|
+    Activity.where(:kind => "follow_user").each do |activity|
+      user = activity.subject.followable
+      activity_data = JSON.parse(activity.data)
+      activity_data[:user_img] = user.avatar_url(:thumb)
+
+      # Get the series the user is following
+      activity_data[:user_series] = user.series.all.randomly_pick(5).collect{|serie| { :name => serie.full_name, :path => show_path(serie)}}
+      activity_data[:user_series_count] = user.series.count
+
+      # Get the people who are following the user
+      activity_data[:user_followers] = user.followers.randomly_pick(5).collect{|follower| { :name => follower.full_name, :path => user_path(follower), :img => follower.avatar_url(:thumb)}}
+      activity_data[:user_followers_count] = user.followers.count
+
+      # Get the people the user is following
+      activity_data[:user_followings] = user.following_by_type('User').randomly_pick(5).collect{|follower| { :name => follower.full_name, :path => user_path(follower), :img => follower.avatar_url(:thumb)}}
+      activity_data[:user_followings_count] = user.following_by_type('User').count
+
+      activity.update_attribute(:data, activity_data.to_json)
+    end
+  end
 end

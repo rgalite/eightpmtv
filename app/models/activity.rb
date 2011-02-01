@@ -14,4 +14,7 @@ class Activity < ActiveRecord::Base
   def set_actor_name
     self.actor_name = actor.full_name unless actor.nil?
   end
+  
+  def initialize_follow_user()
+  end
 end

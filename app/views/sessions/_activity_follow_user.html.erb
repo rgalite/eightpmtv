@@ -1,3 +1,53 @@
 <% activity_data = JSON.parse(activity.data) %>
 <div class="bubble user-activity">
+  <blockquote>
+    <div class="actor-avatar">
+      <%= image_tag(activity.actor_img) %>
+    </div>
+    <div class="activity" style="width:90%">
+      <div class="activity-content">
+        <%= link_to(content_tag(:span, activity.actor_name), activity.actor_path) %> started following
+        <%= link_to activity_data['user_name'], activity_data['user_path'] %>
+        <div>
+          <%= link_to(image_tag(activity_data["user_img"], :class => "thumbnail"), activity_data["user_path"]) %>
+          <p>
+            <% if activity_data["user_series"].size > 0 %>
+              <%= activity_data["user_name"] %> is following:
+              <% activity_data["user_series"].each do |s| %>
+                <%= link_to s["name"], s["path"] %>&nbsp;
+              <% end %>
+              <% if activity_data["user_series_count"] - activity_data["user_series"].size > 0 %>
+              ... and <%= link_to "more", activity_data["user_path"] %>
+              <% end %>
+            <% end %>
+            
+            <% if activity_data["user_followers"].size > 0 %>
+              <br />
+              <% activity_data["user_followers"].each do |follower| %>
+                <%= link_to(content_tag(:span, follower["name"]), follower["path"]) %>&nbsp;
+              <% end %>
+              <% if activity_data["user_followers_count"] - activity_data["user_followers"].size > 0 %>
+              ... and <%= link_to "more", activity_data["user_path"] %>
+              <% end %>
+              <%= activity_data["user_followers"].size > 1 ? 'are' : 'is' %> following <%= activity_data['user_name']%>
+            <% end %>
+            
+            
+            <% if activity_data["user_followings"].size > 0 %>
+              <br /><%= activity_data["user_name"] %> is following:
+              <% activity_data["user_followings"].each do |following| %>
+                <%= link_to(content_tag(:span, following["name"]), following["path"]) %>&nbsp;
+              <% end %>
+              <% if activity_data["user_followings_count"] - activity_data["user_following"].size > 0 %>
+              ... and <%= link_to "more", activity_data["user_path"] %>
+              <% end %>
+            <% end %>
+          </p>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <p class="activity-time"><%= activity.created_at.to_pretty %></p>
+    </div>
+    <div class="clear"></div>
+  </blockquote>
 </div>

@@ -20,7 +20,10 @@ class CommentsController < ApplicationController
     if @like.save
       Activty.create!(:kind => "likes_comment",
                       :actor => current_user, :actor_img => current_user.avatar_url(:thumb),
-                      :subject => @like, :data => { :comment_link => , :comment_content })
+                      :subject => @like,
+                      :data => { :comment_content => @comment.content,
+                                 :comment_author_name => @comment.user.full_name,
+                                 :comment_author_img => @comment.user.avatar_url(:thumb) })
       respond_to_like
     else
       render :text => @like.errors.full_messages.to_s
