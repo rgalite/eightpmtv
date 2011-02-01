@@ -29,7 +29,8 @@ namespace :maintenance do
   
   desc "Update users image"
   task :update_follow_activities => [:environment] do |t, args|
-    Activity.where(:kind => "follow_user").each do |activity|
+    activities = Activity.where(:kind => "follow_user")
+    activities.each_with_index do |activity, i|
       user = activity.subject.followable
       activity_data = JSON.parse(activity.data)
       activity_data[:user_img] = user.avatar_url(:thumb)
@@ -46,7 +47,9 @@ namespace :maintenance do
       activity_data[:user_followings] = user.following_by_type('User').randomly_pick(5).collect{|follower| { :name => follower.full_name, :path => user_path(follower), :img => follower.avatar_url(:thumb)}}
       activity_data[:user_followings_count] = user.following_by_type('User').count
 
-      activity.update_attribute(:data, activity_data.to_json)
+      activity.update_attributes(:data => activity_data.to_json)
+      
+      puts "Activity #{i + 1} / #{activities.count}"
     end
   end
 end
