@@ -21,7 +21,7 @@ class EpisodesController < ApplicationController
       season = @episode.season 
       save_comment(@comment)
       a = current_user.activities.create!(:actor_path => user_path(current_user),
-                                          :actor_img => current_user.photo.url(:thumb),
+                                          :actor_img => current_user.avatar_url(:thumb),
                                           :subject => @comment,
                                           :subject_path => show_path(series, :anchor => "comment-#{@comment.id}"),
                                           :kind => "comment",

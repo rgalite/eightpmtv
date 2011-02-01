@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
   end
   
   def delete_likes(comment)
-    comment.votes.where(:user_id => current_user.id).delete_all
+    comment.votes.where(:user_id => current_user.id).destroy_all
   end
   
   public
@@ -18,12 +18,24 @@ class CommentsController < ApplicationController
     @like = @comment.votes.build(:value => 1, :user => current_user)
 
     if @like.save
-      Activty.create!(:kind => "likes_comment",
-                      :actor => current_user, :actor_img => current_user.avatar_url(:thumb),
-                      :subject => @like,
-                      :data => { :comment_content => @comment.content,
-                                 :comment_author_name => @comment.user.full_name,
-                                 :comment_author_img => @comment.user.avatar_url(:thumb) })
+      if @comment.user != current_user
+        comment_activity = Activity.where(["subject_type = ? AND subject_id = ? and kind = ?", 'Comment', @comment.id, 'comment']).first
+        if !comment_activity.nil?
+          comment_activity_data = JSON.parse(comment_activity.data)
+          current_user.activities.create!(:kind => "likes_comment",
+                                          :actor => current_user,
+                                          :actor_img => current_user.avatar_url(:thumb),
+                                          :actor_path => user_path(current_user),
+                                          :subject => @like,
+                                          :data => { :commented_name => @comment.commentable.full_name,
+                                                     :commented_path => comment_activity_data["commented_path"],
+                                                     :comment_path => comment_activity.subject_path,
+                                                     :comment_content => @comment.content,
+                                                     :comment_author_name => @comment.user.full_name,
+                                                     :comment_autor_path => user_path(@comment.user),
+                                                     :comment_author_img => @comment.user.avatar_url(:thumb) }.to_json)
+        end
+      end
       respond_to_like
     else
       render :text => @like.errors.full_messages.to_s

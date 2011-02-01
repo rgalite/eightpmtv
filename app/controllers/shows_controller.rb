@@ -107,7 +107,7 @@ class ShowsController < ApplicationController
     else
       fw = current_user.follow(@series)
       a = current_user.activities.create!(:actor_path => user_path(current_user),
-                                          :actor_img => current_user.photo.url(:thumb),
+                                          :actor_img => current_user.avatar_url(:thumb),
                                           :subject => fw,
                                           :kind => "follow_serie",
                                           :data => { "serie_path" => show_path(@series),
@@ -147,7 +147,7 @@ class ShowsController < ApplicationController
                                  :user => current_user) 
       save_comment(@comment)
       a = current_user.activities.create!(:actor_path => user_path(current_user),
-                                          :actor_img => current_user.photo.url(:thumb),
+                                          :actor_img => current_user.avatar_url(:thumb),
                                           :subject => @comment,
                                           :subject_path => show_path(@series, :anchor => "comment-#{@comment.id}"),
                                           :kind => "comment",
