@@ -38,7 +38,7 @@
               <% activity_data["user_followings"].each do |following| %>
                 <%= link_to(content_tag(:span, following["name"]), following["path"]) %>&nbsp;
               <% end %>
-              <% if activity_data["user_followings_count"] - activity_data["user_following"].size > 0 %>
+              <% if activity_data["user_followings_count"] - activity_data["user_followings"].size > 0 %>
               ... and <%= link_to "more", activity_data["user_path"] %>
               <% end %>
             <% end %>
