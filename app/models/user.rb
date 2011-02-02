@@ -15,13 +15,14 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
          
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, :email, :password, :password_confirmation,
+  attr_accessible :email, :password, :password_confirmation,
                   :remember_me, :login, :photo, :captcha,
                   :settings_use_avatar, :settings_notification_episode_available,
                   :settings_notification_episode_scheduled
   attr_accessor :login, :captcha,
                 :settings_use_avatar, :settings_notification_episode_available,
                 :settings_notification_episode_scheduled
+  attr_readonly :username
   
   validates_presence_of :username
   validates_uniqueness_of :username

@@ -6,7 +6,7 @@
     <%= devise_error_messages! %>
     <%= hidden_field_tag :tab, "account" %>
     <p><%= f.label :username %><br />
-    <%= f.text_field :username %></p>
+    <%= f.text_field :username, :disabled => "disabled" %></p>
 
     <p><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, :autocomplete => "off" %></p>

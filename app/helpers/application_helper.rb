@@ -44,6 +44,8 @@ module ApplicationHelper
       res = link_to(content_tag(:span, activity.subject.full_name), JSON.parse(activity.data)["episode_path"]) + " is scheduled."
     when "follow_user"
       res = link_to(content_tag(:span, activity.actor_name), user_path(activity.actor)) + " is now following " + link_to(content_tag(:span, activity_data["user_name"]), activity_data["user_path"])
+    when "likes_comment"
+      res = link_to(content_tag(:span, activity.actor_name), activity.actor_path) + " likes " + link_to(activity_data["comment_author_name"], activity_data["comment_autor_path"]) + "'s " + link_to('comment', activity_data["comment_path"]) + " about " + link_to(activity_data['commented_name'], activity_data['commented_path'])
     end
     res + " - " + content_tag(:span, activity.created_at.to_pretty, :style => "font-style:italic")
   end
