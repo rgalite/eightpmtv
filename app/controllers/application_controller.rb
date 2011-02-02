@@ -2,8 +2,15 @@ class ApplicationController < ActionController::Base
   include CallRake
   protect_from_forgery
   
+  helper_method :show_season_episode_path_
   def robots
     render :text => open(File.join(Rails.root, "public", "robots.#{Rails.env}.txt")).read, :layout => false
+  end
+  
+  def show_season_episode_path_(episode, options = {})
+    show_season_episode_path(:show_id => episode.series.id,
+                             :season_number => episode.season.number,
+                             :episode_number => episode.number, :options => options)
   end
   
   protected

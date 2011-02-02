@@ -20,14 +20,17 @@ class EpisodesController < ApplicationController
       series = @episode.series
       season = @episode.season 
       save_comment(@comment)
-      a = current_user.activities.create!(:actor_path => user_path(current_user),
-                                          :actor_img => current_user.avatar_url(:thumb),
-                                          :subject => @comment,
-                                          :subject_path => show_path(series, :anchor => "comment-#{@comment.id}"),
-                                          :kind => "comment",
-                                          :data => { "content" => @comment.content,
-                                                      "commented_name" => @comment.commentable.full_name,
-                                                      "commented_path" => show_season_episode_path(:show_id => series, :season_number => season.number, :episode_number => @episode.number) }.to_json)
+      unless @comment.new_record?
+        a_data = { "content" => @comment.content,
+                   "commented_name" => @comment.commentable.full_name,
+                   "commented_path" => show_season_episode_path_(@episode) }
+        a = current_user.activities.create!(:actor_path => user_path(current_user),
+                                            :actor_img => current_user.avatar_url(:thumb),
+                                            :subject => @comment,
+                                            :subject_path => show_path(series, :anchor => "comment-#{@comment.id}"),
+                                            :kind => "comment",
+                                            :data => a_data.to_json)
+      end
     end
   end
   

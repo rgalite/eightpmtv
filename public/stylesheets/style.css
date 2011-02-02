@@ -124,29 +124,33 @@ div.bubble blockquote p.comment-options {
 	float:right;
 }
 
-div.bubble blockquote p.comment-options a.thumbs-up,
-div.bubble blockquote p.comment-options a.thumbs-down,
-div.bubble blockquote p.comment-options a.thumbs-up-hov,
-div.bubble blockquote p.comment-options a.thumbs-down-hov {
+div.bubble blockquote p.comment-options .thumbs-up,
+div.bubble blockquote p.comment-options .thumbs-down,
+div.bubble blockquote p.comment-options .thumbs-up-hov,
+div.bubble blockquote p.comment-options .thumbs-down-hov,
+div.bubble blockquote p.comment-options .thumbs-up-normal,
+div.bubble blockquote p.comment-options .thumbs-down-normal {
 	display:inline-block;
 	height:16px;
 	width:16px;	
 }
 
-div.bubble blockquote p.comment-options a.thumbs-up {
+div.bubble blockquote p.comment-options .thumbs-up {
 	background:url(/images/thumbs_up.png);
 }
 
 
-div.bubble blockquote p.comment-options a.thumbs-down {
+div.bubble blockquote p.comment-options .thumbs-down {
 	background:url(/images/thumbs_down.png);
 }
 
-div.bubble blockquote p.comment-options a.thumbs-up-hov {
+div.bubble blockquote p.comment-options .thumbs-up-hov,
+div.bubble blockquote p.comment-options .thumbs-up-normal {
 	background:url(/images/thumbs_up_black.png) no-repeat;
 }
 
-div.bubble blockquote p.comment-options a.thumbs-down-hov {
+div.bubble blockquote p.comment-options .thumbs-down-hov,
+div.bubble blockquote p.comment-options .thumbs-down-normal {
 	background:url(/images/thumbs_down_black.png) no-repeat;
 }
 

@@ -15,7 +15,10 @@ module ApplicationHelper
   
   def likes_buttons(comment, user)
     if user.nil?
-      link_to("".html_safe, like_comment_path(comment), :remote => true, :class => "thumbs-up-hov") + ((comment.likes.size.zero? ? "&nbsp;&nbsp;&nbsp;" : "&nbsp;#{comment.likes.size}&nbsp;").html_safe) + link_to("".html_safe, dislike_comment_path(comment), :remote => true, :class => "thumbs-down-hov") + ((comment.dislikes.size.zero? ? "&nbsp;&nbsp;&nbsp;" : "&nbsp;#{comment.dislikes.size}&nbsp;").html_safe)
+      res = ""
+      res << content_tag(:span, "", :class => "thumbs-up-normal") + "&nbsp;#{comment.likes.size}&nbsp;".html_safe unless comment.likes.size.zero?
+      res << content_tag(:span, "", :class => "thumbs-down-normal") + "&nbsp;#{comment.dislikes.size}&nbsp;".html_safe unless comment.dislikes.size.zero?
+      res.html_safe
     elsif user.likes?(comment)
       link_to("".html_safe, unlike_comment_path(comment), :remote => true, :class => "thumbs-up") + ((comment.likes.size.zero? ? "&nbsp;&nbsp;&nbsp;" : "&nbsp;#{comment.likes.size}&nbsp;").html_safe) + link_to("".html_safe, dislike_comment_path(comment), :remote => true, :class => "thumbs-down-hov") + ((comment.dislikes.size.zero? ? "&nbsp;&nbsp;&nbsp;" : "&nbsp;#{comment.dislikes.size}&nbsp;").html_safe)
     elsif user.dislikes?(comment)
@@ -60,11 +63,5 @@ module ApplicationHelper
 
   def form_tag_id(object_name, method_name)
     "#{sanitized_object_name(object_name.to_s)}_#{sanitized_method_name(method_name.to_s)}"
-  end
-  
-  def show_season_episode_path_(episode, options = {})
-    show_season_episode_path(:show_id => episode.series.id,
-                             :season_number => episode.season.number,
-                             :episode_number => episode.number, :options => options)
   end
 end

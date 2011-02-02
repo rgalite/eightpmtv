@@ -19,10 +19,10 @@
               <% if activity_data["user_series_count"] - activity_data["user_series"].size > 0 %>
               ... and <%= link_to "more", activity_data["user_path"] %>
               <% end %>
+              <br />
             <% end %>
             
             <% if activity_data["user_followers"].size > 0 %>
-              <br />
               <% activity_data["user_followers"].each do |follower| %>
                 <%= link_to(content_tag(:span, follower["name"]), follower["path"]) %>&nbsp;
               <% end %>
@@ -30,11 +30,12 @@
               ... and <%= link_to "more", activity_data["user_path"] %>
               <% end %>
               <%= activity_data["user_followers"].size > 1 ? 'are' : 'is' %> following <%= activity_data['user_name']%>
+              <br />
             <% end %>
             
             
             <% if activity_data["user_followings"].size > 0 %>
-              <br /><%= activity_data["user_name"] %> is following:
+              <%= activity_data["user_name"] %> is following:
               <% activity_data["user_followings"].each do |following| %>
                 <%= link_to(content_tag(:span, following["name"]), following["path"]) %>&nbsp;
               <% end %>
