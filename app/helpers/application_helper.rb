@@ -34,7 +34,7 @@ module ApplicationHelper
     res = ""
     case activity.kind
     when "comment"
-      res = link_to(content_tag(:span, activity.actor_name), activity.actor_path) + " wrote a " + (link_to "comment", activity_data['path']).html_safe + " about " <<
+      res = link_to(content_tag(:span, activity.actor_name), activity.actor_path) + " wrote a " + (link_to "comment", activity.subject_path).html_safe + " about " <<
       (link_to activity_data['commented_name'], activity_data['commented_path'])
     when "follow_serie"
       res = link_to(content_tag(:span, activity.actor_name), activity.actor_path) + " started following " + (link_to activity_data['serie_name'], activity_data['serie_path'])
@@ -60,5 +60,11 @@ module ApplicationHelper
 
   def form_tag_id(object_name, method_name)
     "#{sanitized_object_name(object_name.to_s)}_#{sanitized_method_name(method_name.to_s)}"
+  end
+  
+  def show_season_episode_path_(episode, options = {})
+    show_season_episode_path(:show_id => episode.series.id,
+                             :season_number => episode.season.number,
+                             :episode_number => episode.number, :options => options)
   end
 end

@@ -139,8 +139,12 @@ class User < ActiveRecord::Base
     avatar_url(:small)
   end
   
-  def has_seen?(seenable)
+  def has_watched?(seenable)
     seens.any? { |s| s.seenable_id == seenable.id && s.seenable_type == seenable.class.to_s  }
+  end
+  
+  def has_seen?(seenable)
+    has_watched?(seenable)
   end
     
   protected

@@ -10,7 +10,12 @@
   
   $(document).ready(function(){
     updateProcessingElements(posterIntervalID, "#poster.processing", getPosterPath);
-    updateProcessingElements(seasonsIntervalID, "#series_seasons.processing", getSeasonsPath);   
+    updateProcessingElements(seasonsIntervalID, "#series_seasons.processing", getSeasonsPath);
+    
+    $(".handler-closed a,.handler-open a").click(function(){
+      $(this).closest('div.title').next('div.content').hide('slow');
+      return false;
+    });   
   });
 </script>
 
@@ -26,13 +31,13 @@
 	  </p>
 	</div>
   <h2><%= @series.full_name %></h2>
-	<p class="description"><%= people_watching(@series) %></p>
+	<p class="description"><%= people_watching_except_you(@series) %></p>
 	<div id="series-<%= @series.id %>" class="series_info">
   	<div style="float:left;max-width:215px">
       <%= render "poster" %>
       <div class="clear"></div>
       <div style="border:1px solid #CCC;margin-top:5px;padding:5px;width:194px">
-        <% description = truncate(@series.description, 795, "") %>
+        <% description = truncate(@series.description, 300, "") %>
         <%= description %>
         <% if !@series.description.blank? && @series.description.length > description.length %>
           <%= link_to_function("...", "showMoreDescription(this);") %>
@@ -52,8 +57,12 @@
         <div class="latest_episodes">
           <% @unseen_episodes.last(3).each do |episode| %>
             <div class="last_episode">
-              <%= link_to (image_tag(episode.poster.url(:small)) + content_tag(:span, episode.full_name + " (" + (l episode.first_aired, :format => :dmy_with_long_month) + ")", :style => "display:block")),
-                          show_season_episode_path(:show_id => episode.series, :season_number => episode.season.number, :episode_number => episode.number) %>
+              <%= link_to (image_tag(episode.poster.url(:small)) + 
+                           content_tag(:span, episode.full_name + 
+                           " (" + 
+                           (l episode.first_aired, :format => :dmy_with_long_month) + 
+                           ")", :style => "display:block"),
+                          show_season_episode_path_(episode)) %>
             </div>
           <% end %>
           <div class="clear"></div>
@@ -65,21 +74,51 @@
           <span class="title">Next episode:</span><br />
           <% if @next_episode.poster.file? %>
           <%= (link_to (image_tag @next_episode.poster.url(:thumb)) + content_tag(:span, @next_episode.full_name, :style => "display:block"),
-                       show_season_episode_path(:show_id => @series,
-                                                :season_number => @next_episode.season.number,
-                                                :episode_number => @next_episode.number)) %>
-          <% else %>
-          <%= link_to @next_episode.full_name, show_season_episode_path(:show_id => @series, :season_number => @next_episode.season.number, :episode_number => @next_episode.number) %>
-          <br />
-          <% end %>
-           on <%= (l @series.next_episode.first_aired, :format => :dmy_with_long_month ) %>
-           at <%= @series.air_time %>
-        </p>
-      </div>
-      <% end %>
-  	</div>
-  	<div class="clear"></div>
+                       show_season_episode_path_(@next_episode)) %>
+            <% else %>
+            <%= link_to @next_episode.full_name, show_season_episode_path(:show_id => @series, :season_number => @next_episode.season.number, :episode_number => @next_episode.number) %>
+            <br />
+            <% end %>
+             on <%= (l @series.next_episode.first_aired, :format => :dmy_with_long_month ) %>
+             at <%= @series.air_time %>
+          </p>
+        </div>
+        <% end %>
+    	</div>
+    	<div class="clear"></div>
+    </div>
   </div>
+
+  <div id="my_episodes">
+    <% for season in @series.seasons %>
+      <% season_seen = !season.episodes.any?{|e| !current_user.has_watched?(e) } %>
+      <div id="season_<%= season.number %>" class="season_info">
+        <div class="title">
+          <% if season_seen %>
+          <p class="handler-closed">
+          <% else %>
+          <p class="handler-open">
+          <% end %>
+            <%= link_to "&nbsp".html_safe %>
+          </p>
+          <p class="title">Season <%= season.number %></p>
+        </div>
+        <div class="content"<%= "style=\"display:none\"" if season_seen %>>
+        <% for episode in season.episodes.available %>
+        	<p id="episode-<%= episode.id %>" class="episode_info">
+        	  <%= image_tag episode.poster.url(:small), :class => "thumbnail" %>
+            <span>
+              Aired on: <%= (l episode.first_aired, :format => :dmy_with_long_month ) %><br />
+        	  </span>
+        	  <br class="clear" />
+            <%= check_box_tag "check_episode_#{episode.id}" %>
+        	  <%= link_to episode.full_name, show_season_episode_path_(episode), :style => "display:inline-block;" %>
+        	</p>
+        <% end %>
+      </div>
+      <div class="clear"></div>
+    </div>
+  <% end %>
 </div>
 
 <!-- Seasons -->
