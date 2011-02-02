@@ -12,9 +12,32 @@
     updateProcessingElements(posterIntervalID, "#poster.processing", getPosterPath);
     updateProcessingElements(seasonsIntervalID, "#series_seasons.processing", getSeasonsPath);
     
-    $(".handler-closed a,.handler-open a").click(function(){
-      $(this).closest('div.title').next('div.content').hide('slow');
+    $("a.handler-closed,a.handler-open").click(function(){
+      var divContent = $(this).closest('div.title').next('div.content');
+      if (divContent.is(":hidden"))
+      {
+        divContent.slideDown('slow');
+        $(this).removeClass('handler-closed');
+        $(this).addClass('handler-open');
+      }
+      else
+      {
+        divContent.slideUp('slow');
+        $(this).removeClass('handler-open');
+        $(this).addClass('handler-closed');
+      }
+      
       return false;
+    });
+    $("a.check_box_empty,a.check_box_checked")
+    .live("ajax:before", function(){
+      $(this).children('img').show();
+    })
+    .live("ajax:success", function(jqXHR, data, textStatus){
+      $(this).replaceWith(data);
+    })
+    .live("ajax:complete", function(){
+      $(this).children('img').hide();
     });   
   });
 </script>
@@ -91,30 +114,14 @@
 
   <div id="my_episodes">
     <% for season in @series.seasons %>
-      <% season_seen = !season.episodes.any?{|e| !current_user.has_watched?(e) } %>
+      <% season_seen = current_user.has_watched?(season) %>
       <div id="season_<%= season.number %>" class="season_info">
         <div class="title">
-          <% if season_seen %>
-          <p class="handler-closed">
-          <% else %>
-          <p class="handler-open">
-          <% end %>
-            <%= link_to "&nbsp".html_safe %>
-          </p>
+          <%= link_to "", {}, :class => "handler-#{season_seen ? 'closed' : 'open' }" %>
           <p class="title">Season <%= season.number %></p>
         </div>
-        <div class="content"<%= "style=\"display:none\"" if season_seen %>>
-        <% for episode in season.episodes.available %>
-        	<p id="episode-<%= episode.id %>" class="episode_info">
-        	  <%= image_tag episode.poster.url(:small), :class => "thumbnail" %>
-            <span>
-              Aired on: <%= (l episode.first_aired, :format => :dmy_with_long_month ) %><br />
-        	  </span>
-        	  <br class="clear" />
-            <%= check_box_tag "check_episode_#{episode.id}" %>
-        	  <%= link_to episode.full_name, show_season_episode_path_(episode), :style => "display:inline-block;" %>
-        	</p>
-        <% end %>
+        <div class="content"<%= " style=\"display:none\"".html_safe if season_seen %>>
+        <%= render :partial => "episode.my", :collection => season.episodes.available %>
       </div>
       <div class="clear"></div>
     </div>

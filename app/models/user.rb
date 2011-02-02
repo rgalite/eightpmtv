@@ -36,8 +36,12 @@ class User < ActiveRecord::Base
   has_many :activities, :dependent => :destroy, :as => :actor
   has_many :inv_activities, :class_name => "Activity", :dependent => :destroy, :as => :subject
   has_many :seens
-  has_many :episodes_seen, :through => :seens, :class_name => "Episode"
-  
+  has_many :seasons_seen, :through => :seens, :source => :seenable,
+           :source_type  => "Season", :order => "number ASC"
+  has_many :episodes_seen, :through => :seens, :source => :seenable,
+           :source_type  => "Episode", :include => :season,
+           :order => "episodes.number ASC, seasons.number ASC"
+
   after_save :update_settings, :update_activities_avatar
   before_create :create_settings
   attr_readonly :follows_count
@@ -139,8 +143,18 @@ class User < ActiveRecord::Base
     avatar_url(:small)
   end
   
+  def self.find_by_name(name)
+    self.find_by_username(name)
+  end
+
   def has_watched?(seenable)
-    seens.any? { |s| s.seenable_id == seenable.id && s.seenable_type == seenable.class.to_s  }
+    if seenable.class.to_s == "Episode"
+      seasons_seen.any?{ |season| season.id == seenable.season.id } || episodes_seen.any?{ |episode| episode.id == seenable.id }
+    elsif seenable.class.to_s == "Season"
+      seasons_seen.any?{ |season| season.id == seenable.season.id } || !seenable.episodes.available.any?{ |episode| !has_watched?(episode) }
+    else
+      seens.any? { |s| s.seenable_id == seenable.id && s.seenable_type == seenable.class.to_s  }
+    end
   end
   
   def has_seen?(seenable)

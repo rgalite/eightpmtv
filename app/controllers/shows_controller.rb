@@ -67,7 +67,7 @@ class ShowsController < ApplicationController
     
     respond_to do |format|
       format.html do 
-        return (render :my_show) if current_user && current_user.watch?(@series)
+        render "show.my" if current_user && current_user.watch?(@series)
       end 
       format.json { render :json => @series.as_json }
     end

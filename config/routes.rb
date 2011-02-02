@@ -22,6 +22,8 @@ Tvshows::Application.routes.draw do
     member do
       post :comment
       get  :get_poster
+      get :mark
+      get :unmark
     end
   end
   resources :shows, :only => [:index, :show] do

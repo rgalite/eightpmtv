@@ -309,23 +309,31 @@ a.rm-movie-icon { background: url(/images/movie_remove.png) no-repeat left cente
 	padding:5px;
 }
 #my_episodes .season_info div.title p { margin:0px; }
-#my_episodes .season_info div.title p.handler-open,
-#my_episodes .season_info div.title p.handler-closed { float:left; }
-#my_episodes .season_info div.title p.handler-open a,
-#my_episodes .season_info div.title p.handler-closed a {
+#my_episodes .season_info div.title a.handler-open,
+#my_episodes .season_info div.title a.handler-closed {
 	display:block;
+	float:left;
 	text-decoration:none;
 	height:16px;
 	width:16px;
 }
-#my_episodes .season_info div.title p.handler-open {
+#my_episodes .season_info div.title a.handler-open {
 	background: url(/images/blue_folder_open.png) no-repeat;
 }
-#my_episodes .season_info div.title p.handler-closed {
+#my_episodes .season_info div.title a.handler-closed {
 	background: url(/images/blue_folder_closed.png) no-repeat;
 }
 #my_episodes .season_info div.title p.title { text-align:center }
 #my_episodes .episode_info a span { display:inline-block; }
+#my_episodes a.check_box_checked, #my_episodes a.check_box_empty {
+	display:inline-block;
+	height:16px;
+	width:16px;
+}
+#my_episodes a.check_box_checked { background: url(/images/check_box_checked.png) no-repeat; }
+#my_episodes a.check_box_empty { background: url(/images/check_box_empty.png) no-repeat; }
+
+
 
 /* episode info */
 .episode_info #poster { border:1px solid #DEDEDE; float:left; margin-right:10px; }

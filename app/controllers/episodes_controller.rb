@@ -1,4 +1,5 @@
 class EpisodesController < ApplicationController
+  before_filter :authenticate_user!, :only => [:comment, :mark]
   def show
     @episode = Episode.find_by_show_id_and_season_number_and_episode_number(params[:show_id],
                params[:season_number], params[:episode_number])
@@ -9,7 +10,25 @@ class EpisodesController < ApplicationController
   end
   
   def mark
+    episode = Episode.find(params[:id])
+    current_user.episodes_seen << episode
+    respond_to do |format|
+      format.js do
+        render :partial => "shows/episode_check.my", :locals => { :episode => episode }
+      end
+      format.html { redirect_to show_season_episode_path_(episode) }
+    end
+  end
   
+  def unmark
+    episode = Episode.find(params[:id])
+    current_user.episodes_seen.delete(episode)
+    respond_to do |format|
+      format.js do
+        render :partial => "shows/episode_check.my", :locals => { :episode => episode }
+      end
+      format.html { redirect_to show_season_episode_path_(episode) }
+    end
   end
   
   def comment
