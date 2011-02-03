@@ -1,9 +1,11 @@
-<p id="episode-<%= episode.id %>" class="episode_info">
-  <%= image_tag episode.poster.url(:small), :class => "thumbnail" %>
-  <span>
-    Aired on: <%= (l episode.first_aired, :format => :dmy_with_long_month ) %><br />
-  </span>
-  <br class="clear" />
-  <%= render :partial => "episode_check.my", :locals => { :episode => episode } %>
-  <%= link_to episode.full_name, show_season_episode_path_(episode), :style => "display:inline-block;" %>
-</p>
+<div id="episode-<%= episode.id %>" class="episode_info">
+  <%= image_tag episode.poster.url(:small), :class => "thumbnail description-added" %>
+  <div style="display:none">
+    <%= episode.description %>
+  </div>
+  <div class="clear"></div>
+  <p>
+    <%= render :partial => "episode_check.my", :locals => { :episode => episode } %>&nbsp;
+    <%= link_to episode.full_name, show_season_episode_path_(episode), :class => "episode-title" %>
+  </p>
+</div>

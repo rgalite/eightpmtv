@@ -24,7 +24,7 @@
             
             <% if activity_data["user_followers"].size > 0 %>
               <% activity_data["user_followers"].each do |follower| %>
-                <%= link_to(content_tag(:span, follower["name"]), follower["path"]) %>&nbsp;
+                <%= link_to(content_tag(:span, you_helper(follower["name"])), follower["path"]) %>&nbsp;
               <% end %>
               <% if activity_data["user_followers_count"] - activity_data["user_followers"].size > 0 %>
               ... and <%= link_to "more", activity_data["user_path"] %>
@@ -37,7 +37,7 @@
             <% if activity_data["user_followings"].size > 0 %>
               <%= activity_data["user_name"] %> is following:
               <% activity_data["user_followings"].each do |following| %>
-                <%= link_to(content_tag(:span, following["name"]), following["path"]) %>&nbsp;
+                <%= link_to(content_tag(:span, you_helper(following["name"])), following["path"]) %>&nbsp;
               <% end %>
               <% if activity_data["user_followings_count"] - activity_data["user_followings"].size > 0 %>
               ... and <%= link_to "more", activity_data["user_path"] %>

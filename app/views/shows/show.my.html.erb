@@ -38,7 +38,9 @@
     })
     .live("ajax:complete", function(){
       $(this).children('img').hide();
-    });   
+    });
+     
+    $("img.description-added").tipsy();  
   });
 </script>
 

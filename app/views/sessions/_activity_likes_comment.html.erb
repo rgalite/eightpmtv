@@ -7,7 +7,7 @@
     <div class="activity" style="width:90%">
       <div class="activity-content">
         <%= link_to(content_tag(:span, activity.actor_name), activity.actor_path) %>
-        likes <%= link_to activity_data["comment_author_name"], activity_data["comment_autor_path"] %>'s <%= link_to 'comment', activity_data["comment_path"] %>
+        likes <%= link_to your_helper(activity_data["comment_author_name"]), activity_data["comment_autor_path"] %> <%= link_to 'comment', activity_data["comment_path"] %>
         about <%= link_to activity_data['commented_name'], activity_data['commented_path'] %>
         <div style="margin-top:10px">
           <%= link_to(image_tag(activity_data["comment_author_img"], :class => "thumbnail"), activity_data["comment_autor_path"]) %>
