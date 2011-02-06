@@ -43,7 +43,7 @@
   <% end %>
 </div>
 
-<% if @today_episodes.size > 0 %>
+<% if @today_episodes.size > 0 || @week_episodes.size > 0 %>
   <% content_for :right do %>
   <div id="right">
   	<div class="boxtop" style="margin-top:30px"></div>
