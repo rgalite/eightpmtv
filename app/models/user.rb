@@ -164,7 +164,7 @@ class User < ActiveRecord::Base
   end
   
   def rating_for(rateable)
-    rating = ratings.where(["rateable_id = ? AND rateable_type == ?", rateable.id, rateable.class.to_s]).first
+    rating = ratings.where(["rateable_id = ? AND rateable_type = ?", rateable.id, rateable.class.to_s]).first
     if rating
       rating.value
     else
