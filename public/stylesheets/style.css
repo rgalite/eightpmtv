@@ -224,6 +224,7 @@ color:#999999;
 /* misc */
 .buttons { text-align: right; padding: 4px 3px 0 0;}
 .buttons p { margin-top:20px; }
+.buttons form { display:inline-block; }
 .left_articles .buttons { float: right; height: 20px; }
 .bluebtn { background: #488EB2 url(/images/bluebtn.gif) no-repeat; width: 100px; padding: 1px 16px 5px 16px; color: #fff; text-decoration: none; }
 .greenbtn { background: #488EB2 url(/images/greenbtn.gif) no-repeat; padding: 1px 17px 5px 16px; color: #fff; text-decoration: none; }
@@ -232,9 +233,19 @@ color:#999999;
 .clear-right { clear:right; }
 .clear { clear:both; }
 br.clear { line-height:0px; }
+
 /* buttons */
-#comments_button { margin-right:10px; }
-#comments_button a { background: url(/images/comment.png) no-repeat; padding-left:18px; }
+.buttons a { display:inline-block; }
+#comments_button, #prev_episode_button, #next_episode_button { margin-right:5px; }
+#comments_button a, #prev_episode_button a {
+	padding-left:18px;
+}
+#next_episode_button a { padding-right:18px; }
+
+#comments_button a { background: url(/images/comment.png) no-repeat; }
+#prev_episode_button a { background: url(/images/rev_button.png) no-repeat; }
+#next_episode_button a { background: url(/images/forward_button.png) no-repeat right; }
+
 
 /* footer  */
 .footer { clear: both; text-align: center; line-height: 1.8em; padding: 10px 0 10px 0; border-top: 1px solid #ccc; }

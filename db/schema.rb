@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110129005948) do
+ActiveRecord::Schema.define(:version => 20110206012136) do
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
@@ -149,6 +149,15 @@ ActiveRecord::Schema.define(:version => 20110129005948) do
   add_index "likes", ["likeable_type", "likeable_id"], :name => "likes_likeable_type_likeable_id_ix"
   add_index "likes", ["likeable_type"], :name => "likes_likeable_type_ix"
   add_index "likes", ["user_id"], :name => "likes_user_id_ix"
+
+  create_table "ratings", :force => true do |t|
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.integer  "user_id"
+    t.integer  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "roles", :force => true do |t|
     t.string    "name"

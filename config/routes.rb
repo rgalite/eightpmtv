@@ -24,6 +24,7 @@ Tvshows::Application.routes.draw do
       get  :get_poster
       get :mark
       get :unmark
+      post :rate
     end
   end
   resources :shows, :only => [:index, :show] do

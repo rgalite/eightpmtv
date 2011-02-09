@@ -3,27 +3,35 @@
   var getPosterPath = "<%= get_poster_episode_path(@episode)%>";
   $(document).ready(function(){
     updateProcessingElements(posterIntervalID, "#poster.processing", getPosterPath);
+    $(".buttons a").tipsy({gravity: 's'});
   });
 </script>
 <style>
   div.buttons { padding-top:0px; }
 </style>
 <div class="left_articles">
+  <div class="buttons">
+    <p style="margin-top:25px">
+      <%= render :partial => "ratings", :locals => { :episode => @episode } %>
+	    <span id="comments_button">
+	      <%= link_to "Comments (#{@episode.comments.count})", :anchor => "comments" %>
+	    </span>
+      <% if @episode.previous %>
+      <span id="prev_episode_button">
+      <%= link_to "Previous episode", show_season_episode_path_(@episode.previous), :title => @episode.previous.full_name %>
+      </span>
+      <% end %>
+      <% if @episode.next %>
+      <span id="next_episode_button">
+        <%= link_to "Next episode", show_season_episode_path_(@episode.next), :title => @episode.next.full_name %>
+      </span>
+      <% end %>
+    </p>
+  </div>
   <h2>
     <%= link_to "#{@episode.series.full_name}", show_path(@episode.series) %>
     <%= link_to "S#{@episode.season.number.to_s.rjust(2, "0")}", show_season_path(:season_number => @episode.season.number, :show_id => @episode.series) %><%= "E#{@episode.number.to_s.rjust(2, "0")}" %> - <%= @episode.name %>
   </h2>
-  <div class="buttons">
-    <% if @episode.previous %>
-      <%= link_to "<< #{@episode.previous.full_name}", show_season_episode_path(:show_id => @episode.series, :season_number => @episode.previous.season.number, :episode_number => @episode.previous.number) %>
-    <% end %>
-    <% if !@episode.previous.nil? && !@episode.next.nil? %>
-      &nbsp;|&nbsp;
-    <% end %>
-    <% if @episode.next %>
-      <%= link_to "#{@episode.next.full_name} >>", show_season_episode_path(:show_id => @episode.series, :season_number => @episode.next.season.number, :episode_number => @episode.next.number) %>
-    <% end %>
-  </div>
 	<p class="description"><%= aired_on(@episode.first_aired, @episode.series.air_time) %></p>
 	<div id="episode-<%= @episode.id %>" class="episode_info">
   	<div>

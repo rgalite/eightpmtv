@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
                   :max_length => 50  
   has_many :comments, :dependent => :nullify
   has_many :likes
+  has_many :ratings
+  
   has_settings
   acts_as_follower
   acts_as_followable
@@ -159,6 +161,15 @@ class User < ActiveRecord::Base
   
   def has_seen?(seenable)
     has_watched?(seenable)
+  end
+  
+  def rating_for(rateable)
+    rating = ratings.where(["rateable_id = ? AND rateable_type == ?", rateable.id, rateable.class.to_s]).first
+    if rating
+      rating.value
+    else
+      0
+    end
   end
     
   protected

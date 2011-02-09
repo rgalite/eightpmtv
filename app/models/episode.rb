@@ -13,7 +13,8 @@ class Episode < ActiveRecord::Base
   has_many :activities, :dependent => :destroy, :as => :actor
   has_many :inv_activities, :class_name => "Activity", :dependent => :destroy, :as => :subject
   has_many :seens, :as => :seenable
-
+  has_many :ratings, :as => :rateable
+  
   attr_reader :poster_url
   after_save :attach_poster
   

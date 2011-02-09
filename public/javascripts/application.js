@@ -60,6 +60,14 @@ $(document).ready(function(){
 		});
 	});
 	setTimeout("clearFlashes()", 3000); // Auto hide flashes after 3 secs
+	
+	// THUMBSUPS
+	$("a.thumbs-up,a.thumbs-down").livequery(function(){
+		$(this).tipsy();
+	});
+	$("a.thumbs-up,a.thumbs-down").livequery('click', function(){
+		$(this).tipsy('hide');
+	});
 });
 
 function clearFlashes(){

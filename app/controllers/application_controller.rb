@@ -8,9 +8,15 @@ class ApplicationController < ActionController::Base
   end
   
   def show_season_episode_path_(episode, options = {})
-    show_season_episode_path(:show_id => episode.series.id,
-                             :season_number => episode.season.number,
-                             :episode_number => episode.number, :options => options)
+    if options.keys.include?(:anchor)
+      show_season_episode_path(:show_id => episode.series,
+                               :season_number => episode.season.number,
+                               :episode_number => episode.number, :anchor => options[:anchor])
+    else
+      show_season_episode_path(:show_id => episode.series,
+                               :season_number => episode.season.number,
+                               :episode_number => episode.number)
+    end
   end
   
   protected
