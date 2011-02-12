@@ -9,7 +9,11 @@ $(function(){
 </script>
 <%= form_tag rate_episode_path(episode), :remote => true, :style => "margin-right:5px", :id => "ratings_form" do %>
   <% 5.times do |i| %>
+  <% if user_signed_in? %>
   <%= radio_button_tag("episode_rate", i + 1, current_user.rating_for(episode) == i + 1, :class => "rate") %>
+  <% else %>
+  <%= radio_button_tag("episode_rate", i + 1, i < 3, :class => "rate", :disabled => "disabled") %>
+  <% end %>
   <% if notice %>
   <span style="display:none">
     <%= notice %>
