@@ -8,4 +8,376 @@
  *   http://www.gnu.org/licenses/gpl.html
  ###
 */
-eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}(';5(29.1j)(7($){5($.1L.1J)1I{1t.1H("1K",J,H)}1M(e){};$.n.3=7(i){5(4.Q==0)k 4;5(A I[0]==\'1h\'){5(4.Q>1){8 j=I;k 4.W(7(){$.n.3.y($(4),j)})};$.n.3[I[0]].y(4,$.1T(I).1U(1)||[]);k 4};8 i=$.12({},$.n.3.1s,i||{});$.n.3.K++;4.2a(\'.9-3-1f\').o(\'9-3-1f\').W(7(){8 a,l=$(4);8 b=(4.23||\'21-3\').1v(/\\[|\\]/g,\'Z\').1v(/^\\Z+|\\Z+$/g,\'\');8 c=$(4.1X||1t.1W);8 d=c.6(\'3\');5(!d||d.18!=$.n.3.K)d={z:0,18:$.n.3.K};8 e=d[b];5(e)a=e.6(\'3\');5(e&&a)a.z++;x{a=$.12({},i||{},($.1b?l.1b():($.1S?l.6():s))||{},{z:0,F:[],v:[]});a.w=d.z++;e=$(\'<1R V="9-3-1Q"/>\');l.1P(e);e.o(\'3-15-T-17\');5(l.S(\'R\'))a.m=H;e.1c(a.E=$(\'<P V="3-E"><a 14="\'+a.E+\'">\'+a.1d+\'</a></P>\').1g(7(){$(4).3(\'O\');$(4).o(\'9-3-N\')}).1i(7(){$(4).3(\'u\');$(4).G(\'9-3-N\')}).1l(7(){$(4).3(\'r\')}).6(\'3\',a))};8 f=$(\'<P V="9-3 q-\'+a.w+\'"><a 14="\'+(4.14||4.1p)+\'">\'+4.1p+\'</a></P>\');e.1c(f);5(4.11)f.S(\'11\',4.11);5(4.1r)f.o(4.1r);5(a.1F)a.t=2;5(A a.t==\'1u\'&&a.t>0){8 g=($.n.10?f.10():0)||a.1w;8 h=(a.z%a.t),Y=1y.1z(g/a.t);f.10(Y).1A(\'a\').1B({\'1C-1D\':\'-\'+(h*Y)+\'1E\'})};5(a.m)f.o(\'9-3-1o\');x f.o(\'9-3-1G\').1g(7(){$(4).3(\'1n\');$(4).3(\'D\')}).1i(7(){$(4).3(\'u\');$(4).3(\'C\')}).1l(7(){$(4).3(\'r\')});5(4.L)a.p=f;l.1q();l.1N(7(){$(4).3(\'r\')});f.6(\'3.l\',l.6(\'3.9\',f));a.F[a.F.Q]=f[0];a.v[a.v.Q]=l[0];a.q=d[b]=e;a.1O=c;l.6(\'3\',a);e.6(\'3\',a);f.6(\'3\',a);c.6(\'3\',d)});$(\'.3-15-T-17\').3(\'u\').G(\'3-15-T-17\');k 4};$.12($.n.3,{K:0,D:7(){8 a=4.6(\'3\');5(!a)k 4;5(!a.D)k 4;8 b=$(4).6(\'3.l\')||$(4.U==\'13\'?4:s);5(a.D)a.D.y(b[0],[b.M(),$(\'a\',b.6(\'3.9\'))[0]])},C:7(){8 a=4.6(\'3\');5(!a)k 4;5(!a.C)k 4;8 b=$(4).6(\'3.l\')||$(4.U==\'13\'?4:s);5(a.C)a.C.y(b[0],[b.M(),$(\'a\',b.6(\'3.9\'))[0]])},1n:7(){8 a=4.6(\'3\');5(!a)k 4;5(a.m)k;4.3(\'O\');4.1a().19().X(\'.q-\'+a.w).o(\'9-3-N\')},O:7(){8 a=4.6(\'3\');5(!a)k 4;5(a.m)k;a.q.1V().X(\'.q-\'+a.w).G(\'9-3-1k\').G(\'9-3-N\')},u:7(){8 a=4.6(\'3\');5(!a)k 4;4.3(\'O\');5(a.p){a.p.6(\'3.l\').S(\'L\',\'L\');a.p.1a().19().X(\'.q-\'+a.w).o(\'9-3-1k\')}x $(a.v).1m(\'L\');a.E[a.m||a.1Y?\'1q\':\'1Z\']();4.20()[a.m?\'o\':\'G\'](\'9-3-1o\')},r:7(a,b){8 c=4.6(\'3\');5(!c)k 4;5(c.m)k;c.p=s;5(A a!=\'B\'){5(A a==\'1u\')k $(c.F[a]).3(\'r\',B,b);5(A a==\'1h\')$.W(c.F,7(){5($(4).6(\'3.l\').M()==a)$(4).3(\'r\',B,b)})}x c.p=4[0].U==\'13\'?4.6(\'3.9\'):(4.22(\'.q-\'+c.w)?4:s);4.6(\'3\',c);4.3(\'u\');8 d=$(c.p?c.p.6(\'3.l\'):s);5((b||b==B)&&c.1e)c.1e.y(d[0],[d.M(),$(\'a\',c.p)[0]])},m:7(a,b){8 c=4.6(\'3\');5(!c)k 4;c.m=a||a==B?H:J;5(b)$(c.v).S("R","R");x $(c.v).1m("R");4.6(\'3\',c);4.3(\'u\')},1x:7(){4.3(\'m\',H,H)},24:7(){4.3(\'m\',J,J)}});$.n.3.1s={E:\'25 26\',1d:\'\',t:0,1w:16};$(7(){$(\'l[27=28].9\').3()})})(1j);',62,135,'|||rating|this|if|data|function|var|star|||||||||||return|input|readOnly|fn|addClass|current|rater|select|null|split|draw|inputs|serial|else|apply|count|typeof|undefined|blur|focus|cancel|stars|removeClass|true|arguments|false|calls|checked|val|hover|drain|div|length|disabled|attr|be|tagName|class|each|filter|spw|_|width|id|extend|INPUT|title|to||drawn|call|andSelf|prevAll|metadata|append|cancelValue|callback|applied|mouseover|string|mouseout|jQuery|on|click|removeAttr|fill|readonly|value|hide|className|options|document|number|replace|starWidth|disable|Math|floor|find|css|margin|left|px|half|live|execCommand|try|msie|BackgroundImageCache|browser|catch|change|context|before|control|span|meta|makeArray|slice|children|body|form|required|show|siblings|unnamed|is|name|enable|Cancel|Rating|type|radio|window|not'.split('|'),0,{}))
+
+/*# AVOID COLLISIONS #*/
+;if(window.jQuery) (function($){
+/*# AVOID COLLISIONS #*/
+	
+	// IE6 Background Image Fix
+	if ($.browser.msie) try { document.execCommand("BackgroundImageCache", false, true)} catch(e) { };
+	// Thanks to http://www.visualjquery.com/rating/rating_redux.html
+	
+	// plugin initialization
+	$.fn.rating = function(options){
+		if(this.length==0) return this; // quick fail
+		
+		// Handle API methods
+		if(typeof arguments[0]=='string'){
+			// Perform API methods on individual elements
+			if(this.length>1){
+				var args = arguments;
+				return this.each(function(){
+					$.fn.rating.apply($(this), args);
+    });
+			};
+			// Invoke API method handler
+			$.fn.rating[arguments[0]].apply(this, $.makeArray(arguments).slice(1) || []);
+			// Quick exit...
+			return this;
+		};
+		
+		// Initialize options for this call
+		var options = $.extend(
+			{}/* new object */,
+			$.fn.rating.options/* default options */,
+			options || {} /* just-in-time options */
+		);
+		
+		// Allow multiple controls with the same name by making each call unique
+		$.fn.rating.calls++;
+		
+		// loop through each matched element
+		this
+		 .not('.star-rating-applied')
+			.addClass('star-rating-applied')
+		.each(function(){
+			
+			// Load control parameters / find context / etc
+			var control, input = $(this);
+			var eid = (this.name || 'unnamed-rating').replace(/\[|\]/g, '_').replace(/^\_+|\_+$/g,'');
+			var context = $(this.form || document.body);
+			
+			// FIX: http://code.google.com/p/jquery-star-rating-plugin/issues/detail?id=23
+			var raters = context.data('rating');
+			if(!raters || raters.call!=$.fn.rating.calls) raters = { count:0, call:$.fn.rating.calls };
+			var rater = raters[eid];
+			
+			// if rater is available, verify that the control still exists
+			if(rater) control = rater.data('rating');
+			
+			if(rater && control)//{// save a byte!
+				// add star to control if rater is available and the same control still exists
+				control.count++;
+				
+			//}// save a byte!
+			else{
+				// create new control if first star or control element was removed/replaced
+				
+				// Initialize options for this raters
+				control = $.extend(
+					{}/* new object */,
+					options || {} /* current call options */,
+					($.metadata? input.metadata(): ($.meta?input.data():null)) || {}, /* metadata options */
+					{ count:0, stars: [], inputs: [] }
+				);
+				
+				// increment number of rating controls
+				control.serial = raters.count++;
+				
+				// create rating element
+				rater = $('<span class="star-rating-control"/>');
+				input.before(rater);
+				
+				// Mark element for initialization (once all stars are ready)
+				rater.addClass('rating-to-be-drawn');
+				
+				// Accept readOnly setting from 'disabled' property
+				if(input.attr('disabled')) control.readOnly = true;
+				
+				// Create 'cancel' button
+				rater.append(
+					control.cancel = $('<div class="rating-cancel"><a title="' + control.cancel + '">' + control.cancelValue + '</a></div>')
+					.mouseover(function(){
+						$(this).rating('drain');
+						$(this).addClass('star-rating-hover');
+						//$(this).rating('focus');
+					})
+					.mouseout(function(){
+						$(this).rating('draw');
+						$(this).removeClass('star-rating-hover');
+						//$(this).rating('blur');
+					})
+					.click(function(){
+					 $(this).rating('select');
+					})
+					.data('rating', control)
+				);
+				
+			}; // first element of group
+			
+			// insert rating star
+			var star = $('<div class="star-rating rater-'+ control.serial +'"><a title="' + (this.title || this.value) + '">' + this.value + '</a></div>');
+			rater.append(star);
+			
+			// inherit attributes from input element
+			if(this.id) star.attr('id', this.id);
+			if(this.className) star.addClass(this.className);
+			
+			// Half-stars?
+			if(control.half) control.split = 2;
+			
+			// Prepare division control
+			if(typeof control.split=='number' && control.split>0){
+				var stw = ($.fn.width ? star.width() : 0) || control.starWidth;
+				var spi = (control.count % control.split), spw = Math.floor(stw/control.split);
+				star
+				// restrict star's width and hide overflow (already in CSS)
+				.width(spw)
+				// move the star left by using a negative margin
+				// this is work-around to IE's stupid box model (position:relative doesn't work)
+				.find('a').css({ 'margin-left':'-'+ (spi*spw) +'px' })
+			};
+			
+			// readOnly?
+			if(control.readOnly)//{ //save a byte!
+				// Mark star as readOnly so user can customize display
+				star.addClass('star-rating-readonly');
+			//}  //save a byte!
+			else//{ //save a byte!
+			 // Enable hover css effects
+				star.addClass('star-rating-live')
+				 // Attach mouse events
+					.mouseover(function(){
+						$(this).rating('fill');
+						$(this).rating('focus');
+					})
+					.mouseout(function(){
+						$(this).rating('draw');
+						$(this).rating('blur');
+					})
+					.click(function(){
+						$(this).rating('select');
+					})
+				;
+			//}; //save a byte!
+			
+			// set current selection
+			if(this.checked)	control.current = star;
+			
+			// hide input element
+			input.hide();
+			
+			// backward compatibility, form element to plugin
+			input.change(function(){
+    $(this).rating('select');
+   });
+			
+			// attach reference to star to input element and vice-versa
+			star.data('rating.input', input.data('rating.star', star));
+			
+			// store control information in form (or body when form not available)
+			control.stars[control.stars.length] = star[0];
+			control.inputs[control.inputs.length] = input[0];
+			control.rater = raters[eid] = rater;
+			control.context = context;
+			
+			input.data('rating', control);
+			rater.data('rating', control);
+			star.data('rating', control);
+			context.data('rating', raters);
+  }); // each element
+		
+		// Initialize ratings (first draw)
+		$('.rating-to-be-drawn').rating('draw').removeClass('rating-to-be-drawn');
+		
+		return this; // don't break the chain...
+	};
+	
+	/*--------------------------------------------------------*/
+	
+	/*
+		### Core functionality and API ###
+	*/
+	$.extend($.fn.rating, {
+		// Used to append a unique serial number to internal control ID
+		// each time the plugin is invoked so same name controls can co-exist
+		calls: 0,
+		
+		focus: function(){
+			var control = this.data('rating'); if(!control) return this;
+			if(!control.focus) return this; // quick fail if not required
+			// find data for event
+			var input = $(this).data('rating.input') || $( this.tagName=='INPUT' ? this : null );
+   // focus handler, as requested by focusdigital.co.uk
+			if(control.focus) control.focus.apply(input[0], [input.val(), $('a', input.data('rating.star'))[0]]);
+		}, // $.fn.rating.focus
+		
+		blur: function(){
+			var control = this.data('rating'); if(!control) return this;
+			if(!control.blur) return this; // quick fail if not required
+			// find data for event
+			var input = $(this).data('rating.input') || $( this.tagName=='INPUT' ? this : null );
+   // blur handler, as requested by focusdigital.co.uk
+			if(control.blur) control.blur.apply(input[0], [input.val(), $('a', input.data('rating.star'))[0]]);
+		}, // $.fn.rating.blur
+		
+		fill: function(){ // fill to the current mouse position.
+			var control = this.data('rating'); if(!control) return this;
+			// do not execute when control is in read-only mode
+			if(control.readOnly) return;
+			// Reset all stars and highlight them up to this element
+			this.rating('drain');
+			this.prevAll().andSelf().filter('.rater-'+ control.serial).addClass('star-rating-hover');
+		},// $.fn.rating.fill
+		
+		drain: function() { // drain all the stars.
+			var control = this.data('rating'); if(!control) return this;
+			// do not execute when control is in read-only mode
+			if(control.readOnly) return;
+			// Reset all stars
+			control.rater.children().filter('.rater-'+ control.serial).removeClass('star-rating-on').removeClass('star-rating-hover');
+		},// $.fn.rating.drain
+		
+		draw: function(){ // set value and stars to reflect current selection
+			var control = this.data('rating'); if(!control) return this;
+			// Clear all stars
+			this.rating('drain');
+			// Set control value
+			if(control.current){
+				control.current.data('rating.input').attr('checked','checked');
+				control.current.prevAll().andSelf().filter('.rater-'+ control.serial).addClass('star-rating-on');
+			}
+			else
+			 $(control.inputs).removeAttr('checked');
+			// Show/hide 'cancel' button
+			control.cancel[control.readOnly || control.required?'hide':'show']();
+			// Add/remove read-only classes to remove hand pointer
+			this.siblings()[control.readOnly?'addClass':'removeClass']('star-rating-readonly');
+		},// $.fn.rating.draw
+		
+		
+		
+		
+		
+		select: function(value,wantCallBack){ // select a value
+					
+					// ***** MODIFICATION *****
+					// Thanks to faivre.thomas - http://code.google.com/p/jquery-star-rating-plugin/issues/detail?id=27
+					//
+					// ***** LIST OF MODIFICATION *****
+					// ***** added Parameter wantCallBack : false if you don't want a callback. true or undefined if you want postback to be performed at the end of this method'
+					// ***** recursive calls to this method were like : ... .rating('select') it's now like .rating('select',undefined,wantCallBack); (parameters are set.)
+					// ***** line which is calling callback
+					// ***** /LIST OF MODIFICATION *****
+			
+			var control = this.data('rating'); if(!control) return this;
+			// do not execute when control is in read-only mode
+			if(control.readOnly) return;
+			// clear selection
+			control.current = null;
+			// programmatically (based on user input)
+			if(typeof value!='undefined'){
+			 // select by index (0 based)
+				if(typeof value=='number')
+ 			 return $(control.stars[value]).rating('select',undefined,wantCallBack);
+				// select by literal value (must be passed as a string
+				if(typeof value=='string')
+					//return
+					$.each(control.stars, function(){
+						if($(this).data('rating.input').val()==value) $(this).rating('select',undefined,wantCallBack);
+					});
+			}
+			else
+				control.current = this[0].tagName=='INPUT' ?
+				 this.data('rating.star') :
+					(this.is('.rater-'+ control.serial) ? this : null);
+
+			// Update rating control state
+			this.data('rating', control);
+			// Update display
+			this.rating('draw');
+			// find data for event
+			var input = $( control.current ? control.current.data('rating.input') : null );
+			// click callback, as requested here: http://plugins.jquery.com/node/1655
+					
+					// **** MODIFICATION *****
+					// Thanks to faivre.thomas - http://code.google.com/p/jquery-star-rating-plugin/issues/detail?id=27
+					//
+					//old line doing the callback :
+					//if(control.callback) control.callback.apply(input[0], [input.val(), $('a', control.current)[0]]);// callback event
+					//
+					//new line doing the callback (if i want :)
+					if((wantCallBack ||wantCallBack == undefined) && control.callback) control.callback.apply(input[0], [input.val(), $('a', control.current)[0]]);// callback event
+					//to ensure retro-compatibility, wantCallBack must be considered as true by default
+					// **** /MODIFICATION *****
+					
+  },// $.fn.rating.select
+		
+		
+		
+		
+		
+		readOnly: function(toggle, disable){ // make the control read-only (still submits value)
+			var control = this.data('rating'); if(!control) return this;
+			// setread-only status
+			control.readOnly = toggle || toggle==undefined ? true : false;
+			// enable/disable control value submission
+			if(disable) $(control.inputs).attr("disabled", "disabled");
+			else     			$(control.inputs).removeAttr("disabled");
+			// Update rating control state
+			this.data('rating', control);
+			// Update display
+			this.rating('draw');
+		},// $.fn.rating.readOnly
+		
+		disable: function(){ // make read-only and never submit value
+			this.rating('readOnly', true, true);
+		},// $.fn.rating.disable
+		
+		enable: function(){ // make read/write and submit value
+			this.rating('readOnly', false, false);
+		}// $.fn.rating.select
+		
+ });
+	
+	/*--------------------------------------------------------*/
+	
+	/*
+		### Default Settings ###
+		eg.: You can override default control like this:
+		$.fn.rating.options.cancel = 'Clear';
+	*/
+	$.fn.rating.options = { //$.extend($.fn.rating, { options: {
+			cancel: 'Cancel Rating',   // advisory title for the 'cancel' link
+			cancelValue: '',           // value to submit when user click the 'cancel' link
+			split: 0,                  // split the star into how many parts?
+			
+			// Width of star image in case the plugin can't work it out. This can happen if
+			// the jQuery.dimensions plugin is not available OR the image is hidden at installation
+			starWidth: 16//,
+			
+			//NB.: These don't need to be pre-defined (can be undefined/null) so let's save some code!
+			//half:     false,         // just a shortcut to control.split = 2
+			//required: false,         // disables the 'cancel' button so user can only select one of the specified values
+			//readOnly: false,         // disable rating plugin interaction/ values cannot be changed
+			//focus:    function(){},  // executed when stars are focused
+			//blur:     function(){},  // executed when stars are focused
+			//callback: function(){},  // executed when a star is clicked
+ }; //} });
+	
+	/*--------------------------------------------------------*/
+	
+	/*
+		### Default implementation ###
+		The plugin will attach itself to file inputs
+		with the class 'multi' when the page loads
+	*/
+	$(function(){
+	 $('input[type=radio].star').rating();
+	});
+	
+	
+	
+/*# AVOID COLLISIONS #*/
+})(jQuery);
+/*# AVOID COLLISIONS #*/

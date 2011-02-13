@@ -1,28 +1,30 @@
 <script type="text/javascript">
 $(function(){
-  $(".buttons form input[type=radio]").change(function(){
+  $(".buttons form input[type=radio].rate").change(function(){
     console.info($(this).closest('form'));
-    alert("form submitted");
     $(this).closest('form').submit();
   }).rating();
+  $(".star-rating-control .star-rating").click(function(){
+    $("input#" + $(this).attr('id')).change();
+  });
 });
 </script>
-<%= form_tag rate_episode_path(episode), :remote => true, :style => "margin-right:5px", :id => "ratings_form" do %>
-  <% 5.times do |i| %>
-  <% if user_signed_in? %>
-  <%= radio_button_tag("episode_rate", i + 1, current_user.rating_for(episode) == i + 1, :class => "rate") %>
-  <% else %>
-  <%= radio_button_tag("episode_rate", i + 1, i < 3, :class => "rate", :disabled => "disabled") %>
+<% if user_signed_in? %>
+  <%= form_tag rate_episode_path(episode), :remote => true, :style => "margin-right:5px", :id => "ratings_form" do %>
+    <%= radio_button_tag("episode_rate", 0, current_user.rating_for(episode) == 0, :style => "display:none") %>
+    <% 5.times do |i| %>
+      <%= radio_button_tag("episode_rate", i + 1, current_user.rating_for(episode) == i + 1, :class => "rate") %>
+    <% end %>
+    <% if episode.ratings.count > 0 %>
+    <span id="ratings">
+      (<%= episode.ratings.inject(0){ |sum, e| sum + e.value }.to_f/episode.ratings.count %>/5 - <%= pluralize episode.ratings.count, 'rating' %>)
+    </span>
+    <% end %>
   <% end %>
-  <% if notice %>
-  <span style="display:none">
-    <%= notice %>
-  </div>
+<% else %>
+  <% if episode.ratings.count > 0 %>
+  <span id="ratings" style="">
+    <%= episode.ratings.inject(0){ |sum, e| sum + e.value }.to_f/episode.ratings.count %>/5 - <%= pluralize episode.ratings.count, 'rating' %>
+  </span>
   <% end %>
-  <% end %>
-<% end %>
-<% if episode.ratings.count > 0 %>
-<span>
-  (<%= episode.ratings.inject(0){ |sum, e| sum + e.value }.to_f/episode.ratings.count %>/5 - <%= pluralize episode.ratings.count, 'rating' %>)
-</span>
 <% end %>

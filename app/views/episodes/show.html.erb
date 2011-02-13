@@ -11,22 +11,22 @@
 </style>
 <div class="left_articles">
   <div class="buttons">
-    <p style="margin-top:25px">
+    <div style="margin-top:0px;width:400px">
       <%= render :partial => "ratings", :locals => { :episode => @episode } %>
-	    <span id="comments_button">
+	    <div id="comments_button" style="display:inline-block">
 	      <%= link_to "Comments (#{@episode.comments.count})", :anchor => "comments" %>
-	    </span>
+	    </div>
       <% if @episode.previous %>
-      <span id="prev_episode_button">
+      <div id="prev_episode_button" style="display:inline-block">
       <%= link_to "Previous episode", show_season_episode_path_(@episode.previous), :title => @episode.previous.full_name %>
-      </span>
+      </div>
       <% end %>
       <% if @episode.next %>
-      <span id="next_episode_button">
+      <div id="next_episode_button" style="display:inline-block">
         <%= link_to "Next episode", show_season_episode_path_(@episode.next), :title => @episode.next.full_name %>
-      </span>
+      </div>
       <% end %>
-    </p>
+    </div>
   </div>
   <h2>
     <%= link_to "#{@episode.series.full_name}", show_path(@episode.series) %>

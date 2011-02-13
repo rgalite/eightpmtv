@@ -68,24 +68,24 @@ class EpisodesController < ApplicationController
   end
   
   def rate
-    episode = Episode.find(params[:id])
+    @episode = Episode.find(params[:id])
     if params[:episode_rate].blank? || params[:episode_rate].to_i.zero?
-      episode.ratings.where(["user_id = ?", current_user.id]).destroy_all
-      
+      @episode.ratings.where(["user_id = ?", current_user.id]).destroy_all
+      flash.now[:notice] = "Vote removed"
       respond_to do |format|
-        format.js { render :partial => "ratings", :locals => { :episode => episode } }
+        format.js
         format.html { redirect_to episode_path(@episode), :notice => "Your rating has been removed successfully" } # redirect to show
       end
     elsif %w{ 1 2 3 4 5 }.include? params[:episode_rate]
-      rating = episode.ratings.build(:value => params[:episode_rate], :user => current_user)
-      rating.save
+      @episode.ratings.where(["user_id = ?", current_user.id]).destroy_all
       
+      rating = @episode.ratings.build(:value => params[:episode_rate], :user => current_user)
+      rating.save
+      flash.now[:notice] = "Thanks for your vote"
       respond_to do |format|
-        format.js { render :partial => "ratings", :locals => { :episode => episode } }
+        format.js
         format.html { redirect_to episode_path(@episode), :notice => "You have rated the episode successfully" } # redirect to show
       end
     end
-    
-
   end
 end

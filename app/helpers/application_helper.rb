@@ -16,15 +16,24 @@ module ApplicationHelper
   def likes_buttons(comment, user)
     if user.nil?
       res = ""
-      res << content_tag(:span, "", :class => "thumbs-up-normal") + "&nbsp;(#{comment.likes.size})&nbsp;".html_safe unless comment.likes.size.zero?
-      res << content_tag(:span, "", :class => "thumbs-down-normal") + "&nbsp;(#{comment.dislikes.size})&nbsp;".html_safe unless comment.dislikes.size.zero?
+      res << content_tag(:span, "", :class => "thumbs-up-normal") + "&nbsp;#{comment.likes.size}&nbsp;".html_safe unless comment.likes.size.zero?
+      res << content_tag(:span, "", :class => "thumbs-down-normal") + "&nbsp;#{comment.dislikes.size}&nbsp;".html_safe unless comment.dislikes.size.zero?
       res.html_safe
     elsif user.likes?(comment)
-      link_to("".html_safe, unlike_comment_path(comment), :remote => true, :class => "thumbs-up", :title => "You voted up") + ((comment.likes.size.zero? ? "&nbsp;&nbsp;&nbsp;" : "&nbsp;#{comment.likes.size}&nbsp;").html_safe) + link_to("".html_safe, dislike_comment_path(comment), :remote => true, :class => "thumbs-down-hov") + ((comment.dislikes.size.zero? ? "&nbsp;&nbsp;&nbsp;" : "&nbsp;#{comment.dislikes.size}&nbsp;").html_safe)
+      link_to("".html_safe, unlike_comment_path(comment), :remote => true, :class => "thumbs-up", :title => "You voted up")<<
+      (comment.likes.size.zero? ? "&nbsp;&nbsp;&nbsp;" : "&nbsp;#{comment.likes.size}&nbsp;").html_safe<<
+      link_to("".html_safe, dislike_comment_path(comment), :remote => true, :class => "thumbs-down-hov")<<
+      (comment.dislikes.size.zero? ? "&nbsp;&nbsp;&nbsp;" : "&nbsp;#{comment.dislikes.size}&nbsp;").html_safe
     elsif user.dislikes?(comment)
-      link_to("".html_safe, like_comment_path(comment), :remote => true, :class => "thumbs-up-hov") + ((comment.likes.size.zero? ? "&nbsp;&nbsp;&nbsp;" : "&nbsp;#{comment.likes.size}&nbsp;").html_safe) + link_to("".html_safe, undislike_comment_path(comment), :remote => true, :class => "thumbs-down", :title => "You voted down") + ((comment.dislikes.size.zero? ? "&nbsp;&nbsp;&nbsp;" : "&nbsp;#{comment.dislikes.size}&nbsp;").html_safe)
+      link_to("".html_safe, like_comment_path(comment), :remote => true, :class => "thumbs-up-hov")<<
+      (comment.likes.size.zero? ? "&nbsp;&nbsp;&nbsp;" : "&nbsp;#{comment.likes.size}&nbsp;").html_safe<<
+      link_to("".html_safe, undislike_comment_path(comment), :remote => true, :class => "thumbs-down", :title => "You voted down")<<
+      (comment.dislikes.size.zero? ? "&nbsp;&nbsp;&nbsp;" : "&nbsp;#{comment.dislikes.size}&nbsp;").html_safe
     else
-      link_to("".html_safe, like_comment_path(comment), :remote => true, :class => "thumbs-up-hov") + ((comment.likes.size.zero? ? "&nbsp;&nbsp;&nbsp;" : "&nbsp;#{comment.likes.size}&nbsp;").html_safe) + link_to("".html_safe, dislike_comment_path(comment), :remote => true, :class => "thumbs-down-hov") + ((comment.dislikes.size.zero? ? "&nbsp;&nbsp;&nbsp;" : "&nbsp;#{comment.dislikes.size}&nbsp;").html_safe)
+      link_to("".html_safe, like_comment_path(comment), :remote => true, :class => "thumbs-up-hov")<<
+      (comment.likes.size.zero? ? "&nbsp;&nbsp;&nbsp;" : "&nbsp;#{comment.likes.size}&nbsp;").html_safe<<
+      link_to("".html_safe, dislike_comment_path(comment), :remote => true, :class => "thumbs-down-hov")<<
+      (comment.dislikes.size.zero? ? "&nbsp;&nbsp;&nbsp;" : "&nbsp;#{comment.dislikes.size}&nbsp;").html_safe
     end
   end
   

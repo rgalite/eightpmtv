@@ -554,6 +554,18 @@ div.user_info p.fw-info a img:hover { border-color: #CCC; }
 .last_episode { float: left; margin-right: 20px; text-align:center; width: 200px; }
 .last_episode img { border:1px solid #CCC; }
 
+/* Ratings */
+#ratings {
+	background:url(/images/star.gif) no-repeat 0px -32px;
+	display:inline-block;
+	padding-left:18px
+}
+#ratings_form #ratings {
+	background:none;
+	margin-left:5px;
+	padding-left:0px;
+}
+
 /* Text overlay */
 .ic_container{
     vertical-align:baseline;
