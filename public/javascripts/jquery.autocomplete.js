@@ -259,7 +259,7 @@
     },
 
     suggest: function() {
-      if (this.suggestions.length === 0) {
+			if (this.suggestions.length === 0) {
         this.hide();
         return;
       }
@@ -274,7 +274,10 @@
       this.container.hide().empty();
       for (i = 0; i < len; i++) {
         s = this.suggestions[i];
-        div = $((me.selectedIndex === i ? '<div class="selected"' : '<div') + ' title="' + s + '">' + f(s, this.data[i], v) + '</div>');
+				if (i == len - 1)
+					div = $((me.selectedIndex === i ? '<div class="selected"' : '<div') + ' title="' + s + '">' + "Search for: " + f(s, this.data[i], v) + '</div>');
+        else
+					div = $((me.selectedIndex === i ? '<div class="selected"' : '<div') + ' title="' + s + '">' + f(s, this.data[i], v) + '</div>');
         div.mouseover(mOver(i));
         div.click(mClick(i));
         this.container.append(div);

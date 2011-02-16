@@ -18,6 +18,8 @@ class ShowsController < ApplicationController
         results[:suggestions] << serie.full_name
         results[:data] << { :id => serie.id, :param => serie.to_param } 
       end
+      results[:suggestions] << "#{params[:query]}"
+      results[:data] << { :param => "search?q=#{params[:query]}"}
       render :json => results.to_json
     else
       tvdb = TvdbParty::Search.new(Tvshows::Application.config.the_tv_db_api_key)
