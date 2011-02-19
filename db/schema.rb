@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110206012136) do
+ActiveRecord::Schema.define(:version => 20110219193115) do
 
   create_table "activities", :force => true do |t|
     t.integer  "actor_id"
@@ -205,7 +205,7 @@ ActiveRecord::Schema.define(:version => 20110206012136) do
     t.date     "first_aired"
     t.string   "imdb_id"
     t.string   "network"
-    t.string   "description",         :limit => 2048
+    t.string   "description",         :limit => 3072
     t.decimal  "rating"
     t.integer  "rating_count"
     t.integer  "runtime"
