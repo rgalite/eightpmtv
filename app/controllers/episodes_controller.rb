@@ -3,6 +3,7 @@ class EpisodesController < ApplicationController
   def show
     @episode = Episode.find_by_show_id_and_season_number_and_episode_number(params[:show_id],
                params[:season_number], params[:episode_number])
+    @page_title = "#{@episode.series.full_name} S#{@episode.season.number.to_s.rjust(2, '0')}E#{@episode.number.to_s.rjust(2, '0')}"
     respond_to do |format|
       format.json { render :json => @episode }
       format.html

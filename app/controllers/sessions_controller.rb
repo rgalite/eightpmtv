@@ -7,8 +7,7 @@ class SessionsController < Devise::SessionsController
   def index
     if user_signed_in?
       @activities = Activity.joins("INNER JOIN follows ON follows.followable_id = activities.actor_id AND follows.followable_type = activities.actor_type").where(["follows.follower_id = ?", current_user.id]).order("created_at DESC")
-      @today_episodes = current_user.series.collect { |s| s.episodes.where(:first_aired => Date.today).limit(10) }.flatten
-      @week_episodes = current_user.series.collect { |s| s.episodes.where(["first_aired >= ? AND first_aired <= ?", Date.today.beginning_of_week, Date.today.end_of_week]).limit(10).order("first_aired ASC") }.flatten.group_by {|e| e.first_aired}
+      @upcoming_episodes = current_user.series.collect { |s| s.episodes.where(["first_aired >= ? AND first_aired <= ?", Date.today, Date.today + 7.days]).limit(10).order("first_aired ASC") }.flatten.group_by {|e| e.first_aired}
       
     else
       @most_followed_series = Series.most_followed.limit(10)

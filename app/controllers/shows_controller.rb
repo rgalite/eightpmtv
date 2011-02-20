@@ -66,7 +66,7 @@ class ShowsController < ApplicationController
       @unseen_episodes = @series.episodes.available.unseen_by(current_user)
       @next_episode = @series.next_episode
     end
-    
+    @page_title = @series.full_name
     respond_to do |format|
       format.html do 
         render "show.my" if current_user && current_user.watch?(@series)

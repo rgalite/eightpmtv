@@ -73,4 +73,8 @@ module ApplicationHelper
   def form_tag_id(object_name, method_name)
     "#{sanitized_object_name(object_name.to_s)}_#{sanitized_method_name(method_name.to_s)}"
   end
+  
+  def facebook_like_button
+    content_tag(:div, '<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.eightpm.tv%2Fshows%2Fdesperate-housewives%2F7%2F15&amp;layout=box_count&amp;show_faces=true&amp;width=450&amp;action=like&amp;font=tahoma&amp;colorscheme=light&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:65px;" allowTransparency="true"></iframe>')
+  end
 end

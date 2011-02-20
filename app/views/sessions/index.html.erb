@@ -43,33 +43,17 @@
   <% end %>
 </div>
 
-<% if @today_episodes.size > 0 || @week_episodes.size > 0 %>
+<% if @upcoming_episodes.size > 0 %>
   <% content_for :right do %>
   <div id="right">
-      <% if @today_episodes.size > 0 %>
-    	<div class="boxtop" style="margin-top:30px"></div>
-    	<div class="box">
-    		<p class="title">What's on TV today?</p>
-  		  <ul style="margin-bottom:10px">
-  		    <% @today_episodes.each do |episode| %>
-  		    <li>
-  		        <%= link_to(content_tag(:span, episode.full_name), 
-  		                    show_season_episode_path(:show_id => episode.series,
-  		                                             :season_number => episode.season.number,
-                                                   :episode_number => episode.number)) %>
-  		    </li>
-  		    <% end %>
-  		  </ul>
-  		  <div class="clear"></div>
-    	</div>
-    	<% end %>
-
-      <% if @week_episodes.size > 0 %>
+      <% if @upcoming_episodes.size > 0 %>
     	<div class="boxtop"></div>
     	<div class="box">
     		<p class="title">This week</p>
-    		<% @week_episodes.sort.each do |day, episodes| %>
-    		<p><%= l day, :format => :day %>:</p>
+    		<% @upcoming_episodes.sort.each do |day, episodes| %>
+    		<p>
+    		  <%= calendar_day(day) %>:
+    		</p>
   		  <ul style="margin-bottom:10px">
   		    <% episodes.each do |episode|  %>
   		    <li>

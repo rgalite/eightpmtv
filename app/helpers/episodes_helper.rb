@@ -5,7 +5,7 @@ module EpisodesHelper
     elsif air_day > Date.today
       sentence = "Will be aired on "
     elsif air_day == Date.today
-      sentence = "Airing today at #{air_time}"
+      return sentence = "Airing today at #{air_time}"
     else
       sentence = "Aired on "
     end

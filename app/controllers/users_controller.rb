@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   
   def index
     @users = User.order("username ASC")
+    @page_title = "Community"    
     
     respond_to do |format|
       format.json { render :json => @users }
@@ -12,7 +13,8 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-
+    @page_title = @user.full_name
+    
     respond_to do |format|
       format.json do
         render :json => @user.as_json_with_followers_and_followings
