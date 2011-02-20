@@ -51,7 +51,15 @@
             <% end %>
           <% end %>
         </div>
-        <%= facebook_like_button %>
+        <%= facebook_like_button(show_season_episode_url_(@episode)) %>
+        <% content_for :meta_tags do %>
+          <meta property="og:title" content="<%= @episode.full_name %>" />
+          <meta property="og:type" content="tv_show" />
+          <meta property="og:url" content="<%= show_season_episode_url_(@episode) %>" />
+          <meta property="og:image" content="<%= @episode.poster.url(:medium) %>" />
+          <meta property="og:site_name" content="<%= @episode.full_name %>" />
+          <meta property="fb:admins" content="663974483" />
+        <% end %>
       <% end %>
   	</div>
   	<div class="clear"></div>
@@ -59,13 +67,4 @@
 </div>
 
 <%= render :partial => "shared/comments", :locals => { :comment_path => comment_episode_path(@episode), :comments => @episode.comments }%>
-<% if Rails.env == "production" %>
-  <% content_for :meta_tags do %>
-    <meta property="og:title" content="<%= @episode.full_name %>" />
-    <meta property="og:type" content="tv_show" />
-    <meta property="og:url" content="http://www.eightpm.tv/<%= show_season_episode_path_(@episode) %>" />
-    <meta property="og:image" content="<%= @episode.poster.url(:medium) %>" />
-    <meta property="og:site_name" content="<%= @episode.full_name %>" />
-    <meta property="fb:admins" content="663974483" />
-  <% end %>
-<% end %>
+

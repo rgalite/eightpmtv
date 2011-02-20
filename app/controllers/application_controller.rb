@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include CallRake
   protect_from_forgery
   
-  helper_method :show_season_episode_path_
+  helper_method :show_season_episode_path_, :show_season_episode_url_
   def robots
     render :text => open(File.join(Rails.root, "public", "robots.#{Rails.env}.txt")).read, :layout => false
   end
@@ -14,6 +14,18 @@ class ApplicationController < ActionController::Base
                                :episode_number => episode.number, :anchor => options[:anchor])
     else
       show_season_episode_path(:show_id => episode.series,
+                               :season_number => episode.season.number,
+                               :episode_number => episode.number)
+    end
+  end
+  
+  def show_season_episode_url_(episode, options = {})
+    if options.keys.include?(:anchor)
+      show_season_episode_url(:show_id => episode.series,
+                               :season_number => episode.season.number,
+                               :episode_number => episode.number, :anchor => options[:anchor])
+    else
+      show_season_episode_url(:show_id => episode.series,
                                :season_number => episode.season.number,
                                :episode_number => episode.number)
     end
