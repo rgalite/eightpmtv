@@ -36,6 +36,10 @@ group :development do
   gem "rush"
 end
 
+group :production do
+  gem "rack-force_domain"
+end
+
 gem "mongrel"
 gem "httparty"
 gem "devise"

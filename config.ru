@@ -2,3 +2,4 @@
 
 require ::File.expand_path('../config/environment',  __FILE__)
 run Tvshows::Application
+use Rack::ForceDomain, ENV["DOMAIN"]

@@ -58,5 +58,8 @@ Tvshows::Application.configure do
     :url => ":s3_alias_url",
     :path => ":class/:attachment/:id/:style/:basename.:extension",
   }
+  
   config.action_controller.session = { :domain => ".eightpm.tv" }
+  
+  config.middleware.use Rack::ForceDomain, ENV["DOMAIN"]
 end
