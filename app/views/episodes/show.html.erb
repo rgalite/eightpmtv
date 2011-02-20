@@ -1,3 +1,6 @@
+<% content_for :html_tags do %>
+ xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml"
+<% end %>
 <script>
   var posterIntervalID = null;
   var getPosterPath = "<%= get_poster_episode_path(@episode)%>";
@@ -57,7 +60,7 @@
           <meta property="og:type" content="tv_show" />
           <meta property="og:url" content="<%= show_season_episode_url_(@episode) %>" />
           <meta property="og:image" content="<%= @episode.poster.url(:medium) %>" />
-          <meta property="og:site_name" content="<%= @episode.full_name %>" />
+          <meta property="og:site_name" content="8PM.TV" />
           <meta property="fb:admins" content="663974483" />
         <% end %>
       <% end %>
