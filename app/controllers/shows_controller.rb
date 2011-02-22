@@ -17,7 +17,7 @@ class ShowsController < ApplicationController
       unless query.starts_with?("the ")
         series = Series.where("lower(name) LIKE :name OR lower(name_prefix) LIKE :name", { :name => "%#{query}%"} ).all
       else
-        series = Series.where("lower(name_prefix) = 'the' AND lower(name) LIKE :name", { :name => "%#{query.gsub(/^the\s/, '')}%"} ).all
+        series = Series.where("(lower(name_prefix) = 'the' AND lower(name) LIKE :name_sub) OR (lower(name) LIKE :name)", { :name => "%#{query}%", :name_sub => "%#{query.gsub(/^the\s/, '')}%"} ).all
       end
       series.each do |serie|
         results[:suggestions] << serie.full_name
