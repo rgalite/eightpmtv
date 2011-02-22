@@ -14,11 +14,9 @@ class ShowsController < ApplicationController
     if request.xhr?
       results = { :query => params[:query], :suggestions => [], :data => [] }
       query = params[:query].downcase.strip
-      puts "Query starts with 'the '? : #{query.starts_with?("the ")}"
       unless query.starts_with?("the ")
         series = Series.where("lower(name) LIKE :name OR lower(name_prefix) LIKE :name", { :name => "%#{query}%"} ).all
       else
-        puts "here"
         series = Series.where("lower(name_prefix) = 'the' AND lower(name) LIKE :name", { :name => "%#{query.gsub(/^the\s/, '')}%"} ).all
       end
       series.each do |serie|
