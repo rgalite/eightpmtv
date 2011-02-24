@@ -319,24 +319,25 @@ a.rm-movie-icon { background: url(/images/movie_remove.png) no-repeat left cente
 #my_episodes .season_info div.title {
 	background-color:#CCC;
 	border:1px solid black;
-	padding:5px;
 }
 #my_episodes .season_info div.title p { margin:0px; }
-#my_episodes .season_info div.title a.handler-open,
-#my_episodes .season_info div.title a.handler-closed {
-	display:block;
-	float:left;
-	text-decoration:none;
-	height:16px;
-	width:16px;
+#my_episodes .season_info div.title p.title span.handler {
+	display: inline-block;
+	height: 16px;
+	margin-right: 3px;
+	width: 16px;
 }
-#my_episodes .season_info div.title a.handler-open {
+#my_episodes .season_info div.handler-open p.title span.handler {
 	background: url(/images/blue_folder_open.png) no-repeat;
 }
-#my_episodes .season_info div.title a.handler-closed {
+#my_episodes .season_info div.handler-closed p.title span.handler {
 	background: url(/images/blue_folder_closed.png) no-repeat;
 }
-#my_episodes .season_info div.title p.title { text-align:center }
+#my_episodes .season_info div.title p.title {
+	cursor: pointer;
+	padding: 5px;
+	text-align:center
+}
 #my_episodes a.check_box_checked, #my_episodes a.check_box_empty {
 	display:inline-block;
 	float:left;

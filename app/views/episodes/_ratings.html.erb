@@ -1,7 +1,6 @@
 <script type="text/javascript">
 $(function(){
   $(".buttons form input[type=radio].rate").change(function(){
-    console.info($(this).closest('form'));
     $(this).closest('form').submit();
   }).rating();
   $(".star-rating-control .star-rating").click(function(){

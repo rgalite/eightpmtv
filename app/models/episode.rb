@@ -62,6 +62,10 @@ class Episode < ActiveRecord::Base
     @full_name ||= "#{series.name} S#{season.number.to_s.rjust(2, '0')}E#{number.to_s.rjust(2, '0')} - #{self.name}"
   end
   
+  def short_name
+    @short_name ||= "S#{season.number.to_s.rjust(2, '0')}E#{number.to_s.rjust(2, '0')} - #{self.name}"
+  end
+  
   def previous
     if @previous.nil?
       cur_index = series.episodes.find_index(self)

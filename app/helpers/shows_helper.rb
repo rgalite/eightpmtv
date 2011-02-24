@@ -91,9 +91,9 @@ module ShowsHelper
   def watch_button(series)
     if user_signed_in?
       if current_user.watch?(series)
-        link_to "Unfollow", unfollow_show_path(series), :remote => true, :class => "rm-movie-icon"
+        link_to "Unfollow", unfollow_show_path(series), :class => "rm-movie-icon"
       else
-        link_to "Follow", follow_show_path(series), :remote => true, :class => "add-movie-icon"
+        link_to "Follow", follow_show_path(series), :class => "add-movie-icon"
       end
     else
       "&nbsp;".html_safe

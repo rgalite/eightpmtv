@@ -74,7 +74,7 @@ class ShowsController < ApplicationController
     @page_title = @series.full_name
     respond_to do |format|
       format.html do 
-        render "show.my" if current_user && current_user.watch?(@series)
+        render "show_my" if current_user && current_user.watch?(@series)
       end 
       format.json { render :json => @series.as_json }
     end
@@ -109,7 +109,7 @@ class ShowsController < ApplicationController
     if current_user.following?(@series)
       respond_to do |format|
         format.js   # render follow.js.erb
-        format.html { redirect_to shows_path(@series), :notice => "You are not following #{@series.full_name}." }
+        format.html { redirect_to show_path(@series) }
       end
     else
       fw = current_user.follow(@series)
@@ -123,7 +123,7 @@ class ShowsController < ApplicationController
                                                     "serie_desc" => @series.description }.to_json)
       respond_to do |format|
         format.js   # render follow.js.erb
-        format.html { redirect_to shows_path(@series), :notice => "You are not following #{@series.full_name} anymore." }
+        format.html { redirect_to show_path(@series), :notice => "You are now following #{@series.full_name}" }
       end
     end
   end
@@ -134,12 +134,12 @@ class ShowsController < ApplicationController
       current_user.stop_following(@series)
       respond_to do |format|
         format.js   # render unsubscribe.js.erb
-        format.html { redirect_to shows_path(@series), :notice => "You are not following #{@series.name} anymore." }
+        format.html { redirect_to show_path(@series), :notice => "You are not following #{@series.name} anymore." }
       end
     else
       respond_to do |format|
         format.js   # render unsubscribe.js.erb
-        format.html { redirect_to shows_path(@series), :warn => "You are not following #{@series.name}." }
+        format.html { redirect_to show_path(@series) }
       end
     end
   end

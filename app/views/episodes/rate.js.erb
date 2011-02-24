@@ -1,5 +1,4 @@
 $("#ratings_form").replaceWith("<%= escape_javascript(render :partial => 'ratings', :locals => { :episode => @episode, :notice => @notice }) %>");
 <% if flash.now[:notice] %>
-	console.info($("#ratings_form span#ratings"));
 	$("#ratings_form span#ratings").effect("highlight");
 <% end %>
