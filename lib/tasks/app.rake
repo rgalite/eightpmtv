@@ -100,7 +100,7 @@ namespace :app do
       puts "The series have been updated at #{Time.at(b_time.to_i)}"
       results = "#{series_updated.size} series updated. #{episodes_updated[:new].size} new episodes. #{episodes_updated[:updated].size} episodes updated."
       puts results
-      AdminMailer.deliver_series_update_succeeded(results) unless %w{ test development }.include?(Rails.env)
+      # AdminMailer.deliver_series_update_succeeded(results) unless %w{ test development }.include?(Rails.env)
       Settings.last_update = b_time.to_s
     rescue Exception => e
       AdminMailer.deliver_series_update_failed(e.message + ":\n" + e.backtrace.join("\n")) unless %w{ test development }.include?(Rails.env)
