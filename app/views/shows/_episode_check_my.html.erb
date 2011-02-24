@@ -1,0 +1,5 @@
+<% if current_user.has_watched?(episode) %>
+<%= link_to image_tag("ajax-loader-circle-ball.gif", :style => "display:none"), unmark_episode_path(episode), :remote => true, 'data-type' => 'txt', :class => "check_box check_box_checked", :id => "check_episode_#{episode.id}" %>
+<% else %>
+<%= link_to image_tag("ajax-loader-circle-ball.gif", :style => "display:none"), mark_episode_path(episode), :remote => true, 'data-type' => 'txt', :class => "check_box check_box_empty", :id => "check_episode_#{episode.id}" %>
+<% end %>

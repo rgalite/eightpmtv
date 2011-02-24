@@ -1,0 +1,13 @@
+<% episode = episode_my %>
+<div id="episode-<%= episode.id %>" class="episode_info">
+  <%= image_tag episode.poster.url(:small), :class => "thumbnail description-added" %>
+  <div style="display:none">
+    <%= episode.description %>
+  </div>
+  <div class="clear"></div>
+  <p>
+    <%= render :partial => "episode_check_my", :locals => { :episode => episode } %>&nbsp;
+    <%= link_to episode.short_name, show_season_episode_path_(episode), :class => "episode-title" %>
+  </p>
+</div>
+<% if (episode_my_counter + 1) % 4 == 0 %><div class="clear"></div><% end %>
