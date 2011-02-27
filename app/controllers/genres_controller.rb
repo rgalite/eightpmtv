@@ -3,4 +3,7 @@ class GenresController < ApplicationController
     @genre = Genre.find(params[:id])
   end
 
+  def index
+    @genres = Genre.all
+  end
 end

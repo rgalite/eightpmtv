@@ -199,6 +199,10 @@ class ShowsController < ApplicationController
     end
   end
   
+  def genres
+    @genres = Genre
+  end
+  
   private
   def name_alpha
     if params[:letter].nil?

@@ -46,9 +46,7 @@ Tvshows::Application.routes.draw do
     match "/season/:season_number" => "seasons#show", :constraints => { :season_number => /\d+/ }, :as => "season"
     match "/:season_number/:episode_number" => "episodes#show", :constraints => { :season_number => /\d+/, :episode_number => /\d+/ }, :as => "season_episode"
   end
-  scope "shows", :as => "shows" do
-    resources :genres, :only => [:show]
-  end
+  resources :genres, :only => [:show, :index]
   resources :users, :only => [:show, :index] do
     collection do
       get :name

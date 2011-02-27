@@ -1,0 +1,11 @@
+<% @genres.each do |genre| %>
+  <% if genre.series.size > 0 %>
+    <div class="left_articles">
+      <h2><%= genre.name %></h2>
+    	<p class="description"><%= link_to "See all (#{genre.series.size})", genre %></p>
+    	<div id="genres_<%= genre.name %>" class="genres-list">
+          <%= render :partial => "shows/series_list", :locals => { :series => genre.series } %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

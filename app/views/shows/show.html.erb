@@ -46,7 +46,7 @@
       <div>
         <span class="label">Genres:</span>
         <% for genre in @series.genres %>
-          <%= link_to genre.name, shows_genre_path(genre) %>&nbsp;
+          <%= link_to genre.name, genre %>&nbsp;
         <% end %>
       </div>
   	</div>

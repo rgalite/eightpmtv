@@ -1,8 +1,8 @@
 <div id="series_categories">
   <p style="text-align:center">
-    <% if user_signed_in? %>
-    <%= link_to("My series", my_shows_path)  %> · 
-    <% end %>
-    <%= link_to "Name", name_shows_path %>
+    <% if user_signed_in? -%>
+    <%= link_to("My series", my_shows_path)  %>&nbsp;&middot;&nbsp;
+    <% end -%>
+    <%= link_to "Name", name_shows_path %>&nbsp;&middot;&nbsp;<%= link_to "Genre", genres_path %>
   </p>
 </div>
