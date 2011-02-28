@@ -65,7 +65,7 @@ module ShowsHelper
       # Do not display more than 3 friends in the description
       if followings_watching.size > 3
         # If there are more than 3 friends put a number of friends !
-        watchers << "#{followings_watching} of your friends"
+        watchers << "#{followings_watching.size} of your friends"
       else
         # Otherwise, lists the friends
         followings_watching.each { |f| watchers << link_to(f.username, user_path(f)) ; people_watching.delete(f) } unless followings_watching.size.zero?
