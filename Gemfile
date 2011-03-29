@@ -36,9 +36,7 @@ group :development do
   gem "rush"
 end
 
-group :production do
-  gem "rack-force_domain"
-end
+gem "rack-force_domain"
 
 gem "mongrel"
 gem "httparty"

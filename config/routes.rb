@@ -1,5 +1,7 @@
 Tvshows::Application.routes.draw do
   match '/auth/:provider/callback' => "authentications#create"
+  match '/auth/failure' => "sessions#new"
+  
   resources :authentications, :only => [:create, :destroy]
 
   devise_for :users, :path_names => { :sign_up => "register",

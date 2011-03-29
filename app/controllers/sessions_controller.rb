@@ -20,4 +20,18 @@ class SessionsController < Devise::SessionsController
   def create
     super
   end
+  
+  def new
+    if !params[:message].blank?
+      case params[:message] 
+      when "invalid_response"
+        flash[:notice] = "Could not connect to the provider"
+      when "invalid_credentials"
+        flash[:notice] = "Invalid credentials"
+      else
+        flash[:notice] = "A problem occured when connecting to the provider (#{params[:message]}). We've been noticed."
+      end      
+    end
+    super
+  end
 end
