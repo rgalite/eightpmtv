@@ -6,27 +6,22 @@
   	<p class="description">
   	  <%= people_watching(show) %>
   	</p>
-  	<p>
+  	<div>
   	  <% if show.poster? %>
         <%= image_tag show.poster.url(:small), :class => "thumbnail" %>
       <% end %>
       <div>
         <% description = truncate(show.description, 795, "") %>
         <%= description %>
-        <% if show.description.length > description.length %>
+        <% !show.description.blank? && show.description.length > description.length %>
           <%= link_to_function("...", "showMoreDescription(this);") %>
           <span style="display:none">
             <%= show.description[(description.length)..-1] %>
           </span>
         <% end %>
       </div>
-      <div>
-        <span class="label"><%= t '.air_time'%>:</span>
-        <%= show.air_day %> <%= t '.at' %>
-        <%= show.air_time %> (<%= show.runtime %> mn)
-      </div>
-  	</p>
-  	<div style="clear:both"></div>
+  	</div>
+  	<div class="clear"></div>
   </div>
 </div>
 <% end %>
