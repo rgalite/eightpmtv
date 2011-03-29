@@ -1,6 +1,5 @@
 Tvshows::Application.routes.draw do
   match '/auth/:provider/callback' => "authentications#create"
-  match '/auth/failure' => "sessions#new"
   
   resources :authentications, :only => [:create, :destroy]
 
@@ -8,7 +7,9 @@ Tvshows::Application.routes.draw do
                                       :sign_in => "login",
                                       :sign_out => "logout" },
              :controllers => { :registrations => 'registrations', :sessions => 'sessions' } do
+    
     get "users/cancel_omniauth", :to => "registrations#cancel_omniauth", :as => "cancel_omniauth"
+    get "auth/failure", :to => "sessions#new", :as => "auth_failure"
 
     root :to => "sessions#index"
   end      
