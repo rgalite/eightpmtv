@@ -35,6 +35,7 @@
     <% @activities.each do |activity| %>
       <%= render :partial => "activity_#{activity.kind}", :locals => { :activity => activity } %>
     <% end %>
+    <%= render :partial => "load_more_activities", :locals => { :start => @activities.last.id } %>
   <% else %>
   <p style="margin: 20px 0px;text-align:center">
     No activity for the moment. <br />
