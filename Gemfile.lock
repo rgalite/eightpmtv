@@ -75,6 +75,7 @@ GEM
     jquery-rails (0.2.7)
       rails (~> 3.0)
       thor (~> 0.14.4)
+    json (1.4.6)
     launchy (0.3.7)
       configuration (>= 0.0.5)
       rake (>= 0.8.1)
@@ -214,6 +215,7 @@ DEPENDENCIES
   heroku_san
   httparty
   jquery-rails
+  json
   mail
   mongrel
   mysql
