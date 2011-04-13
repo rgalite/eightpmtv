@@ -18,7 +18,9 @@
         </div>
         <div class="clear"></div>
       </div>
-      <p class="activity-time"><%= activity.created_at.to_pretty %></p>
+      <p class="activity-time" title="<%= l activity.created_at, :format => :dmy_with_long_month %>">
+        <%= activity.created_at.to_pretty %>
+      </p>
     </div>
     <div class="clear"></div>
   </blockquote>

@@ -10,7 +10,7 @@
         wrote a <%= link_to 'comment', activity.subject_path %> about <%= link_to activity_data['commented_name'], activity_data['commented_path'] %><br />
         <p><%= activity_data["content"] %></p> 
       </div>
-      <p class="activity-time"><%= activity.created_at.to_pretty %></p>
+      <p class="activity-time" title="<%= l activity.created_at, :format => :dmy_with_long_month %>"><%= activity.created_at.to_pretty %></p>
     </div>
     <div class="clear"></div>
   </blockquote>

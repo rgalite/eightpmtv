@@ -1,6 +1,6 @@
 <div id="load_more_activities" style="background-color:#1D66A8;border:1px solid #003B6E">
   <p style="color:white;margin:0px;padding:4px 0px;text-align:center">
-    <%= link_to "Load more", { :action => "load_activities", :start => start },
+    <%= link_to "Load more", sessions_load_activities_path(:start => start),
                              { :remote => true, :style => "color:white;display:block" } %>
   </p>
 </div>

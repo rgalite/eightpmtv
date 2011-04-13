@@ -24,7 +24,9 @@ class SessionsController < Devise::SessionsController
   end
   
   def load_activities
-    @activities = Activity.limit(10).joins("INNER JOIN follows ON follows.followable_id = activities.actor_id AND follows.followable_type = activities.actor_type").where(["follows.follower_id = ? AND activities.id < ?", current_user.id, params[:start]]).order("created_at DESC")
+    activities = Activity.joins("INNER JOIN follows ON follows.followable_id = activities.actor_id AND follows.followable_type = activities.actor_type").where(["follows.follower_id = ? AND activities.id < ?", current_user.id, params[:start].to_i]).order("created_at DESC")
+    @activities_count = activities.count
+    @activities = activities.limit(10)
   end
   
   def new
