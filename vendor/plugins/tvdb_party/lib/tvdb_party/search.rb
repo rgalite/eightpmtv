@@ -6,6 +6,9 @@ module TvdbParty
     cache :store => 'file', :timeout => 120, :location => Dir.tmpdir
     
     base_uri 'www.thetvdb.com/api'
+    
+    # Handle 301 redirects
+    follow_redirects true
 
     def initialize(the_api_key, language = 'en')
       @api_key = the_api_key
