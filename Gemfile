@@ -36,9 +36,7 @@ group :development do
   gem "rush"
 end
 
-group :production do
-  gem "rack-force_domain"
-end
+gem "rack-force_domain"
 
 gem "mongrel"
 gem "httparty"
@@ -53,3 +51,4 @@ gem "delayed_job"
 gem "workless"
 gem "delayed_paperclip"
 gem 'recaptcha', :require => 'recaptcha/rails'
+gem "json"

@@ -14,7 +14,7 @@
           <p style="float:left"><%= activity_data["comment_content"] %></p> 
         </div>
       </div>
-      <p class="activity-time clear"><%= activity.created_at.to_pretty %></p>
+      <p class="activity-time clear" title="<%= l activity.created_at, :format => :dmy_with_long_month %>"><%= activity.created_at.to_pretty %></p>
     </div>
     <div class="clear"></div>
   </blockquote>

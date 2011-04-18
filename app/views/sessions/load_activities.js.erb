@@ -1,0 +1,11 @@
+<% if @activities.count > 0 %>
+	<% for activity in @activities %> 
+		$("#load_more_activities").before("<%= escape_javascript(render :partial => 'activity_' + activity.kind, :locals => { :activity => activity }) %>")
+	<% end %>
+
+	<% if @activities_count > 10 %>
+		$("#load_more_activities").replaceWith("<%= escape_javascript(render :partial => 'load_more_activities', :locals => { :start => @activities.last.id }) %>")
+	<% else %>
+		$("#load_more_activities").hide()
+	<% end %>
+<% end %>

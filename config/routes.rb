@@ -1,12 +1,19 @@
 Tvshows::Application.routes.draw do
   match '/auth/:provider/callback' => "authentications#create"
+  
   resources :authentications, :only => [:create, :destroy]
 
   devise_for :users, :path_names => { :sign_up => "register",
                                       :sign_in => "login",
                                       :sign_out => "logout" },
              :controllers => { :registrations => 'registrations', :sessions => 'sessions' } do
+    
+    # users
     get "users/cancel_omniauth", :to => "registrations#cancel_omniauth", :as => "cancel_omniauth"
+    
+    # sessions
+    get "sessions/load_activities", :to => "sessions#load_activities"
+    get "auth/failure", :to => "sessions#new", :as => "auth_failure"
 
     root :to => "sessions#index"
   end      
