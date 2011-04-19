@@ -44,7 +44,9 @@ module TvdbParty
       else
         response = self.class.get("/#{@api_key}/updates/updates_#{options[:update_type]}.xml").parsed_response
         series = []
-        response["Data"]["Series"].each { |s| series << response["id"] if response["time"].to_i > a_time }
+        response["Data"]["Series"].each do |s| 
+          series << s["id"] if s["time"].to_i > a_time
+        end
         episodes = []
         b_time = response["Data"]["time"].to_i
         puts "Full update (to #{Time.at b_time})"
