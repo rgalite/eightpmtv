@@ -112,7 +112,7 @@ module TvdbParty
       end
     end
 
-    def get_episodes(series)
+    def get_episodes(series, language = self.language)
       # Get the episodes
       episodes = []
       response = self.class.get("/#{@api_key}/series/#{series.id}/all/#{language}.xml").parsed_response
