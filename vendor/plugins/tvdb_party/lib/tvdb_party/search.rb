@@ -120,10 +120,16 @@ module TvdbParty
 
     def get_episodes(series, language = self.language)
       # Get the episodes
-      episodes = []
-      response = self.class.get("/#{@api_key}/series/#{series.id}/all/#{language}.xml").parsed_response
-      response["Data"]["Episode"].each { |episode_xml| episodes << Episode.new(self, episode_xml) } if response
-      return episodes
+      times = 3
+      begin
+        episodes = []
+        response = self.class.get("/#{@api_key}/series/#{series.id}/all/#{language}.xml").parsed_response
+        response["Data"]["Episode"].each { |episode_xml| episodes << Episode.new(self, episode_xml) } if response
+        return episodes
+      rescue
+        times -= 1
+        times.zero? ? raise : retry
+      end
     end
   end
 end
