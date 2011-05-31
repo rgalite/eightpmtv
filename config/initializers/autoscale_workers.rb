@@ -1,5 +1,5 @@
 if %w{ production staging }.include?(Rails.env)
-  Delayed::Job.scaler = :heroku
+  Delayed::Job.scaler = :null
 else
   Delayed::Job.scaler = :null
 end

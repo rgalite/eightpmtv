@@ -52,3 +52,4 @@ gem "workless"
 gem "delayed_paperclip"
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem "json"
+gem "hirefireapp"
