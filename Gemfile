@@ -48,7 +48,6 @@ gem "omniauth"
 gem "friendly_id", "~> 3.1"
 gem 'jquery-rails'
 gem "delayed_job"
-gem "workless"
 gem "delayed_paperclip"
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem "json"

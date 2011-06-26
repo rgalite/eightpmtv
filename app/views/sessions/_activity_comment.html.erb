@@ -1,4 +1,4 @@
-<% activity_data = (activity.data.to_json) %>
+<% activity_data = JSON.parse(activity.data) %>
 <div class="bubble user-activity">
   <blockquote>
     <div class="actor-avatar">
