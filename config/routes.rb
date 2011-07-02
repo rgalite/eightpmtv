@@ -21,8 +21,9 @@ Tvshows::Application.routes.draw do
   resources :actors, :only => [:show]
   resources :seasons, :only => [:comment] do
     member do
-      post :comment
-      get  :get_poster
+      post  :comment
+      get   :get_poster
+      get   :mark
     end
   end
   resources :episodes, :only => [] do

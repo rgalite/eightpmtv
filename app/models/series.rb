@@ -81,6 +81,10 @@ class Series < ActiveRecord::Base
     episodes.where(["first_aired >= ?", Date.today]).first
   end
   
+  def next_episode_unseen(user)
+    episodes.unseen_by(user).first
+  end
+  
   def get_episode(season_number, episode_number)
     self.episodes.detect{ |e| e.season.number == season_number && e.number == episode_number }
   end

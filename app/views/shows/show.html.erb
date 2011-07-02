@@ -7,10 +7,42 @@
   var getPosterPath = "<%= get_poster_show_path(@series) %>";
   var posterIntervalID = null;
   var seasonsIntervalID = null;
-  
-  $(document).ready(function(){
+    
+  $(function(){
     updateProcessingElements(posterIntervalID, "#poster.processing", getPosterPath);
     updateProcessingElements(seasonsIntervalID, "#series_seasons.processing", getSeasonsPath);   
+
+    var tab = $.getUrlVar('tab');
+
+    var switchables = $(".switchable");
+
+    if (tab !== "activity")
+      switchables.not(":first").hide();
+    else
+    {
+      console.info(switcher);
+      switchables.not(":eq(1)").hide();
+
+      var switcher = $('.switcher');
+      var lis = switcher.find('li');
+
+      lis.removeClass('selected');
+      lis.eq(2).addClass('selected');
+    }
+      
+
+    $(".switcher li a").click(function(){
+      var switcher = $(this).parent('.switcher');
+      var li = $(this).parent('li');
+      
+      li.siblings().removeClass('selected');
+      li.addClass('selected');
+      $('.switchable').hide();
+      console.info($(this).attr('rel'));
+      $('#' + $(this).attr('rel')).show();
+
+      return false;
+    })
   });
 </script>
 
@@ -26,36 +58,58 @@
   <h2><%= @series.full_name %></h2>
 	<p class="description"><%= people_watching(@series) %></p>
 	<div id="series-<%= @series.id %>" class="series_info">
-  	<div>
       <%= render "poster" %>
       <div>
-        <% description = truncate(@series.description, 795, "") %>
-        <%= description %>
-        <% if !@series.description.blank? && @series.description.length > description.length %>
-          <%= link_to_function("...", "showMoreDescription(this);") %>
-          <span style="display:none">
-            <%= @series.description[(description.length)..-1] %>
-          </span>
+        <div class="switcher" style="width:100%">
+          <ul>
+            <li class="selected"><%= link_to "General", "#", :rel => "series-description" %></li>
+            <li><%= link_to "Seasons (#{@series.seasons.size})", "#", :rel => "series_seasons" %></li>
+            <% if user_signed_in? %>
+              <li><%= link_to "My activity", "#", :rel => "series_activity" %></li>
+            <% end %>
+          </ul>
+        </div>
+        
+        <div id="series-description" class="switchable">
+          <% description = truncate(@series.description, 795, "") %>
+          <%= description %>
+          <% if !@series.description.blank? && @series.description.length > description.length %>
+            <%= link_to_function("...", "showMoreDescription(this);") %>
+            <span style="display:none">
+              <%= @series.description[(description.length)..-1] %>
+            </span>
+          <% end %>
+          <div class="air-time" style="margin-top:20px">
+            <span class="label"><%= t '.air_time'%>:</span>
+            <%= @series.air_day %> <%= t '.at' %>
+            <%= @series.air_time %> (<%= @series.runtime %> mn)
+          </div>
+          <div class="genre" style="margin-top:20px">
+            <span class="label">Genres:</span>
+            <% for genre in @series.genres %>
+              <%= link_to genre.name, genre %>&nbsp;
+            <% end %>
+          </div>
+        </div>
+        
+        <% if user_signed_in? %>
+          <div id="series_activity" class="switchable">
+            <p>
+              <% if @next_episode_unseen.nil? %>
+                You're up-to-date!
+              <% else %>
+                Next episode: <%= @next_episode_unseen.full_name %>
+              <% end %>
+            </p>
+          </div>
         <% end %>
-      </div>
-      <div>
-        <span class="label"><%= t '.air_time'%>:</span>
-        <%= @series.air_day %> <%= t '.at' %>
-        <%= @series.air_time %> (<%= @series.runtime %> mn)
-      </div>
-      <div>
-        <span class="label">Genres:</span>
-        <% for genre in @series.genres %>
-          <%= link_to genre.name, genre %>&nbsp;
-        <% end %>
-      </div>
-  	</div>
+        
+        <!-- Seasons -->
+        <%= render "seasons" %>
+  	  </div>
   	<div class="clear"></div>
   </div>
 </div>
-
-<!-- Seasons -->
-<%= render "seasons" %>
 
 <!-- Comments -->
 <a name="comments"></a>

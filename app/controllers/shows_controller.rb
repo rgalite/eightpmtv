@@ -66,15 +66,18 @@ class ShowsController < ApplicationController
   
   def show
     @series = Series.find(params[:id])
-    if current_user
-      @comment = Comment.new
-      @unseen_episodes = @series.episodes.available.unseen_by(current_user)
-      @next_episode = @series.next_episode
+    if user_signed_in?
+      if params[:tab].nil?
+        redirect_to show_path(@series, :tab => "activity")
+      else
+        @comment = Comment.new
+        @unseen_episodes = @series.episodes.available.unseen_by(current_user)
+        @next_episode_unseen = @unseen_episodes.first
+      end
     end
     @page_title = @series.full_name
     respond_to do |format|
       format.html do 
-        render "show_my" if current_user && current_user.watch?(@series)
       end 
       format.json { render :json => @series.as_json }
     end

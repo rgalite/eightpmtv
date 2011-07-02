@@ -42,4 +42,12 @@ class SeasonsController < ApplicationController
       format.html { redirect_to show_path(@season) } # redirect to show
     end
   end
+  
+  def mark
+    season = Season.find(params[:id])
+    current_user.episodes_seen << season.episodes
+    respond_to do |format|
+      format.html { redirect_to show_path(season.series) }
+    end
+  end
 end

@@ -134,6 +134,7 @@
           </p>
         </div>
         <div class="content"<%= " style=\"display:none\"".html_safe if season_seen %>>
+          <div class=""><%= link_to "I have seen the whole season", mark_season_path(season) %></div>
           <%= render :partial => "episode_my", :collection => season.episodes.available %>
         </div>
       <div class="clear"></div>

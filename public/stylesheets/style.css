@@ -524,25 +524,6 @@ div.user_info p.fw-info a img:hover { border-color: #CCC; }
 #activities .activity { float:left;margin-left:10px; }
 #activities .bubble { margin-bottom:20px; }
 
-/* activities switcher */
-#activities_switcher { margin-bottom:5px; padding:5px; }
-#activities_switcher ul { text-align:center; }
-#activities_switcher ul li {
-	border:1px solid white;
-	display: inline;
-	list-style-type: none;
-	margin-right:1px;
-	width:12px;
-}
-#activities_switcher ul li.selected, #activities_switcher ul li:hover {
-	background-color: #1D66A8; border: 1px solid #003B6E;
-}
-#activities_switcher ul li.selected a, #activities_switcher ul li:hover a {
-	color: white;
-}
-#activities_switcher ul li a { padding: 0px 12px; text-decoration:none; }
-
-
 /* Authentication methods */
 #auth_methods .auth-method { border:1px solid #CCC; border-radius:5px; float:left; margin-right:20px; width:200px }
 #auth_methods .auth-method-wrapper { float:left; padding:5px; }
@@ -566,6 +547,26 @@ div.user_info p.fw-info a img:hover { border-color: #CCC; }
 	margin-left:5px;
 	padding-left:0px;
 }
+
+/* Switcher */
+/* activities switcher */
+.switcher { margin-bottom:5px; padding:5px; }
+.switcher ul { text-align:center; }
+.switcher ul li {
+	border:1px solid white;
+	display: inline;
+	list-style-type: none;
+	margin-right:1px;
+	width:12px;
+}
+.switcher ul li.selected, .switcher ul li:hover {
+	background-color: #1D66A8; border: 1px solid #003B6E;
+}
+.switcher ul li.selected a, .switcher ul li:hover a {
+	color: white;
+}
+.switcher ul li a { padding: 0px 12px; text-decoration:none; }
+
 
 /* Text overlay */
 .ic_container{

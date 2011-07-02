@@ -1,12 +1,12 @@
 <% if @series.seasons_processing? %>
-  <div id="series_seasons" class="processing">
+  <div id="series_seasons" class="processing switchable">
     <p id="seasons_loading" class="seasons-loading" style="text-align:center">
       <span>Loading seasons ...</span><br />
       <%= image_tag("ajax-loader-bar.gif") %>
     </p>
   </div>
 <% else %>
-  <div id="series_seasons" style="overflow:overflow-y">
+  <div id="series_seasons" style="overflow:overflow-y" class="switchable">
     <% unless @series.seasons.size.zero? %>
       <%= render :partial => "season", :collection => @series.seasons %>
       <div class="clear"></div>
