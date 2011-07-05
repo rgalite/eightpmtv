@@ -52,4 +52,14 @@ namespace :maintenance do
       puts "Activity #{i + 1} / #{activities.count}"
     end
   end
+  
+  desc "Delete all episodes with no aired date"
+  task :delete_episodes_no_aired_date => [:environment] do |t, args|
+    Episode.where("first_aired IS NULL").destroy_all
+  end
+  
+  desc "Delete all episodes with no name"
+  task :delete_episodes_no_name => [:environment] do |t, args|
+    Episode.where("name IS NULL").destroy_all
+  end
 end
