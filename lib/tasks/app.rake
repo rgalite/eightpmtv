@@ -65,7 +65,7 @@ namespace :app do
                                                   :first_aired => ep.air_date,
                                                   :poster_url => ep.thumb)
                 puts "Episode #{episode.full_name}. Created."
-                if args.activity && !episode.first_aired.nil? && episode.first_aired.to_date > Date.today
+                if args.activity && episode.first_aired.to_date > Date.today
                   # The episode is scheduled
                   puts "Episode #{episode.full_name} is scheduled."
                   Delayed::Job.enqueue(NewEpisodeScheduledJob.new(episode.id), :priority => 5)
@@ -73,7 +73,7 @@ namespace :app do
                 episodes_updated[:new] << episode
               else
                 if ep.last_updated.to_i >= a_time
-                  available = episode.available_before?(Time.at(a_time).to_date) 
+                  available = episode.available?(Time.at(a_time).to_date) 
                   episode.update_attributes!(:tvdb_id => ep.id,
                                             :number => ep.number,
                                             :name => ep.name,

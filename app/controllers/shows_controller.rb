@@ -66,20 +66,29 @@ class ShowsController < ApplicationController
   
   def show
     @series = Series.find(params[:id])
+
     if user_signed_in?
-      if params[:tab].nil?
-        redirect_to show_path(@series, :tab => "activity")
-      else
-        @comment = Comment.new
+      # A logged user can comment
+      @comment = Comment.new
+      
+      # If the user is watching this show
+      if current_user.watch?(@series)
+        # Get the next episode unseen
         @unseen_episodes = @series.episodes.available.unseen_by(current_user)
         @next_episode_unseen = @unseen_episodes.first
+
+        # Display the activity tab
+        if params[:tab].nil?
+          redirect_to show_path(@series, :tab => "activity")
+          return
+        end
       end
     end
+
     @page_title = @series.full_name
     respond_to do |format|
-      format.html do 
-      end 
       format.json { render :json => @series.as_json }
+      format.html
     end
   end
   
@@ -204,6 +213,19 @@ class ShowsController < ApplicationController
   
   def genres
     @genres = Genre
+  end
+  
+  def get_next_episode
+    series = Series.find(params[:id])
+    if current_user.watch?(series)
+      # Get the next episode unseen
+      unseen_episodes = series.episodes.available.unseen_by(current_user)
+      @next_episode_unseen = unseen_episodes.first
+
+      respond_to do |format|
+        format.js { render :partial => "shows/next_episode_my" }
+      end
+    end
   end
   
   private

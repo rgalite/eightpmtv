@@ -6,7 +6,6 @@ class Episode < ActiveRecord::Base
                     :default_url => "/images/episode_default_image_:style.png",
                   }.merge(Tvshows::Application.config.paperclip_options)
   process_in_background :poster
-
   belongs_to :season
   has_one :series, :through => :season
   has_many :comments, :as => :commentable, :order => "created_at desc"
@@ -18,7 +17,8 @@ class Episode < ActiveRecord::Base
   attr_reader :poster_url
   after_save :attach_poster
   
-  scope :available, :conditions => [ "first_aired IS NOT NULL AND first_aired <= ?", Date.today]
+  # scopes
+  scope :available, :conditions => [ "first_aired <= ?", Date.today]
   scope :seen_by, lambda { |user|
                                     { 
                                       :joins => "LEFT OUTER JOIN seens ON seens.seenable_id = episodes.id AND seens.seenable_type = 'Episode'",
@@ -27,6 +27,9 @@ class Episode < ActiveRecord::Base
                                 }
   scope :unseen_by, lambda { |user| { :joins => "LEFT OUTER JOIN seens ON seens.seenable_id = episodes.id AND seens.seenable_type = 'Episode' and seens.user_id = #{user.id}", :conditions => ["seens.id IS NULL"] } }
 
+  # validations
+  validates :name, :presence => true
+  validates :first_aired, :presence => true
   
   def self.find_by_show_id_and_season_number_and_episode_number(show_id, season_number, episode_number)
     Series.find(show_id).episodes.includes(:season).where("seasons.number" => season_number,
@@ -42,20 +45,12 @@ class Episode < ActiveRecord::Base
     self.poster_processing = !value.blank?
   end
   
-  def available?
-    aired? && updated_at.to_date >= first_aired # Time.at(Settings.last_update.to_i).to_date
+  def available?(date = Date.today)
+    aired?(date) && updated_at.to_date >= first_aired # Time.at(Settings.last_update.to_i).to_date
   end
   
-  def available_before?(date)
-    aired_before?(date) && updated_at.to_date >= first_aired # Time.at(Settings.last_update.to_i).to_date
-  end
-  
-  def aired_before?(date)
-    !first_aired.nil? && first_aired < date
-  end
-  
-  def aired?
-    !first_aired.nil? && first_aired <= Date.today
+  def aired?(date = Date.today)
+    first_aired <= date
   end
   
   def full_name

@@ -1,0 +1,10 @@
+<div id="series_activity" class="switchable">
+  <% if user_signed_in? %>
+    <%= render "next_episode_my" %>
+  <% else %>
+    
+  <% end %>
+  <div id="my_episodes">
+    <%= render :partial => "shows/season_my", :collection => @series.seasons %>
+  </div>
+</div>

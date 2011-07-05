@@ -24,6 +24,10 @@ class Series < ActiveRecord::Base
   scope :last_updated,  :conditions => ["updated_at > ? AND status = ?", 3.days.ago, true],
                         :order => "updated_at DESC, name ASC"
   attr_readonly :follows_count
+  
+  # Validations
+  
+  
   public  
   
   def set_actors(actors)
@@ -87,5 +91,9 @@ class Series < ActiveRecord::Base
   
   def get_episode(season_number, episode_number)
     self.episodes.detect{ |e| e.season.number == season_number && e.number == episode_number }
+  end
+  
+  def aired_episodes
+    self.episodes.where(["first_aired <= ?", Date.today])
   end
 end

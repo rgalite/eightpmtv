@@ -1,0 +1,5 @@
+<% if current_user.has_watched?(season) %>
+<%= link_to_function image_tag("ajax-loader-circle-ball.gif", :style => "display:none"), "return false;", :class => "check_box check_box_checked check_season", :id => "check_season_#{season.id}", :style => "cursor:default" %>
+<% else %>
+<%= link_to image_tag("ajax-loader-circle-ball.gif", :style => "display:none"), mark_season_path(season), :remote => true, 'data-type' => 'txt', :class => "check_box check_box_empty check_season", :id => "check_season_#{season.id}" %>
+<% end %>

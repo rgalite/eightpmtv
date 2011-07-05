@@ -1,0 +1,21 @@
+<div id="next_episode" style="border:1px solid #DEDEDE;padding:20px">
+  <% if @next_episode_unseen.nil? %>
+  <p style="font-weight:bold;text-align:center">You're up-to-date!</p>
+  <% else %>
+    <% episode = @next_episode_unseen %>
+    <div class="episode-title">
+      <div class="name">
+        <span style="font-weight:bold;">Next episode: </span>
+      </div>
+    </div>
+
+    <div>
+      <%= link_to (image_tag episode.poster.url(:small), :class => "thumbnail description-added"), show_season_episode_path_(episode) %>
+      <%= link_to episode.full_name, show_season_episode_path_(episode), :class => "episode-title" %>
+    </div>
+    <div class="air-time"><%= l episode.first_aired, :format => :dmy_with_long_month %></div>
+    <div class="clear"></div>
+  <% end %>
+</div>
+
+

@@ -256,6 +256,9 @@ br.clear { line-height:0px; }
 .series_info #poster.processing img { margin:auto; margin-top:215px;display:block; }
 .series_info span.label { font-weight: bold; }
 
+#series_details { float:left;width:82% }
+#series_details div.switcher { width:100% }
+
 a.add-movie-icon, a.rm-movie-icon { display:inline-block ; padding-left:18px; }
 a.add-movie-icon { background: url(/images/movie_add.png) no-repeat left center; }
 a.rm-movie-icon { background: url(/images/movie_remove.png) no-repeat left center; }
@@ -307,38 +310,38 @@ a.rm-movie-icon { background: url(/images/movie_remove.png) no-repeat left cente
 #series_seasons .thirds p.processing img { margin-top:180px; }
 
 /* season info */
-.season_info #poster { border:1px solid #DEDEDE; float:left; margin-right:10px; }
-.season_info #poster.processing { background: url(/images/light_movie.png) no-repeat; width:150px; height:217px; }
-.season_info #poster.processing img { display:block; margin:auto; margin-top:85px; }
-.season_info .episodes-list { float:left; width:700px; }
-.season_info .episode_info { display:inline-block; float:left; margin-right:40px; width:200px; }
+.season-info #poster { border:1px solid #DEDEDE; float:left; margin-right:10px; }
+.season-info #poster.processing { background: url(/images/light_movie.png) no-repeat; width:150px; height:217px; }
+.season-info #poster.processing img { display:block; margin:auto; margin-top:85px; }
+.season-info .episodes-list { float:left; width:700px; }
+.season-info .episode_info { display:inline-block; float:left; margin-right:40px; width:200px; }
 
 /* my season info */
-#my_episodes { border-top:1px solid #CCC;margin-top:20px;padding-top:20px }
-#my_episodes .season_info { margin-bottom:10px; }
-#my_episodes .season_info div.title {
+#my_episodes { margin-top:20px; }
+#my_episodes .season-info { margin-bottom:10px; }
+#my_episodes .season-info div.title {
 	background-color:#CCC;
 	border:1px solid black;
 }
-#my_episodes .season_info div.title p { margin:0px; }
-#my_episodes .season_info div.title p.title span.handler {
+#my_episodes .season-info div.title p { margin:0px; }
+#my_episodes .season-info div.title p.title span.handler {
 	display: inline-block;
 	height: 16px;
 	margin-right: 3px;
 	width: 16px;
 }
-#my_episodes .season_info div.handler-open p.title span.handler {
+#my_episodes .season-info div.handler-open p.title span.handler {
 	background: url(/images/blue_folder_open.png) no-repeat;
 }
-#my_episodes .season_info div.handler-closed p.title span.handler {
+#my_episodes .season-info div.handler-closed p.title span.handler {
 	background: url(/images/blue_folder_closed.png) no-repeat;
 }
-#my_episodes .season_info div.title p.title {
+#my_episodes .season-info div.title p.title {
 	cursor: pointer;
 	padding: 5px;
 	text-align:center
 }
-#my_episodes a.check_box_checked, #my_episodes a.check_box_empty {
+#my_episodes a.check_box {
 	display:inline-block;
 	float:left;
 	height:16px;
@@ -351,7 +354,21 @@ a.rm-movie-icon { background: url(/images/movie_remove.png) no-repeat left cente
 #my_episodes .episode_info a span { display:inline-block; }
 #my_episodes .episode_info p { margin:0px; }
 #my_episodes .episode_info p a.episode-title { clear:both;display:inline-block;width:175px; }
-
+#my_episodes .my-episode {
+	border-bottom:1px solid #DEDEDE;
+	padding:5px 0px
+}
+#my_episodes .my-episode div.name { 
+	float:left;
+	margin-right:20px;
+	width:70%;
+}
+#my_episodes .my-episode .air-time {
+	float:right;
+}
+#my_episodes .season-episodes {
+	margin-left:40px;
+}
 
 /* episode info */
 .episode_info #poster { border:1px solid #DEDEDE; float:left; margin-right:10px; }

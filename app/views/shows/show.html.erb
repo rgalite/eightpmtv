@@ -5,6 +5,8 @@
   }
   var getSeasonsPath = "<%= get_seasons_show_path(@series) %>";
   var getPosterPath = "<%= get_poster_show_path(@series) %>";
+  var getNextEpisodePath = "<%= get_next_episode_show_path(@series) %>";
+  
   var posterIntervalID = null;
   var seasonsIntervalID = null;
     
@@ -20,7 +22,6 @@
       switchables.not(":first").hide();
     else
     {
-      console.info(switcher);
       switchables.not(":eq(1)").hide();
 
       var switcher = $('.switcher');
@@ -29,7 +30,6 @@
       lis.removeClass('selected');
       lis.eq(2).addClass('selected');
     }
-      
 
     $(".switcher li a").click(function(){
       var switcher = $(this).parent('.switcher');
@@ -38,11 +38,43 @@
       li.siblings().removeClass('selected');
       li.addClass('selected');
       $('.switchable').hide();
-      console.info($(this).attr('rel'));
       $('#' + $(this).attr('rel')).show();
 
       return false;
     })
+    
+    $("a.check_box").live("ajax:before", function(){
+      $(this).children('img').show();
+    })
+    .live("ajax:complete", function(){
+      $(this).children('img').hide();
+    });
+    
+    
+    $("a.check_season").live("ajax:success", function(jqXHR, data, textStatus){
+      $(this).closest('div.season-info').replaceWith(data);
+      updateNextEpisode();
+    });
+    
+    $("a.check_episode").live("ajax:success", function(jqXHR, data, textStatus){
+      $(this).replaceWith(data);
+      updateNextEpisode();
+    });
+    
+    function updateNextEpisode(){
+      $.ajax({
+        url:getNextEpisodePath,
+        success:function(data){
+          $("#next_episode").fadeOut(200, function(){
+            $(this).replaceWith(data);
+          });
+        }
+      });
+    }
+    $("a.season-link,a.episode-link").live('click', function(){
+      $(this).closest('div.name').parent().siblings('div.slidable').slideToggle();
+      return false;
+    });
   });
 </script>
 
@@ -59,18 +91,8 @@
 	<p class="description"><%= people_watching(@series) %></p>
 	<div id="series-<%= @series.id %>" class="series_info">
       <%= render "poster" %>
-      <div>
-        <div class="switcher" style="width:100%">
-          <ul>
-            <li class="selected"><%= link_to "General", "#", :rel => "series-description" %></li>
-            <li><%= link_to "Seasons (#{@series.seasons.size})", "#", :rel => "series_seasons" %></li>
-            <% if user_signed_in? %>
-              <li><%= link_to "My activity", "#", :rel => "series_activity" %></li>
-            <% end %>
-          </ul>
-        </div>
-        
-        <div id="series-description" class="switchable">
+      <div id="series_details">
+        <div id="series_description">
           <% description = truncate(@series.description, 795, "") %>
           <%= description %>
           <% if !@series.description.blank? && @series.description.length > description.length %>
@@ -91,26 +113,27 @@
             <% end %>
           </div>
         </div>
-        
-        <% if user_signed_in? %>
-          <div id="series_activity" class="switchable">
-            <p>
-              <% if @next_episode_unseen.nil? %>
-                You're up-to-date!
-              <% else %>
-                Next episode: <%= @next_episode_unseen.full_name %>
-              <% end %>
-            </p>
-          </div>
-        <% end %>
-        
-        <!-- Seasons -->
-        <%= render "seasons" %>
   	  </div>
   	<div class="clear"></div>
   </div>
 </div>
 
+<div class="switcher">
+  <ul>
+    <li><%= link_to "Seasons (#{@series.seasons.size})", "#", :rel => "series_seasons" %></li>
+    <li><%= link_to "Comments (#{@series.comments.size})", "#", :rel => "series_comments" %></li>
+    <li><%= link_to "Episode Guide (#{@series.aired_episodes.size})", "#", :rel => "series_activity" %></li>
+  </ul>
+</div>
+
+<!-- Switchables -->
+<!-- Seasons -->
+<%= render "seasons" %>
+
 <!-- Comments -->
 <a name="comments"></a>
-<%= render :partial => "shared/comments", :locals => { :comment_path => comment_show_path(@series), :comments => @series.comments } %>
+
+<!-- Episodes -->
+<%= render "episodes" %>
+
+<%= render :partial => "shared/comments", :locals => { :comment_path => comment_show_path(@series), :comments => @series.comments, :klass => "switchable" } %>

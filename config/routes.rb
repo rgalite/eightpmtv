@@ -50,6 +50,7 @@ Tvshows::Application.routes.draw do
       post :comment
       get :get_poster
       get :get_seasons
+      get :get_next_episode
     end
     match "/season/:season_number" => "seasons#show", :constraints => { :season_number => /\d+/ }, :as => "season"
     match "/:season_number/:episode_number" => "episodes#show", :constraints => { :season_number => /\d+/, :episode_number => /\d+/ }, :as => "season_episode"

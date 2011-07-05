@@ -1,4 +1,6 @@
 class SeasonsController < ApplicationController
+  before_filter :authenticate_user!, :only => [:comment, :mark]
+  
   def show
     @season = Season.find_by_series_id_and_number(Series.find(params[:show_id]), params[:season_number])
     
@@ -47,6 +49,7 @@ class SeasonsController < ApplicationController
     season = Season.find(params[:id])
     current_user.episodes_seen << season.episodes
     respond_to do |format|
+      format.js { render :partial => "shows/season_my", :locals => { :season => season } }
       format.html { redirect_to show_path(season.series) }
     end
   end
