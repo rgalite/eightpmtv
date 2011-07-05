@@ -1,6 +1,6 @@
 <% 
   season = season_my if season.nil?
-  season_seen = current_user.has_watched?(season)
+  season_seen = current_user.has_watched?(season) if user_signed_in?
 %>
 <% unless season.episodes.size.zero? %>
   <div id="season_<%= season.number %>" class="season-info">
@@ -30,7 +30,7 @@
             <%= link_to (image_tag episode.poster.url(:small), :class => "thumbnail description-added"), show_season_episode_path_(episode) %>
             <%= link_to episode.name, show_season_episode_path_(episode), :class => "episode-title" %>
             <div>
-              <% if !current_user.has_watched?(episode) %>
+              <% if user_signed_in? && !current_user.has_watched?(episode) %>
                 <span id="episode-<%= episode.id %>-description" style="display:none">
                   <%= episode.description %>
                 </span>
