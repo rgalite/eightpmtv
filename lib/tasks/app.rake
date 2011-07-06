@@ -56,7 +56,7 @@ namespace :app do
                 end
 
                 # The season exists now. Add the episode
-                episode = season.episodes.create!(:tvdb_id => ep.id,
+                episode = season.episodes.build(:tvdb_id => ep.id,
                                                   :number => ep.number,
                                                   :name => ep.name,
                                                   :description => ep.overview,
@@ -64,13 +64,17 @@ namespace :app do
                                                   :writer => ep.writer,
                                                   :first_aired => ep.air_date,
                                                   :poster_url => ep.thumb)
-                puts "Episode #{episode.full_name}. Created."
-                if args.activity && episode.first_aired.to_date > Date.today
-                  # The episode is scheduled
-                  puts "Episode #{episode.full_name} is scheduled."
-                  Delayed::Job.enqueue(NewEpisodeScheduledJob.new(episode.id), :priority => 5)
-                end
-                episodes_updated[:new] << episode
+                if episode.save
+                  puts "Episode #{episode.full_name}. Created."
+                  if args.activity && episode.first_aired.to_date > Date.today
+                    # The episode is scheduled
+                    puts "Episode #{episode.full_name} is scheduled."
+                    Delayed::Job.enqueue(NewEpisodeScheduledJob.new(episode.id), :priority => 5)
+                  end
+                  episodes_updated[:new] << episode
+                else
+                  puts "Episode is invalid: #{errors.full_messages.join(';')}"
+                end  
               else
                 if ep.last_updated.to_i >= a_time
                   available = episode.available?(Time.at(a_time).to_date) 
