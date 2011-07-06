@@ -1,4 +1,4 @@
-<div id="comments" class="<%= klass %>">
+<div id="comments" class="">
   <% if user_signed_in? %>
     <div id="new_bubble" class="bubble new-bubble">
       <%= form_for(Comment.new, :url => comment_path, :remote => true) do |f| %>
