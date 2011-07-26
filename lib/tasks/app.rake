@@ -73,7 +73,7 @@ namespace :app do
                   end
                   episodes_updated[:new] << episode
                 else
-                  puts "Episode is invalid: #{errors.full_messages.join(';')}"
+                  puts "Episode is invalid: #{episode.errors.full_messages.join(';')}"
                 end  
               else
                 if ep.last_updated.to_i >= a_time
