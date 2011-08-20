@@ -78,22 +78,26 @@ namespace :app do
               else
                 if ep.last_updated.to_i >= a_time
                   available = episode.available?(Time.at(a_time).to_date) 
-                  episode.update_attributes!(:tvdb_id => ep.id,
-                                            :number => ep.number,
-                                            :name => ep.name,
-                                            :description => ep.overview,
-                                            :director => ep.director,
-                                            :writer => ep.writer,
-                                            :first_aired => ep.air_date,
-                                            :poster_url => ep.thumb)
-                  if args.activity && (!available && episode.available?) # The episode is NOW available
-                    puts "Episode #{episode.full_name} is now available."
-                    Delayed::Job.enqueue(NewEpisodeAvailableJob.new(episode.id), :priority => 5)
-                  else
-                    puts "#{available ? "A" : "Not A"}vailable: updated on #{episode.updated_at.to_date}"
+                  begin
+                    episode.update_attributes!(:tvdb_id => ep.id,
+                                              :number => ep.number,
+                                              :name => ep.name,
+                                              :description => ep.overview,
+                                              :director => ep.director,
+                                              :writer => ep.writer,
+                                              :first_aired => ep.air_date,
+                                              :poster_url => ep.thumb)
+                    if args.activity && (!available && episode.available?) # The episode is NOW available
+                      puts "Episode #{episode.full_name} is now available."
+                      Delayed::Job.enqueue(NewEpisodeAvailableJob.new(episode.id), :priority => 5)
+                    else
+                      puts "#{available ? "A" : "Not A"}vailable: updated on #{episode.updated_at.to_date}"
+                    end
+                    puts "Episode #{episode.full_name}. Updated."
+                    episodes_updated[:updated] << episode
+                  rescue
+                    puts "Episode is invalid: #{episode.errors.full_messages.join(';')}"
                   end
-                  puts "Episode #{episode.full_name}. Updated."
-                  episodes_updated[:updated] << episode
                 end
               end
             end
