@@ -28,13 +28,4 @@ class Season < ActiveRecord::Base
   def episodes_count
     episodes.size
   end
-  
-  def as_json(options = {})
-    episodes_h = { :methods => [ :full_name ], :only => [ :full_name, :number ] }
-    super(:include => {
-                        :episodes => episodes_h
-                      },
-          :methods => [ :poster_url_small, :episodes_count ],
-          :only => [ :number, :description ])
-  end
 end

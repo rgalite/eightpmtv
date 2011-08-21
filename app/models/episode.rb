@@ -28,7 +28,7 @@ class Episode < ActiveRecord::Base
   scope :unseen_by, lambda { |user| { :joins => "LEFT OUTER JOIN seens ON seens.seenable_id = episodes.id AND seens.seenable_type = 'Episode' and seens.user_id = #{user.id}", :conditions => ["seens.id IS NULL"] } }
 
   # validations
-  validates :name, :presence => true
+  validates :name, :presence => true, :exclusion => { :in => %w(TBA tba) }
   validates :first_aired, :presence => true
   
   def self.find_by_show_id_and_season_number_and_episode_number(show_id, season_number, episode_number)
@@ -71,10 +71,5 @@ class Episode < ActiveRecord::Base
   
   def next
     @next ||= series.episodes[series.episodes.find_index(self) + 1]
-  end
-  
-  def as_json(options = {})
-    super(:methods => [ :poster_url_small, :full_name ],
-          :only => [ :full_name, :description, :first_aired ])
   end
 end

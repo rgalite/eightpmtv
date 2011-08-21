@@ -27,7 +27,6 @@ class Series < ActiveRecord::Base
   
   # Validations
   
-  
   public  
   
   def set_actors(actors)
@@ -44,7 +43,6 @@ class Series < ActiveRecord::Base
   
   def attach_episodes
     Delayed::Job.enqueue(SeriesEpisodesJob.new(id), { :priority => 3 })
-    # Delayed::Job.enqueue(SeriesActorsJob.new(id))
   end
   
   def poster_url=(value)
@@ -73,12 +71,19 @@ class Series < ActiveRecord::Base
   end
   
   def as_json(options={})
-    seasons_h = { :only => [ :number ], :methods => [] }
+    episodes_h = { 
+                  :only => [ :full_name, :description, :first_aired ],
+                  :methods => [ :poster_url_small, :full_name ]
+                 }
+    seasons_h = {
+                  :only => [ :number ],
+                  :include => { :episodes => episodes_h }
+                }
     super(:include => {
                         :seasons => seasons_h
                       },
-          :methods => [ :poster_url_small, :full_name, :episodes_count ],
-          :only => [ :air_time, :description ])
+          :methods => [ :poster_url_small ],
+          :only => [ :air_time, :air_day, :description ])
   end
   
   def next_episode
