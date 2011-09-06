@@ -172,8 +172,39 @@ class User < ActiveRecord::Base
       0
     end
   end
+  
+  def self.find_for_omniauth(omniauth, current_user = nil)
+    authentication = Authentication.find_by_provider_and_uid(omniauth["provider"], omniauth["uid"])
+    if authentication
+      user = authentication.user
+    elsif current_user
+      current_user.authentications.create!(:provider => omniauth["provider"], :uid => omniauth["uid"])
+      user = current_user
+    else
+      email = extract_email(omniauth, omniauth["provider"])
+      unless user = User.find_by_email(email)
+        user = User.new(:email => email)
+        user.authentications.build(:provider => omniauth["provider"], :uid => omniauth["uid"])
+      else
+        user.authentications.create!(:provider => omniauth["provider"], :uid => omniauth["uid"])
+      end
+    end
+    
+    user
+  end
     
   protected
+  def self.extract_email(omniauth, provider)
+    case provider
+    when "facebook"
+      omniauth["user_info"]["email"]
+    when "twitter"
+      debugger
+      omniauth["user_info"]["email"]
+    end
+  end
+  
+  
   def self.find_for_database_authentication(conditions)
    login = conditions.delete(:login)
    where(conditions).where(["username = :value OR email = :value", { :value => login }]).first

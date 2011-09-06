@@ -29,10 +29,10 @@
       <p class="title"><b>Connect with your social account</b></h2>
       <div id="my-authentications">
         <div class="auth-method">
-          <%= link_to (image_tag "twitter_connect.gif"), "/auth/twitter" %>
+          <%= link_to (image_tag "twitter_connect.gif"), user_omniauth_authorize_path(:twitter) %>
         </div>
         <div class="auth-method" style="margin-top:10px">
-          <%= link_to (image_tag "facebook_connect.gif"), "/auth/facebook" %>
+          <%= link_to (image_tag "facebook_connect.gif"), user_omniauth_authorize_path(:facebook) %>
         </div>
       </div>
     </div>      

@@ -35,15 +35,5 @@ class AuthenticationsController < ApplicationController
     end
   end
   
-  private
-  def clean_omniauth(omniauth)
-    case omniauth["provider"]
-    when "facebook"
-      omniauth["user_info"]["nickname"] = omniauth["extra"]["user_hash"]["name"]
-      omniauth["user_info"]["email"] = omniauth["extra"]["user_hash"]["email"]
-      omniauth["user_info"]["image"] = "http://graph.facebook.com/#{omniauth["uid"]}/picture"
-    end
-    
-    omniauth.except('extra')
-  end
+  
 end
