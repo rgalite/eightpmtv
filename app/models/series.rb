@@ -82,7 +82,7 @@ class Series < ActiveRecord::Base
     super(:include => {
                         :seasons => seasons_h
                       },
-          :methods => [ :poster_url_small ],
+          :methods => [ :poster_url_small, :poster_url_medium, :poster_url_thumb, :poster_url_original ],
           :only => [ :air_time, :air_day, :description, :name ])
   end
   
