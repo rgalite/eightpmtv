@@ -73,7 +73,7 @@ class Series < ActiveRecord::Base
   def as_json(options={})
     episodes_h = { 
                   :only => [ :full_name, :description, :first_aired, :name ],
-                  :methods => [ :poster_url_small, :full_name ]
+                  :methods => [ :poster_url_small, :poster_url_medium, :poster_url_thumb, :poster_url_original, :full_name ]
                  }
     seasons_h = {
                   :only => [ :number ],
