@@ -1,11 +1,13 @@
 source 'http://rubygems.org'
 
-
-
 group :development do
   gem 'heroku_san'
   gem "ruby-debug"
   gem "rush"
+end
+
+group :production do
+  gem 'pg', :require => 'pg'
 end
 
 gem 'aws-s3', :require => 'aws/s3'
@@ -19,10 +21,8 @@ gem 'jquery-rails'
 gem "json"
 gem "mail"
 gem "mongrel"
-gem "mysql"
 gem "oa-oauth", :require => "omniauth/oauth"
 gem "paperclip"
-gem 'pg', :require => 'pg'
 gem 'rails'
 gem "rack-force_domain"
 gem 'recaptcha', :require => 'recaptcha/rails'
