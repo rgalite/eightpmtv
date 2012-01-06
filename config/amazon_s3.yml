@@ -1,4 +1,4 @@
-development:
+development: &default
   bucket: 'static.eightpm.tv'
   access_key_id: AKIAJXZ66TNJSUDJPNHQ
   secret_access_key: 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
@@ -7,17 +7,7 @@ development:
   static_bucket: 'static.eightpm.tv'
       
 production:
-  bucket: 'static.eightpm.tv'
-  access_key_id: AKIAJXZ66TNJSUDJPNHQ
-  secret_access_key: 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
-  backup: 'backups.eightpm.tv'
-  assets_bucket: 'assets.eightpm.tv'
-  static_bucket: 'static.eightpm.tv'
+  <<:*default
 
 staging:
-  bucket: 'static.eightpm.tv'
-  access_key_id: AKIAJXZ66TNJSUDJPNHQ
-  secret_access_key: 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
-  backup: 'backups.eightpm.tv'
-  assets_bucket: 'assets.eightpm.tv'
-  static_bucket: 'static.eightpm.tv'
+  <<:*default

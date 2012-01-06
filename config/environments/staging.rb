@@ -54,7 +54,6 @@ Tvshows::Application.configure do
     :s3_credentials => "#{Rails.root}/config/amazon_s3.yml",
     :bucket => "static.eightpm.tv",
     :s3_permissions => :public_read,
-    :s3_host_alias => "static.eightpm.tv",
     :url => ":s3_alias_url",
     :path => ":class/:attachment/:id/:style/:basename.:extension",
   }
