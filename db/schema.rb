@@ -33,10 +33,10 @@ ActiveRecord::Schema.define(:version => 20110329185920) do
   add_index "activities", ["created_at"], :name => "altered_activities_created_at_ix"
 
   create_table "actors", :force => true do |t|
-    t.integer   "tvdb_id"
-    t.string    "name"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.integer  "tvdb_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "application_settings", :force => true do |t|
@@ -54,16 +54,15 @@ ActiveRecord::Schema.define(:version => 20110329185920) do
     t.string   "avatar"
   end
 
-  add_index "authentications", ["user_id"], :name => "altered_authentications_user_id_ix"
   add_index "authentications", ["user_id"], :name => "authentications_user_id_ix"
 
   create_table "comments", :force => true do |t|
-    t.integer   "user_id"
-    t.text      "content"
-    t.integer   "commentable_id"
-    t.string    "commentable_type"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.integer  "user_id"
+    t.text     "content"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "comments", ["commentable_id"], :name => "comments_commentable_id_ix"
@@ -160,15 +159,15 @@ ActiveRecord::Schema.define(:version => 20110329185920) do
   end
 
   create_table "roles", :force => true do |t|
-    t.string    "name"
-    t.integer   "series_id"
-    t.integer   "actor_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "image_file_name"
-    t.string    "image_content_type"
-    t.integer   "image_file_size"
-    t.timestamp "image_updated_at"
+    t.string   "name"
+    t.integer  "series_id"
+    t.integer  "actor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "roles", ["actor_id"], :name => "roles_actor_id_ix"
@@ -249,37 +248,36 @@ ActiveRecord::Schema.define(:version => 20110329185920) do
   add_index "settings", ["target_type", "target_id", "var"], :name => "index_settings_on_target_type_and_target_id_and_var", :unique => true
 
   create_table "slugs", :force => true do |t|
-    t.string    "name"
-    t.integer   "sluggable_id"
-    t.integer   "sequence",                     :default => 1, :null => false
-    t.string    "sluggable_type", :limit => 40
-    t.string    "scope"
-    t.timestamp "created_at"
+    t.string   "name"
+    t.integer  "sluggable_id"
+    t.integer  "sequence",                     :default => 1, :null => false
+    t.string   "sluggable_type", :limit => 40
+    t.string   "scope"
+    t.datetime "created_at"
   end
 
   add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "users", :force => true do |t|
-    t.string    "email",                               :default => "", :null => false
-    t.string    "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string    "password_salt",                       :default => "", :null => false
-    t.string    "reset_password_token"
-    t.string    "remember_token"
-    t.timestamp "remember_created_at"
-    t.integer   "sign_in_count",                       :default => 0
-    t.timestamp "current_sign_in_at"
-    t.timestamp "last_sign_in_at"
-    t.string    "current_sign_in_ip"
-    t.string    "last_sign_in_ip"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "username"
-    t.string    "photo_file_name"
-    t.string    "photo_content_type"
-    t.integer   "photo_file_size"
-    t.datetime  "photo_updated_at"
-    t.integer   "follows_count"
+    t.string   "email",                               :default => "", :null => false
+    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string   "reset_password_token"
+    t.string   "remember_token"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                       :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "username"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.integer  "follows_count"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
