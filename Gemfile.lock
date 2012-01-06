@@ -112,7 +112,6 @@ GEM
     pg (0.10.1)
     polyglot (0.3.1)
     rack (1.2.2)
-    rack-force_domain (0.1.1)
     rack-mount (0.6.14)
       rack (>= 1.0.0)
     rack-test (0.5.7)
@@ -175,7 +174,6 @@ DEPENDENCIES
   oa-oauth
   paperclip
   pg
-  rack-force_domain
   rails
   recaptcha
   ruby-debug

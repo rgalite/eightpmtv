@@ -24,6 +24,5 @@ gem "mongrel"
 gem "oa-oauth", :require => "omniauth/oauth"
 gem "paperclip"
 gem 'rails'
-gem "rack-force_domain"
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'sqlite3-ruby', :require => 'sqlite3'
